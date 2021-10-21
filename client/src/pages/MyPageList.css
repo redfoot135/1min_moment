@@ -1,0 +1,11 @@
+.mypage-list {
+    margin-top: 30px;
+    width: 200px;
+    display: flex;
+    flex-direction: column;
+    color: white;
+}
+
+.mypage-list-text {
+    color: white;
+}
