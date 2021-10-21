@@ -43,7 +43,7 @@ function App() {
     
     <div className="App">
       <BrowserRouter>
-         {/* <header className="App-header" onClick={openModalFunc}>
+         <header className="App-header" onClick={openModalFunc}>
            로그인
          </header>
          {isModalOpen === false ? null 
@@ -52,7 +52,7 @@ function App() {
          <div className-="mypage-txt" onClick={openSideBarlFunc}>마이페이지</div>
          {isSideBarOpen === false ? null
          : <MyPage openSideBarlFunc={openSideBarlFunc} />
-         } */}
+         }
          <Switch>
            <Route path="/myvedio"><MyVedio /></Route>
            <Route path="/myupload"><MyUpload /></Route>

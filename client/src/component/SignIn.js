@@ -54,6 +54,10 @@ export default function SignIn ({ handleAccessToken, handleUserInfo, openModalFu
                     <input className="loginEmail" name="email" type="email" placeholder="이메일" onChange={handleInputValue("email")} ></input>
                     <input className="loginPassword" name="password" type="password" placeholder="비밀번호" onChange={handleInputValue("password")} ></input>
                     <button className="loginBtn" onClick={handleLogin}>로그인</button>
+                    {errorMessage === "" ? null 
+                    : 
+                    <div className="errorMessege">{errorMessage}</div>
+                    }
                     <div className="socialBox">
                         <div className="kakao">
                             <img className="kakaoLogo" src="https://i.ibb.co/BVSp3jm/ai-3-removebg-preview-1.png" />
