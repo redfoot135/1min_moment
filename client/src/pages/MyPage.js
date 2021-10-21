@@ -1,27 +1,30 @@
 import React, {useState} from 'react';
 import { Link } from "react-router-dom";
 import "./MyPage.css";
-import MyPageList from "./MyPageList"
+import MyInfo from "../component/MyInfo"
 
 const MyPage = ({ openSideBarlFunc }) => {
 
-    const lists = [
-        {name: "내 정보 보기", path: "/myinfo"},
-        {name: "내가 찜한 영상", path: "/myvedio"},
-        {name: "내가 올린 영상", path: "/myupload"}
-    ]
+    const [isMyInfoOpen, setIsMyInfoOpen] = useState(false)
+
+    const openMyInfoModalFunc = () => {
+        setIsMyInfoOpen(!isMyInfoOpen)
+    }
 
     return (
     
-        <div className="mypage-Bar">
+        <div className="mypage-bar">
             <img className="onemin_logo" src="https://i.ibb.co/7tYjgkr/1.png" />
-            {lists.map((list, index) => {
-                return (
-                    <Link to={list.path} key={index} style={{ textDecoration: 'none', color: "white" }} >
-                        <MyPageList list={list} openSideBarlFunc={openSideBarlFunc} />
-                    </Link>
-                )
-            })}
+              <div className="my-info" onClick={ openMyInfoModalFunc }>내 정보 보기</div>
+              {isMyInfoOpen === false ? null 
+              : <MyInfo />
+              }
+              <Link to={"/likevedio"} style={{ textDecoration: 'none', color: "white" }} >
+                  <div className="like-Vedio" onClick={ openSideBarlFunc }>내가 찜한 영상</div>
+              </Link>
+              <Link to={"/uploadvideo"} style={{ textDecoration: 'none', color: "white" }} >
+                  <div className="upload-vedio" onClick={ openSideBarlFunc }>내가 올린 영상</div>
+              </Link>
         </div>
     
     )
