@@ -1,4 +1,4 @@
-.modal {
+.myInfo-modalbox {
     position: fixed;
     top: 0;
     right: 0;
@@ -8,7 +8,7 @@
     z-index: 1050;
   }
   
-  .loginModal {
+  .myInfo-modal {
     width: 480px;
     height: 621px;
     background-color: white;
@@ -18,9 +18,12 @@
     padding: 20px;
     background: #fff;   
     border-radius: 80px 0px 80px 0px / 80px 0px 80px 0px;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
   }
   
+  .close {
+    float: right;
+    font-size: 25px;
+    color: black;
+    cursor: pointer
+  }
   
