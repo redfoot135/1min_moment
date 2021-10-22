@@ -1,4 +1,4 @@
-.mypage-bar {
+.mypage-sidebar {
     display: flex;
     border-right: 1px solid #e0e0e0;
     flex-direction: column;
@@ -11,26 +11,105 @@
     position: fixed;
     transition-property: all ease 2.5s;
     z-index: 1;
-    background-color: #2f4050;   
+    background-color: #2983C5;   
     font-weight: bold;
+    border-radius: 0px 80px 80px 0px / 0px 80px 80px 0px;
 
+}
+
+.mypage-userbox {
+    background-color: #E6F4F1;
+    height: 22%;
+    width: 100%;
+    position: absolute;
+    top: 0;
+    box-sizing: border-box;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding-right: 8%;
+}
+
+.user-logo {
+    width: 28px;
+    height: 29px;
+    color: white;
+}
+
+.username {
+    color:rgb(54, 53, 53);
+    margin: 20px 20px;
+}
+
+.usermail {
+    color:rgb(54, 53, 53);
+    margin: 20px 20px;
+}
+
+.my-info-box {
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
 
 .my-info {
     color:white;
     margin: 20px 20px;
+    cursor: pointer;
 }
 
-.like-Vedio {
+.my-info-logo {
+    width: 24px;
+    height: 25px;
+    color: white;
+}
+
+.like-video-box {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.like-video-logo {
+    width: 24px;
+    height: 25px;
+    padding-left: 10px;
+    color: white;
+}
+
+.like-Video {
     color:white;
     margin: 20px 20px;
+    cursor: pointer;
 }
 
-.upload-vedio {
+.upload-video-box {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.upload-video-logo {
+    width: 24px;
+    height: 25px;
+    padding-left: 12px;
+    color: white;
+}
+
+.upload-video {
     color:white;
     margin: 20px 20px;
+    cursor: pointer;
 }
 
+.txt:hover {
+    color: #F05C69;
+    border-radius: 2px;
+}
 
-/* overflow: hidden; 반응형 애니메이션용 */
-/* transition: all 0.5s ease;  반응형 애니메이션 */
+@media screen and (max-width: 767px) {
+    .mypage-sidebar {
+      width: 100vw;
+    }
+}
+
