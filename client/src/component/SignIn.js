@@ -3,6 +3,8 @@ import { Link, useHistory } from "react-router-dom";
 import axios from "axios";
 import "./SignIn.css";
 
+import Googlebutton from "./Googlebutton"
+
 axios.defaults.withCredentials = true;
 
 export default function SignIn ({ handleAccessToken, handleUserInfo, openModalFunc}) {
@@ -61,12 +63,9 @@ export default function SignIn ({ handleAccessToken, handleUserInfo, openModalFu
                     <div className="socialBox">
                         <div className="kakao">
                             <img className="kakaoLogo" src="https://i.ibb.co/BVSp3jm/ai-3-removebg-preview-1.png" />
-                            <div className="kakaoText">카카오 계정으로 신규가입</div>
+                            <div className="kakaoText">카카오 계정으로 로그인</div>
                         </div>
-                        <div className="google">
-                            <img className="googleLogo" src="https://i.ibb.co/zQhDSnq/google-logo.png" />
-                            <div className="googleText">구글 계정으로 신규가입</div>
-                        </div>
+                        <Googlebutton />
                     </div>
                     <div className="loginEnd">
                         <div className="signUpLine">

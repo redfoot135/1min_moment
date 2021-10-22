@@ -74,6 +74,7 @@
         }
   
         .loginBtn {
+          box-shadow: rgba(0, 0, 0, 0.24) 0px 2px 2px 0px, rgba(0, 0, 0, 0.24) 0px 0px 1px 0px;
           height: 40px;
           font-size: 14px;
           padding: 13px 30px;
@@ -102,6 +103,7 @@
           margin-bottom: 30px;
         }
           .kakao {
+            box-shadow: rgba(0, 0, 0, 0.24) 0px 2px 2px 0px, rgba(0, 0, 0, 0.24) 0px 0px 1px 0px;
             background-color: #feec34;
             border-color: #feec34;
             height: 40px;
@@ -112,6 +114,7 @@
             margin-bottom: 10px;
             border-radius: 3px;
             cursor: pointer
+            
           }
             .kakaoText {
               width: 300px;
@@ -119,6 +122,7 @@
               text-align: center;
               display: inline-block;
               box-sizing: border-box;
+              color: rgb(19, 19, 19);
             }
             .kakaoLogo {
                 position: absolute;
@@ -127,30 +131,39 @@
                 height: 35px;
               }
 
-          .google {
-            background-color: none;
-            border: 1px solid rgb(124, 124, 124);
-            height: 40px;
+          .google-login-box {
             display: flex;
+            align-items: center;
             justify-content: center;
-            box-sizing: border-box;
-            color: rgb(0, 0, 0);
-            border-radius: 3px;
-            cursor: pointer
-          }
-            .googleText {
-              padding-top: 12px;
-              width: 310px;
-              color: rgb(0, 0, 0);
+          }          
+            .google-login-box button {
+              width: 400px;
+              padding-left: 20px;
+              margin-top: 5px;
+              height: 40px;
+              display: flex;
+              align-items: center;
+              justify-content: center;
+              box-sizing: border-box;
+              margin-bottom: 10px;
+              border-radius: 3px;
+              cursor: pointer
+            }            
+             .google-login-box button div {
+              width: 20px;
+              height: 20px;
+              padding: 0px 0px 0px 0px;
+              position: absolute;
+              left: 45px;
+            }            
+             .google-login-box button span {
+              width: 300px;
               font-size: 15px;
               text-align: center;
+              display: inline-block;
               box-sizing: border-box;
+              color: rgb(19, 19, 19);
             }
-            .googleLogo {
-              padding-top: 7px;
-              width: 25px;
-              height: 25px;
-            } 
   
         .loginEnd {
           text-align: center;
@@ -173,3 +186,7 @@
           .noUser {
             text-decoration: underline;
           }
+
+
+
+  
