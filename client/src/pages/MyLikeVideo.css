@@ -1,0 +1,44 @@
+.mylikevideo-box {
+    box-sizing: border-box;
+    border: 1px solid black;
+    background-color: #f9f9f9;
+    padding: 40px 20px;
+    padding-bottom: 0;
+}
+
+.mylikevideo-box > h2 {
+    display: flex;
+    padding-left: 5px;
+    margin-left: 5px;
+    margin-bottom: 20px;
+}
+
+.videocard-box {
+    display: flex;
+    flex-wrap: wrap;
+}
+
+
+.filter-box {
+    background-color: #f9f9f9;
+    padding: 20px 20px
+}
+
+.filter-box-content {
+    display: flex;
+    align-items: center;
+    color: #606060;
+    font-size: xx-small !important;
+}
+
+.filter-box-content > h2 {
+    margin-left: 10px;
+}
+
+.filter-box > hr {
+    height: 1px;
+    border: 0;
+    background-color: lightgray;
+    margin-top: 10px;
+    margin-bottom: 10px;
+}

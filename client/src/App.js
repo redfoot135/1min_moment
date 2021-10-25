@@ -4,8 +4,8 @@ import axios from "axios"
 import './App.css';
 import SignIn from "./component/SignIn"
 import MyPage from "./pages/MyPage"
-import MyVedio from "./pages/MyVedio"
-import MyUpload from "./pages/MyUpload"
+import MyLikeVideo from "./pages/MyLikeVideo"
+import MyUploadVideo from "./pages/MyUploadVideo"
 
 axios.defaults.withCredentials = true;
 
@@ -54,8 +54,8 @@ function App() {
          : <MyPage openSideBarlFunc={openSideBarlFunc} />
          }
          <Switch>
-           <Route path="/myvedio"><MyVedio /></Route>
-           <Route path="/myupload"><MyUpload /></Route>
+           <Route path="/mylikevideo"><MyLikeVideo /></Route>
+           <Route path="/myuploadvideo"><MyUploadVideo /></Route>
          </Switch>
       </BrowserRouter>
     </div>
