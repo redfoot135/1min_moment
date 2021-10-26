@@ -19,7 +19,8 @@ module.exports = (sequelize, DataTypes) => {
     password: DataTypes.STRING,
     regularMember: DataTypes.BOOLEAN,
     social: DataTypes.BOOLEAN,
-    refreshToken: DataTypes.STRING
+    refreshToken: DataTypes.STRING,
+    salt: DataTypes.STRING
   }, {
     sequelize,
     modelName: 'user',
