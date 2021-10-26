@@ -4,6 +4,7 @@ import axios from "axios";
 import "./SignIn.css";
 
 import Googlebutton from "./Googlebutton"
+import Kakaobutton from './Kakaobutton';
 
 axios.defaults.withCredentials = true;
 
@@ -61,10 +62,11 @@ export default function SignIn ({ handleAccessToken, handleUserInfo, openModalFu
                     <div className="errorMessege">{errorMessage}</div>
                     }
                     <div className="socialBox">
-                        <div className="kakao">
+                        {/* <div className="kakao">
                             <img className="kakaoLogo" src="https://i.ibb.co/BVSp3jm/ai-3-removebg-preview-1.png" />
                             <div className="kakaoText">카카오 계정으로 로그인</div>
-                        </div>
+                        </div> */}
+                        <Kakaobutton />
                         <Googlebutton />
                     </div>
                     <div className="loginEnd">
