@@ -6,7 +6,8 @@ module.exports = {
   post_like : require('./methods/post/like'),
   post_comment : require('./methods/post/comment'),
   post_socialSignin : require('./methods/post/socialSignin'),
-
+  
+  get_emailauth: require('./methods/get/emailauth'),
   get_userinfo : require('./methods/get/userinfo'),
   get_videos : require('./methods/get/videos'),
   get_myvideo : require('./methods/get/myvideo'),

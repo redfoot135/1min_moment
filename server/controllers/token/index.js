@@ -22,7 +22,7 @@ module.exports = {
       //엑세스토큰 만료시
       if(err) {
         //데이터 베이스에 들어있는 리프레시 토큰 확인
-        db.user.findOne({where: decoded.email})
+        db.user.findOne({ where:{ email: decoded.email } })
         .then((data) => {
           const refreshtoken = data.refreshToken;
           //리프레시 토큰 복호화
