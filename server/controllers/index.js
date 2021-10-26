@@ -5,6 +5,7 @@ module.exports = {
   post_myvideo : require('./methods/post/myvideo'),
   post_like : require('./methods/post/like'),
   post_comment : require('./methods/post/comment'),
+  post_socialSignin : require('./methods/post/socialSignin'),
 
   get_userinfo : require('./methods/get/userinfo'),
   get_videos : require('./methods/get/videos'),

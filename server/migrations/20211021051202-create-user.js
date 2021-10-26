@@ -17,8 +17,14 @@ module.exports = {
       password: {
         type: Sequelize.STRING
       },
-      regular_member: {
+      regularMember: {
         type: Sequelize.BOOLEAN
+      },
+      social: {
+        type: Sequelize.BOOLEAN
+      },
+      refreshToken: {
+        type: Sequelize.STRING
       },
       createdAt: {
         allowNull: false,

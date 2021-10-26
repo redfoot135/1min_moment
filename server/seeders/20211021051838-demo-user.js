@@ -6,7 +6,9 @@ module.exports = {
       email: 'asdf@naver.com',
       name: 'John Doe',
       password: '1234',
-      regular_member: true
+      regular_member: true,
+      social: false,
+      refreshToken: null
     },
     {
       email: 'qwer@naver.com',

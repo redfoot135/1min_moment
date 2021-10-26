@@ -1,10 +1,11 @@
 require("dotenv").config();
 const db = require('../../../models');
 const jwt = require('jsonwebtoken');
+const { createAccessToken, createRefreshToken } = require('../../token')
 
 module.exports = async (req, res) => {
   const { name, email, password } = req.body;
-
+  const salt = String(Math.random());
   if(!name || !email || !password ) {
     res.status(422).json({ message:"insufficient parameters supplied"} )
   }else {
@@ -15,7 +16,8 @@ module.exports = async (req, res) => {
       defaults: {
         email: email,
         name: name,
-        password: password
+        password: jwt.sign(password, salt),
+        salt: salt
       }
     })
     .then(([data, created]) => {
@@ -31,14 +33,14 @@ module.exports = async (req, res) => {
         }
 
   
-        const accessToken = jwt.sign(payload, process.env.ACCESS_SECRET, { expiresIn: "15m"})
-        // const refreshToken = jwt.sign(payload, process.env.REFRESH_SECRET, { expiresIn: "1h"})
+        const accessToken = createAccessToken(payload);
+        const refreshToken = createRefreshToken(payload);
         
-        // res.cookie("refreshToken", refreshToken, {
-        //   httpOnly: true,
-        //   secure: true,
-        //   sameSite: "none"
-        // })
+        res.cookie("refreshToken", refreshToken, {
+          httpOnly: true,
+          secure: true,
+          sameSite: "none"
+        })
   
         res.status(201).json({
             data : { 
