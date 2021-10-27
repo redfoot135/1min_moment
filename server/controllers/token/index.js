@@ -16,37 +16,39 @@ module.exports = {
     return refreshToken;
   },
   //토큰 검증 함수
-  tokenCheck: (accessToken) => {
+  tokenCheck: async (accessToken) => {
     //엑세스 토큰 복호화
-    jwt.verify(accessToken,access_secret, (err,decoded) => {
+    let result;
+    await jwt.verify(accessToken,access_secret, async (err,decoded) => {
       //엑세스토큰 만료시
       if(err) {
+        const userdata = jwt.decode(accessToken, access_secret)
         //데이터 베이스에 들어있는 리프레시 토큰 확인
-        db.user.findOne({ where:{ email: decoded.email } })
-        .then((data) => {
-          const refreshtoken = data.refreshToken;
-          //리프레시 토큰 복호화
-          jwt.verify(refreshtoken, refresh_secret, (err, decoded) => {
-            //리프레시토큰도 만료
-            if(err) {
-              //로그인 다시하라 요청
-              return null;
-            }else {
-              const payload = {
-                id: decoded.id,
-                email: decoded.email,
-                name: decoded.name,
-                password: decoded.password
-              }
-              const newAccessToken = this.createAccessToken(payload);
-              return {token: newAccessToken, email: decoded.email};
+        // console.log(decoded)
+        const data = await db.user.findOne({ where:{ email: userdata.email } })
+        const refreshtoken = data.dataValues.refreshToken;
+        //리프레시 토큰 복호화
+        jwt.verify(refreshtoken, refresh_secret, (err, decoded) => {
+          //리프레시토큰도 만료
+          if(err) {
+            //로그인 다시하라 요청
+            result = null;
+          }else {
+            const payload = {
+              id: decoded.id,
+              email: decoded.email,
+              name: decoded.name,
+              password: decoded.password
             }
-          })
+            const newAccessToken = jwt.sign(payload, access_secret, { expiresIn: "60m"});
+            result = {token: newAccessToken, email: decoded.email};
+          }
         })
       }else {
         //유효함
-        return {token: accessToken, email: decoded.email};
+        result = {token: accessToken, email: decoded.email};
       }
     })
+    return result;
   }
 }
