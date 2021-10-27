@@ -33,19 +33,19 @@ module.exports = {
               return null;
             }else {
               const payload = {
-                id: data.id,
-                email: data.email,
-                name: data.name,
-                password: data.password
+                id: decoded.id,
+                email: decoded.email,
+                name: decoded.name,
+                password: decoded.password
               }
               const newAccessToken = this.createAccessToken(payload);
-              return newAccessToken;
+              return {token: newAccessToken, email: decoded.email};
             }
           })
         })
       }else {
         //유효함
-        return accessToken;
+        return {token: accessToken, email: decoded.email};
       }
     })
   }
