@@ -8,6 +8,7 @@
     "@testing-library/jest-dom": "^5.11.4",
     "@testing-library/react": "^11.1.0",
     "@testing-library/user-event": "^12.1.10",
+    "aws-sdk": "^2.1016.0",
     "axios": "^0.23.0",
     "dotenv": "^8.2.0",
     "react": "^17.0.2",
@@ -17,10 +18,11 @@
     "react-router-dom": "^5.3.0",
     "react-scripts": "4.0.3",
     "styled-components": "^5.3.3",
+    "uuid": "^3.4.0",
     "web-vitals": "^1.0.1"
   },
   "scripts": {
-    "start": "react-scripts start",
+    "start": "HTTPS=true SSL_CRT_FILE=cert.pem SSL_KEY_FILE=key.pem react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test",
     "eject": "react-scripts eject"
