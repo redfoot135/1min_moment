@@ -48,14 +48,14 @@ app.put("/comment", controllers.put_comment); //성근
 app.delete("/comment", controllers.delete_comment); //성근
 
 //비디오 좋아요
-app.post("/like/video", controllers.post_like); //재훈
-app.get("/like/video", controllers.get_like);  //재훈
-app.delete("/like/video", controllers.delete_like);  //재훈
+app.post("/like/video", controllers.post_like_video); //재훈
+app.get("/like/video", controllers.get_like_video);  //재훈
+app.delete("/like/video", controllers.delete_like_video);  //재훈
 
 //코멘트 좋아요
-app.post("/like/comment", controllers.post_like); //성근
-app.get("/like/comment", controllers.get_like); //성근
-app.delete("/like/comment", controllers.delete_like); //성근
+app.post("/like/comment", controllers.post_like_comment); //성근
+app.get("/like/comment", controllers.get_like_comment); //성근
+app.delete("/like/comment", controllers.delete_like_comment); //성근
 
 
 let server;
