@@ -24,7 +24,7 @@ module.exports = {
         type: Sequelize.BOOLEAN
       },
       refreshToken: {
-        type: Sequelize.STRING
+        type: Sequelize.STRING(500)
       },
       salt: {
         type: Sequelize.STRING

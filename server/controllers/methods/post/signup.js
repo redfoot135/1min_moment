@@ -82,6 +82,17 @@ module.exports = async (req, res) => {
         }
 
         sendEmail(email);
+        
+        //3시간 이내 인증안하면 데이터 삭제
+        setTimeout(() => {
+          db.user.findOne({where: {email: email}})
+          .then((userinfo) => {
+            if(!userinfo.regularMember) {
+              db.user.destroy({where: {email: email}})
+            }
+          })
+          //3시간 뒤 실행
+        }, 1000 * 60 * 60 * 3)
 
         //기존 보내온 데이터와 응답 메시지 전송
         res.status(201).json({

@@ -28,7 +28,6 @@ module.exports = async (req, res) => {
 
         const accessToken = createAccessToken(payload)
         const refreshToken = createRefreshToken(payload)
-
          
         // 리프레쉬 토큰 db에 저장하기
         db.user.update({
