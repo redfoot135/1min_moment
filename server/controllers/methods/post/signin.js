@@ -23,7 +23,7 @@ module.exports = async (req, res) => {
           id : userInfo.dataValues.id,
           name : userInfo.dataValues.name,
           email : userInfo.dataValues.email,
-          password: userInfo.dataValues.password, // 여기는 이미 회원가입할때 해싱을 해버린 패스워드임
+          //password: userInfo.dataValues.password, // 여기는 이미 회원가입할때 해싱을 해버린 패스워드임
         }
 
         const accessToken = createAccessToken(payload)
@@ -42,7 +42,7 @@ module.exports = async (req, res) => {
         httpOnly: true,
         secure: true,
         sameSite: "none"
-      })
+       })
       }
 
 

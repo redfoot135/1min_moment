@@ -36,7 +36,24 @@ module.exports = async (req, res) => {
                   video_id: video_id,
                   comment: comment
                 })
+                // 새롭게 해싱할 페이로드 (토큰 생성을 위한)
+                const payload = {
+                  id : userData.dataValues.id,
+                  name : userData.dataValues.name,
+                  email : userData.dataValues.email
+                }
 
+                // 새로운 엑세스토큰과 리프레쉬 토큰 생성 
+                const accessToken = createAccessToken(payload)
+                const refreshToken = createRefreshToken(payload)
+                // 쿠키로 엑세스토큰 같이 보내주고
+                res.cookie("accessToken", accessToken, {
+                  httpOnly: true,
+                  secure: true,
+                  sameSite: "none"
+                 })
+                }
+                
                 res.status(201).json({
                   data: {
                     comment:comment,
