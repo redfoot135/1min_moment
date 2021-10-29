@@ -49,15 +49,15 @@ app.delete("/comment", controllers.delete_comment); //성근/완료
 
 //비디오 좋아요
 
-app.post("/like/video", controllers.post_like_video); //재훈
-app.get("/like/video", controllers.get_like_video);  //재훈
-app.delete("/like/video", controllers.delete_like_video);  //재훈
+app.post("/like/video", controllers.post_like_video); //성근/완료
+app.get("/like/video", controllers.get_like_video);  //성근/완료
+app.delete("/like/video", controllers.delete_like_video);  //성근/완료
 
 
 //코멘트 좋아요
-app.post("/like/comment", controllers.post_like_comment); //성근
-app.get("/like/comment", controllers.get_like_comment); //성근
-app.delete("/like/comment", controllers.delete_like_comment); //성근
+app.post("/like/comment", controllers.post_like_comment); //성근/완료
+app.get("/like/comment", controllers.get_like_comment); //성근/?? 이거 와이어 프레임에 존재 하지않음 (보류)
+app.delete("/like/comment", controllers.delete_like_comment); //성근/완료
 
 
 let server;
