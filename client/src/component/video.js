@@ -1,6 +1,7 @@
 import './video.css'
 import {useMediaQuery} from 'react-responsive'
 import Avatar from "@material-ui/core/Avatar";
+import { useEffect,useCallback } from 'react';
 export default function Video({image, channelImage, title, channel, views, timestamp}) {
     const isPc = useMediaQuery({
         query : "(min-width:768px)"
@@ -8,6 +9,17 @@ export default function Video({image, channelImage, title, channel, views, times
     const isMobile = useMediaQuery({
         query : "(max-width:767px)"
     })
+    const handleScroll = useCallback((): void=>{
+         const {innerHeight} = window;
+         
+
+    },[])
+    useEffect(()=>{
+        window.addEventListener('scroll',handleScroll, true)
+        return() =>{
+            window.removeEventListener('scroll',handleScroll, true)
+        };
+    },[handleScroll]);
 
     return(
         <div className="videocard">
