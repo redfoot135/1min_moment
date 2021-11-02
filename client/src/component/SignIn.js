@@ -2,8 +2,8 @@ import React, {useState} from 'react';
 import { Link, useHistory } from "react-router-dom";
 import axios from "axios";
 import "./SignIn.css";
-
-import Googlebutton from "./Googlebutton"
+import SignUp from "./SignUp";
+import Googlebutton from "./Googlebutton";
 import Kakaobutton from './Kakaobutton';
 
 axios.defaults.withCredentials = true;
@@ -21,10 +21,15 @@ export default function SignIn ({ handleAccessToken, handleUserInfo, openModalFu
     const handleInputValue = (key) => (e) => {
         setLoginInfo({ ...loginInfo, [key]: e.target.value })
     }
+    
+    const [openSignUpModal, setOpenSignUpModal] = useState(false)
+
+    const openSignUpModalFunc = () => {
+        setOpenSignUpModal(!openSignUpModal)
+      }
 
     const handleLogin = () => {
         const {email, password} = loginInfo
-        console.log(loginInfo)
 
         if(email === "" || password === "") {
             setErrorMessage("이메일과 비밀번호를 입력하세요")
@@ -34,13 +39,14 @@ export default function SignIn ({ handleAccessToken, handleUserInfo, openModalFu
             {"content-type":"application/json", withCredentials: true}
             )
             .then((res) => {
-                console.log("=====================res: ", res)
-                // 여기서 이메일 인증 된 사람과 안된사람 분기해서 해야함.
-                // res.data.message
-                handleAccessToken(res.data.data.accessToken);
-                handleUserInfo(res.data.data.payload)
-                openModalFunc();
-                history.push("/")
+                // console.log("=====================res: ", res.data.message)
+                if(res.data.message === "Information passed") { // 이메일 인증된 사람
+                    handleUserInfo(res.data.data)
+                    openModalFunc();
+                    history.push("/")
+                } else if(res.data.message === "invalid email or password"){ // 이메일 인증 안된 사람
+                    setErrorMessage("이메일 인증 후 이용해주시기 바랍니다")
+                }
             }).catch((err) => {
                 console.log(err)
                 alert("잘못된 아이디거나, 비밀번호 입니다")
@@ -66,13 +72,17 @@ export default function SignIn ({ handleAccessToken, handleUserInfo, openModalFu
                     <div className="errorMessege">{errorMessage}</div>
                     }
                     <div className="socialBox">
-                        <Kakaobutton />
-                        <Googlebutton />
+                        <Kakaobutton errorMessage={errorMessage} openModalFunc={openModalFunc} handleAccessToken={handleAccessToken} />
+                        <Googlebutton errorMessage={errorMessage} openModalFunc={openModalFunc} handleAccessToken={handleAccessToken} />
                     </div>
                     <div className="loginEnd">
-                        <div className="signUpLine">
-                            <Link to="/signup">회원이 아니신가요?</Link>
+                        <div className="loginLine" onClick={openSignUpModalFunc}>
+                            회원이 아니신가요?
                         </div>
+                        {
+                         openSignUpModal === false ? null 
+                         : <SignUp openSignUpModalFunc={openSignUpModalFunc}/> 
+                        }
                     </div>
                 </div>
             </div>
