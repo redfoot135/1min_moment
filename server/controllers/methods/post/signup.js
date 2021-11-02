@@ -13,7 +13,7 @@ module.exports = async (req, res) => {
   //혹시 유저 정보가 부족하게 왔다면
   if(!name || !email || !password ) {
     //에러 메시지 전송
-    res.status(422).json({ message:"insufficient parameters supplied"} )
+    res.status(422).json({ message:"insufficient parameters supplied"})
     //정보가 제대로 왔다면
   }else {
     //데이터베이스에서 이메일을 조회하고
@@ -45,21 +45,28 @@ module.exports = async (req, res) => {
         res.status(409).json({ message: "This email already exists"})
       //새로 만들었으면 이메일 인증 메일 발송
       }else{
+        //메일 발송 실패시 사용할 카운트
+        let errorCount = 0;
         //인증 메일 발송 함수
-        function sendEmail(toEmail) { 
-          const authUser = process.env.AUTHUSER;
-          const authPass = process.env.AUTHPASS;
-          const fromEmail = process.env.FROMEMAIL;
-          const transporter = nodemailer.createTransport({
+        function sendEmail(toEmail) {
+          //5번 전송 실패하면  
+          if(errorCount === 5) {
+            //저장된 데이터 다시 삭제
+            db.user.destroy({where: {email: email}});
+          }else {
+            const authUser = process.env.AUTHUSER;
+            const authPass = process.env.AUTHPASS;
+            const fromEmail = process.env.FROMEMAIL;
+            const transporter = nodemailer.createTransport({
               host: "smtp.naver.com",
               secure: true,
               auth: {
-                  user: authUser,
-                  pass: authPass
+                user: authUser,
+                pass: authPass
               }
-          });
-          
-          let mailOptions = {
+            });
+            
+            let mailOptions = {
               from: fromEmail,
               to: toEmail,
               subject: '1분 미만 회원가입 인증이메일입니다.',
@@ -67,43 +74,52 @@ module.exports = async (req, res) => {
                 <h1>1분 미만 회원가입 인증이메일입니다. 아래 버튼을 눌러 회원가입을 완료해주세요.</h1>
                 <a href='https://localhost:80/emailauth?token=${token}'>회원가입 완료하기</a>
               </div>`
-          };
-      
-          //전송 시작!
-          transporter.sendMail(mailOptions, function(error, info){
+            };
+        
+            //전송 시작!
+            transporter.sendMail(mailOptions, function(error, info){
               if (error) {
                   //에러
                   console.log(error);
+                  errorCount++;
+                  sendEmail(toEmail);
               }
               //전송 완료
               console.log("Finish sending email : " + info.response);        
               transporter.close()
-          })
+          })}
         }
-
+        //메일 발송
         sendEmail(email);
         
-        //3시간 이내 인증안하면 데이터 삭제
-        setTimeout(() => {
-          db.user.findOne({where: {email: email}})
-          .then((userinfo) => {
-            if(!userinfo.regularMember) {
-              db.user.destroy({where: {email: email}})
-            }
+        //메일 전송 5번 모두 실패했으면
+        if(errorCount === 5) {
+          res.json("메일 전송 실패 다시 시도해")
+          //메일 전송 성공했으면
+        }else {
+          //3시간 이내 인증안하면 데이터 삭제
+          setTimeout(() => {
+            db.user.findOne({where: {email: email}})
+            .then((userinfo) => {
+              if(!userinfo.regularMember) {
+                db.user.destroy({where: {email: email}})
+              }
+            })
+            //3시간 뒤 실행
+          }, 1000 * 60 * 60 * 3)
+  
+          //기존 보내온 데이터와 응답 메시지 전송
+          res.status(201).json({
+            data : { 
+              name: name,
+              email: email,
+              password: password,
+              //테스트 완료후 토큰은 지우기
+              token: token
+            },
+            message: "You have become an associate member. Please check your email to complete the verification process."
           })
-          //3시간 뒤 실행
-        }, 1000 * 60 * 60 * 3)
-
-        //기존 보내온 데이터와 응답 메시지 전송
-        res.status(201).json({
-          data : { 
-            name: data.dataValues.name,
-            email: data.dataValues.email,
-            password: password,
-            token: token
-          },
-          message: "You have become an associate member. Please check your email to complete the verification process."
-        })
+        }
       }
     })
   }

@@ -5,15 +5,15 @@ const { createAccessToken, createRefreshToken } = require('../../token')
 
 
 module.exports = async (req, res) => {
-    
+    const { email, password } = req.body;
     const userInfo = await db.user.findOne({
-      where: { email: req.body.email } // 이메일로만 유저 정보 조회
+      where: { email: email } // 이메일로만 유저 정보 조회
     })
 
     if(!userInfo) {
       res.status(404).json({ message:"invalid email or password" })
     } else {
-      const inputpassword = jwt.sign(req.body.password, userInfo.dataValues.salt)
+      const inputpassword = jwt.sign(password, userInfo.dataValues.salt)
 
       if(userInfo.dataValues.password !== inputpassword) {
         res.status(404).json({ message:"invalid email or password" })
@@ -33,7 +33,7 @@ module.exports = async (req, res) => {
         db.user.update({
           refreshToken: refreshToken
         }, {
-          where: { email: req.body.email }
+          where: { email: email }
         })
 
               
@@ -48,8 +48,8 @@ module.exports = async (req, res) => {
 
       res.status(200).json({
       data: {
-        email:userInfo.dataValues.email,
-        password: req.body.password // 해싱된 비밀번호가 아닌 그냥 원본 비밀번호를 보내줌
+        email: email,
+        password: password // 해싱된 비밀번호가 아닌 그냥 원본 비밀번호를 보내줌
     },
       message: "Information passed"
     })
