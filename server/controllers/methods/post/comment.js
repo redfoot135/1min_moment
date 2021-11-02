@@ -62,5 +62,4 @@ module.exports = async (req, res) => {
                   message:"Comment has been completed"
                 })
             }
-          }
 }
