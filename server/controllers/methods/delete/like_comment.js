@@ -3,7 +3,7 @@ const db = require('../../../models');
 const jwt = require('jsonwebtoken');
 const { createAccessToken, createRefreshToken, tokenCheck } = require('../../token')
 
-module.exports = (req, res) => {
+module.exports = async (req, res) => {
 
   const authorization = req.headers.accessToken;
 

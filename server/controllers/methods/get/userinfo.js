@@ -2,7 +2,7 @@ require("dotenv").config();
 const db = require('../../../models');
 const jwt = require('jsonwebtoken');
 
-module.exports = async (req, res) => {
+module.exports = (req, res) => {
   const authorization = req.headers['authorization'];
 
   jwt.verify(authorization,process.env.ACCESS_SECRET , async function(err,decoded){

@@ -3,7 +3,7 @@ const db = require('../../../models');
 const jwt = require('jsonwebtoken');
 const { createAccessToken, createRefreshToken, tokenCheck } = require('../../token')
 
-module.exports = (req, res) => {
+module.exports = async (req, res) => {
     
   const authorization = req.headers.accessToken;
 
@@ -47,7 +47,7 @@ module.exports = (req, res) => {
           video_id: video_id,
           comment: comment
         })
-        
+
         // 새롭게 해싱할 페이로드 (토큰 생성을 위한)
         const payload = {
           id : userData.dataValues.id,

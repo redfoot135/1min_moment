@@ -3,7 +3,7 @@ const db = require('../../../models');
 const sequelize = require('sequelize');
 const Op = sequelize.Op;
 
-module.exports = async (req, res) => {
+module.exports =  (req, res) => {
   const { search, category1, category2, category3 } = req.query;
 
   // 검색어도 없고 카테고리 1,2,3 이 없을경우에는 전체 비디오 정보를 보내주기
