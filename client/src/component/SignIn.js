@@ -24,21 +24,25 @@ export default function SignIn ({ handleAccessToken, handleUserInfo, openModalFu
 
     const handleLogin = () => {
         const {email, password} = loginInfo
+        console.log(loginInfo)
 
         if(email === "" || password === "") {
             setErrorMessage("이메일과 비밀번호를 입력하세요")
         } else {
-            axios.post("https://localhost:4000/signin",
+            axios.post("https://localhost:80/signin",
             {email, password},
             {"content-type":"application/json", withCredentials: true}
             )
             .then((res) => {
+                console.log("=====================res: ", res)
+                // 여기서 이메일 인증 된 사람과 안된사람 분기해서 해야함.
+                // res.data.message
                 handleAccessToken(res.data.data.accessToken);
                 handleUserInfo(res.data.data.payload)
-                // handleUserInfo(res.data.data.payload) // 이번에도 signin 요청의 응답에서 payload안에 userInfo가 담겨 오는지(?) 
                 openModalFunc();
                 history.push("/")
             }).catch((err) => {
+                console.log(err)
                 alert("잘못된 아이디거나, 비밀번호 입니다")
             })
         }
@@ -62,10 +66,6 @@ export default function SignIn ({ handleAccessToken, handleUserInfo, openModalFu
                     <div className="errorMessege">{errorMessage}</div>
                     }
                     <div className="socialBox">
-                        {/* <div className="kakao">
-                            <img className="kakaoLogo" src="https://i.ibb.co/BVSp3jm/ai-3-removebg-preview-1.png" />
-                            <div className="kakaoText">카카오 계정으로 로그인</div>
-                        </div> */}
                         <Kakaobutton />
                         <Googlebutton />
                     </div>

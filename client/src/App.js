@@ -6,9 +6,14 @@ import SignIn from "./component/SignIn"
 import MyPage from "./pages/MyPage"
 import MyLikeVideo from "./pages/MyLikeVideo"
 import MyUploadVideo from "./pages/MyUploadVideo"
+import Nav from './component/nav'
+import Nav2 from './component/nav2'
+import Slider from './component/slider'
+import Main from './component/main'
+import VideoPage from './pages/videopage'
+
 
 axios.defaults.withCredentials = true;
-
 function App() {
 
   const history = useHistory();
@@ -31,6 +36,7 @@ function App() {
 
   const openModalFunc = () => {
     setIsModalOpen(!isModalOpen)
+    console.log(isModalOpen)
   }
 
   const [isSideBarOpen, setIsSideBarOpen] = useState(false)
@@ -40,9 +46,31 @@ function App() {
   }
 
   return (
-    
+    <BrowserRouter>
     <div className="App">
-      <BrowserRouter>
+      <div>
+      {isLogin ===true ? 
+        <Nav2 openModalFunc={openModalFunc} /> :
+         <Nav openSideBarlFunc={openSideBarlFunc}/>}
+      </div> 
+        <div>
+        {
+        isModalOpen === false ? null 
+        : <SignIn handleAccessToken={handleAccessToken} handleUserInfo={handleUserInfo} openModalFunc={openModalFunc} /> 
+        }
+        {isSideBarOpen === false ? null
+         : <MyPage openSideBarlFunc={openSideBarlFunc} />
+         }
+         <MyLikeVideo />
+       <Slider/>
+       <Main/>
+       <VideoPage/>
+       <Switch>
+           <Route path="/mylikevideo"><MyLikeVideo /></Route>
+           <Route path="/myuploadvideo"><MyUploadVideo /></Route>
+        </Switch>
+       </div>
+       {/* <BrowserRouter>
          <header className="App-header" onClick={openModalFunc}>
            로그인
          </header>
@@ -57,8 +85,9 @@ function App() {
            <Route path="/mylikevideo"><MyLikeVideo /></Route>
            <Route path="/myuploadvideo"><MyUploadVideo /></Route>
          </Switch>
-      </BrowserRouter>
+      </BrowserRouter>  */}
     </div>
+    </BrowserRouter>
   );
 }
 

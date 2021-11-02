@@ -20,6 +20,9 @@ const MyPage = ({ openSideBarlFunc }) => {
                      <div className="username">유저네임</div>
                      <div className="usermail">유저메일</div>
                   </div>
+                  <span className="mypage-close" onClick={openSideBarlFunc}>
+                    &times;
+                </span>
             </div>
             <div className="mypage-bodybox">
                 <div className="my-info-box">

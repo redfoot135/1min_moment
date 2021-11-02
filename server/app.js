@@ -20,9 +20,9 @@ app.use(
 );
 
 //로그인 로그아웃 회원가입
-app.post("/signin", controllers.post_signin); //성근
+app.post("/signin", controllers.post_signin); //성근/완료
 app.post("/signup", controllers.post_signup); //재훈//완료
-app.post("/signout", controllers.post_signout); //성근
+app.post("/signout", controllers.post_signout); //성근/완료
 app.post("/socialSignin", controllers.post_socialSignin);//재훈
 //이메일 인증용도
 app.get("/emailauth", controllers.get_emailauth);//재훈//완료
@@ -43,19 +43,21 @@ app.put("/userinfo", controllers.put_userinfo); //재훈
 app.delete("/userinfo", controllers.delete_userinfo); //재훈
 
 //코멘트
-app.post("/comment", controllers.post_comment); //성근
-app.put("/comment", controllers.put_comment); //성근
-app.delete("/comment", controllers.delete_comment); //성근
+app.post("/comment", controllers.post_comment); //성근/완료
+app.put("/comment", controllers.put_comment); //성근/완료
+app.delete("/comment", controllers.delete_comment); //성근/완료
 
 //비디오 좋아요
-app.post("/like/video", controllers.post_like_video); //재훈
-app.get("/like/video", controllers.get_like_video);  //재훈
-app.delete("/like/video", controllers.delete_like_video);  //재훈
+
+app.post("/like/video", controllers.post_like_video); //성근/완료
+app.get("/like/video", controllers.get_like_video);  //성근/완료
+app.delete("/like/video", controllers.delete_like_video);  //성근/완료
+
 
 //코멘트 좋아요
-app.post("/like/comment", controllers.post_like_comment); //성근
-app.get("/like/comment", controllers.get_like_comment); //성근
-app.delete("/like/comment", controllers.delete_like_comment); //성근
+app.post("/like/comment", controllers.post_like_comment); //성근/완료
+app.get("/like/comment", controllers.get_like_comment); //성근/?? 이거 와이어 프레임에 존재 하지않음 (보류)
+app.delete("/like/comment", controllers.delete_like_comment); //성근/완료
 
 
 let server;
