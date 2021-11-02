@@ -11,6 +11,8 @@ import Nav2 from './component/nav2'
 import Slider from './component/slider'
 import Main from './component/main'
 import VideoPage from './pages/videopage'
+import UploadVideo from './pages/uploadVideo'
+
 
 
 axios.defaults.withCredentials = true;
@@ -61,9 +63,11 @@ function App() {
         {isSideBarOpen === false ? null
          : <MyPage openSideBarlFunc={openSideBarlFunc} />
          }
-         <MyLikeVideo />
+         {/* <MyLikeVideo /> */}
+         {/* <UploadVideo /> */}
        <Slider/>
        <Main/>
+       <UploadVideo />
        <VideoPage/>
        <Switch>
            <Route path="/mylikevideo"><MyLikeVideo /></Route>

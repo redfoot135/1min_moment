@@ -69,7 +69,7 @@ export default function Main(){
         views="10.5만 views"
         timestamp="3 days ago"
         channelImage="http://cdnimage.dailian.co.kr/news/201808/news_1535616895_736207_m_1.jpg"
-        channel="1min_moment"
+        channel="1min_moment1"
         image="https://miricanvas.zendesk.com/hc/article_attachments/360049546931/__________._5.png"
         />
         <Video
@@ -77,7 +77,7 @@ export default function Main(){
         views="10.5만 views"
         timestamp="3 days ago"
         channelImage="http://cdnimage.dailian.co.kr/news/201808/news_1535616895_736207_m_1.jpg"
-        channel="1min_moment"
+        channel="1min_moment2"
         image="https://miricanvas.zendesk.com/hc/article_attachments/360049546931/__________._5.png"
         />
         <Video
@@ -85,7 +85,7 @@ export default function Main(){
         views="10.5만 views"
         timestamp="3 days ago"
         channelImage="http://cdnimage.dailian.co.kr/news/201808/news_1535616895_736207_m_1.jpg"
-        channel="1min_moment"
+        channel="1min_moment3"
         image="https://miricanvas.zendesk.com/hc/article_attachments/360049546931/__________._5.png"
         />
          <Video
@@ -93,7 +93,7 @@ export default function Main(){
         views="10.5만 views"
         timestamp="3 days ago"
         channelImage="http://cdnimage.dailian.co.kr/news/201808/news_1535616895_736207_m_1.jpg"
-        channel="1min_moment"
+        channel="1min_moment4"
         image="https://miricanvas.zendesk.com/hc/article_attachments/360049546931/__________._5.png"
         />
          <Video
@@ -101,7 +101,7 @@ export default function Main(){
         views="10.5만 views"
         timestamp="3 days ago"
         channelImage="http://cdnimage.dailian.co.kr/news/201808/news_1535616895_736207_m_1.jpg"
-        channel="1min_moment"
+        channel="1min_moment5"
         image="https://miricanvas.zendesk.com/hc/article_attachments/360049546931/__________._5.png"
         />
          <Video
@@ -109,7 +109,7 @@ export default function Main(){
         views="10.5만 views"
         timestamp="3 days ago"
         channelImage="http://cdnimage.dailian.co.kr/news/201808/news_1535616895_736207_m_1.jpg"
-        channel="1min_moment"
+        channel="1min_moment6"
         image="https://miricanvas.zendesk.com/hc/article_attachments/360049546931/__________._5.png"
         />
          <Video
@@ -117,7 +117,7 @@ export default function Main(){
         views="10.5만 views"
         timestamp="3 days ago"
         channelImage="http://cdnimage.dailian.co.kr/news/201808/news_1535616895_736207_m_1.jpg"
-        channel="1min_moment"
+        channel="1min_moment7"
         image="https://miricanvas.zendesk.com/hc/article_attachments/360049546931/__________._5.png"
         />
          <Video
@@ -125,7 +125,7 @@ export default function Main(){
         views="10.5만 views"
         timestamp="3 days ago"
         channelImage="http://cdnimage.dailian.co.kr/news/201808/news_1535616895_736207_m_1.jpg"
-        channel="1min_moment"
+        channel="1min_moment8"
         image="https://miricanvas.zendesk.com/hc/article_attachments/360049546931/__________._5.png"
         />
          <Video
@@ -133,7 +133,7 @@ export default function Main(){
         views="10.5만 views"
         timestamp="3 days ago"
         channelImage="http://cdnimage.dailian.co.kr/news/201808/news_1535616895_736207_m_1.jpg"
-        channel="1min_moment"
+        channel="1min_moment9"
         image="https://miricanvas.zendesk.com/hc/article_attachments/360049546931/__________._5.png"
         />
          <Video
@@ -141,7 +141,7 @@ export default function Main(){
         views="10.5만 views"
         timestamp="3 days ago"
         channelImage="http://cdnimage.dailian.co.kr/news/201808/news_1535616895_736207_m_1.jpg"
-        channel="1min_moment"
+        channel="1min_moment10"
         image="https://miricanvas.zendesk.com/hc/article_attachments/360049546931/__________._5.png"
         />
          <Video
@@ -149,7 +149,7 @@ export default function Main(){
         views="10.5만 views"
         timestamp="3 days ago"
         channelImage="http://cdnimage.dailian.co.kr/news/201808/news_1535616895_736207_m_1.jpg"
-        channel="1min_moment"
+        channel="1min_moment11"
         image="https://miricanvas.zendesk.com/hc/article_attachments/360049546931/__________._5.png"
         />
          <Video
@@ -157,7 +157,7 @@ export default function Main(){
         views="10.5만 views"
         timestamp="3 days ago"
         channelImage="http://cdnimage.dailian.co.kr/news/201808/news_1535616895_736207_m_1.jpg"
-        channel="1min_moment"
+        channel="1min_moment12"
         image="https://miricanvas.zendesk.com/hc/article_attachments/360049546931/__________._5.png"
         />
          <Video
@@ -165,7 +165,7 @@ export default function Main(){
         views="10.5만 views"
         timestamp="3 days ago"
         channelImage="http://cdnimage.dailian.co.kr/news/201808/news_1535616895_736207_m_1.jpg"
-        channel="1min_moment"
+        channel="1min_moment13"
         image="https://miricanvas.zendesk.com/hc/article_attachments/360049546931/__________._5.png"
         />
         
