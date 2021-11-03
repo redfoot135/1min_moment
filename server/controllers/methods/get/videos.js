@@ -3,7 +3,9 @@ const db = require('../../../models');
 const sequelize = require('sequelize');
 const Op = sequelize.Op;
 
-module.exports = async (req, res) => {
+// 단어로만 지금 검색은 되지만  문장으로는 검색이 지금 안되고있어야함 후에 생각해볼일!
+
+module.exports =  (req, res) => {
   const { search, category1, category2, category3 } = req.query;
 
   // 검색어도 없고 카테고리 1,2,3 이 없을경우에는 전체 비디오 정보를 보내주기
@@ -64,10 +66,6 @@ module.exports = async (req, res) => {
        }
      })
 
-    //  const data = categoryData.findAll({
-    //    where: { title: categoryData.title.indexOf(`${search}`) }
-    //  })
-
      //무한 스크롤로 짤라서 데이터를 넘겨줘야하는지 아니면 그냥 보내도 되는지 아직 모르겠음
      return res.status(200).json({
       data: data,
@@ -85,10 +83,6 @@ module.exports = async (req, res) => {
       }
     })
 
-    // const data = categoryData.findAll({
-    //   where: { title: categoryData.title.indexOf(`${search}`) }
-    // })
-
     //무한 스크롤로 짤라서 데이터를 넘겨줘야하는지 아니면 그냥 보내도 되는지 아직 모르겠음
     return res.status(200).json({
       data: data,
@@ -96,7 +90,7 @@ module.exports = async (req, res) => {
     })
 
     //검색어가 들어오고 category1과 category2와 category3가 다들어오면
-   }else if(search && category1 && category2 & !category3) {
+   }else if(search && category1 && category2 & category3) {
     const data = db.video.findAll({
       where: {
         category1: category1,
@@ -108,9 +102,6 @@ module.exports = async (req, res) => {
       }
     })
 
-    // const data = categoryData.findAll({
-    //   where: { title: categoryData.title.indexOf(`${search}`) }
-    // })
 
    //무한 스크롤로 짤라서 데이터를 넘겨줘야하는지 아니면 그냥 보내도 되는지 아직 모르겠음 
     return res.status(200).json({
