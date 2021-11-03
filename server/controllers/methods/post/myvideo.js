@@ -1,53 +1,49 @@
-const { tokenCheck } = require("../../token");
 const db = require('../../../models');
-const { v4: uuidv4 } = require('uuid');
-const AWS = require('aws-sdk');
-// const multer = require('multer');
+const { tokenCheck } = require("../../token");
 
 module.exports = async (req, res) => {
-  //헤더에 인증 정보가 없으면
-  if(!req.headers.authorization) {
-    res.send("인증정보 없어")
-    //인증정보 있으면
+  const { title, video, thumbnail, category1, category2, category3} = req.body;
+  const authorization = req.headers['authorization'];
+  if(!authorization) {
+    //인증 정보가 없으면
+    res.status(400).json({message:"Token has expired Please log in again"});
   }else {
-    const accessToken = req.headers.authorization.split(' ')[1];
-    const check = await tokenCheck(accessToken)
+    //토큰만 거르기
+    const token = authorization.split(' ')[1];
+    //토큰 검증 함수
+    const check = await tokenCheck(token);
+    //엑세스토큰 & 리프레시토큰 유효하지 않으면
     if(!check) {
-      //로그인 다시 하라는 메시지
-      res.send("로그인 다시해");
-
-
-      //인증완료 -------------------------------------------------------------------
+      res.status(400).json({message:"Token has expired Please log in again"});
     }else {
-      //엑세스 토큰과 요청하는 데이터 모두 보내주기
-      //유저 정보 조회
-      const data = await db.user.findOne({where: {email: check.email}});
-      const userinfo = data.dataValues;
-      //클라이언트에서 보내온 영상과 썸네일 업로드
-      const S3 = new AWS.S3({
-        endpoint: new AWS.Endpoint(process.env.ENDPOINT),
-        region: 'kr-standard',
-        credentials: {
-          accessKeyId: process.env.ACCESSKEY,
-          secretAccessKey: process.env.SECRETKEY,
-        },
-      });
-
-      const videoName = uuidv4();
-      const video = new FormData();
-      // const file = await
-      video.append("video", )
-      await S3.putObject({
-        Bucket: process.env.BUCKET,
-        Key: `${videoName}.mp4`,
-        ACL: 'public-read',
-        Body: '~Downloads/videos1/pexels-pavel-danilyuk-6460001.mp4',
-        ContentType: 'video/mp4',
-      }).promise();
-
-      const link =`${process.env.ENDPOINT}/${process.env.BUCKET}/${videoName}.mp4`
-
-      res.send(link)
+      //받아온 정보가 부족하면
+      if(!title || !video || !thumbnail || !category1) {
+        res.status(422).json({message: "insufficient parameters supplied"});
+      }else {
+        const userinfo = await db.user.findOne({where: {email: check.email}});
+        //video 테이블에 데이터 추가
+        await db.video.create({
+          title: title,
+          user_id: userinfo.id,
+          video: video,
+          thumbnail: thumbnail,
+          category1: category1,
+          category2: category2,
+          category3: category3
+        })
+        //응답
+        res.status(200).json({
+          data: {
+            title: title,
+            video: video,
+            thumbnail: thumbnail,
+            category1: category1,
+            category2: category2,
+            category3: category3
+          },
+          message: "Video registration is complete"
+        })
+      }
     }
   }
 }

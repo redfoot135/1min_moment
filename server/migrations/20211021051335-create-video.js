@@ -14,6 +14,12 @@ module.exports = {
       user_id: {
         type: Sequelize.INTEGER
       },
+      video: {
+        type: Sequelize.STRING
+      },
+      thumbnail: {
+        type: Sequelize.STRING
+      },
       category1: {
         type: Sequelize.STRING
       },

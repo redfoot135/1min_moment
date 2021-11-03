@@ -1,52 +1,32 @@
-require("dotenv").config();
 const db = require('../../../models');
-const jwt = require('jsonwebtoken');
+const { tokenCheck } = require('../../token')
 
-module.exports = (req, res) => {
+module.exports = async (req, res) => {
   const authorization = req.headers['authorization'];
-
-  jwt.verify(authorization,process.env.ACCESS_SECRET , async function(err,decoded){
-    if(err) {
-      res.status(401).json({ message:"not authorized" })
-    } else {
-      const tokenData = { 
-        id: decoded.id,
-        email:decoded.email,
-        name:decoded.name,
-        password:decoded.password
+  if(!authorization) {
+    //인증 정보가 없으면
+    res.status(400).json({message:"Token has expired Please log in again"});
+  }else {
+    //토큰만 거르기
+    const token = authorization.split(' ')[1];
+    //토큰 검증 함수
+    const check = await tokenCheck(token);
+    //엑세스토큰 & 리프레시토큰 유효하지 않으면
+    if(!check) {
+      res.status(400).json({message:"Token has expired Please log in again"});
+    }else {
+      //이메일 정보로 유저 조회
+      const userinfo = await db.user.findOne({where: {email: check.email}});
+      //보내줄 정보
+      const payload = {
+        id: userinfo.id,
+        email: userinfo.email,
+        name: userinfo.name
       }
-
-      const userInfo = await db.user.findOne({
-        where: tokenData
-      })
-
-      if(!userInfo) {
-        res.status(404).json({ message:"invalid user"})
-      } else {
-        const payload = {
-          id : userInfo.dataValues.id,
-          name : userInfo.dataValues.name,
-          email : userInfo.dataValues.email,
-          password : userInfo.dataValues.password
-        }
-        
-        const accessToken = jwt.sign(payload, process.env.ACCESS_SECRET, { expiresIn: "15m"})
-        // const refreshToken = jwt.sign(payload, process.env.REFRESH_SECRET, { expiresIn: "1h"})
-    
-        // res.cookie("refreshToken", refreshToken, {
-        //   httpOnly: true,
-        //   secure: true,
-        //   sameSite: "none"
-        // })
-    
-        res.status(200).json({
-          accessToken: accessToken,
-          name : userInfo.dataValues.name,
-          email : userInfo.dataValues.email,
-          password : userInfo.dataValues.password,
-          message: "Information passed"
-        })
-      }
+      res.status(200).json({
+        data: payload,
+        message: "Information passed"
+      });
     }
-  })
+  }
 };
