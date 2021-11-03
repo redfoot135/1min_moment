@@ -13,6 +13,7 @@ module.exports = async (req, res) => {
     if(!userInfo) {
       res.status(404).json({ message:"invalid email or password" })
     } else {
+
         bcrypt.compare(password, userInfo.dataValues.password, function(err, result) {
           //result 암호가 없다면 에러메시지를 보내줌.
           console.log("로그인 패스워드 검증 결과 result : ", result)

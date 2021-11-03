@@ -13,7 +13,7 @@
     z-index: 1;
     background-color: #2983C5;   
     font-weight: bold;
-    border-radius: 0px 80px 80px 0px / 0px 80px 80px 0px;
+    border-radius: 0px 0px 80px 0px / 0px 0px 80px 0px;
 
 }
 
@@ -28,6 +28,16 @@
     justify-content: center;
     align-items: center;
     padding-right: 8%;
+}
+
+.mypage-close {
+    position: absolute;
+    top: 0px;
+    right: 5px;
+    font-weight: normal;
+    font-size: 25px;
+    color: black;
+    cursor: pointer
 }
 
 .user-logo {
