@@ -3,7 +3,7 @@ const db = require('../../../models');
 const jwt = require('jsonwebtoken');
 const { createAccessToken, createRefreshToken, tokenCheck } = require('../../token')
 
-module.exports = (req, res) => {
+module.exports = async (req, res) => {
 
   const authorization = req.headers.accessToken;
 
@@ -25,7 +25,7 @@ module.exports = (req, res) => {
     const { comment_id } = req.body;
 
     db.comment_like.destroy({
-        where: { comment_id: comment_id }
+        where: { comment_id: comment_id } 
     })
     // 혹시몰라서 따로 뺀 코드 // 아니다 이걸 삭제하면 userData.id로 연동된 모든 좋아요가 삭제?? 
     // db.comment_like.destroy({
