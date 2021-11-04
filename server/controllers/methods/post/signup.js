@@ -44,7 +44,7 @@ module.exports = async (req, res) => {
             //소셜 로그인 아이디 아님
             social: null,
             //이메일 인증에 사용할 임시 리프레시토큰(인증 후 삭제)(이후에는 로그인할 때 리프레시토큰 저장)
-            refreshToken: token
+            authToken: token
           }
         })
         .then(([data, created]) => {
@@ -121,9 +121,7 @@ module.exports = async (req, res) => {
                 data : { 
                   name: username,
                   email: email,
-                  password: password,
-                  //테스트 완료후 토큰은 지우기
-                  token: token
+                  password: password
                 },
                 message: "You have become an associate member. Please check your email to complete the verification process."
               })

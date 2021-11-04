@@ -17,7 +17,7 @@ module.exports = {
     return refreshToken;
   },
   //토큰 검증 함수
-  tokenCheck: async (accessToken) => {
+  tokenCheck: async (accessToken, res) => {
     //엑세스 토큰 복호화
     let result;
     await jwt.verify(accessToken,access_secret, async (err,decoded) => {
@@ -47,13 +47,32 @@ module.exports = {
                 social: decoded.social
               }
               const newAccessToken = jwt.sign(payload, access_secret, { expiresIn: "60m"});
+              const newRefreshToken = jwt.sign(payload, refresh_secret, { expiresIn: "12h"});
+              //쿠키로 리프레쉬 토큰을 보내줌
+              res.cookie("refreshToken", newRefreshToken, {
+                httpOnly: true,
+                secure: true,
+                sameSite: "none"
+              })
               result = {token: newAccessToken, email: decoded.email, social: decoded.social};
             }
           })
         }
       }else {
+        const payload = {
+          email: decoded.email,
+          social: decoded.social
+        }
+        const newAccessToken = jwt.sign(payload, access_secret, { expiresIn: "60m"});
+        const newRefreshToken = jwt.sign(payload, refresh_secret, { expiresIn: "12h"});
+
+        res.cookie("refreshToken", newRefreshToken, {
+          httpOnly: true,
+          secure: true,
+          sameSite: "none"
+        })
         //유효함
-        result = {token: accessToken, email: decoded.email, social: decoded.social};
+        result = {token: newAccessToken, email: decoded.email, social: decoded.social};
       }
     })
     return result;

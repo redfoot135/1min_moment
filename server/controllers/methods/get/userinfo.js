@@ -5,26 +5,36 @@ module.exports = async (req, res) => {
   const authorization = req.headers['authorization'];
   if(!authorization) {
     //인증 정보가 없으면
-    res.status(400).json({message:"Token has expired Please log in again"});
+    res.status(401).json({ message:"not authorized" });
   }else {
     //토큰만 거르기
     const token = authorization.split(' ')[1];
     //토큰 검증 함수
-    const check = await tokenCheck(token);
+    const check = await tokenCheck(token, res);
     //엑세스토큰 & 리프레시토큰 유효하지 않으면
     if(!check) {
-      res.status(400).json({message:"Token has expired Please log in again"});
+      res.status(401).json({ message:"not authorized" });
     }else {
+      const search = {};
+      if(check.email) {
+        search.email = check.email
+      }else {
+        search.social = check.social
+      }
       //이메일 정보로 유저 조회
-      const userinfo = await db.user.findOne({where: {email: check.email}});
+      const userinfo = await db.user.findOne({where: search });
       //보내줄 정보
       const payload = {
-        id: userinfo.id,
-        email: userinfo.email,
-        name: userinfo.name
+        id: userinfo.dataValues.id,
+        email: userinfo.dataValues.email,
+        name: userinfo.dataValues.name,
+        social: userinfo.dataValues.social
       }
       res.status(200).json({
-        data: payload,
+        data: {
+          userinfo: payload,
+          accessToken: check.token
+        },
         message: "Information passed"
       });
     }

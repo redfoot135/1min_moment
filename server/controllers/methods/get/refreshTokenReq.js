@@ -3,7 +3,6 @@ const { refreshTokenCheck } = require('../../token')
 
 module.exports = async (req, res) => {
   if(!req.cookies || !req.cookies.refreshToken) {
-    console.log("쿠키 안남음")
     res.status(400).json({ message: "Token has expired Please log in again"} ); 
   }else {
     const { refreshToken } = req.cookies;
