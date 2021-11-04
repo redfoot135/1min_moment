@@ -5,7 +5,7 @@ module.exports = {
     await queryInterface.bulkInsert('users', [{
       email: 'asdf@naver.com',
       name: 'John Doe',
-      password: '',
+      password: '$2b$10$WVMwG1CFa8VjdzbEt.nTiOEuQvhZUxHpZ1emdtO5OFxkYAsRltnH6',
       regularMember: true,
       social: null,
       refreshToken: null,
@@ -15,7 +15,7 @@ module.exports = {
     {
       email: 'qwer@naver.com',
       name: 'Kimcoding',
-      password: '',
+      password: '$2b$10$WVMwG1CFa8VjdzbEt.nTiOEuQvhZUxHpZ1emdtO5OFxkYAsRltnH6',
       regularMember: false,
       social: null,
       refreshToken: null,
