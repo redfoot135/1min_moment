@@ -24,28 +24,27 @@ export default function Kakaobutton ({ errorMessage, openModalFunc, handleAccess
         cursor: 'pointer'
       };
 
-    const kakaoOnSuccess = (res) => {
+    const kakaoOnSuccess = (response) => {
 
       // 우리 서비스 서버로 post 요청하여 엑세스토큰 받아오는 함수
-    	console.log(res); 
+    	console.log(response); 
 
-      const accessToken = res.response.access_token
-      const id = res.profile.id
-      const username = res.profile.properties.nickname
+      const kakaoAccessToken = res.response.access_token
+      const kakaoId = res.profile.id
          
       axios.post("https://localhost:80/socialSignin",
-      {accessToken, id, username},
+      {kakaoAccessToken, kakaoId},
       {"content-type":"application/json", withCredentials: true}
-      ).then((res) => {
-        console.log(res)
-        if(res.data.data.accessToken) {
-          handleAccessToken(res.data.data.accessToken)
-          openModalFunc();
-          history.push("/")
-        }
+      ).then((data) => {
+        
+        handleAccessToken(data.data.accessToken)
+        openModalFunc();
+        history.push("/")
       })
     }
+
     const kakaoOnFailure = (error) => {
+        console.log(error);
         errorMessage("카카오로부터 인증에 실패하셨습니다")
     }
 

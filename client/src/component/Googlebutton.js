@@ -17,22 +17,17 @@ export default function GoogleButton({ errorMessage, openModalFunc, handleAccess
         // 우리 서비스 서버로 post 요청하여 엑세스토큰 받아오는 함수
     	console.log(res);
 
-        const accessToken = res.accessToken
-        const id = res.googleId
-        const username = res.profileObj.name
-
-        console.log(username)
+        const googleAccessToken = res.accessToken
+        const googleId = res.googleId
          
         axios.post("https://localhost:80/socialSignin",
-        {accessToken, id, username},
+        {googleAccessToken, googleId},
         {"content-type":"application/json", withCredentials: true}
-        ).then((res) => {
-          console.log(res)
-          if(res.data.data.accessToken) {
-            handleAccessToken(res.data.data.accessToken) 
-            openModalFunc();
-            history.push("/")
-          }
+        ).then((data) => {
+
+          handleAccessToken(data.data.accessToken) 
+          openModalFunc();
+          history.push("/")
         })
     }
 
