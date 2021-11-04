@@ -6,13 +6,17 @@ const { createAccessToken, createRefreshToken } = require('../../token')
 const nodemailer = require('nodemailer');
 
 module.exports = async (req, res) => {
+  console.log(req.body)
   //클라이언트 요청 정보 선언(이름 이메일 패스워드)
-  const { name, email, password } = req.body;
+  const { username, email, password } = req.body;
+  console.log(username)
+  console.log(email)
+  console.log(password)
   const token = createRefreshToken({email: email});
   //각 유저마다 고유한 썰트 사용
   const saltRounds = 10;
   //혹시 유저 정보가 부족하게 왔다면
-  if(!name || !email || !password ) {
+  if(!username || !email || !password ) {
     //에러 메시지 전송
     res.status(422).json({ message:"insufficient parameters supplied"})
     //정보가 제대로 왔다면
@@ -32,7 +36,7 @@ module.exports = async (req, res) => {
           //이메일 없을시 넣어줄 값
           defaults: {
             email: email,
-            name: name,
+            name: username,
             //패스워드는 암호화해서 넣어줌.
             password: hash,
             //이메일 인증후에 정회원 여부 true로 바꿔줄 예정
@@ -115,7 +119,7 @@ module.exports = async (req, res) => {
               //기존 보내온 데이터와 응답 메시지 전송
               res.status(201).json({
                 data : { 
-                  name: name,
+                  name: username,
                   email: email,
                   password: password,
                   //테스트 완료후 토큰은 지우기
