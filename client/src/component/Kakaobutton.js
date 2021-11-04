@@ -29,21 +29,23 @@ export default function Kakaobutton ({ errorMessage, openModalFunc, handleAccess
       // 우리 서비스 서버로 post 요청하여 엑세스토큰 받아오는 함수
     	console.log(res); 
 
-      const kakaoAccessToken = res.response.access_token
-      const kakaoId = res.profile.id
+      const accessToken = res.response.access_token
+      const id = res.profile.id
+      const username = res.profile.properties.nickname
          
       axios.post("https://localhost:80/socialSignin",
-      {kakaoAccessToken, kakaoId},
+      {accessToken, id, username},
       {"content-type":"application/json", withCredentials: true}
-      ).then((data) => {
-        handleAccessToken(data.data.accessToken)
-        openModalFunc();
-        history.push("/")
+      ).then((res) => {
+        console.log(res)
+        if(res.data.data.accessToken) {
+          handleAccessToken(res.data.data.accessToken)
+          openModalFunc();
+          history.push("/")
+        }
       })
     }
-
     const kakaoOnFailure = (error) => {
-        console.log(error);
         errorMessage("카카오로부터 인증에 실패하셨습니다")
     }
 

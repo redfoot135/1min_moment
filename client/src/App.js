@@ -25,13 +25,14 @@ function App() {
   const [accessToken, setAccessToken] = useState(null);
 
 
-  const handleAccessToken = (tokenData) => {
-    setAccessToken(tokenData)
+  const handleAccessToken = (tokenData) => { // 소셜로그인 후 함수
+    setAccessToken(tokenData) 
+    setIsLogin(true)
   }
 
-  const handleUserInfo = (userData) => {
+  const handleUserInfo = (userData) => { // 일반로그인 후 함수
+    setUserInfo(userData) 
     setIsLogin(true)
-    setUserInfo(userData)
   }
 
   const handleSignOut = () => {
