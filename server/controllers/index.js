@@ -8,6 +8,7 @@ module.exports = {
   post_comment : require('./methods/post/comment'),
   post_socialSignin : require('./methods/post/socialSignin'),
   
+  get_token: require('./methods/get/refreshTokenReq'),
   get_emailauth: require('./methods/get/emailauth'),
   get_userinfo : require('./methods/get/userinfo'),
   get_videos : require('./methods/get/videos'),
