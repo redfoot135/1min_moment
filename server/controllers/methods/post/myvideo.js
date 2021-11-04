@@ -1,6 +1,6 @@
 const db = require('../../../models');
 const { tokenCheck } = require("../../token");
-
+var ffmpeg = require('fluent-ffmpeg');
 module.exports = async (req, res) => {
   
   const { title, video, thumbnail, category1, category2, category3} = req.body;

@@ -7,6 +7,7 @@ import AWS from "aws-sdk";
 import { v4 } from 'uuid';
 // import { Divider } from '@material-ui/core';
 import {useDropzone} from 'react-dropzone'
+//const ffmpeg = require('fluent-ffmpeg');
 //axios.defaults.withCredentials = true;
 
 
@@ -23,7 +24,9 @@ function UploadVideo({userInfo}) {
   const [checkList2, setCheckList2] = useState([])
   const [currentCategory, setCurrentCategory]=useState('');
   const [showCategory, setshowCategory]=useState(false)
+  const [imgData , setImgData] = useState(null)
   const { Dropzone } = require("dropzone");
+ 
 
   const confirmBtn = () =>{
     if(checkList.length>3){
@@ -81,6 +84,8 @@ function UploadVideo({userInfo}) {
   }
 
   const uploadVideo =  () => {
+    let buf =Buffer.from(imgData.replace(/^data:image\/\w+;base64,/, ""),'base64')
+    console.log(buf)
     const S3 = new AWS.S3({
       region: 'ap-northeast-2',
       accessKeyId: process.env.REACT_APP_ACCESSKEY,
@@ -90,7 +95,7 @@ function UploadVideo({userInfo}) {
     const videoName = v4();
 
       S3.upload({
-      Bucket: process.env.REACT_APP_BUCKET,
+      Bucket: `${process.env.REACT_APP_BUCKET}/videos`,
       Key: `${videoName}.mp4`,
       ACL: 'public-read',
       Body: selectedFile,
@@ -105,14 +110,35 @@ function UploadVideo({userInfo}) {
       }
     })
 
-      const link =`https://${process.env.REACT_APP_BUCKET}.s3.ap-northeast-2.amazonaws.com/${videoName}.mp4`
-      console.log("링크는 ", link) 
-      
-      
+       console.log('img22222222222',imgData)
+      const videoLink =`https://${process.env.REACT_APP_BUCKET}.s3.ap-northeast-2.amazonaws.com/videos/${videoName}.mp4`
+      console.log("링크는 ", videoLink) 
+        
+     // var buf = Buffer.from(imgData.replace(/^data:image\/\w+;base64,/, ""),'base64')
+     const imgName = v4();
+      var data = {
+        Bucket: `${process.env.REACT_APP_BUCKET}/images`,
+        Key: `${imgName}.jpeg`, 
+        Body: buf,
+        ContentEncoding: 'base64',
+        ContentType: 'image/jpeg'
+      };
+     
+
+      S3.upload(data, function(err, data){
+          if (err) { 
+            console.log(err);
+            console.log('Error uploading data: ', data); 
+          } else {
+            console.log('successfully uploaded the image!');
+          }
+      });
+      const imgLink =`https://${process.env.REACT_APP_BUCKET}.s3.ap-northeast-2.amazonaws.com/images/${imgName}.jpeg`
+      console.log('링크2',imgLink)
     axios
     .post(
       'https://localhost:80/myvideo',{
-        title:selectedFile.name , video:link, thumbnail:link, category1:checkList2[0], category2:checkList2[1], category3:checkList2[2]
+        title:title , video:videoLink, thumbnail:imgLink, category1:checkList2[0], category2:checkList2[1], category3:checkList2[2]
       },{
         headers: {
           authorization: `Bearer ${userInfo.accessToken}`,
@@ -130,7 +156,7 @@ function UploadVideo({userInfo}) {
         alert("실패")
        }
       
-       })
+       }) 
 
   }
 
@@ -138,10 +164,40 @@ function UploadVideo({userInfo}) {
     // Do something with the files
     console.log(acceptedFiles)
     setSelectedFile(acceptedFiles[0])
+    var canvas = document.getElementById('canvas'); //이미지를 따오기
+      var video = document.getElementById('video'); //video tag 넣기
+      const file = acceptedFiles[0]; 
+      const videourl = URL.createObjectURL(file); 
+      video.setAttribute("src", videourl);
+
+      video.onloadeddata = function(){ //이미지 따오는 함수 비디오가 업로드되엇을때 
+        console.log(canvas)
+        setTimeout(() => {
+          let ctx = canvas.getContext('2d');  // 2d
+          canvas.getContext('2d').drawImage(video, 0, 0, 250, 140); //그리기
+         var img  = canvas.toDataURL("image/png") //url로변환하기
+        console.log('imgimgimgimgimgs',img) 
+        console.log('heeeeeeeeeee',video.videoHeight)
+        console.log('wiiiiiiiiiiid',video.videoWidth)     
+        setImgData(img)
+        console.log('22223838585858',imgData)
+        }, 1000);
+        
+      }
+      
+      
   }, [])
   const {getRootProps, getInputProps, isDragActive} = useDropzone({onDrop})
 
-  
+  // function capture(){
+  //   var canvas = document.getElementById('canvas');
+  //   var video = document.getElementById('video');
+  //   video.src = link
+  //   canvas.getContext('2d').drawImage(video, 0, 0, video.videoWidth, video.videoHeight);
+// }
+
+
+
 //   const handleUploadViudeo = () => {
 //     let categoryList = checkList.join()
 //     if(categoryList.length===2 ){
@@ -183,7 +239,8 @@ function UploadVideo({userInfo}) {
       <div>
         {/* <input type="file" onChange={uploadFile} className='addVideo'  /> */}
             <div className="filebox" > 
-          
+          <canvas id='canvas' width="250" height="140" ></canvas>
+          <video  id='video' ></video>
              <div {...getRootProps()}>
               <input  className="filebox"  type='file' {...getInputProps()} /> 
                 {

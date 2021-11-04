@@ -24,10 +24,12 @@
 //         cursor: 'pointer'
 //       };
 
+
 //     const kakaoOnSuccess = (response) => {
 
 //       // 우리 서비스 서버로 post 요청하여 엑세스토큰 받아오는 함수
 //     	console.log(response); 
+
 
 //       const kakaoAccessToken = res.response.access_token
 //       const kakaoId = res.profile.id
@@ -42,6 +44,7 @@
 //         history.push("/")
 //       })
 //     }
+
 
 //     const kakaoOnFailure = (error) => {
 //         console.log(error);
