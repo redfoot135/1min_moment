@@ -15,6 +15,8 @@ module.exports = async (req, res) => {
     //엑세스토큰 & 리프레시토큰 유효하지 않으면
     if(!check) {
       res.status(400).json({message:"Token has expired Please log in again"});
+    }else if(check.social) {
+      res.json({ message: "소셜로그인은 회원정보 수정이 불가능합니다" })
     }else {
       //정보 수정
       await db.user.update({password: password}, {where: {

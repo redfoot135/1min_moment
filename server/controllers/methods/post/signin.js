@@ -1,6 +1,6 @@
 require("dotenv").config();
 const db = require('../../../models');
-const bcrypt = require('bcrypt');
+const bcrypt = require('bcryptjs');
 const { createAccessToken, createRefreshToken } = require('../../token')
 
 
@@ -24,6 +24,7 @@ module.exports = async (req, res) => {
             
             const payload = {
               email : userInfo.dataValues.email,
+              social : userInfo.dataValues.social
             }
     
             const accessToken = createAccessToken(payload)
