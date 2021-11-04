@@ -49,5 +49,21 @@ module.exports = {
       }
     })
     return result;
+  },
+  refreshTokenCheck: async (refreshToken) => {
+    let result;
+    jwt.verify(refreshToken, refresh_secret, (err, decoded) => {
+      if(err) {
+        result = null;
+      }else {
+        const payload = {
+          email: decoded.email,
+          social: decoded.social
+        }
+        const accessToken = this.createAccessToken(payload);
+        result = {token: accessToken, email: decoded.email, social: decoded.social}
+      }
+    })
+    return result;
   }
 }
