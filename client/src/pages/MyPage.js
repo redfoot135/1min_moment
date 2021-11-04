@@ -20,6 +20,9 @@ const MyPage = ({ openSideBarlFunc }) => {
                      <div className="username">유저네임</div>
                      <div className="usermail">유저메일</div>
                   </div>
+                  <span className="mypage-close" onClick={openSideBarlFunc}>
+                    &times;
+                </span>
             </div>
             <div className="mypage-bodybox">
                 <div className="my-info-box">
@@ -29,13 +32,13 @@ const MyPage = ({ openSideBarlFunc }) => {
                {isMyInfoOpen === false ? null 
                : <MyInfo openMyInfoModalFunc={openMyInfoModalFunc} />
                }
-               <Link to={"/likevedio"} style={{ textDecoration: 'none', color: "white" }} >
+               <Link to={"/mylikevideo"} style={{ textDecoration: 'none', color: "white" }} >
                   <div className="like-video-box">
                      <img class="like-video-logo" src="https://i.ibb.co/J3mnNfH/like.png" />
-                     <div className="like-Video txt" onClick={ openSideBarlFunc }>내가 찜한 영상</div>
+                     <div className="like-video txt" onClick={ openSideBarlFunc }>내가 찜한 영상</div>
                   </div>
                </Link>
-               <Link to={"/uploadvideo"} style={{ textDecoration: 'none', color: "white" }} >
+               <Link to={"/myuploadvideo"} style={{ textDecoration: 'none', color: "white" }} >
                   <div className="upload-video-box">
                      <img class="upload-video-logo" src="https://i.ibb.co/1M79pDJ/video-camera.png" />
                      <div className="upload-video txt" onClick={ openSideBarlFunc }>내가 올린 영상</div>

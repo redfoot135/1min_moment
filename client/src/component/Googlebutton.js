@@ -1,25 +1,39 @@
+import dotenv from "dotenv";
+dotenv.config(); 
 import React from 'react';
+import { useHistory } from "react-router-dom";
+import axios from 'axios';
 import GoogleLogin from 'react-google-login';
-import styled from 'styled-components';
 
-const clientId = "339484265555-bcmesg41g67o6ram7qsaq2o3ofu6avu3.apps.googleusercontent.com"
 
-export default function GoogleButton(){
-    const onSuccess = async(response) => {
-    	console.log(response);
-    
-        // const { googleId, profileObj : { email, name } } = response;
-        
-        // await onSocial({
-        //     socialId : googleId,
-        //     socialType : 'google',
-        //     email,
-        //     nickname : name
-        // });
+const clientId = process.env.REACT_APP_GOOGLE_CLIENT_ID;
+
+export default function GoogleButton({ errorMessage, openModalFunc, handleAccessToken }){
+
+    const history = useHistory();
+
+    const googleOnSuccess = (res) => {
+
+        // 우리 서비스 서버로 post 요청하여 엑세스토큰 받아오는 함수
+    	console.log(res);
+
+        const googleAccessToken = res.accessToken
+        const googleId = res.googleId
+         
+        axios.post("https://localhost:80/socialSignin",
+        {googleAccessToken, googleId},
+        {"content-type":"application/json", withCredentials: true}
+        ).then((data) => {
+
+          handleAccessToken(data.data.accessToken) 
+          openModalFunc();
+          history.push("/")
+        })
     }
 
-    const onFailure = (error) => {
+    const googleOnFailure = (error) => {
         console.log(error);
+        errorMessage("구글로부터 인증에 실패하셨습니다")
     }
 
 
@@ -30,9 +44,8 @@ export default function GoogleButton(){
             clientId={clientId}
             buttonText="구글 계정으로 로그인"
             // responseType={"id_token"}
-            onSuccess={onSuccess}
-            onFailure={onFailure}
-            style={{ border: 'none', background: 'none' }}
+            onSuccess={googleOnSuccess}
+            onFailure={googleOnFailure}
          />
        </div>
     );

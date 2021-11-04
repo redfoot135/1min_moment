@@ -1,0 +1,49 @@
+const db = require('../../../models');
+const { tokenCheck } = require("../../token");
+
+module.exports = async (req, res) => {
+  const { title, video, thumbnail, category1, category2, category3} = req.body;
+  const authorization = req.headers['authorization'];
+  if(!authorization) {
+    //인증 정보가 없으면
+    res.status(400).json({message:"Token has expired Please log in again"});
+  }else {
+    //토큰만 거르기
+    const token = authorization.split(' ')[1];
+    //토큰 검증 함수
+    const check = await tokenCheck(token);
+    //엑세스토큰 & 리프레시토큰 유효하지 않으면
+    if(!check) {
+      res.status(400).json({message:"Token has expired Please log in again"});
+    }else {
+      //받아온 정보가 부족하면
+      if(!title || !video || !thumbnail || !category1) {
+        res.status(422).json({message: "insufficient parameters supplied"});
+      }else {
+        const userinfo = await db.user.findOne({where: {email: check.email}});
+        //video 테이블에 데이터 추가
+        await db.video.create({
+          title: title,
+          user_id: userinfo.id,
+          video: video,
+          thumbnail: thumbnail,
+          category1: category1,
+          category2: category2,
+          category3: category3
+        })
+        //응답
+        res.status(200).json({
+          data: {
+            title: title,
+            video: video,
+            thumbnail: thumbnail,
+            category1: category1,
+            category2: category2,
+            category3: category3
+          },
+          message: "Video registration is complete"
+        })
+      }
+    }
+  }
+}

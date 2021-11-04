@@ -79,7 +79,7 @@
           font-size: 14px;
           padding: 13px 30px;
           cursor: pointer;
-          background-color: black;
+          background-color: rgb(20, 20, 20);
           color: white;
           line-height: 1px;
           margin-top: 20px;
@@ -93,30 +93,35 @@
           background-color: #f8d7da;
           border-color: #f5c6cb;
           position: relative;
-          padding: 0.75rem 1.25rem;
-          margin-bottom: 1rem;
+          padding: 6px 0px;
           border: 1px solid transparent;
           border-radius: 0.25rem;
+          margin: 0;
         }
   
          .socialBox {
           margin-bottom: 30px;
         }
-          .kakao {
-            box-shadow: rgba(0, 0, 0, 0.24) 0px 2px 2px 0px, rgba(0, 0, 0, 0.24) 0px 0px 1px 0px;
-            background-color: #feec34;
-            border-color: #feec34;
-            height: 40px;
+          .kakao-login-box  {
             display: flex;
             align-items: center;
             justify-content: center;
-            box-sizing: border-box;
-            margin-bottom: 10px;
-            border-radius: 3px;
-            cursor: pointer
-            
+            height: 55px;
           }
-            .kakaoText {
+
+          .kakao-login-box button {
+            box-shadow: rgba(0, 0, 0, 0.24) 0px 2px 2px 0px, rgba(0, 0, 0, 0.24) 0px 0px 1px 0px;
+          }
+
+            .kakao-login-box button .kakaoLogo {
+              width: 37px;
+              height: 37px;
+              padding: 0px 0px 0px 3px;
+              position: absolute;
+              left: 45px;
+            }
+
+            .kakao-login-box button span{
               width: 300px;
               font-size: 15px;
               text-align: center;
@@ -124,13 +129,8 @@
               box-sizing: border-box;
               color: rgb(19, 19, 19);
             }
-            .kakaoLogo {
-                position: absolute;
-                left: 48px;
-                width: 35px;
-                height: 35px;
-              }
 
+          
           .google-login-box {
             display: flex;
             align-items: center;
@@ -171,10 +171,14 @@
         }
   
           .loginLine {
-            color: #bcbcbc;
-            font-size: 11px;
+            color: #000000;
+            font-size: 13px;
             margin-bottom: 35px;
-            cursor: pointer
+            cursor: pointer;
+          }
+
+          .loginLine:hover {
+            color: #F05C69;
           }
   
             a {

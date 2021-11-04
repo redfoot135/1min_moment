@@ -2,17 +2,27 @@
 
 module.exports = {
   up: async (queryInterface, Sequelize) => {
-    await queryInterface.bulkInsert('user', [{
+    await queryInterface.bulkInsert('users', [{
       email: 'asdf@naver.com',
       name: 'John Doe',
-      password: '1234',
-      regular_member: true
+      password: 'eyJhbGciOiJIUzI1NiJ9.MTIzNA.3uhK94TqN8SKSm7A_728hNunJoSOjJYVdF1njGveOSY',
+      regularMember: true,
+      social: false,
+      refreshToken: null,
+      salt: '0.9153175177919235',
+      createdAt: new Date(),
+      updatedAt: new Date()
     },
     {
       email: 'qwer@naver.com',
       name: 'Kimcoding',
-      password: '1234',
-      regular_member: false
+      password: 'eyJhbGciOiJIUzI1NiJ9.MTIzNA.3uhK94TqN8SKSm7A_728hNunJoSOjJYVdF1njGveOSY',
+      regularMember: false,
+      social: false,
+      refreshToken: null,
+      salt: '0.9153175177919235',
+      createdAt: new Date(),
+      updatedAt: new Date()
     }], {});
   },
 

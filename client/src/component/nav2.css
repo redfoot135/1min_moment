@@ -1,0 +1,60 @@
+.navbar{
+    height: 80px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border: 1px solid red;
+    background-color: pink;
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    
+    
+}
+.navbar_left{
+    align-items: center;
+    display: flex;
+    
+}
+.navbar_right{
+    align-items: center;
+    display: flex;
+} 
+.menu {
+    display: flex;
+    list-style: none;
+}
+ .mypage{
+padding: 8px 12px 
+ }
+ 
+.category{
+ padding: 8px 12px 
+ }
+.postvideo{
+padding: 8px 12px 
+  }
+.searchbox{
+padding: 8px 12px 
+ }
+.signup{
+ padding: 8px 12px 
+     }
+ .logo{
+     padding-left: 12px;
+     width: 120px;
+     height: 120px;
+ }
+
+.menu{
+    padding: 8px 12px
+}
+
+.modalcontainer{
+    position: absolute;
+    background-color: white;
+}
+.seach_input_box{
+    display: flex;
+}
