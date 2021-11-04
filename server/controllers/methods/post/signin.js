@@ -9,11 +9,11 @@ module.exports = async (req, res) => {
     const userInfo = await db.user.findOne({
       where: { email: email } // 이메일로만 유저 정보 조회
     })
-
     if(!userInfo) {
       res.status(404).json({ message:"invalid email or password" })
+    } else if(!userInfo.dataValues.regularMember) {
+      res.status(400).json({ message: "이메일 인증 해주세요"})
     } else {
-
         bcrypt.compare(password, userInfo.dataValues.password, function(err, result) {
           //result 암호가 없다면 에러메시지를 보내줌.
           console.log("로그인 패스워드 검증 결과 result : ", result)
@@ -21,7 +21,7 @@ module.exports = async (req, res) => {
             res.status(404).json({ message:"invalid email or password" })
             //result 암호가 맞다면 올바른 응답을 보내준다.
           }else {
-    
+            
             const payload = {
               email : userInfo.dataValues.email,
             }
