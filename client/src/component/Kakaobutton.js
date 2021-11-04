@@ -24,10 +24,10 @@ export default function Kakaobutton ({ errorMessage, openModalFunc, handleAccess
         cursor: 'pointer'
       };
 
-    const kakaoOnSuccess = (response) => {
+    const kakaoOnSuccess = (res) => {
 
       // 우리 서비스 서버로 post 요청하여 엑세스토큰 받아오는 함수
-    	console.log(response); 
+    	console.log(res); 
 
       const kakaoAccessToken = res.response.access_token
       const kakaoId = res.profile.id
@@ -36,7 +36,6 @@ export default function Kakaobutton ({ errorMessage, openModalFunc, handleAccess
       {kakaoAccessToken, kakaoId},
       {"content-type":"application/json", withCredentials: true}
       ).then((data) => {
-        
         handleAccessToken(data.data.accessToken)
         openModalFunc();
         history.push("/")
