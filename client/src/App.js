@@ -62,6 +62,7 @@ function App() {
     axios.post("https://localhost:80/signout")
     .then((res) => {
       setIsLogin(false);
+      setAccessToken(null);
       setUserInfo(null);
       window.location.replace('/') 
       // alert("로그아웃을 완료했습니다")
