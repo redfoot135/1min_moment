@@ -2,14 +2,19 @@ const db = require('../../../models');
 const { refreshTokenCheck } = require('../../token')
 
 module.exports = async (req, res) => {
-  const { refreshToken } = req.cookies;
-  const check = refreshTokenCheck(refreshToken);
-  if(!check) {
+  if(!req.cookies || !req.cookies.refreshToken) {
+    console.log("쿠키 안남음")
     res.status(400).json({ message: "Token has expired Please log in again"} ); 
   }else {
-    res.status(200).json({
-        data: { accessToken: check.token },
-        message: "Information passed"
-    })
+    const { refreshToken } = req.cookies;
+    const check = refreshTokenCheck(refreshToken);
+    if(!check) {
+      res.status(400).json({ message: "Token has expired Please log in again"} ); 
+    }else {
+      res.status(200).json({
+          data: { accessToken: check.token },
+          message: "Information passed"
+      })
+    }
   }
 }

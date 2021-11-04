@@ -38,12 +38,12 @@ module.exports = async (req, res) => {
             })
 
 
-          // // 엑세스토큰 쿠키로 보내주기
-          //   res.cookie("accessToken", accessToken, {
-          //   httpOnly: true,
-          //   secure: true,
-          //   sameSite: "none"
-          //  })
+          // 엑세스토큰 쿠키로 보내주기
+            res.cookie("refreshToken", refreshToken, {
+            // httpOnly: true,
+            secure: true,
+            sameSite: "none"
+           })
 
 
            res.status(200).json({

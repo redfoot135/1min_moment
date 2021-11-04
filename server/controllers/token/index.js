@@ -23,26 +23,34 @@ module.exports = {
     await jwt.verify(accessToken,access_secret, async (err,decoded) => {
       //엑세스토큰 만료시
       if(err) {
-        const userdata = jwt.decode(accessToken, access_secret)
-        //데이터 베이스에 들어있는 리프레시 토큰 확인
-        // console.log(decoded)
-        const data = await db.user.findOne({ where: { [Op.or]: [{ email: userdata.email }, {social: userdata.social}] } })
-        const refreshtoken = data.dataValues.refreshToken;
-        //리프레시 토큰 복호화
-        jwt.verify(refreshtoken, refresh_secret, (err, decoded) => {
-          //리프레시토큰도 만료
-          if(err) {
-            //로그인 다시하라 요청
-            result = null;
+        const userdata = await jwt.decode(accessToken, access_secret)
+        if(!userdata) {
+          result = null;
+        }else {
+          let data;
+          //데이터 베이스에 들어있는 리프레시 토큰 확인
+          if(userdata.email) {
+            data = await db.user.findOne({ where: { email: userdata.email } })
           }else {
-            const payload = {
-              email: decoded.email,
-              social: decoded.social
-            }
-            const newAccessToken = jwt.sign(payload, access_secret, { expiresIn: "60m"});
-            result = {token: newAccessToken, email: decoded.email, social: decoded.social};
+            data = await db.user.findOne({ where: { social: userdata.social } })
           }
-        })
+          const refreshtoken = data.dataValues.refreshToken;
+          //리프레시 토큰 복호화
+          jwt.verify(refreshtoken, refresh_secret, (err, decoded) => {
+            //리프레시토큰도 만료
+            if(err) {
+              //로그인 다시하라 요청
+              result = null;
+            }else {
+              const payload = {
+                email: decoded.email,
+                social: decoded.social
+              }
+              const newAccessToken = jwt.sign(payload, access_secret, { expiresIn: "60m"});
+              result = {token: newAccessToken, email: decoded.email, social: decoded.social};
+            }
+          })
+        }
       }else {
         //유효함
         result = {token: accessToken, email: decoded.email, social: decoded.social};
@@ -50,7 +58,7 @@ module.exports = {
     })
     return result;
   },
-  refreshTokenCheck: async (refreshToken) => {
+  refreshTokenCheck: (refreshToken) => {
     let result;
     jwt.verify(refreshToken, refresh_secret, (err, decoded) => {
       if(err) {
@@ -60,7 +68,7 @@ module.exports = {
           email: decoded.email,
           social: decoded.social
         }
-        const accessToken = this.createAccessToken(payload);
+        const accessToken = jwt.sign(payload, access_secret, { expiresIn: "60m"});
         result = {token: accessToken, email: decoded.email, social: decoded.social}
       }
     })

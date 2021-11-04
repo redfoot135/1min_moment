@@ -1,5 +1,3 @@
-import dotenv from "dotenv";
-dotenv.config();
 import KaKaoLogin from 'react-kakao-login';
 import React from 'react';
 import { useHistory } from "react-router-dom";

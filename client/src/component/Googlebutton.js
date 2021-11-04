@@ -1,5 +1,3 @@
-import dotenv from "dotenv";
-dotenv.config(); 
 import React from 'react';
 import { useHistory } from "react-router-dom";
 import axios from 'axios';
