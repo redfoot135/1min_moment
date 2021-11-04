@@ -126,5 +126,4 @@ module.exports =  (req, res) => {
        message:"completed the inquiry"
      })
    }
-
 }

@@ -23,7 +23,7 @@ module.exports = {
       social: {
         type: Sequelize.STRING
       },
-      refreshToken: {
+      authToken: {
         type: Sequelize.STRING(500)
       },
       createdAt: {

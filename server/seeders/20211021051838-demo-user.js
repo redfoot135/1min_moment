@@ -8,7 +8,7 @@ module.exports = {
       password: '$2b$10$WVMwG1CFa8VjdzbEt.nTiOEuQvhZUxHpZ1emdtO5OFxkYAsRltnH6',
       regularMember: true,
       social: null,
-      refreshToken: null,
+      authToken: null,
       createdAt: new Date(),
       updatedAt: new Date()
     },
@@ -18,7 +18,7 @@ module.exports = {
       password: '$2b$10$WVMwG1CFa8VjdzbEt.nTiOEuQvhZUxHpZ1emdtO5OFxkYAsRltnH6',
       regularMember: false,
       social: null,
-      refreshToken: null,
+      authToken: null,
       createdAt: new Date(),
       updatedAt: new Date()
     }], {});

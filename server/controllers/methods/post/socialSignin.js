@@ -11,7 +11,7 @@ const { createAccessToken, createRefreshToken } = require('../../token');
 module.exports = (req, res) => {
   console.log(req)
   //클라이언트에서 검증한 토큰과 아이디
-  const { token, id } = req.body;
+  const { token, id, username } = req.body;
   if(!id) {
     res.json({message: "인증 정보 없음"});
   }else {
@@ -23,18 +23,20 @@ module.exports = (req, res) => {
       where: { social: id }, 
       defaults: {
         email: null,
-        name: null,
+        name: username,
         password: null,
         regularMember: true,
         //소셜 로그인 아이디 아님
         social: id,
-        refreshToken: refreshToken
-      }
-    }).then(([data, created]) => {
-      if(!created) {
-        db.user.update({refreshToken: refreshToken}, {where: {social: id}})
+        authToken: null
       }
     })
+    res.cookie("refreshToken", refreshToken, {
+      httpOnly: true,
+      secure: true,
+      sameSite: "none"
+    })
+    // 응답
     res.status(200).json({
       data: { accessToken: accessToken },
       message: "Information passed"
