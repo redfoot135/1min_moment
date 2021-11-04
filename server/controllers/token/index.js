@@ -3,6 +3,7 @@ const jwt = require('jsonwebtoken');
 const access_secret = process.env.ACCESS_SECRET;
 const refresh_secret = process.env.REFRESH_SECRET;
 const db = require('../../models');
+const { Op } = require("sequelize");
 
 module.exports = {
   //엑세스 토큰 만들기
@@ -25,7 +26,7 @@ module.exports = {
         const userdata = jwt.decode(accessToken, access_secret)
         //데이터 베이스에 들어있는 리프레시 토큰 확인
         // console.log(decoded)
-        const data = await db.user.findOne({ where:{ email: userdata.email } })
+        const data = await db.user.findOne({ where: { [Op.or]: [{ email: userdata.email }, {social: userdata.social}] } })
         const refreshtoken = data.dataValues.refreshToken;
         //리프레시 토큰 복호화
         jwt.verify(refreshtoken, refresh_secret, (err, decoded) => {
@@ -35,18 +36,16 @@ module.exports = {
             result = null;
           }else {
             const payload = {
-              id: decoded.id,
               email: decoded.email,
-              name: decoded.name,
-              password: decoded.password
+              social: decoded.social
             }
             const newAccessToken = jwt.sign(payload, access_secret, { expiresIn: "60m"});
-            result = {token: newAccessToken, email: decoded.email};
+            result = {token: newAccessToken, email: decoded.email, social: decoded.social};
           }
         })
       }else {
         //유효함
-        result = {token: accessToken, email: decoded.email};
+        result = {token: accessToken, email: decoded.email, social: decoded.social};
       }
     })
     return result;
