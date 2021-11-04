@@ -27,12 +27,36 @@ function App() {
 
   const handleAccessToken = (tokenData) => { // 소셜로그인 후 함수
     setAccessToken(tokenData) 
-    setIsLogin(true)
+
+    axios.get("https://localhost:80/userinfo",
+    {headers: {
+      authorization: `Bearer ${tokenData}`,
+      "Content-Type" : "application/json"   
+    },
+    withCredentials: true
+    }).then((res) => {
+      setUserInfo(res.data) // id, email, name (+ social 정보 들어갈 예정)
+      setIsLogin(true) // 로그인 상태 변경
+    }).catch((err) => {
+      console.log(err)
+    })
   }
 
   const handleUserInfo = (userData) => { // 일반로그인 후 함수
-    setUserInfo(userData) 
-    setIsLogin(true)
+    setAccessToken(userData.accessToken)
+
+    axios.get("https://localhost:80/userinfo",
+    {headers: {
+      authorization: `Bearer ${userData.accessToken}`,
+      "Content-Type" : "application/json"   
+    },
+    withCredentials: true
+    }).then((res) => {
+      setUserInfo(res.data) // id, email, name (+ social 정보 들어갈 예정)
+      setIsLogin(true) // 로그인 상태 변경
+    }).catch((err) => {
+      console.log(err)
+    })
   }
 
   const handleSignOut = () => {
@@ -58,11 +82,29 @@ function App() {
     setIsSideBarOpen(!isSideBarOpen)
   }
 
+  useEffect(() => {    // refresh token 보내주는 함수
+
+    axios.get("https://localhost:80/token")
+    .then((res) => {
+      axios.get("https://localhost:80/userinfo",
+      {headers: {
+      authorization: `Bearer ${res.data.accessToken}`,
+      "Content-Type" : "application/json"   
+      },
+      withCredentials: true
+      })
+      .then((res) => {
+        setUserInfo(res.data)
+        setIsLogin(true) 
+      })
+    })
+  }, []);
+
   return (
     <BrowserRouter>
     <div className="App">
       <div>
-      {isLogin ===true ? 
+      {isLogin ===false ? 
         <Nav2 openModalFunc={openModalFunc} /> :
          <Nav openSideBarlFunc={openSideBarlFunc} handleSignOut={handleSignOut} />}
       </div> 
