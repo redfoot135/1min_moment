@@ -2,10 +2,12 @@ const db = require('../../../models');
 const { tokenCheck } = require("../../token");
 
 module.exports = async (req, res) => {
-  console.log(req,'reainmyvideo')
+  
   const { title, video, thumbnail, category1, category2, category3} = req.body;
-  const authorization = req.headers['!authorization'];
-  if(authorization) {
+  console.log(req.body)
+  const authorization = req.headers['authorization'];
+  //console.log(authorization)
+  if(!authorization) {
     //인증 정보가 없으면
     res.status(400).json({message:"Token has expired Please log in again"});
   }else {
@@ -13,11 +15,14 @@ module.exports = async (req, res) => {
     const token = authorization.split(' ')[1];
     //토큰 검증 함수
     const check = await tokenCheck(token);
+    console.log('checkkkkkkkkkk',check)
+    console.log('toooooekekekn',token)
     //엑세스토큰 & 리프레시토큰 유효하지 않으면
     if(!check) {
       res.status(400).json({message:"Token has expired Please log in again"});
     }else {
       //받아온 정보가 부족하면
+      console.log('123444')
       if(!title || !video || !thumbnail || !category1) {
         res.status(422).json({message: "insufficient parameters supplied"});
       }else {

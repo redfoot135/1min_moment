@@ -10,12 +10,11 @@ import {useDropzone} from 'react-dropzone'
 //axios.defaults.withCredentials = true;
 
 
-function UploadVideo() {
+function UploadVideo({userInfo}) {
 
   const history = useHistory();
 
-  const [isLogin, setIsLogin] = useState(false);
-  const [userInfo, setUserInfo] = useState(null);
+
   const [accessToken, setAccessToken] = useState(null);
   const [selectedFile, setSelectedFile] = useState('');
   const [category, setCategory] = useState('')
@@ -114,7 +113,13 @@ function UploadVideo() {
     .post(
       'https://localhost:80/myvideo',{
         title:selectedFile.name , video:link, thumbnail:link, category1:checkList2[0], category2:checkList2[1], category3:checkList2[2]
-      },{"content-type":"application/json", withCredentials: true}
+      },{
+        headers: {
+          authorization: `Bearer ${userInfo.accessToken}`,
+        "Content-Type" : "application/json"   
+      },
+      withCredentials: true
+    }
       ).then((res)=>{
            console.log(res)
        if(res.data.message==='Video registration is complete'){

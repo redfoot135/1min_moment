@@ -23,6 +23,7 @@ module.exports = {
       //엑세스토큰 만료시
       if(err) {
         const userdata = jwt.decode(accessToken, access_secret)
+        console.log('12222222111',userdata)
         //데이터 베이스에 들어있는 리프레시 토큰 확인
         // console.log(decoded)
         const data = await db.user.findOne({ where:{ email: userdata.email } })

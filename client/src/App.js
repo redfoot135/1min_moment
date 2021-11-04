@@ -32,6 +32,7 @@ function App() {
   const handleUserInfo = (userData) => {
     setIsLogin(true)
     setUserInfo(userData)
+    console.log(userData)
   }
 
   const [isModalOpen, setIsModalOpen] = useState(false)
@@ -68,7 +69,7 @@ function App() {
          {/* <UploadVideo /> */}
        <Slider/>
        <Main/>
-       <UploadVideo />
+       <UploadVideo userInfo={userInfo}/>
        <VideoPage/>
        
        <Switch>
