@@ -52,12 +52,13 @@ function App() {
     <div className="App">
       <div>
       {isLogin ===true ? 
-        <Nav2 openModalFunc={openModalFunc} /> :
-         <Nav openSideBarlFunc={openSideBarlFunc}/>}
+        <Nav openModalFunc={openModalFunc} /> :
+         <Nav2 openSideBarlFunc={openSideBarlFunc}/>}
+         
       </div> 
         <div>
         {
-        isModalOpen === false ? null 
+        isModalOpen ===true ? null 
         : <SignIn handleAccessToken={handleAccessToken} handleUserInfo={handleUserInfo} openModalFunc={openModalFunc} /> 
         }
         {isSideBarOpen === false ? null
@@ -69,7 +70,9 @@ function App() {
        <Main/>
        <UploadVideo />
        <VideoPage/>
+       
        <Switch>
+       
            <Route path="/mylikevideo"><MyLikeVideo /></Route>
            <Route path="/myuploadvideo"><MyUploadVideo /></Route>
         </Switch>

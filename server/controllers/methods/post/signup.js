@@ -18,7 +18,7 @@ module.exports = async (req, res) => {
     //정보가 제대로 왔다면
   }else {
     //암호화를 먼저 해주고 저장한다.
-    bcrypt.hash(password, saltRounds, function(err, hash) {
+    bcrypt.hash(password, saltRounds,async function(err, hash) {
       try{
         // 암호화가 성공햇을때
         //데이터베이스에서 이메일을 조회하고

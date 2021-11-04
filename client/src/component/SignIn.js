@@ -39,7 +39,7 @@ export default function SignIn ({ handleAccessToken, handleUserInfo, openModalFu
             {"content-type":"application/json", withCredentials: true}
             )
             .then((res) => {
-                // console.log("=====================res: ", res.data.message)
+                console.log("=====================res: ", res)
                 if(res.data.message === "Information passed") { // 이메일 인증된 사람
                     handleUserInfo(res.data.data)
                     openModalFunc();
@@ -72,8 +72,8 @@ export default function SignIn ({ handleAccessToken, handleUserInfo, openModalFu
                     <div className="errorMessege">{errorMessage}</div>
                     }
                     <div className="socialBox">
-                        <Kakaobutton errorMessage={errorMessage} openModalFunc={openModalFunc} handleAccessToken={handleAccessToken} />
-                        <Googlebutton errorMessage={errorMessage} openModalFunc={openModalFunc} handleAccessToken={handleAccessToken} />
+                        {/* <Kakaobutton errorMessage={errorMessage} openModalFunc={openModalFunc} handleAccessToken={handleAccessToken} />
+                        <Googlebutton errorMessage={errorMessage} openModalFunc={openModalFunc} handleAccessToken={handleAccessToken} /> */}
                     </div>
                     <div className="loginEnd">
                         <div className="loginLine" onClick={openSignUpModalFunc}>

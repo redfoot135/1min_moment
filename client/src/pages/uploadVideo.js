@@ -17,10 +17,11 @@ function UploadVideo() {
   const [isLogin, setIsLogin] = useState(false);
   const [userInfo, setUserInfo] = useState(null);
   const [accessToken, setAccessToken] = useState(null);
-  const [selectedFile, setSelectedFile] = useState(null);
+  const [selectedFile, setSelectedFile] = useState('');
   const [category, setCategory] = useState('')
   const [title, setTitle] = useState('')
   const [checkList, setCheckList] = useState([])
+  const [checkList2, setCheckList2] = useState([])
   const [currentCategory, setCurrentCategory]=useState('');
   const [showCategory, setshowCategory]=useState(false)
   const { Dropzone } = require("dropzone");
@@ -35,11 +36,12 @@ function UploadVideo() {
     setshowCategory(!showCategory)
     console.log(showCategory)
      setCurrentCategory(checkList.join())
+     setCheckList2(checkList)
+     console.log('체크리스트!!!!!',checkList)
      setCheckList([])
-     console.log(currentCategory)
+     console.log(checkList2)
     }
 }
-
 
 
   const handleCategoty = (e) =>{
@@ -66,14 +68,7 @@ function UploadVideo() {
     }
 
 
-  const handleAccessToken = (tokenData) => {
-    setAccessToken(tokenData)
-  }
-
-  const handleUserInfo = (userData) => {
-    setIsLogin(true)
-    setUserInfo(userData)
-  }
+  
 
   const handleTargetTitle=(e)=>{
     setTitle(e.target.value)
@@ -86,7 +81,7 @@ function UploadVideo() {
     setSelectedFile(file)
   }
 
-  const uploadVideo = async () => {
+  const uploadVideo =  () => {
     const S3 = new AWS.S3({
       region: 'ap-northeast-2',
       accessKeyId: process.env.REACT_APP_ACCESSKEY,
@@ -107,21 +102,73 @@ function UploadVideo() {
       }else {
         console.log('sucess')
         console.log(data)
+        console.log(checkList2)
       }
     })
 
       const link =`https://${process.env.REACT_APP_BUCKET}.s3.ap-northeast-2.amazonaws.com/${videoName}.mp4`
       console.log("링크는 ", link) 
+      
+      
+    axios
+    .post(
+      'https://localhost:80/myvideo',{
+        title:selectedFile.name , video:link, thumbnail:link, category1:checkList2[0], category2:checkList2[1], category3:checkList2[2]
+      },{"content-type":"application/json", withCredentials: true}
+      ).then((res)=>{
+           console.log(res)
+       if(res.data.message==='Video registration is complete'){
+        alert("성공")
+       // window.location.replace('/')
+       }
+       else{
+        alert("실패")
+       }
+      
+       })
+
   }
 
   const onDrop = useCallback(acceptedFiles => {
     // Do something with the files
     console.log(acceptedFiles)
-    setSelectedFile(acceptedFiles[0].name)
+    setSelectedFile(acceptedFiles[0])
   }, [])
   const {getRootProps, getInputProps, isDragActive} = useDropzone({onDrop})
 
   
+//   const handleUploadViudeo = () => {
+//     let categoryList = checkList.join()
+//     if(categoryList.length===2 ){
+//       categoryList.push('')
+//       categoryList.push('')
+//     }
+//     else if(category.length===1){
+//      categoryList.push('') 
+//     }
+//   axios
+//   .post(
+//     'https://localhost:4000/myvideo',{
+//       title:selectedFile.name , video:link, thumbnail:`https://image.shutterstock.com/image-illustration/halloween-pumpkin-halo-angel-on-600w-1493264564.jpg`, category1:categoryList[0], category2:categoryList[1], category3:categoryList[2]
+//     },
+//     ).then((res)=>{
+//          console.log(res)
+   
+//      if(res.data.message==='Video registration is complete'){
+//       alert("성공")
+//      // window.location.replace('/')
+//      }
+//      else{
+//       alert("실패")
+//      }
+    
+//      })
+   
+// }
+
+
+
+
 
   return (
           
@@ -145,7 +192,7 @@ function UploadVideo() {
             
             <div className='videoInfo'>
           <div>
-            <input className="upload-name" value={selectedFile}/>
+            <input className="upload-name" value={selectedFile.name}/>
           </div>
           <div>
               <input className="upload-title" type='text' onChange={handleTargetTitle} value={title}/>

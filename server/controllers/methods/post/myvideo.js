@@ -2,9 +2,10 @@ const db = require('../../../models');
 const { tokenCheck } = require("../../token");
 
 module.exports = async (req, res) => {
+  console.log(req,'reainmyvideo')
   const { title, video, thumbnail, category1, category2, category3} = req.body;
-  const authorization = req.headers['authorization'];
-  if(!authorization) {
+  const authorization = req.headers['!authorization'];
+  if(authorization) {
     //인증 정보가 없으면
     res.status(400).json({message:"Token has expired Please log in again"});
   }else {
