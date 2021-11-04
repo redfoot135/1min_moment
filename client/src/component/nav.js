@@ -2,7 +2,7 @@ import './nav.css'
 import {useMediaQuery} from 'react-responsive'
 import Menu from './menu'
 import React, { useState,useEffect } from 'react';
-function Nav({openSideBarlFunc}){
+function Nav({openSideBarlFunc , handleSignOut}){
     const [searchBox, setSearchBox]=useState(false)
     const isPc = useMediaQuery({
         query : "(min-width:768px)"
@@ -38,7 +38,7 @@ function Nav({openSideBarlFunc}){
                  <div className= 'searchbox' onClick={openSeachBox}>search</div><input type='text' />
              </div>)
             }
-             <div className='signup'>singnout</div>
+             <div className='signup' onClick={handleSignOut}>singnout</div>
         </div>
     </nav>
     )

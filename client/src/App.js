@@ -34,6 +34,16 @@ function App() {
     setUserInfo(userData)
   }
 
+  const handleSignOut = () => {
+    axios.post("https://localhost:80/signout")
+    .then((res) => {
+      setIsLogin(false);
+      setUserInfo(null);
+      window.location.replace('/') 
+      // alert("로그아웃을 완료했습니다")
+    })
+  }
+
   const [isModalOpen, setIsModalOpen] = useState(false)
 
   const openModalFunc = () => {
@@ -53,7 +63,7 @@ function App() {
       <div>
       {isLogin ===true ? 
         <Nav2 openModalFunc={openModalFunc} /> :
-         <Nav openSideBarlFunc={openSideBarlFunc}/>}
+         <Nav openSideBarlFunc={openSideBarlFunc} handleSignOut={handleSignOut} />}
       </div> 
         <div>
         {
