@@ -9,7 +9,7 @@ const { createAccessToken, createRefreshToken } = require('../../token');
 
 
 module.exports = (req, res) => {
-  res.send("hello world")
+  console.log(req)
   //클라이언트에서 검증한 토큰과 아이디
   const { token, id } = req.body;
   if(!id) {
@@ -30,7 +30,14 @@ module.exports = (req, res) => {
         social: id,
         refreshToken: refreshToken
       }
+    }).then(([data, created]) => {
+      if(!created) {
+        db.user.update({refreshToken: refreshToken}, {where: {social: id}})
+      }
     })
-    res.status(200).json({})
+    res.status(200).json({
+      data: { accessToken: accessToken },
+      message: "Information passed"
+    })
   }
 }
