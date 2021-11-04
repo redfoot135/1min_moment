@@ -34,7 +34,7 @@ const SignUp = ({ openSignUpModalFunc }) => {
     }
 
 
-    const handleLogout = () => {
+    const handleSignUp = () => {
         const {username, email, password} = signUpInfo
 
         if(username === "" || email === "" || password === "") {
@@ -47,14 +47,10 @@ const SignUp = ({ openSignUpModalFunc }) => {
             {"content-type":"application/json", withCredentials: true}
             )
             .then((res) => {
-                
-                // 토큰 저장
-
-                // 회원가입 모달창 닫음
-                openSignUpModalFunc();
-
-                //회원가입 성공 모달창 띄우기
-                signUpCompleteModalFunc();
+                console.log(res)
+                   //회원가입 성공 모달창 띄우기
+                   signUpCompleteModalFunc();
+              
                 
             }).catch((err) => {
                 console.log(err)
@@ -75,14 +71,15 @@ const SignUp = ({ openSignUpModalFunc }) => {
                     <input className="signup-email" name="email" type="email" placeholder="이메일" onChange={handleInputValue("email")} ></input>
                     <input className="signup-password" name="password" type="password" placeholder="비밀번호" onChange={handleInputValue("password")} ></input>
                     <input className="signup-password confirm" name="password" type="password" placeholder="비밀번호 확인" onChange={passwordInputValue} ></input>
-                    <button className="signup-button" onClick={handleLogout}>회원가입</button>
+                    <button className="signup-button" onClick={handleSignUp}>회원가입</button>
                     {errorMessage === "" ? null 
                     : 
                     <div className="errorMessege">{errorMessage}</div>
                     }
-                    {signUpComplete === true ?  null 
+
+                    {signUpComplete === false ? null 
                     : 
-                    <SignUpCompletion signUpCompleteModalFunc={signUpCompleteModalFunc} signUpInfo={signUpInfo} />
+                    <SignUpCompletion signUpCompleteModalFunc={signUpCompleteModalFunc} signUpInfo={signUpInfo} openSignUpModalFunc={openSignUpModalFunc} />
                     }
                 </div>
             </div>

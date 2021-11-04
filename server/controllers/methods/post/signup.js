@@ -1,7 +1,7 @@
 require("dotenv").config();
 const db = require('../../../models');
 const jwt = require('jsonwebtoken');
-const bcrypt = require('bcrypt');
+const bcrypt = require('bcryptjs');
 const { createAccessToken, createRefreshToken } = require('../../token')
 const nodemailer = require('nodemailer');
 
@@ -42,7 +42,7 @@ module.exports = async (req, res) => {
             //이메일 인증후에 정회원 여부 true로 바꿔줄 예정
             regularMember: false,
             //소셜 로그인 아이디 아님
-            social: false,
+            social: null,
             //이메일 인증에 사용할 임시 리프레시토큰(인증 후 삭제)(이후에는 로그인할 때 리프레시토큰 저장)
             refreshToken: token
           }

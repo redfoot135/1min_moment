@@ -3,13 +3,13 @@ import "./LikeVideoCard.css"
 
 function LikeVideoCard({image, title, views, like}) {
     return (
-        <div className="videocard">
-           <img className="videocard_thumbnail" src={image} alt=""/>
-           <div className="videocard_info">
-               <div className="video_text">
-                   <h4>{title}</h4>
-                   <p>
-                       {views} · <img className="like-icon" src="https://cdn-icons-png.flaticon.com/512/686/686308.png" alt=""/> {like}
+        <div className="like-videocard">
+           <img className="like-videocard-thumbnail" src={image} alt=""/>
+           <div className="like-videocard-info">
+               <div className="like-video-text">
+                   <h4 className="like-video-title">{title}</h4>
+                   <p className="like-video-views">
+                       {views} · <img className="like-video-icon" src="https://cdn-icons-png.flaticon.com/512/686/686308.png" alt=""/> {like}
                    </p>
                </div>
            </div>
