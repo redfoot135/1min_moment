@@ -47,14 +47,10 @@ const SignUp = ({ openSignUpModalFunc }) => {
             {"content-type":"application/json", withCredentials: true}
             )
             .then((res) => {
-                
-                if(res.data.message === "You have become an associate member. Please check your email to complete the verification process.") {
-                   // 회원가입 모달창 닫음
-                   openSignUpModalFunc();
-                   
+                console.log(res)
                    //회원가입 성공 모달창 띄우기
                    signUpCompleteModalFunc();
-                }
+              
                 
             }).catch((err) => {
                 console.log(err)
@@ -80,9 +76,10 @@ const SignUp = ({ openSignUpModalFunc }) => {
                     : 
                     <div className="errorMessege">{errorMessage}</div>
                     }
-                    {signUpComplete === false ?  null 
+
+                    {signUpComplete === false ? null 
                     : 
-                    <SignUpCompletion signUpCompleteModalFunc={signUpCompleteModalFunc} signUpInfo={signUpInfo} />
+                    <SignUpCompletion signUpCompleteModalFunc={signUpCompleteModalFunc} signUpInfo={signUpInfo} openSignUpModalFunc={openSignUpModalFunc} />
                     }
                 </div>
             </div>
