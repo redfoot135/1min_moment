@@ -41,6 +41,7 @@ export default function SignIn ({ handleAccessToken, handleUserInfo, openModalFu
             .then((res) => {
                 console.log(res)
                 if(res.data.message === "Information passed") { // 이메일 인증된 사람
+                    console.log(res.cookies)
                     handleUserInfo(res.data.data)
                     openModalFunc();
                     history.push("/")
@@ -48,7 +49,7 @@ export default function SignIn ({ handleAccessToken, handleUserInfo, openModalFu
                     setErrorMessage("이메일 인증 후 이용해주시기 바랍니다")
                 }
             }).catch((err) => {
-                console.log(err.response)
+                console.log(err)
                 if(err.response.data.message === "Please proceed with the verification process") {
                     setErrorMessage("이메일 인증 후 이용해주시기 바랍니다")
                 } else {

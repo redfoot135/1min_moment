@@ -44,7 +44,6 @@ function App() {
 
   const handleUserInfo = (userData) => { // 일반로그인 후 함수
     setAccessToken(userData.accessToken)
-
     axios.get("https://localhost:80/userinfo",
     {headers: {
       authorization: `Bearer ${userData.accessToken}`,
@@ -88,7 +87,7 @@ function App() {
     .then((res) => {
       axios.get("https://localhost:80/userinfo",
       {headers: {
-      authorization: `Bearer ${res.data.accessToken}`,
+      authorization: `Bearer ${res.data.data.accessToken}`,
       "Content-Type" : "application/json"   
       },
       withCredentials: true
