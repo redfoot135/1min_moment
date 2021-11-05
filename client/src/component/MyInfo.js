@@ -3,7 +3,6 @@ import "./MyInfo.css";
 
 const MyInfo = ({openMyInfoModalFunc}) => {
 
-    const 
     return (
         <div className="myInfo-modalbox">
             <div className="myInfo-modal">
