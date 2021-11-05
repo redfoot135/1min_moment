@@ -113,7 +113,7 @@ function App() {
         : <SignIn handleAccessToken={handleAccessToken} handleUserInfo={handleUserInfo} openModalFunc={openModalFunc} /> 
         }
         {isSideBarOpen === false ? null
-         : <MyPage openSideBarlFunc={openSideBarlFunc} userInfo={userInfo}  />
+         : <MyPage openSideBarlFunc={openSideBarlFunc} userInfo={userInfo} isLogin={isLogin} userInfo={userInfo} accessToken={accessToken} />
          }
          {/* <MyLikeVideo /> */}
          {/* <UploadVideo /> */}
