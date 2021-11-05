@@ -9,24 +9,32 @@ module.exports = async (req, res) => {
   //console.log(authorization)
   if(!authorization) {
     //인증 정보가 없으면
-    res.status(400).json({message:"Token has expired Please log in again"});
+    res.status(401).json({ message:"not authorized" });
   }else {
     //토큰만 거르기
     const token = authorization.split(' ')[1];
     //토큰 검증 함수
+
     const check = await tokenCheck(token);
     console.log('checkkkkkkkkkk',check)
     console.log('toooooekekekn',token)
+
     //엑세스토큰 & 리프레시토큰 유효하지 않으면
     if(!check) {
-      res.status(400).json({message:"Token has expired Please log in again"});
+      res.status(401).json({ message:"not authorized" });
     }else {
+      const search = {};
+      if(check.email) {
+        search.email = check.email
+      }else {
+        search.social = check.social
+      }
       //받아온 정보가 부족하면
       console.log('123444')
       if(!title || !video || !thumbnail || !category1) {
         res.status(422).json({message: "insufficient parameters supplied"});
       }else {
-        const userinfo = await db.user.findOne({where: {email: check.email}});
+        const userinfo = await db.user.findOne({where: search });
         //video 테이블에 데이터 추가
         await db.video.create({
           title: title,
@@ -45,7 +53,8 @@ module.exports = async (req, res) => {
             thumbnail: thumbnail,
             category1: category1,
             category2: category2,
-            category3: category3
+            category3: category3,
+            accessToekn: check.token
           },
           message: "Video registration is complete"
         })

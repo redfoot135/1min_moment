@@ -11,6 +11,8 @@ app.use(express.json());
 const HTTPS_PORT = 80;
 
 
+app.use(cookieParser());
+
 app.use(
   cors({
     credentials: true,
@@ -36,6 +38,9 @@ app.delete("/myvideo", controllers.delete_myvideo);
 
 //메인 페이지 전체 비디오 조회
 app.get("/videos", controllers.get_videos); //성근
+
+//최초 리프레시 토큰 유효한지 확인
+app.get("/token", controllers.get_token);
 
 //유저인포
 app.get("/userinfo", controllers.get_userinfo); //재훈

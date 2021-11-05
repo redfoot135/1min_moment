@@ -162,13 +162,21 @@ function UploadVideo({userInfo}) {
 
   const onDrop = useCallback(acceptedFiles => {
     // Do something with the files
+    //비디오태그를만들어요-> 태그를만들고 거기서 canvas 이용해서 비디오 특정부위를 따오는거에요.-> 안걸면 -> 네 
+    
+    //1안 썸네일 자동생성만들기 버튼
+    //드래그하거나 파일 업로드하면 
+    //비디오태그생성
+    //그후 썸네일 생성하게끔 그런식으로 바꿀껀데 .. 이건 시간남으면 하겠습니다.
+    // 편법쓴거라서 
+    //잘대처해야 되지않을까 .. 싶네요
     console.log(acceptedFiles)
     setSelectedFile(acceptedFiles[0])
     var canvas = document.getElementById('canvas'); //이미지를 따오기
       var video = document.getElementById('video'); //video tag 넣기
       const file = acceptedFiles[0]; 
       const videourl = URL.createObjectURL(file); 
-      video.setAttribute("src", videourl);
+      video.setAttribute("src", videourl); //비디오가만들어지는데 이거는 내장함수잖아요 ... 안되더라고요..
 
       video.onloadeddata = function(){ //이미지 따오는 함수 비디오가 업로드되엇을때 
         console.log(canvas)
