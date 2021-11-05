@@ -27,15 +27,15 @@ export default function Kakaobutton ({ errorMessage, openModalFunc, handleAccess
       // 우리 서비스 서버로 post 요청하여 엑세스토큰 받아오는 함수
     	console.log(res); 
 
-      const kakaoAccessToken = res.response.access_token
-      const kakaoId = res.profile.id
+      const token = res.response.access_token
+      const id = res.profile.id
+      const username = res.profile.properties.nickname
          
       axios.post("https://localhost:80/socialSignin",
-      {kakaoAccessToken, kakaoId},
+      {token, id, username},
       {"content-type":"application/json", withCredentials: true}
-      ).then((data) => {
-        
-        handleAccessToken(data.data.accessToken)
+      ).then((res) => {
+        handleAccessToken(res.data.data.accessToken)
         openModalFunc();
         history.push("/")
       })
