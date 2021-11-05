@@ -10,20 +10,42 @@
   
   .myInfo-modal {
     width: 480px;
-    height: 621px;
+    height: 500px;
     background-color: white;
     position: relative;
     box-sizing: border-box;
-    margin: 50px auto;
+    margin: 100px auto;
     padding: 20px;
     background: #fff;   
-    border-radius: 80px 0px 80px 0px / 80px 0px 80px 0px;
+    border-radius: 30px 30px 30px 30px / 30px 30px 30px 30px;
+    border: 7px solid rgb(41,131,197, 0.5);
+  }
+
+  .myInfo-modal-content {
+    width: 380px;
+    height: 380px;
+    margin: 30px 30px;
+    font-family: 'SBAggroM';
+    font-size: 35px;
   }
   
   .close {
     float: right;
     font-size: 25px;
-    color: black;
+    color: #F05C69;
     cursor: pointer
   }
-  
+
+  @font-face {
+    font-family: 'SBAggroB';
+    src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2108@1.1/SBAggroB.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+}
+
+@font-face {
+  font-family: 'SBAggroM';
+  src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2108@1.1/SBAggroM.woff') format('woff');
+  font-weight: normal;
+  font-style: normal;
+}
