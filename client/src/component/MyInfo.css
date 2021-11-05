@@ -28,6 +28,16 @@
     font-family: 'SBAggroM';
     font-size: 35px;
   }
+
+  .myInfo-modal-username {
+    font-size: 20px;
+    margin: 30px auto;
+  }
+
+  .myInfo-modal-useremail {
+    font-size: 20px;
+    margin: 30px auto;
+  }
   
   .close {
     float: right;
