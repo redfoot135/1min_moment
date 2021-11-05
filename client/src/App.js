@@ -123,10 +123,10 @@ function App() {
          }
          {/* <MyLikeVideo /> */}
          {/* <UploadVideo /> */}
-       <Slider/>
+       {/* <Slider/> */}
        <Main/>
-       <UploadVideo userInfo={userInfo}/>
-       <VideoPage/>
+       {/* <UploadVideo userInfo={userInfo}/>
+       <VideoPage/> */}
        
        <Switch>
        

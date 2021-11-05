@@ -1,14 +1,18 @@
 import Video from './video'
 import './main.css'
 import {useMediaQuery} from 'react-responsive'
-import { useState } from 'react'
+import { useCallback,useState, useEffect } from 'react'
 import Addcategory from './addcategory'
+import { Button } from '@material-ui/core'
+import axios from 'axios';
 export default function Main(){
     const [currentCategory, setCurrentCategory]=useState('');
     const [showCategory, setshowCategory]=useState(false)
-     const [categoryInfo, setcategoryInfo]= useState('')
-     const [checkList, setCheckList] = useState([])
-     
+    const [categoryInfo, setcategoryInfo]= useState('')
+    const [checkList, setCheckList] = useState([])
+    const [itemIndex, setItemIndex] = useState(0);
+ //   const [result, setResult] = useState(video_list.slice(0, 20));
+     // 
     const openCategory = (e) =>{
    
     setshowCategory(!showCategory)
@@ -41,6 +45,17 @@ export default function Main(){
               if(e.target.checked === true){
               console.log('들어왔어요')
               //setcategoryInfo(categoryInfo+`${e.target.value}`)
+              var config = {
+                method: 'get',
+                url: `https://localhost:80/videos`,
+                headers: { }
+              };
+              axios(config)
+              .then((res)=>{
+
+              })
+              
+              
               setCheckList([...checkList,e.target.value])
               //console.log(categoryInfo)
               console.log('checklist',checkList)
@@ -50,14 +65,32 @@ export default function Main(){
     }
 
     
-   
+    const infiniteScroll = useCallback(() => {
+      let scrollHeight = Math.max(document.documentElement.scrollHeight, document.body.scrollHeight);
+      let scrollTop = Math.max(document.documentElement.scrollTop, document.body.scrollTop);
+      let clientHeight = document.documentElement.clientHeight;
+        console.log('scrollHeight',scrollHeight)
+        console.log('scrollTop',scrollTop)
+        console.log('clientHeight',clientHeight)
+      if(scrollTop + clientHeight === scrollHeight) {
+       
+       // 쿼리요청
+       console.log('get요청')
+        }
+      }, [itemIndex]);
+    
+      useEffect(() => {
+      window.addEventListener('scroll', infiniteScroll, true);
+      return () => window.removeEventListener('scroll', infiniteScroll, true);
+      }, [infiniteScroll]);
 
 
     return(
      <div>
      <div className='categorycontainer'> 
       <div className='currentmenu'>{currentCategory}</div>
-      <div className='addbox' onClick= {openCategory}>+</div>   
+      <div className='addbox' onClick= {openCategory}>+</div>  
+      <Button onClick={infiniteScroll}>실험용</Button> 
      </div> 
      <div>
        {showCategory === true ?
