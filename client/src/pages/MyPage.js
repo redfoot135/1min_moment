@@ -3,7 +3,7 @@ import { Link } from "react-router-dom";
 import "./MyPage.css";
 import MyInfo from "../component/MyInfo"
 
-const MyPage = ({ openSideBarlFunc }) => {
+const MyPage = ({ openSideBarlFunc, userInfo }) => {
 
     const [isMyInfoOpen, setIsMyInfoOpen] = useState(false)
 
@@ -17,8 +17,8 @@ const MyPage = ({ openSideBarlFunc }) => {
             <div className="mypage-userbox">
                   <img class="user-logo" src="https://i.ibb.co/DGqH1Jr/user.png" />
                   <div className="userinfo-box">
-                     <div className="username">유저네임</div>
-                     <div className="usermail">유저메일</div>
+                     <div className="username">{userInfo.name}</div>
+                     {userInfo.email === null ? null : <div className="usermail">{userInfo.email}</div>}
                   </div>
                   <span className="mypage-close" onClick={openSideBarlFunc}>
                     &times;
@@ -30,7 +30,7 @@ const MyPage = ({ openSideBarlFunc }) => {
                    <div className="my-info txt" onClick={ openMyInfoModalFunc }>내 정보 보기</div>
                 </div>
                {isMyInfoOpen === false ? null 
-               : <MyInfo openMyInfoModalFunc={openMyInfoModalFunc} />
+               : <MyInfo openMyInfoModalFunc={openMyInfoModalFunc} userInfo={userInfo} />
                }
                <Link to={"/mylikevideo"} style={{ textDecoration: 'none', color: "white" }} >
                   <div className="like-video-box">
