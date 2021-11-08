@@ -12,10 +12,10 @@ export default function Main(){
     const [checkList, setCheckList] = useState([])
     const [itemIndex, setItemIndex] = useState(0);
     const [itemList, setItemList] = useState([])
-    const [cursor, setCursor] = useState(10)
+    const [cursor, setCursor] = useState(50)
  //   const [result, setResult] = useState(video_list.slice(0, 20));
      // 
-     let x = 0;
+     let x = 43;
     const openCategory = (e) =>{
    
     setshowCategory(!showCategory)
@@ -81,10 +81,12 @@ export default function Main(){
           //setItemList([itemList].concat(res.data))
           setItemList(itemList => [...itemList, ...res.data])
           //console.log('res_____',res.data[res.data.length-1].id)
-          console.log('res_____',res.data[res.data.length-1].id)
+        
           // console.log('itemlist2_______',itemList)
          // setCursor(res.data[res.data.length-1].id)
          if(res.data[res.data.length-1]){
+          console.log('res@@@@@@@',res.data)
+          console.log('res_____',res.data[res.data.length-1].id)
          x = res.data[res.data.length-1].id
          }
           
