@@ -6,7 +6,7 @@ const { createAccessToken, createRefreshToken, tokenCheck } = require('../../tok
 
 module.exports = async (req, res) => {
   //인증 정보
-  const authorization = req.headers['authorization'];
+  const { authorization, refreshToken } = req.headers;
   //없으면 에러처리
   if(!authorization) {
     res.status(401).json({ message:"not authorized" });
@@ -15,7 +15,7 @@ module.exports = async (req, res) => {
     //토큰 분리
     const token = authorization.split(" ")[1]
     //토큰 검증 함수
-    const check = tokenCheck(token, res);
+    const check = await tokenCheck(token, res, refreshToken);
     if(!check) {
       res.status(401).json({ message:"not authorized" });
     }else {

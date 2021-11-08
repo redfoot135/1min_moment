@@ -8,9 +8,8 @@ const { Op } = require('sequelize');
 //
 module.exports = async (req, res) => {
   console.log('123',req.query.cursor)
-  const { search } = req.query;
+  const { search, cursor } = req.query;
   const category = req.query.category.split("/");
-  const cursor = req.query.cursor
   let query = {};
   if(category.length === 3) {
     query = 

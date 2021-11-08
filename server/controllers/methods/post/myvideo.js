@@ -5,7 +5,7 @@ module.exports = async (req, res) => {
   
   const { title, video, thumbnail, category1, category2, category3} = req.body;
   console.log(req.body)
-  const authorization = req.headers['authorization'];
+  const { authorization, refreshToken } = req.headers;
   //console.log(authorization)
   if(!authorization) {
     //인증 정보가 없으면
@@ -15,7 +15,7 @@ module.exports = async (req, res) => {
     const token = authorization.split(' ')[1];
     //토큰 검증 함수
 
-    const check =  await tokenCheck(token,res);
+    const check = await tokenCheck(token, res, refreshToken);
     console.log('checkkkkkkkkkk',check)
     console.log('toooooekekekn',token)
 
