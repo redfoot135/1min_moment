@@ -5,7 +5,7 @@ const { createAccessToken, createRefreshToken, tokenCheck } = require('../../tok
 
 module.exports = async (req, res) => {
   //인증 정보
-  const authorization = req.headers['authorization'];
+  const { authorization, refreshToken } = req.headers;
   if(!authorization) {
     res.status(401).json({ message:"not authorized" });
     //인증 정보가 있으면
@@ -13,7 +13,7 @@ module.exports = async (req, res) => {
     const token = authorization.split(" ")[1]
   
     // 클라이언트에서 보내온 엑세스토큰으로 토큰 검사 완료되면 엑세스토큰 제대로 발급받고
-    const check = tokenCheck(token, res);
+    const check = await tokenCheck(token, res, refreshToken);
     if(!check) {
       res.status(401).json({ message:"not authorized" });
     }else {

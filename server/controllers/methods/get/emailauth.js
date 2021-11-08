@@ -12,7 +12,7 @@ module.exports = async (req, res) => {
       const email = decoded.email;
       db.user.findOne({where: {email: email}})
       .then((data) => {
-        if(!data || token !== data.refreshToken) {
+        if(!data || token !== data.authToken) {
           res.send("잘못된 정보입니다");
         }else {
           db.user.update({refreshToken: null, regularMember: true}, {

@@ -9,7 +9,6 @@ const { createAccessToken, createRefreshToken } = require('../../token');
 
 
 module.exports = (req, res) => {
-  console.log(req)
   //클라이언트에서 검증한 토큰과 아이디
   const { token, id, username } = req.body;
   if(!id) {
