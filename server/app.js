@@ -8,10 +8,13 @@ const controllers = require("./controllers")
 
 const app = express();
 app.use(express.json());
+app.use(cookieParser());
+
+
 const HTTPS_PORT = 80;
 
 
-app.use(cookieParser());
+
 
 app.use(
   cors({

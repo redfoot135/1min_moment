@@ -15,7 +15,7 @@ module.exports = async (req, res) => {
     const token = authorization.split(' ')[1];
     //토큰 검증 함수
 
-    const check = await tokenCheck(token);
+    const check =  await tokenCheck(token,res);
     console.log('checkkkkkkkkkk',check)
     console.log('toooooekekekn',token)
 
@@ -34,6 +34,7 @@ module.exports = async (req, res) => {
       if(!title || !video || !thumbnail || !category1) {
         res.status(422).json({message: "insufficient parameters supplied"});
       }else {
+        console.log('1233333')
         const userinfo = await db.user.findOne({where: search });
         //video 테이블에 데이터 추가
         await db.video.create({
