@@ -34,6 +34,7 @@ module.exports = async (req, res) => {
       if(!title || !video || !thumbnail || !category1) {
         res.status(422).json({message: "insufficient parameters supplied"});
       }else {
+        console.log('1233333')
         const userinfo = await db.user.findOne({where: search });
         //video 테이블에 데이터 추가
         await db.video.create({

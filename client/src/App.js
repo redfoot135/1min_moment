@@ -123,8 +123,8 @@ function App() {
          {/* <MyLikeVideo /> */}
          
        {/* <Slider/> */}
-       {/* <Main/> */}
-       <UploadVideo accessToken={accessToken}/>
+       <Main/>
+       {/* <UploadVideo accessToken={accessToken}/> */}
        {/* <VideoPage/> */}
        
        <Switch>
