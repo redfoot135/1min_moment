@@ -1,7 +1,9 @@
 const db = require('../../../models');
 const { tokenCheck } = require('../../token')
+const bcrypt = require('bcryptjs');
 
 module.exports = async (req, res) => {
+  const saltRounds = 10; 
   const { password } = req.body;
   const { authorization, refreshToken } = req.headers;
   if(!authorization) {
@@ -24,16 +26,23 @@ module.exports = async (req, res) => {
       }else {
         search.social = check.social
       }
-      //정보 수정
-      await db.user.update({password: password}, {where: search})
-      //응답
-      res.status(200).json({
-        data: {
-          password: password,
-          accessToken: check.token
-        },
-        message: "It is changed"
-      })
+      
+      bcrypt.hash(password, saltRounds,async function(err, hash) {
+        try {
+          //정보 수정
+          await db.user.update({password: hash}, {where: search})
+          //응답
+          res.status(200).json({
+            data: {
+              password: password,
+              accessToken: check.token
+            },
+            message: "It is changed"
+          })
+        }catch(err) {
+          console.log(err)
+        }
+      });
     }
   }
 }
