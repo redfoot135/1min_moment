@@ -39,10 +39,11 @@ export default function SignIn ({ handleAccessToken, handleUserInfo, openModalFu
             {"content-type":"application/json", withCredentials: true}
             )
             .then((res) => {
-                console.log(res)
+
                 if(res.data.message === "Information passed") { // 이메일 인증된 사람
                     console.log(res.cookies)
                     handleUserInfo(res.data.data)
+                    console.log(res)
                     openModalFunc();
                     history.push("/")
                 } else if(res.data.message === "이메일 인증 해주세요"){ // 이메일 인증 안된 사람
@@ -50,11 +51,11 @@ export default function SignIn ({ handleAccessToken, handleUserInfo, openModalFu
                 }
             }).catch((err) => {
                 console.log(err)
-                if(err.response.data.message === "Please proceed with the verification process") {
-                    setErrorMessage("이메일 인증 후 이용해주시기 바랍니다")
-                } else {
-                    setErrorMessage("이메일 또는 비밀번호를 잘못 입력되었습니다")
-                }
+                // if(err.res.data.message === "Please proceed with the verification process") {
+                //     setErrorMessage("이메일 인증 후 이용해주시기 바랍니다")
+                // } else {
+                //     setErrorMessage("이메일 또는 비밀번호를 잘못 입력되었습니다")
+                // }
             })
         }
     }
@@ -77,8 +78,8 @@ export default function SignIn ({ handleAccessToken, handleUserInfo, openModalFu
                     <div className="errorMessege">{errorMessage}</div>
                     }
                     <div className="socialBox">
-                        <Kakaobutton errorMessage={errorMessage} openModalFunc={openModalFunc} handleAccessToken={handleAccessToken} />
-                        <Googlebutton errorMessage={errorMessage} openModalFunc={openModalFunc} handleAccessToken={handleAccessToken} />
+                        {/* <Kakaobutton errorMessage={errorMessage} openModalFunc={openModalFunc} handleAccessToken={handleAccessToken} />
+                        <Googlebutton errorMessage={errorMessage} openModalFunc={openModalFunc} handleAccessToken={handleAccessToken} /> */}
                     </div>
                     <div className="loginEnd">
                         <div className="loginLine" onClick={openSignUpModalFunc}>

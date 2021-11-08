@@ -42,6 +42,7 @@ function App() {
     })
   }
 
+
   const handleUserInfo = (userData) => { // 일반로그인 후 함수
     setAccessToken(userData.accessToken)
     axios.get("https://localhost:80/userinfo",
@@ -56,6 +57,7 @@ function App() {
     }).catch((err) => {
       console.log(err)
     })
+
   }
 
   const handleSignOut = () => {
@@ -103,25 +105,30 @@ function App() {
     <BrowserRouter>
     <div className="App">
       <div>
+
       {isLogin ===false ? 
+
         <Nav2 openModalFunc={openModalFunc} /> :
          <Nav openSideBarlFunc={openSideBarlFunc} handleSignOut={handleSignOut} />}
+
       </div> 
         <div>
         {
-        isModalOpen === false ? null 
+        isModalOpen ===true ? null 
         : <SignIn handleAccessToken={handleAccessToken} handleUserInfo={handleUserInfo} openModalFunc={openModalFunc} /> 
         }
         {isSideBarOpen === false ? null
          : <MyPage openSideBarlFunc={openSideBarlFunc} userInfo={userInfo} isLogin={isLogin} userInfo={userInfo} accessToken={accessToken} />
          }
          {/* <MyLikeVideo /> */}
-         {/* <UploadVideo /> */}
-       <Slider/>
-       <Main/>
-       <UploadVideo />
-       <VideoPage/>
+         
+       {/* <Slider/> */}
+       {/* <Main/> */}
+       <UploadVideo accessToken={accessToken}/>
+       {/* <VideoPage/> */}
+       
        <Switch>
+       
            <Route path="/mylikevideo"><MyLikeVideo /></Route>
            <Route path="/myuploadvideo"><MyUploadVideo /></Route>
         </Switch>

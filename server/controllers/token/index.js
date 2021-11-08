@@ -66,12 +66,12 @@ module.exports = {
         const newAccessToken = jwt.sign(payload, access_secret, { expiresIn: "60m"});
         const newRefreshToken = jwt.sign(payload, refresh_secret, { expiresIn: "12h"});
 
-        res.cookie("refreshToken", newRefreshToken, {
-          httpOnly: true,
-          secure: true,
-          sameSite: "none"
-        })
-        //유효함
+        // res.cookie("refreshToken", newRefreshToken, {
+        //   httpOnly: true,
+        //   secure: true,
+        //   sameSite: "none"
+        // })
+        
         result = {token: newAccessToken, email: decoded.email, social: decoded.social};
       }
     })

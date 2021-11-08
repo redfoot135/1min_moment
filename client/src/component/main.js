@@ -1,14 +1,21 @@
 import Video from './video'
 import './main.css'
 import {useMediaQuery} from 'react-responsive'
-import { useState } from 'react'
+import { useCallback,useState, useEffect } from 'react'
 import Addcategory from './addcategory'
+import { Button } from '@material-ui/core'
+import axios from 'axios';
 export default function Main(){
     const [currentCategory, setCurrentCategory]=useState('');
     const [showCategory, setshowCategory]=useState(false)
-     const [categoryInfo, setcategoryInfo]= useState('')
-     const [checkList, setCheckList] = useState([])
-     
+    const [categoryInfo, setcategoryInfo]= useState('')
+    const [checkList, setCheckList] = useState([])
+    const [itemIndex, setItemIndex] = useState(0);
+    const [itemList, setItemList] = useState([])
+    const [cursor, setCursor] = useState(10)
+ //   const [result, setResult] = useState(video_list.slice(0, 20));
+     // 
+     let x = 0;
     const openCategory = (e) =>{
    
     setshowCategory(!showCategory)
@@ -42,20 +49,65 @@ export default function Main(){
               console.log('들어왔어요')
               //setcategoryInfo(categoryInfo+`${e.target.value}`)
               setCheckList([...checkList,e.target.value])
-              //console.log(categoryInfo)
-              console.log('checklist',checkList)
+        //console.log(categoryInfo)
+        console.log('checklist',checkList)
               }
           }
       
     }
-    
 
+    
+    const infiniteScroll = useCallback(() => {
+      let scrollHeight = Math.max(document.documentElement.scrollHeight, document.body.scrollHeight);
+      let scrollTop = Math.max(document.documentElement.scrollTop, document.body.scrollTop);
+      let clientHeight = document.documentElement.clientHeight;
+        console.log('scrollHeight',scrollHeight)
+        console.log('scrollTop',scrollTop)
+        console.log('clientHeight',clientHeight)
+        console.log('itemlist_______',itemList[itemList.length-1])
+        console.log('xxxxxxxxxxxxxxxxxx',x)
+      if(scrollTop + clientHeight === scrollHeight) {
+        var config = {
+          method: 'get',
+          url: `https://localhost:80/videos?category=법`,
+          params: {
+            cursor: x
+          },
+          headers: { }
+        };
+        axios(config)
+        .then((res)=>{
+          console.log('itemList',itemList)
+          //setItemList([itemList].concat(res.data))
+          setItemList(itemList => [...itemList, ...res.data])
+          //console.log('res_____',res.data[res.data.length-1].id)
+          console.log('res_____',res.data[res.data.length-1].id)
+          // console.log('itemlist2_______',itemList)
+         // setCursor(res.data[res.data.length-1].id)
+         if(res.data[res.data.length-1]){
+         x = res.data[res.data.length-1].id
+         }
+          
+        })
+       // 쿼리요청
+       console.log('itemlist3_______',itemList)
+       console.log('get요청')
+
+        }
+      }, []);
+    
+      useEffect(() => {
+      window.addEventListener('scroll', infiniteScroll, true);
+      return () => window.removeEventListener('scroll', infiniteScroll, true);
+      }, [infiniteScroll]);
+      const itemlist = itemList.map((obj, index) => <Video title={obj.title}  timestamp={obj.createdAt}/>)
 
     return(
      <div>
      <div className='categorycontainer'> 
       <div className='currentmenu'>{currentCategory}</div>
-      <div className='addbox' onClick= {openCategory}>+</div>   
+      <div className='addbox' onClick= {openCategory}>+</div>  
+      <Button onClick={infiniteScroll}>실험용</Button> 
      </div> 
      <div>
        {showCategory === true ?
@@ -64,6 +116,11 @@ export default function Main(){
       null}
       </div>
       <div className='videocontainer'> {/*//곧 map으로 뿌릴 예정 ;; */}
+    
+      
+     
+      
+      
         <Video
         title="1분만에 얻는 생활 꿀팁!"
         views="10.5만 views"
@@ -168,7 +225,7 @@ export default function Main(){
         channel="1min_moment13"
         image="https://miricanvas.zendesk.com/hc/article_attachments/360049546931/__________._5.png"
         />
-        
+        {itemList.map((obj, index) => <Video title={obj.title}  timestamp={obj.createdAt} image={obj.thumbnail}/>) }
      </div>
        </div>
     )

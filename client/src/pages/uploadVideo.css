@@ -80,3 +80,14 @@
     display: inline-block;
     vertical-align: middle;
 }
+
+
+#canvas{
+ display: none; 
+}
+
+#video{
+  opacity:0; 
+  width: 255px;
+  height: 140px;
+}
