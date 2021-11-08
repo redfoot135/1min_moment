@@ -41,6 +41,9 @@ app.post("/myvideo", controllers.post_myvideo);
 app.put("/myvideo", controllers.put_myvideo);
 app.delete("/myvideo", controllers.delete_myvideo);
 
+//조회수 
+app.post("/views", controllers.post_views);
+
 //메인 페이지 전체 비디오 조회
 app.get("/videos", controllers.get_videos); //성근
 
