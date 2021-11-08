@@ -23,20 +23,6 @@ module.exports = {
     await jwt.verify(accessToken,access_secret, async (err,decoded) => {
       //엑세스토큰 만료시
       if(err) {
-// <<<<<<< HEAD
-//         const userdata = jwt.decode(accessToken, access_secret)
-//         console.log('12222222111',userdata)
-//         //데이터 베이스에 들어있는 리프레시 토큰 확인
-//         // console.log(decoded)
-//         const data = await db.user.findOne({ where: { [Op.or]: [{ email: userdata.email }, {social: userdata.social}] } })
-//         const refreshtoken = data.dataValues.refreshToken;
-//         //리프레시 토큰 복호화
-//         jwt.verify(refreshtoken, refresh_secret, (err, decoded) => {
-//           //리프레시토큰도 만료
-//           if(err) {
-//             //로그인 다시하라 요청
-//             result = null;
-// =======
         const userdata = await jwt.decode(accessToken, access_secret)
         if(!userdata) {
           result = null;
@@ -45,7 +31,6 @@ module.exports = {
           //데이터 베이스에 들어있는 리프레시 토큰 확인
           if(userdata.email) {
             data = await db.user.findOne({ where: { email: userdata.email } })
-
           }else {
             data = await db.user.findOne({ where: { social: userdata.social } })
           }
@@ -81,12 +66,12 @@ module.exports = {
         const newAccessToken = jwt.sign(payload, access_secret, { expiresIn: "60m"});
         const newRefreshToken = jwt.sign(payload, refresh_secret, { expiresIn: "12h"});
 
-        res.cookie("refreshToken", newRefreshToken, {
-          httpOnly: true,
-          secure: true,
-          sameSite: "none"
-        })
-        //유효함
+        // res.cookie("refreshToken", newRefreshToken, {
+        //   httpOnly: true,
+        //   secure: true,
+        //   sameSite: "none"
+        // })
+        
         result = {token: newAccessToken, email: decoded.email, social: decoded.social};
       }
     })

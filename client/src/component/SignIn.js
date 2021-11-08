@@ -43,6 +43,7 @@ export default function SignIn ({ handleAccessToken, handleUserInfo, openModalFu
                 if(res.data.message === "Information passed") { // 이메일 인증된 사람
                     console.log(res.cookies)
                     handleUserInfo(res.data.data)
+                    console.log(res)
                     openModalFunc();
                     history.push("/")
                 } else if(res.data.message === "이메일 인증 해주세요"){ // 이메일 인증 안된 사람

@@ -11,12 +11,12 @@ import {useDropzone} from 'react-dropzone'
 //axios.defaults.withCredentials = true;
 
 
-function UploadVideo({userInfo}) {
+function UploadVideo({accessToken}) {
 
   const history = useHistory();
 
 
-  const [accessToken, setAccessToken] = useState(null);
+  //const [accessToken, setAccessToken] = useState(null);
   const [selectedFile, setSelectedFile] = useState('');
   const [category, setCategory] = useState('')
   const [title, setTitle] = useState('')
@@ -135,13 +135,14 @@ function UploadVideo({userInfo}) {
       });
       const imgLink =`https://${process.env.REACT_APP_BUCKET}.s3.ap-northeast-2.amazonaws.com/images/${imgName}.jpeg`
       console.log('링크2',imgLink)
+      console.log(accessToken)
     axios
     .post(
       'https://localhost:80/myvideo',{
         title:title , video:videoLink, thumbnail:imgLink, category1:checkList2[0], category2:checkList2[1], category3:checkList2[2]
       },{
         headers: {
-          authorization: `Bearer ${userInfo.accessToken}`,
+          authorization: `Bearer ${accessToken}`,
         "Content-Type" : "application/json"   
       },
       withCredentials: true

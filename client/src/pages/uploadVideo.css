@@ -82,7 +82,7 @@
 }
 
 
-/* #canvas{
+#canvas{
  display: none; 
 }
 
@@ -90,4 +90,4 @@
   opacity:0; 
   width: 255px;
   height: 140px;
-} */
+}
