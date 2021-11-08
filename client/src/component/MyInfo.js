@@ -159,11 +159,11 @@ const MyInfo = ({openMyInfoModalFunc, userInfo, accessToken, handleSecession}) =
                   </div> : 
                   isModifiedOpen2 === false ? 
                   <div className="myInfo-modal-inputbox">
-                  <input className="secession-password" name="password" type="password" placeholder="현재 비밀번호" onChange={passwordInputValue}></input>
-                  <input className="secession-password confirm" name="password" type="password" placeholder="현재 비밀번호 확인" onChange={passwordConfirmInputValue}></input>
+                  <input className="current-password" name="password" type="password" placeholder="현재 비밀번호" onChange={passwordInputValue}></input>
+                  <input className="current-password confirm" name="password" type="password" placeholder="현재 비밀번호 확인" onChange={passwordConfirmInputValue}></input>
                   { errorMessage === "" ? null 
                     : 
-                    <div className="secession-password-errormessege">{errorMessage}</div>
+                    <div className="password-errormessege">{errorMessage}</div>
                   }
                   <button className="myInfo-modal-secession-last btn" onClick={modifiedFunc}>비밀번호 변경하기</button>
                   </div>
@@ -173,7 +173,7 @@ const MyInfo = ({openMyInfoModalFunc, userInfo, accessToken, handleSecession}) =
                   <input className="modified-password confirm" name="password" value={passwordConfirm2} type="password" placeholder="변경 비밀번호 확인" onChange={passwordConfirmInputValue2}></input>
                   { errorMessage === "" ? null 
                     : 
-                    <div className="secession-password-errormessege">{errorMessage}</div>
+                    <div className="password-errormessege">{errorMessage}</div>
                   }
                   <button className="myInfo-modal-secession-last btn" onClick={modifiedFunc2} >비밀번호 변경하기</button>
                   </div>
@@ -184,11 +184,11 @@ const MyInfo = ({openMyInfoModalFunc, userInfo, accessToken, handleSecession}) =
                   <button className="myInfo-modal-secession btn" onClick={openSecessionModalFunc}>회원탈퇴</button>
                   </div> : 
                   <div className="myInfo-modal-inputbox">
-                  <input className="secession-password" name="password" type="password" placeholder="비밀번호" onChange={passwordInputValue}></input>
-                  <input className="secession-password confirm" name="password" type="password" placeholder="비밀번호 확인" onChange={passwordConfirmInputValue}></input>
+                  <input className="current-password" name="password" type="password" placeholder="비밀번호" onChange={passwordInputValue}></input>
+                  <input className="currentn-password confirm" name="password" type="password" placeholder="비밀번호 확인" onChange={passwordConfirmInputValue}></input>
                   { errorMessage === "" ? null 
                     : 
-                    <div className="secession-password-errormessege">{errorMessage}</div>
+                    <div className="password-errormessege">{errorMessage}</div>
                   }
                   <button className="myInfo-modal-secession-last btn" onClick={secessionFunc}>탈퇴하기</button>
                   </div>
