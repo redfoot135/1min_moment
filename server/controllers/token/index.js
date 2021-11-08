@@ -3,7 +3,6 @@ const jwt = require('jsonwebtoken');
 const access_secret = process.env.ACCESS_SECRET;
 const refresh_secret = process.env.REFRESH_SECRET;
 const db = require('../../models');
-const { Op } = require("sequelize");
 
 module.exports = {
   //엑세스 토큰 만들기
@@ -24,6 +23,8 @@ module.exports = {
       //엑세스토큰 만료시
       if(err) {
         const userdata = await jwt.decode(accessToken, access_secret)
+        console.log(userdata)
+        console.log(userdata.email)
         if(!userdata) {
           result = null;
         }else {
@@ -34,7 +35,7 @@ module.exports = {
           }else {
             data = await db.user.findOne({ where: { social: userdata.social } })
           }
-          const refreshtoken = data.dataValues.refreshToken;
+          console.log(data)
           //리프레시 토큰 복호화
           jwt.verify(refreshtoken, refresh_secret, (err, decoded) => {
             //리프레시토큰도 만료
@@ -71,7 +72,7 @@ module.exports = {
           secure: true,
           sameSite: "none"
         })
-        //유효함
+        
         result = {token: newAccessToken, email: decoded.email, social: decoded.social};
       }
     })
