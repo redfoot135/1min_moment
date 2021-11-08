@@ -39,22 +39,17 @@ export default function SignIn ({ handleAccessToken, handleUserInfo, openModalFu
             {"content-type":"application/json", withCredentials: true}
             )
             .then((res) => {
-                console.log(res)
+                // console.log("=====================res: ", res.data.message)
                 if(res.data.message === "Information passed") { // 이메일 인증된 사람
-                    console.log(res.cookies)
                     handleUserInfo(res.data.data)
                     openModalFunc();
                     history.push("/")
-                } else if(res.data.message === "이메일 인증 해주세요"){ // 이메일 인증 안된 사람
+                } else if(res.data.message === "invalid email or password"){ // 이메일 인증 안된 사람
                     setErrorMessage("이메일 인증 후 이용해주시기 바랍니다")
                 }
             }).catch((err) => {
                 console.log(err)
-                if(err.response.data.message === "Please proceed with the verification process") {
-                    setErrorMessage("이메일 인증 후 이용해주시기 바랍니다")
-                } else {
-                    setErrorMessage("이메일 또는 비밀번호를 잘못 입력되었습니다")
-                }
+                alert("잘못된 아이디거나, 비밀번호 입니다")
             })
         }
     }

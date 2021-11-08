@@ -12,6 +12,7 @@ import Slider from './component/slider'
 import Main from './component/main'
 import VideoPage from './pages/videopage'
 import UploadVideo from './pages/uploadVideo'
+import Loading from './pages/Loading'
 
 
 
@@ -19,7 +20,7 @@ axios.defaults.withCredentials = true;
 function App() {
 
   const history = useHistory();
-
+  const [isLoading, setIsLoading] = useState(true);
   const [isLogin, setIsLogin] = useState(false);
   const [userInfo, setUserInfo] = useState(null);
   const [accessToken, setAccessToken] = useState(null);
@@ -82,7 +83,7 @@ function App() {
   }
 
   useEffect(() => {    // refresh token 보내주는 함수
-
+    //setIsLoading(true);
     axios.get("https://localhost:80/token")
     .then((res) => {
       axios.get("https://localhost:80/userinfo",
@@ -94,7 +95,8 @@ function App() {
       })
       .then((res) => {
         setUserInfo(res.data.data.userinfo)
-        setIsLogin(true) 
+        setIsLogin(true)
+        //setIsLoading(false) 
       })
     })
   }, []);
