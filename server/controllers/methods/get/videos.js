@@ -6,9 +6,8 @@ const { Op } = require('sequelize');
 
 module.exports = async (req, res) => {
   console.log('123',req.query.cursor)
-  const { search } = req.query;
+  const { search, cursor } = req.query;
   const category = req.query.category.split("/");
-  const cursor = req.query.cursor
   let query = {};
   if(category.length === 3) {
     query = 
@@ -35,18 +34,15 @@ module.exports = async (req, res) => {
       //{[Op.gt]:cursor}}],
       [Op.or]: {category1: category , category2: category, category3: category }
    
-    },
-    {
-    order: [
-      ['createdAt', 'DESC']
-  ]
     }
   }
   if(search) {
     query.title = {[Op.like]: "%" + search + "%"}
   }
 
-  const userdata = await db.video.findAll({ where: query, limit:10 });
+  const userdata = await db.video.findAll({ where: query, limit:10, order: [
+    ['createdAt', 'DESC']
+] });
 
   res.json(userdata)  
 }
