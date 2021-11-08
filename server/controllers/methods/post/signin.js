@@ -4,10 +4,13 @@ const { createAccessToken, createRefreshToken } = require('../../token')
 
 
 module.exports = async (req, res) => {
+    console.log(req.body.email)
+    console.log(req.body.password)
     const { email, password } = req.body;
     const userInfo = await db.user.findOne({
       where: { email: email } // 이메일로만 유저 정보 조회
     })
+    console.log(userInfo)
     if(!userInfo) {
       res.status(404).json({ message:"invalid email or password" })
     } else if(!userInfo.dataValues.regularMember) {

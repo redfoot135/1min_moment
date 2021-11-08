@@ -25,7 +25,11 @@ module.exports = async (req, res) => {
       await db.user.destroy({ where: search })
       //리프레쉬토큰 무효화 시켜서 보내주고 (회원탈퇴하는 사람에게 토큰을 안넘겨주기위해서)
       //테스트할때 오류가 날 가능성이 있어보임 
-      res.cookie("refreshToken", null)
+      res.cookie("refreshToken", null, {
+        httpOnly: true,
+        secure: true,
+        sameSite: "none"
+      })
       //응답
       res.status(200).json({
         message: "deletion is complete"

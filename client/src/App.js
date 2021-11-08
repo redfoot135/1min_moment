@@ -24,6 +24,8 @@ function App() {
   const [userInfo, setUserInfo] = useState(null);
   const [accessToken, setAccessToken] = useState(null);
 
+  
+  
 
   const handleAccessToken = (tokenData) => { // 소셜로그인 후 함수
     setAccessToken(tokenData) 
@@ -85,19 +87,29 @@ function App() {
 
     axios.get("https://localhost:80/token")
     .then((res) => {
-      axios.get("https://localhost:80/userinfo",
-      {headers: {
-      authorization: `Bearer ${res.data.data.accessToken}`,
-      "Content-Type" : "application/json"   
-      },
-      withCredentials: true
-      })
-      .then((res) => {
-        setUserInfo(res.data.data.userinfo)
-        setIsLogin(true) 
-      })
+      if(res.data.data.accessToken) {
+        axios.get("https://localhost:80/userinfo",
+        {headers: {
+        authorization: `Bearer ${res.data.data.accessToken}`,
+        "Content-Type" : "application/json"   
+        },
+        withCredentials: true
+        })
+        .then((res) => {
+          setUserInfo(res.data.data.userinfo)
+          setAccessToken(res.data.data.accessToken)
+          setIsLogin(true) 
+        })
+      }
     })
   }, []);
+
+  const handleSecession = () => { // 회원탈퇴 후 실행되는 함수
+    window.location.replace('/')  
+    setIsLogin(false);
+    setAccessToken(null);
+    setUserInfo(null);
+  }
 
   return (
     <BrowserRouter>
@@ -113,7 +125,7 @@ function App() {
         : <SignIn handleAccessToken={handleAccessToken} handleUserInfo={handleUserInfo} openModalFunc={openModalFunc} /> 
         }
         {isSideBarOpen === false ? null
-         : <MyPage openSideBarlFunc={openSideBarlFunc} userInfo={userInfo} isLogin={isLogin} userInfo={userInfo} accessToken={accessToken} />
+         : <MyPage openSideBarlFunc={openSideBarlFunc} userInfo={userInfo} accessToken={accessToken} handleSecession={handleSecession} />
          }
          {/* <MyLikeVideo /> */}
          {/* <UploadVideo /> */}

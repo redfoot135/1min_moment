@@ -20,7 +20,7 @@ module.exports = {
   tokenCheck: async (accessToken, res) => {
     //엑세스 토큰 복호화
     let result;
-    await jwt.verify(accessToken,access_secret, async (err,decoded) => {
+     jwt.verify(accessToken,access_secret, async (err,decoded) => {
       //엑세스토큰 만료시
       if(err) {
         const userdata = await jwt.decode(accessToken, access_secret)
