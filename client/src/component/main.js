@@ -15,6 +15,9 @@ export default function Main(){
     const [cursor, setCursor] = useState(50)
  //   const [result, setResult] = useState(video_list.slice(0, 20));
      // 
+     //저위에있는것들지우고 정해진 갯수만큼 받아올꺼에요 20~30
+     // useEffect 를 사용할꺼에요 
+     // 하면서.. 저기에는 정해진 갯수만큼의 정보 -> x
      let x = 43;
     const openCategory = (e) =>{
    
@@ -69,8 +72,9 @@ export default function Main(){
       if(scrollTop + clientHeight === scrollHeight) {
         var config = {
           method: 'get',
-          url: `https://localhost:80/videos?category=법`,
+          url: `https://localhost:80/videos`,
           params: {
+            category: '법',
             cursor: x
           },
           headers: { }
@@ -103,6 +107,35 @@ export default function Main(){
       return () => window.removeEventListener('scroll', infiniteScroll, true);
       }, [infiniteScroll]);
       const itemlist = itemList.map((obj, index) => <Video title={obj.title}  timestamp={obj.createdAt}/>)
+
+
+     useEffect(()=>{
+      var config = {
+        method: 'get',
+        url: `https://localhost:80/videos?category=법`,
+        params: {
+          cursor: x
+        },
+        headers: { }
+      };
+      axios(config)
+      .then((res)=>{
+        console.log('itemList',itemList)
+        //setItemList([itemList].concat(res.data))
+        setItemList(itemList => [...itemList, ...res.data])
+        //console.log('res_____',res.data[res.data.length-1].id)
+      
+        // console.log('itemlist2_______',itemList)
+       // setCursor(res.data[res.data.length-1].id)
+       if(res.data[0]){
+        
+       x = res.data[0].id
+       }
+        
+      })
+     // 쿼리요청
+     
+     },[])
 
     return(
      <div>

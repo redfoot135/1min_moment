@@ -67,7 +67,33 @@ function Slider(){
          sliderElem.style.transform = `translateX(-${3000}px)`; // 사이드 * 3000
         // sliderElem.dataset.currentSlide = 3000
        }, []);
-    
+
+    //    useEffect(()=>{
+    //     var config = {
+    //       method: 'get',
+    //       url: `https://localhost:80/videos`,
+    //       params: {
+    //        //솔트 넘겨주기
+    //       },
+    //       headers: { }
+    //     };
+    //     axios(config)
+    //     .then((res)=>{
+    //       console.log('itemList',itemList)
+    //       //setItemList([itemList].concat(res.data))
+    //       setItemList(itemList => [...itemList, ...res.data])
+    //       //console.log('res_____',res.data[res.data.length-1].id)
+        
+    //       // console.log('itemlist2_______',itemList)
+    //      // setCursor(res.data[res.data.length-1].id)
+    //      if(res.data[0]){
+    //      x = res.data[0].id
+    //      }
+    //     })
+    //    },[])
+
+
+
     return(
     
         <div className='container'>
