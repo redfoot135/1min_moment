@@ -16,7 +16,7 @@ module.exports = {
     return refreshToken;
   },
   //토큰 검증 함수
-  tokenCheck: async (accessToken, res) => {
+  tokenCheck: async (accessToken, res, refreshtoken) => {
     //엑세스 토큰 복호화
     let result;
      jwt.verify(accessToken,access_secret, async (err,decoded) => {
