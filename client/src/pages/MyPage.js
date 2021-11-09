@@ -3,7 +3,7 @@ import { Link } from "react-router-dom";
 import "./MyPage.css";
 import MyInfo from "../component/MyInfo"
 
-const MyPage = ({ openSideBarlFunc, userInfo, isLogin, accessToken}) => {
+const MyPage = ({ openSideBarlFunc, userInfo, accessToken, handleSecession }) => {
 
     const [isMyInfoOpen, setIsMyInfoOpen] = useState(false)
 
@@ -30,7 +30,7 @@ const MyPage = ({ openSideBarlFunc, userInfo, isLogin, accessToken}) => {
                    <div className="my-info txt" onClick={ openMyInfoModalFunc }>내 정보 보기</div>
                 </div>
                {isMyInfoOpen === false ? null 
-               : <MyInfo openMyInfoModalFunc={openMyInfoModalFunc} userInfo={userInfo} isLogin={isLogin} accessToken={accessToken}/>
+               : <MyInfo openMyInfoModalFunc={openMyInfoModalFunc} userInfo={userInfo} handleSecession={handleSecession} accessToken={accessToken}/>
                }
                <Link to={"/mylikevideo"} style={{ textDecoration: 'none', color: "white" }} >
                   <div className="like-video-box">

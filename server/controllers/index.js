@@ -8,6 +8,7 @@ module.exports = {
   post_comment : require('./methods/post/comment'),
   post_socialSignin : require('./methods/post/socialSignin'),
   post_checkPW: require('./methods/post/checkPW'),
+  post_views: require('./methods/post/views'),
 
   get_token: require('./methods/get/refreshTokenReq'),
   get_emailauth: require('./methods/get/emailauth'),
