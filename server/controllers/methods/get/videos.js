@@ -73,16 +73,16 @@ module.exports = async (req, res) => {
     order = "order by views";
     if(cursor) {
       having = sequelize.literal(`COUNT(views.video_id) <= ${cursor}`);
-      having2 = `having count(views.video_id) <= ${cursor}`
+      having2 = `having count(views.video_id) < ${cursor}`
     }
   }else {
     order = "order by id desc";
     if(cursor) {
       choice = {id: {[Op.lte]: [cursor]}};
       if(query2) {
-        query2 = `(videos.id <= ${cursor})`
+        query2 = `(videos.id < ${cursor})`
       }else {
-        query2 = `(videos.id <= ${cursor})`
+        query2 = `(videos.id < ${cursor})`
       }
     }
   }
