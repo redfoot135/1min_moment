@@ -55,11 +55,6 @@ module.exports = async (req, res) => {
             res.status(409).json({ message:"You can't like twice"})
           // 처음 좋아요를 눌렀다면
           }else {
-            db.comment.create({
-              user_id: userData.dataValues.id, // 우리가 user테이블에서 찾은 id
-              video_id: video_id,
-              comment: comment
-            })
             res.status(201).json({
               data: {
                 video_id: video_id,

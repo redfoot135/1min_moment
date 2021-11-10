@@ -45,6 +45,9 @@ function Slider({idx,idx2,getvideoInfo}){
          sliderElem.style.transition = "all 0.5s ease-in-out";
         sliderElem.style.transform = `translateX(-${3000}px)`
  
+
+
+        
     }
    
      useEffect(() => {

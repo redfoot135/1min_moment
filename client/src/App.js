@@ -11,6 +11,7 @@ import Nav2 from './component/nav2'
 import Slider from './component/slider'
 import Main from './component/main'
 import VideoPage from './pages/videopage'
+import VideoPage2 from './pages/videopage2'
 import UploadVideo from './pages/uploadVideo'
 import Loading from './pages/Loading'
 import SlidesContainer from './pages/slidesContainer'
@@ -24,6 +25,7 @@ function App() {
   const [isLogin, setIsLogin] = useState(false);
   const [userInfo, setUserInfo] = useState(null);
   const [accessToken, setAccessToken] = useState(null);
+
   const [videoInfo, setVideoInfo] = useState({
     image:'',
     title:'',
@@ -50,6 +52,7 @@ const getvideoInfo = (image,title, views, timestamp,video,video_id) => {
 }
 
   const handleAccessToken = (tokenData) => { // 소셜로그인 후 함수
+
     setAccessToken(tokenData) 
 
     axios.get("https://localhost:80/userinfo",
@@ -66,8 +69,8 @@ const getvideoInfo = (image,title, views, timestamp,video,video_id) => {
     })
   }
 
-
-  const handleUserInfo = (userData) => { // 일반로그인 후 함수
+  // 일반로그인 후 실행되는 함수
+  const handleUserInfo = (userData) => { 
     setAccessToken(userData.accessToken)
     axios.get("https://localhost:80/userinfo",
     {headers: {
@@ -84,6 +87,7 @@ const getvideoInfo = (image,title, views, timestamp,video,video_id) => {
 
   }
 
+  // 로그아웃 버튼 클릭 후 실행되는 함수 
   const handleSignOut = () => {
     axios.post("https://localhost:80/signout")
     .then((res) => {
@@ -94,21 +98,26 @@ const getvideoInfo = (image,title, views, timestamp,video,video_id) => {
     })
   }
 
+  // 로그인 모달 오픈 상태
   const [isModalOpen, setIsModalOpen] = useState(false)
 
+  // 로그인 모달 오픈 상태 변경 함수
   const openModalFunc = () => {
     setIsModalOpen(!isModalOpen)
     console.log(isModalOpen)
   }
 
+  // 사이드바 모달 오픈 상태
   const [isSideBarOpen, setIsSideBarOpen] = useState(false)
 
+  // 사이드바 모달 오픈 상태 변경 함수
   const openSideBarlFunc = () => {
     setIsSideBarOpen(!isSideBarOpen)
   }
 
-  useEffect(() => {    // refresh token 보내주는 함수
-    //setIsLoading(true);
+  // refresh token 보내주면서 리다이렉션 함수
+  useEffect(() => {    
+    
     axios.get("https://localhost:80/token")
     .then((res) => {
 
@@ -129,12 +138,40 @@ const getvideoInfo = (image,title, views, timestamp,video,video_id) => {
     })
   }, []);
 
-  const handleSecession = () => { // 회원탈퇴 후 실행되는 함수
+  // 회원탈퇴 후 실행되는 함수
+  const handleSecession = () => { 
     window.location.replace('/')  
     setIsLogin(false);
     setAccessToken(null);
     setUserInfo(null);
   }
+
+  // 내가 업로드 한 영상 모음 객체 -> MyUploadVideo로 props 전달됨
+  const [isUploadVideo, setIsUploadVideo] = useState(null)
+ 
+  // 내가 업로드 한 영상 요청 함수 -> MyUploadVideo로 props 전달됨
+  const handleUpload = () => {
+    axios.get("https://localhost:80/myvideo",
+    {headers: {
+      authorization: `Bearer ${accessToken}`,
+      "Content-Type" : "application/json"   
+    },
+    withCredentials: true
+    }).then((res) => {
+      setIsUploadVideo(res.data.data.myvideos)
+    }).catch((err) => {
+      console.log(err)
+    })
+  }
+  
+  // 업로드 비디오 중 클릭한 영상 데이터 상태
+  const [clickMyVideoData, setClickMyVideoData] = useState(null)
+
+  // 업로드 비디오 중 클릭한 영상 데이터 상태 변경 함수
+  const setClickMyVideoDataFunc = (clickVideoData) => {
+    setClickMyVideoData(isUploadVideo.filter((el) => el.id === clickVideoData)[0])
+  }
+
 
   return (
     <BrowserRouter>
@@ -153,10 +190,11 @@ const getvideoInfo = (image,title, views, timestamp,video,video_id) => {
         : <SignIn handleAccessToken={handleAccessToken} handleUserInfo={handleUserInfo} openModalFunc={openModalFunc} /> 
         }
         {isSideBarOpen === false ? null
-         : <MyPage openSideBarlFunc={openSideBarlFunc} userInfo={userInfo} accessToken={accessToken} handleSecession={handleSecession} />
+         : <MyPage openSideBarlFunc={openSideBarlFunc} userInfo={userInfo} accessToken={accessToken} handleSecession={handleSecession} handleUpload={handleUpload} />
          }
          {/* <MyLikeVideo /> */}
          
+
        <SlidesContainer getvideoInfo={getvideoInfo}/>
        
        {/* <Main/> */}
@@ -165,8 +203,9 @@ const getvideoInfo = (image,title, views, timestamp,video,video_id) => {
        
        <Switch>
            <Route path="/videos"><VideoPage videoInfo={videoInfo} accessToken={accessToken}/></Route>
+
            <Route path="/mylikevideo"><MyLikeVideo /></Route>
-           <Route path="/myuploadvideo"><MyUploadVideo /></Route>
+           <Route path="/myuploadvideo"><MyUploadVideo accessToken={accessToken} isUploadVideo={isUploadVideo} setClickMyVideoDataFunc={setClickMyVideoDataFunc}/></Route>
         </Switch>
        </div>
        {/* <BrowserRouter>

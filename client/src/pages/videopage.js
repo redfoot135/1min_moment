@@ -1,6 +1,7 @@
 import { Button } from '@material-ui/core';
 import axios from 'axios';
 import React, {useState, useEffect} from 'react';
+import Comments from '../component/comments'
 import './videopage.css'
 
 
@@ -21,7 +22,7 @@ export default function VideoPage({videoInfo,accessToken}){
     }
       ).then((res)=>{
            console.log(res)
-       if(res.data.message==='Video registration is complete'){
+       if(res.data.message==='Likes are reflected'){
         alert("성공")
        // window.location.replace('/')
        }
@@ -49,13 +50,7 @@ export default function VideoPage({videoInfo,accessToken}){
                 </div>   
                
             </div>
-            <textarea
-               className='comment'
-               placeholder='댓글달기...'
-               onkeypress
-               >
-                </textarea>
-                <Button onClick>올리기</Button>
+               <Comments accessToken={accessToken} videoInfo={videoInfo}/>
             <div>
 
             </div>

@@ -4,7 +4,7 @@ const db = require('../../../models');
 const { Op, fn, col } = require('sequelize');
 const sequelize = require('sequelize');
 const mysql = require('mysql');
-const config = require("../../../config/config")
+const { tokenCheck } = require('../../token')
 const connection = mysql.createConnection({
   host     : '127.0.0.1',
   user     : DATABASE_USERNAME,
@@ -14,6 +14,24 @@ const connection = mysql.createConnection({
 connection.connect();
 
 module.exports = async (req, res) => {
+  const { authorization, refreshToken } = req.headers;
+  let id;
+  if(authorization) {
+    const token = authorization.split(' ')[1];
+    const check = await tokenCheck(token, res, refreshToken);
+    if(check) {
+      const search = {};
+      if(check.email) {
+        search.email = check.email
+      }else {
+        search.social = check.social
+      }
+      const userData = await db.user.findOne({
+        where: search
+      })
+      id = userData.dataValues.id
+    }
+  }
   const { search, cursor, sort, limit } = req.query;
   console.log(req.query)
   const select = "select videos.id, title, videos.user_id, video, thumbnail, category1, category2, category3, videos.createdAt, videos.updatedAt, count(views.video_id) as views, count(video_likes.video_id) as likes"
@@ -81,7 +99,7 @@ module.exports = async (req, res) => {
     if(cursor) {
       choice = {id: {[Op.lte]: [cursor]}};
       if(query2) {
-        query2 = `(videos.id < ${cursor})`
+        query2 = `((${query2}) and videos.id < ${cursor})`
       }else {
         query2 = `(videos.id < ${cursor})`
       }
@@ -112,13 +130,43 @@ module.exports = async (req, res) => {
   //   }
   //   ); 
 
-    console.log("query ============= ", `${select} from videos left join views on videos.id = views.video_id ${query2} group by videos.id ${having2} ${order} limit ${num}`)
-    connection.query(`${select} from videos left join views on videos.id = views.video_id left join video_likes on videos.id = video_likes.video_id ${query2} group by videos.id ${having2} ${order} limit ${num}`, function (error, results, fields) {
+    console.log("query ============= ", `${select} from videos left join views on videos.id = views.video_id left join video_likes on videos.id = video_likes.video_id left join users on videos.user_id = users.id ${query2} group by videos.id ${having2} ${order} limit ${num}`)
+    connection.query(`${select} from videos left join views on videos.id = views.video_id left join video_likes on videos.id = video_likes.video_id left join users on videos.user_id = users.id ${query2} group by videos.id ${having2} ${order} limit ${num}`, async function (error, results, fields) {
       if (error) {
           console.log(error);
       }
+
+      const mychoice = await Promise.all(
+        results.map( async (el) => {
+          if(id) {
+            const isHave = await db.video_like.findOne({
+              where: {
+                video_id: el.id,
+                user_id: id
+              }
+            })
+    
+            if(isHave) {
+              console.log("있음")
+              return true;
+            }else {
+              console.log("없음")
+              return false;
+            }
+          }else {
+            return false;
+          }
+        })
+      )
+      const data = results.map((el, idx) => {
+        el.mychoice = mychoice[idx]
+        return el;
+      })
+
+      console.log(mychoice)
+
       res.json({
-        data: results,
+        data: data,
         message: "completed the inquiry",
       })
     });
