@@ -56,6 +56,7 @@ app.put("/userinfo", controllers.put_userinfo); //재훈
 app.delete("/userinfo", controllers.delete_userinfo); //재훈
 
 //코멘트
+app.get("/comments", controllers.get_comments);
 app.post("/comment", controllers.post_comment); //성근/완료
 app.put("/comment", controllers.put_comment); //성근/완료
 app.delete("/comment", controllers.delete_comment); //성근/완료
