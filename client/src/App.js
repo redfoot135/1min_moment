@@ -13,20 +13,41 @@ import Main from './component/main'
 import VideoPage from './pages/videopage'
 import UploadVideo from './pages/uploadVideo'
 import Loading from './pages/Loading'
-
+import SlidesContainer from './pages/slidesContainer'
 
 
 axios.defaults.withCredentials = true;
 function App() {
-
+  
   const history = useHistory();
   const [isLoading, setIsLoading] = useState(true);
   const [isLogin, setIsLogin] = useState(false);
   const [userInfo, setUserInfo] = useState(null);
   const [accessToken, setAccessToken] = useState(null);
-
+  const [videoInfo, setVideoInfo] = useState({
+    image:'',
+    title:'',
+    channel:'',
+    views:'',
+    timestamp:'',
+    video:'',
+    video_id:''
+});
   
   
+const getvideoInfo = (image,title, views, timestamp,video,video_id) => {
+  
+  console.log('hi!!!!!')
+  setVideoInfo({
+      image:image,
+      title:title,
+      views:views,
+      timestamp:timestamp,
+      video:video,
+      video_id:video_id
+  })
+  console.log(videoInfo)
+}
 
   const handleAccessToken = (tokenData) => { // 소셜로그인 후 함수
     setAccessToken(tokenData) 
@@ -136,13 +157,14 @@ function App() {
          }
          {/* <MyLikeVideo /> */}
          
-       {/* <Slider/> */}
-       <Main/>
-       {/* <UploadVideo accessToken={accessToken}/> */}
+       <SlidesContainer getvideoInfo={getvideoInfo}/>
+       
+       {/* <Main/> */}
+       <UploadVideo accessToken={accessToken}/>
        {/* <VideoPage/> */}
        
        <Switch>
-       
+           <Route path="/videos"><VideoPage videoInfo={videoInfo} accessToken={accessToken}/></Route>
            <Route path="/mylikevideo"><MyLikeVideo /></Route>
            <Route path="/myuploadvideo"><MyUploadVideo /></Route>
         </Switch>

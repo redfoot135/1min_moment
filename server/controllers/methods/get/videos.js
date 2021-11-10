@@ -15,6 +15,7 @@ connection.connect();
 
 module.exports = async (req, res) => {
   const { search, cursor, sort, limit } = req.query;
+  console.log(req.query)
   const select = "select videos.id, title, videos.user_id, video, thumbnail, category1, category2, category3, videos.createdAt, videos.updatedAt, count(views.video_id) as views, count(video_likes.video_id) as likes"
   let order = '';
   let query = {};
@@ -73,16 +74,16 @@ module.exports = async (req, res) => {
     order = "order by views";
     if(cursor) {
       having = sequelize.literal(`COUNT(views.video_id) <= ${cursor}`);
-      having2 = `having count(views.video_id) <= ${cursor}`
+      having2 = `having count(views.video_id) < ${cursor}`
     }
   }else {
     order = "order by id desc";
     if(cursor) {
       choice = {id: {[Op.lte]: [cursor]}};
       if(query2) {
-        query2 = `(videos.id <= ${cursor})`
+        query2 = `(videos.id < ${cursor})`
       }else {
-        query2 = `(videos.id <= ${cursor})`
+        query2 = `(videos.id < ${cursor})`
       }
     }
   }
