@@ -15,7 +15,11 @@ export default function Main(){
     const [cursor, setCursor] = useState(50)
  //   const [result, setResult] = useState(video_list.slice(0, 20));
      // 
-     let x = 43;
+     //저위에있는것들지우고 정해진 갯수만큼 받아올꺼에요 20~30
+     // useEffect 를 사용할꺼에요 
+     // 하면서.. 저기에는 정해진 갯수만큼의 정보 -> x
+     let x;
+     let y;
     const openCategory = (e) =>{
    
     setshowCategory(!showCategory)
@@ -34,7 +38,7 @@ export default function Main(){
         else{
         setshowCategory(!showCategory)
         console.log(showCategory)
-         setCurrentCategory(checkList.join())
+         setCurrentCategory(checkList.join('/'))
          setCheckList([])
          console.log(currentCategory)
         }
@@ -69,9 +73,11 @@ export default function Main(){
       if(scrollTop + clientHeight === scrollHeight) {
         var config = {
           method: 'get',
-          url: `https://localhost:80/videos?category=법`,
+          url: `https://localhost:80/videos`,
           params: {
-            cursor: x
+            category: '법',
+            cursor: x,
+            limit: 10
           },
           headers: { }
         };
@@ -79,15 +85,16 @@ export default function Main(){
         .then((res)=>{
           console.log('itemList',itemList)
           //setItemList([itemList].concat(res.data))
-          setItemList(itemList => [...itemList, ...res.data])
+          setItemList(itemList => [...itemList, ...res.data.data])
           //console.log('res_____',res.data[res.data.length-1].id)
         
           // console.log('itemlist2_______',itemList)
          // setCursor(res.data[res.data.length-1].id)
-         if(res.data[res.data.length-1]){
+         if(res.data.data[res.data.data.length-1]){
           console.log('res@@@@@@@',res.data)
-          console.log('res_____',res.data[res.data.length-1].id)
-         x = res.data[res.data.length-1].id
+          console.log('res_____',res.data.data[res.data.data.length-1].id)
+         x = res.data.data[res.data.data.length-1].id
+         console.log(x)
          }
           
         })
@@ -102,14 +109,49 @@ export default function Main(){
       window.addEventListener('scroll', infiniteScroll, true);
       return () => window.removeEventListener('scroll', infiniteScroll, true);
       }, [infiniteScroll]);
-      const itemlist = itemList.map((obj, index) => <Video title={obj.title}  timestamp={obj.createdAt}/>)
+      //const itemlist = itemList.map((obj, index) => <Video title={obj.title}  timestamp={obj.createdAt}/>)
+
+
+     useEffect(()=>{
+      var config = {
+        method: 'get',
+        url: `https://localhost:80/videos?category=법`,
+        params: {
+          cursor: x
+        },
+        headers: { }
+      };
+      axios(config)
+      .then((res)=>{
+        console.log('itemList',itemList)
+        //setItemList([itemList].concat(res.data))
+        console.log(res.data)
+        setItemList(itemList => [...itemList, ...res.data.data])
+        //console.log('res_____',res.data[res.data.length-1].id)
+      
+        // console.log('itemlist2_______',itemList)
+       // setCursor(res.data[res.data.length-1].id)
+      //  if(res.data.data[0]){
+        
+      //  x = res.data.data[0].id
+      //  }
+      if(res.data.data[res.data.data.length-1]){
+        console.log('res@@@@@@@',res.data)
+        console.log('res_____',res.data.data[res.data.data.length-1].id)
+       x = res.data.data[res.data.data.length-1].id
+       console.log(x)
+       }
+      })
+     // 쿼리요청
+     
+     },[])
 
     return(
      <div>
      <div className='categorycontainer'> 
       <div className='currentmenu'>{currentCategory}</div>
       <div className='addbox' onClick= {openCategory}>+</div>  
-      <Button onClick={infiniteScroll}>실험용</Button> 
+      
      </div> 
      <div>
        {showCategory === true ?
@@ -119,114 +161,7 @@ export default function Main(){
       </div>
       <div className='videocontainer'> {/*//곧 map으로 뿌릴 예정 ;; */}
     
-      
-     
-      
-      
-        <Video
-        title="1분만에 얻는 생활 꿀팁!"
-        views="10.5만 views"
-        timestamp="3 days ago"
-        channelImage="http://cdnimage.dailian.co.kr/news/201808/news_1535616895_736207_m_1.jpg"
-        channel="1min_moment1"
-        image="https://miricanvas.zendesk.com/hc/article_attachments/360049546931/__________._5.png"
-        />
-        <Video
-        title="1분만에 얻는 생활 꿀팁!"
-        views="10.5만 views"
-        timestamp="3 days ago"
-        channelImage="http://cdnimage.dailian.co.kr/news/201808/news_1535616895_736207_m_1.jpg"
-        channel="1min_moment2"
-        image="https://miricanvas.zendesk.com/hc/article_attachments/360049546931/__________._5.png"
-        />
-        <Video
-        title="1분만에 얻는 생활 꿀팁!"
-        views="10.5만 views"
-        timestamp="3 days ago"
-        channelImage="http://cdnimage.dailian.co.kr/news/201808/news_1535616895_736207_m_1.jpg"
-        channel="1min_moment3"
-        image="https://miricanvas.zendesk.com/hc/article_attachments/360049546931/__________._5.png"
-        />
-         <Video
-        title="1분만에 얻는 생활 꿀팁!"
-        views="10.5만 views"
-        timestamp="3 days ago"
-        channelImage="http://cdnimage.dailian.co.kr/news/201808/news_1535616895_736207_m_1.jpg"
-        channel="1min_moment4"
-        image="https://miricanvas.zendesk.com/hc/article_attachments/360049546931/__________._5.png"
-        />
-         <Video
-        title="1분만에 얻는 생활 꿀팁!"
-        views="10.5만 views"
-        timestamp="3 days ago"
-        channelImage="http://cdnimage.dailian.co.kr/news/201808/news_1535616895_736207_m_1.jpg"
-        channel="1min_moment5"
-        image="https://miricanvas.zendesk.com/hc/article_attachments/360049546931/__________._5.png"
-        />
-         <Video
-        title="1분만에 얻는 생활 꿀팁!"
-        views="10.5만 views"
-        timestamp="3 days ago"
-        channelImage="http://cdnimage.dailian.co.kr/news/201808/news_1535616895_736207_m_1.jpg"
-        channel="1min_moment6"
-        image="https://miricanvas.zendesk.com/hc/article_attachments/360049546931/__________._5.png"
-        />
-         <Video
-        title="1분만에 얻는 생활 꿀팁!"
-        views="10.5만 views"
-        timestamp="3 days ago"
-        channelImage="http://cdnimage.dailian.co.kr/news/201808/news_1535616895_736207_m_1.jpg"
-        channel="1min_moment7"
-        image="https://miricanvas.zendesk.com/hc/article_attachments/360049546931/__________._5.png"
-        />
-         <Video
-        title="1분만에 얻는 생활 꿀팁!"
-        views="10.5만 views"
-        timestamp="3 days ago"
-        channelImage="http://cdnimage.dailian.co.kr/news/201808/news_1535616895_736207_m_1.jpg"
-        channel="1min_moment8"
-        image="https://miricanvas.zendesk.com/hc/article_attachments/360049546931/__________._5.png"
-        />
-         <Video
-        title="1분만에 얻는 생활 꿀팁!"
-        views="10.5만 views"
-        timestamp="3 days ago"
-        channelImage="http://cdnimage.dailian.co.kr/news/201808/news_1535616895_736207_m_1.jpg"
-        channel="1min_moment9"
-        image="https://miricanvas.zendesk.com/hc/article_attachments/360049546931/__________._5.png"
-        />
-         <Video
-        title="1분만에 얻는 생활 꿀팁!"
-        views="10.5만 views"
-        timestamp="3 days ago"
-        channelImage="http://cdnimage.dailian.co.kr/news/201808/news_1535616895_736207_m_1.jpg"
-        channel="1min_moment10"
-        image="https://miricanvas.zendesk.com/hc/article_attachments/360049546931/__________._5.png"
-        />
-         <Video
-        title="1분만에 얻는 생활 꿀팁!"
-        views="10.5만 views"
-        timestamp="3 days ago"
-        channelImage="http://cdnimage.dailian.co.kr/news/201808/news_1535616895_736207_m_1.jpg"
-        channel="1min_moment11"
-        image="https://miricanvas.zendesk.com/hc/article_attachments/360049546931/__________._5.png"
-        />
-         <Video
-        title="1분만에 얻는 생활 꿀팁!"
-        views="10.5만 views"
-        timestamp="3 days ago"
-        channelImage="http://cdnimage.dailian.co.kr/news/201808/news_1535616895_736207_m_1.jpg"
-        channel="1min_moment12"
-        image="https://miricanvas.zendesk.com/hc/article_attachments/360049546931/__________._5.png"
-        />
-         <Video
-        title="1분만에 얻는 생활 꿀팁!"
-        views="10.5만 views"
-        timestamp="3 days ago"
-        channelImage="http://cdnimage.dailian.co.kr/news/201808/news_1535616895_736207_m_1.jpg"
-        channel="1min_moment13"
-        image="https://miricanvas.zendesk.com/hc/article_attachments/360049546931/__________._5.png"
-        />
+        
         {itemList.map((obj, index) => <Video title={obj.title}  timestamp={obj.createdAt} image={obj.thumbnail}/>) }
      </div>
        </div>

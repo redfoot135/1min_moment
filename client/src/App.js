@@ -14,20 +14,45 @@ import VideoPage from './pages/videopage'
 import VideoPage2 from './pages/videopage2'
 import UploadVideo from './pages/uploadVideo'
 import Loading from './pages/Loading'
-
+import SlidesContainer from './pages/slidesContainer'
 
 
 axios.defaults.withCredentials = true;
 function App() {
-
+  
   const history = useHistory();
   const [isLoading, setIsLoading] = useState(true);
   const [isLogin, setIsLogin] = useState(false);
   const [userInfo, setUserInfo] = useState(null);
   const [accessToken, setAccessToken] = useState(null);
 
-  // 소셜로그인 후 실행되는 함수
-  const handleAccessToken = (tokenData) => { 
+  const [videoInfo, setVideoInfo] = useState({
+    image:'',
+    title:'',
+    channel:'',
+    views:'',
+    timestamp:'',
+    video:'',
+    video_id:''
+});
+  
+  
+const getvideoInfo = (image,title, views, timestamp,video,video_id) => {
+  
+  console.log('hi!!!!!')
+  setVideoInfo({
+      image:image,
+      title:title,
+      views:views,
+      timestamp:timestamp,
+      video:video,
+      video_id:video_id
+  })
+  console.log(videoInfo)
+}
+
+  const handleAccessToken = (tokenData) => { // 소셜로그인 후 함수
+
     setAccessToken(tokenData) 
 
     axios.get("https://localhost:80/userinfo",
@@ -169,13 +194,16 @@ function App() {
          }
          {/* <MyLikeVideo /> */}
          
-       {/* <Slider/>
-       <Main/>
+
+       <SlidesContainer getvideoInfo={getvideoInfo}/>
+       
+       {/* <Main/> */}
        <UploadVideo accessToken={accessToken}/>
-       <VideoPage/> */}
+       {/* <VideoPage/> */}
        
        <Switch>
-           <Route path="/myvideopage"><VideoPage2 clickMyVideoData={clickMyVideoData}/></Route>
+           <Route path="/videos"><VideoPage videoInfo={videoInfo} accessToken={accessToken}/></Route>
+
            <Route path="/mylikevideo"><MyLikeVideo /></Route>
            <Route path="/myuploadvideo"><MyUploadVideo accessToken={accessToken} isUploadVideo={isUploadVideo} setClickMyVideoDataFunc={setClickMyVideoDataFunc}/></Route>
         </Switch>
