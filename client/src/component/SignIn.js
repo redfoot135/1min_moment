@@ -62,7 +62,7 @@ export default function SignIn ({ handleAccessToken, handleUserInfo, openModalFu
 
     return (
         
-        <div className="modal">
+        <div className="modalContainer">
             <div className="loginModal">
                 <span className="close" onClick={openModalFunc}>
                     &times;

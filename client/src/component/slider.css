@@ -1,6 +1,7 @@
 .wrapper{
     height: 300px;
     position: relative;
+    top: 20vh;
 }
 .container {
     margin-top: 150px;
@@ -9,12 +10,61 @@
     position: relative;
 
 }
-.slidercontainer {
+.slidercontainer2 {
     display: flex;
     width: 300px;
     height: 300px;
     object-fit: cover;
 }
+.slidercontainer1 {
+    display: flex;
+    width: 300px;
+    height: 300px;
+    object-fit: cover;
+}
+.slidercontainer3 {
+    display: flex;
+    width: 300px;
+    height: 300px;
+    object-fit: cover;
+}
+.slidercontainer4 {
+    display: flex;
+    width: 300px;
+    height: 300px;
+    object-fit: cover;
+}
+.slidercontainer5 {
+    display: flex;
+    width: 300px;
+    height: 300px;
+    object-fit: cover;
+}
+.slidercontainer6 {
+    display: flex;
+    width: 300px;
+    height: 300px;
+    object-fit: cover;
+}
+.slidercontainer7 {
+    display: flex;
+    width: 300px;
+    height: 300px;
+    object-fit: cover;
+}
+.slidercontainer8 {
+    display: flex;
+    width: 300px;
+    height: 300px;
+    object-fit: cover;
+}
+.slidercontainer9 {
+    display: flex;
+    width: 300px;
+    height: 300px;
+    object-fit: cover;
+}
+
 .prevslide{
   position: absolute;
   height: 220px;

@@ -14,20 +14,46 @@ import VideoPage from './pages/videopage'
 import VideoPage2 from './pages/videopage2'
 import UploadVideo from './pages/uploadVideo'
 import Loading from './pages/Loading'
-
+import Introduce from './component/Introduce'
+import SlidesContainer from './pages/slidesContainer'
 
 
 axios.defaults.withCredentials = true;
 function App() {
-
+  
   const history = useHistory();
   const [isLoading, setIsLoading] = useState(true);
   const [isLogin, setIsLogin] = useState(false);
   const [userInfo, setUserInfo] = useState(null);
   const [accessToken, setAccessToken] = useState(null);
 
-  // 소셜로그인 후 실행되는 함수
-  const handleAccessToken = (tokenData) => { 
+  const [videoInfo, setVideoInfo] = useState({
+    image:'',
+    title:'',
+    channel:'',
+    views:'',
+    timestamp:'',
+    video:'',
+    video_id:''
+});
+  
+  
+const getvideoInfo = (image,title, views, timestamp,video,video_id) => {
+  
+  console.log('hi!!!!!')
+  setVideoInfo({
+      image:image,
+      title:title,
+      views:views,
+      timestamp:timestamp,
+      video:video,
+      video_id:video_id
+  })
+  console.log(videoInfo)
+}
+
+  const handleAccessToken = (tokenData) => { // 소셜로그인 후 함수
+
     setAccessToken(tokenData) 
 
     axios.get("https://localhost:80/userinfo",
@@ -151,12 +177,64 @@ function App() {
 
   return (
     <BrowserRouter>
-    <div className="App">
-      <div>
-       {isLogin ===false ? 
-         <Nav2 openModalFunc={openModalFunc} /> :
-         <Nav openSideBarlFunc={openSideBarlFunc} handleSignOut={handleSignOut} />
-       }
+    <div className="App container-fluid p-0">
+      <div className="row-fluid px-0">
+        {isLogin ===false ? 
+          <Nav2 openModalFunc={openModalFunc} /> :
+          <Nav openSideBarlFunc={openSideBarlFunc} handleSignOut={handleSignOut} />}
+      </div>
+      {
+      isModalOpen ===true ? null 
+      : <SignIn handleAccessToken={handleAccessToken} handleUserInfo={handleUserInfo} openModalFunc={openModalFunc} /> 
+      }
+      {isSideBarOpen === false ? null
+        : <MyPage openSideBarlFunc={openSideBarlFunc} userInfo={userInfo} accessToken={accessToken} handleSecession={handleSecession} />
+        }
+        {/* <MyLikeVideo /> */}
+
+      
+      <Switch>
+        <Route exact path='/'>
+          <div className="row-fluid px-0">
+            <Introduce />
+          </div>
+          <div className="row-fluid px-0">
+          <SlidesContainer getvideoInfo={getvideoInfo}/>
+          </div>
+        </Route>
+        <Route exact path='/main'>
+          <Main/>
+        </Route>
+        <Route exact path='/uploadvideo'>
+          <UploadVideo accessToken={accessToken}/>
+        </Route>
+        <Route exact path='/videopage'> 
+          <VideoPage videoInfo={videoInfo} accessToken={accessToken}/>
+        </Route>
+        <Route exact path="/mylikevideo">
+          <MyLikeVideo />
+        </Route>
+        <Route exact path="/myuploadvideo">
+        <MyUploadVideo accessToken={accessToken} isUploadVideo={isUploadVideo} setClickMyVideoDataFunc={setClickMyVideoDataFunc}/>
+        </Route>
+        <Route path="/myvideopage">
+        <VideoPage2 clickMyVideoData={clickMyVideoData} userInfo={userInfo} accessToken={accessToken} />
+        </Route>
+      </Switch>
+    
+
+
+
+    {/* <Main/> */}
+    {/* <UploadVideo accessToken={accessToken}/> */}
+    {/* <VideoPage/> */}
+    
+    {/* <Switch>
+    
+        <Route path="/mylikevideo"><MyLikeVideo /></Route>
+        <Route path="/myuploadvideo"><MyUploadVideo /></Route>
+    </Switch> */}
+
       </div> 
       <div>
         {
@@ -167,18 +245,37 @@ function App() {
          : <MyPage openSideBarlFunc={openSideBarlFunc} userInfo={userInfo} accessToken={accessToken} handleSecession={handleSecession} handleUpload={handleUpload} />
          }
          
-       {/* <Slider/>
-       <Main/>
-       <UploadVideo accessToken={accessToken}/>
-       <VideoPage/> */}
+
        
-        <Switch>
-           <Route path="/myvideopage"><VideoPage2 clickMyVideoData={clickMyVideoData} userInfo={userInfo} accessToken={accessToken} /></Route>
+       
+       {/* <Main/> */}
+       {/* <UploadVideo accessToken={accessToken}/> */}
+       {/* <VideoPage/> */}
+       
+       {/* <Switch>
+           <Route path="/videos"><VideoPage videoInfo={videoInfo} accessToken={accessToken}/></Route>
            <Route path="/mylikevideo"><MyLikeVideo /></Route>
            <Route path="/myuploadvideo"><MyUploadVideo accessToken={accessToken} isUploadVideo={isUploadVideo} setClickMyVideoDataFunc={setClickMyVideoDataFunc}/></Route>
-        </Switch>
-      </div>
-    </div>
+        </Switch> */}
+       </div>
+       {/* <BrowserRouter>
+         <header className="App-header" onClick={openModalFunc}>
+           로그인
+         </header>
+         {isModalOpen === false ? null 
+         : <SignIn handleAccessToken={handleAccessToken} handleUserInfo={handleUserInfo} openModalFunc={openModalFunc} /> 
+         }
+         <div className-="mypage-txt" onClick={openSideBarlFunc}>마이페이지</div>
+         {isSideBarOpen === false ? null
+         : <MyPage openSideBarlFunc={openSideBarlFunc} />
+         }
+         <Switch>
+           <Route path="/mylikevideo"><MyLikeVideo /></Route>
+           <Route path="/myuploadvideo"><MyUploadVideo /></Route>
+         </Switch>
+      </BrowserRouter>  */}
+    {/* </div> */}
+
     </BrowserRouter>
   );
 }

@@ -1,4 +1,4 @@
-.modal {
+.modalContainer {
     position: fixed;
     top: 0;
     right: 0;
@@ -156,6 +156,10 @@
               position: absolute;
               left: 45px;
             }            
+             .google-login-box button div svg {
+               position: absolute;
+               top:0px;
+             }
              .google-login-box button span {
               width: 300px;
               font-size: 15px;

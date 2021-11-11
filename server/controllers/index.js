@@ -17,6 +17,7 @@ module.exports = {
   get_myvideo : require('./methods/get/myvideo'),
   get_like_video : require('./methods/get/like_video'),
   get_like_comment : require('./methods/get/like_comment'),
+  get_comments: require('./methods/get/comments'),
   
   put_myvideo : require('./methods/put/myvideo'),
   put_comment : require('./methods/put/comment'),
