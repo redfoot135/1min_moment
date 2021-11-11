@@ -10,6 +10,7 @@ const connection = mysql.createConnection({
 connection.connect();
 
 module.exports = async (req, res) => {
+ 
   const { id, cursor } = req.query;
   const select = "select comments.id, video_id, comment, comments.createdAt, comments.updatedAt, users.name as writer"
 
@@ -21,9 +22,10 @@ module.exports = async (req, res) => {
   }else {
     let query = `video_id=${id}`;
     if(cursor) {
-      query = `(${query}) and video_id < ${cursor}`
+      query = `(${query}) and comments.id < ${cursor}`
     }
-    connection.query(`${select} from comments left join users on comments.user_id = users.id where ${query} order by id desc limit 30`, async function (error, results, fields) {
+    console.log(`${select} from comments left join users on comments.user_id = users.id where ${query} order by id desc limit 3`)
+    connection.query(`${select} from comments left join users on comments.user_id = users.id where ${query} order by id desc limit 3`, async function (error, results, fields) {
       res.status(200).json({
         data: results,
         message: "completed the inquiry",
