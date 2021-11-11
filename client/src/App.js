@@ -26,6 +26,7 @@ function App() {
   const [isLogin, setIsLogin] = useState(false);
   const [userInfo, setUserInfo] = useState(null);
   const [accessToken, setAccessToken] = useState(null);
+  const [selectedFile, setSelectedFile] = useState(null);
 
   const [videoInfo, setVideoInfo] = useState({
     image:'',
