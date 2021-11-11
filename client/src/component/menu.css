@@ -1,0 +1,18 @@
+@import url('https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@500&display=swap');
+
+.modalcontainer{
+    
+    border : 1px solid red 
+}
+
+.tab{
+  font-family:  'Noto Sans KR', sans-serif;
+  font-size: 20px;
+  padding: 8px 12px 
+}
+
+.tab2{
+  font-family:  'Noto Sans KR', sans-serif;
+  font-size: 20px;
+  padding: 8px 12px 
+}

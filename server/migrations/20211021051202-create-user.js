@@ -21,13 +21,10 @@ module.exports = {
         type: Sequelize.BOOLEAN
       },
       social: {
-        type: Sequelize.BOOLEAN
-      },
-      refreshToken: {
-        type: Sequelize.STRING(500)
-      },
-      salt: {
         type: Sequelize.STRING
+      },
+      authToken: {
+        type: Sequelize.STRING(500)
       },
       createdAt: {
         allowNull: false,

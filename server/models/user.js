@@ -11,6 +11,7 @@ module.exports = (sequelize, DataTypes) => {
      */
     static associate(models) {
       // define association here
+      models.user.hasMany(models.video, {foreignKey: 'user_id'})
     }
   };
   user.init({
@@ -18,9 +19,8 @@ module.exports = (sequelize, DataTypes) => {
     name: DataTypes.STRING,
     password: DataTypes.STRING,
     regularMember: DataTypes.BOOLEAN,
-    social: DataTypes.BOOLEAN,
-    refreshToken: DataTypes.STRING(500),
-    salt: DataTypes.STRING
+    social: DataTypes.STRING,
+    authToken: DataTypes.STRING(500),
   }, {
     sequelize,
     modelName: 'user',

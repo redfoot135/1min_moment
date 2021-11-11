@@ -2,8 +2,8 @@ import React, {useState} from 'react';
 import { Link, useHistory } from "react-router-dom";
 import axios from "axios";
 import "./SignIn.css";
-
-import Googlebutton from "./Googlebutton"
+import SignUp from "./SignUp";
+import Googlebutton from "./Googlebutton";
 import Kakaobutton from './Kakaobutton';
 
 axios.defaults.withCredentials = true;
@@ -21,6 +21,12 @@ export default function SignIn ({ handleAccessToken, handleUserInfo, openModalFu
     const handleInputValue = (key) => (e) => {
         setLoginInfo({ ...loginInfo, [key]: e.target.value })
     }
+    
+    const [openSignUpModal, setOpenSignUpModal] = useState(false)
+
+    const openSignUpModalFunc = () => {
+        setOpenSignUpModal(!openSignUpModal)
+      }
 
     const handleLogin = () => {
         const {email, password} = loginInfo
@@ -28,18 +34,27 @@ export default function SignIn ({ handleAccessToken, handleUserInfo, openModalFu
         if(email === "" || password === "") {
             setErrorMessage("이메일과 비밀번호를 입력하세요")
         } else {
-            axios.post("https://localhost:4000/signin",
+            axios.post("https://localhost:80/signin",
             {email, password},
             {"content-type":"application/json", withCredentials: true}
             )
             .then((res) => {
-                handleAccessToken(res.data.data.accessToken);
-                handleUserInfo(res.data.data.payload)
-                // handleUserInfo(res.data.data.payload) // 이번에도 signin 요청의 응답에서 payload안에 userInfo가 담겨 오는지(?) 
-                openModalFunc();
-                history.push("/")
+                console.log(res)
+                if(res.data.message === "Information passed") { // 이메일 인증된 사람
+                    console.log(res.cookies)
+                    handleUserInfo(res.data.data)
+                    openModalFunc();
+                    history.push("/")
+                } else if(res.data.message === "이메일 인증 해주세요"){ // 이메일 인증 안된 사람
+                    setErrorMessage("이메일 인증 후 이용해주시기 바랍니다")
+                }
             }).catch((err) => {
-                alert("잘못된 아이디거나, 비밀번호 입니다")
+                console.log(err)
+                if(err.response.data.message === "Please proceed with the verification process") {
+                    setErrorMessage("이메일 인증 후 이용해주시기 바랍니다")
+                } else {
+                    setErrorMessage("이메일 또는 비밀번호를 잘못 입력되었습니다")
+                }
             })
         }
     }
@@ -47,7 +62,7 @@ export default function SignIn ({ handleAccessToken, handleUserInfo, openModalFu
 
     return (
         
-        <div className="modal">
+        <div className="modalContainer">
             <div className="loginModal">
                 <span className="close" onClick={openModalFunc}>
                     &times;
@@ -62,17 +77,17 @@ export default function SignIn ({ handleAccessToken, handleUserInfo, openModalFu
                     <div className="errorMessege">{errorMessage}</div>
                     }
                     <div className="socialBox">
-                        {/* <div className="kakao">
-                            <img className="kakaoLogo" src="https://i.ibb.co/BVSp3jm/ai-3-removebg-preview-1.png" />
-                            <div className="kakaoText">카카오 계정으로 로그인</div>
-                        </div> */}
-                        <Kakaobutton />
-                        <Googlebutton />
+                        <Kakaobutton errorMessage={errorMessage} openModalFunc={openModalFunc} handleAccessToken={handleAccessToken} />
+                        <Googlebutton errorMessage={errorMessage} openModalFunc={openModalFunc} handleAccessToken={handleAccessToken} />
                     </div>
                     <div className="loginEnd">
-                        <div className="signUpLine">
-                            <Link to="/signup">회원이 아니신가요?</Link>
+                        <div className="loginLine" onClick={openSignUpModalFunc}>
+                            회원이 아니신가요?
                         </div>
+                        {
+                         openSignUpModal === false ? null 
+                         : <SignUp openSignUpModalFunc={openSignUpModalFunc}/> 
+                        }
                     </div>
                 </div>
             </div>

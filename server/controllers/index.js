@@ -7,13 +7,17 @@ module.exports = {
   post_like_comment : require('./methods/post/like_comment'),
   post_comment : require('./methods/post/comment'),
   post_socialSignin : require('./methods/post/socialSignin'),
-  
+  post_checkPW: require('./methods/post/checkPW'),
+  post_views: require('./methods/post/views'),
+
+  get_token: require('./methods/get/refreshTokenReq'),
   get_emailauth: require('./methods/get/emailauth'),
   get_userinfo : require('./methods/get/userinfo'),
   get_videos : require('./methods/get/videos'),
   get_myvideo : require('./methods/get/myvideo'),
   get_like_video : require('./methods/get/like_video'),
   get_like_comment : require('./methods/get/like_comment'),
+  get_comments: require('./methods/get/comments'),
   
   put_myvideo : require('./methods/put/myvideo'),
   put_comment : require('./methods/put/comment'),
