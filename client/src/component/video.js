@@ -22,7 +22,7 @@ export default function Video({image, channelImage, title, channel, views, times
     },[handleScroll]);
 
     return(
-        <div className="videocard">
+        <div className="videocard col-md-4">
            <img className="videocard_thumbnail" src={image} alt=""/>
            <div className="videocard_info">
                <Avatar 

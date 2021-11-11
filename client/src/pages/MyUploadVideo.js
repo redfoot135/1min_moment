@@ -8,16 +8,18 @@ const MyUploadVideo = ({ isUploadVideo, setClickMyVideoDataFunc }) => {
     // console.log(isUploadVideo)
 
     return (
-
-    <div className="myuploadvideo-box">
-        <div className="uploadvideocard-box">
-        {
-        isUploadVideo && isUploadVideo.map((el) => {
-        return <UploadVideoCard key={el.id} movieData={el} setClickMyVideoDataFunc={setClickMyVideoDataFunc}/> 
-        })
-        }
+      <div className="px-5">
+        <h1 className="title">내가 올린 영상</h1>
+        <div className="myuploadvideo-box container-fluid">
+          <div className="uploadvideocard-box row p-0">
+            {
+              isUploadVideo && isUploadVideo.map((el) => {
+                return <UploadVideoCard key={el.id} movieData={el} setClickMyVideoDataFunc={setClickMyVideoDataFunc}/> 
+              })
+            }
+          </div>
         </div>
-    </div>
+      </div>
     )
 }
 

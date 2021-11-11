@@ -8,9 +8,9 @@ const UploadVideoCard = ({movieData, setClickMyVideoDataFunc}) => {
     // onClick={setClickMyVideoDataFunc(title)}
 
     return (
-        <div className="upload-videocard">
+        <div className="upload-videocard col-lg-4 col-md-6 p-0 my-2">
            <Link to={"/myvideopage"}>
-           <img className="like-videocard-thumbnail" src={movieData.image} alt="" onClick = {() => setClickMyVideoDataFunc(movieData.id)} />
+            <img className="like-videocard-thumbnail" src={movieData.image} alt="" onClick = {() => setClickMyVideoDataFunc(movieData.id)} />
            </Link>
            <div className="upload-videocard_info">
                <div className="upload-video_text">

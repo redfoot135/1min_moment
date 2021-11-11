@@ -1,11 +1,17 @@
 .myuploadvideo-box {
     box-sizing: border-box;
-    border: 1px solid black;
-    background-color: #f9f9f9;
-    padding: 40px 20px;
+    /* border: 1px solid black; */
+    /* background-color: #f9f9f9; */
+    /* padding: 40px 20px; */
     padding-bottom: 0;
+    position:relative;
+    top: 80px;
 }
 
+.title {
+  position: relative;
+  top: 80px;
+}
 
 .uploadvideocard-box {
     display: flex;
@@ -17,13 +23,15 @@
 @media only screen and (max-width: 767px) {
     .myuploadvideo-box {
         box-sizing: border-box;
-        border: 1px solid black;
+        /* border: 1px solid black; */
         background-color: #f9f9f9;
-        padding: 40px 20px;
+        /* padding: 40px 20px; */
         display: flex;
         flex-direction: column;
         align-items: center;
         justify-content: center;
+        top: 80px;
+        position:relative;
     }
 
     .uploadvideocard-box {

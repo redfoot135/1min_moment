@@ -99,7 +99,6 @@ function Slider({idx,idx2,getvideoInfo}){
         }
    
     return(
-        
         <div className='container'>
          
             <div class = 'wrapper'>

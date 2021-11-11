@@ -18,17 +18,13 @@ function Menu(){
     
     return (
         showTabModal === false ?
-       <div className='tab'>
-        <img onClick={openModal} src='https://i.ibb.co/s1wfvjz/Kakao-Talk-Photo-2021-10-14-17-44-47.png'/>
-       </div>
+       <div className='tab' onClick={openModal}>메뉴</div>
      : 
-       <div className='tab2'>
-         <img onClick={openModal} src='https://i.ibb.co/s1wfvjz/Kakao-Talk-Photo-2021-10-14-17-44-47.png'/>
-            <div className='modalcontainer'>
-                <div className='tablist' >Mypage</div>
+       <div className='tab2' onClick={openModal}>메뉴<div className='modalcontainer'>
+                <div className='tablist' >마이페이지</div>
                 {/* <Link to="/signup"> */}
-                <div className='tablist' >Category</div>
-                <div className='tablist' >AddVideo</div>
+                <div className='tablist' >카테고리</div>
+                <div className='tablist' >비디오 업로드</div>
              {/* </Link> */}
          </div>
        </div >

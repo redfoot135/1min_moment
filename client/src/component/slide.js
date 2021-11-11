@@ -15,10 +15,9 @@ export default function Slide({image, channelImage, title, channel, views, times
     <div onClick={onClickVideo}>
         <img className="videocard_thumbnail" src={image} alt=""/>
         <div className="videocard_info">
-            <Avatar 
+            {/* <Avatar 
                className="videocard_avatar" 
-               alt={channel} 
-               
+               alt={channel}  
             />
             <div className="video_text">
                 <h4>{title}</h4>

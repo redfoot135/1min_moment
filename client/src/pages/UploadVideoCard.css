@@ -1,32 +1,31 @@
 .upload-videocard {
-    margin-bottom: 40px;
-    width: 270px;
+    /* margin: 10px 0px 10px 0px; */
+    /* width: 1000px; */
+    height: 100%;
 }
 
-/* .upload-videocard-video {
-    height: 140px;
-    width: 250px;
-} */
 
-.upload-videocard-thumbnail {
-    height: 140px;
-    width: 250px;
+.upload-videocard_thumbnail {
+  width: 80%;
+  height: 80%;
+  border-radius: 20px;
+
 }
 
 .upload-videocard_info {
     display: flex;
-    width: 250px;
-    margin-top: 10px;
-    padding-right: 30px;
-    padding-left: 10px;
+    flex-direction: column;
+    /* width: 250px; */
+    /* margin-top: 10px; */
+    /* padding-right: 30px; */
+    /* padding-left: 10px; */
 }
 
 .upload-video_text {
     display: flex;
     flex-direction: column;
     justify-content: center;
-    align-items: flex-start;
-    margin-left: 5px;
+    margin-top: 10px;
 }
 
 .like-icon {
