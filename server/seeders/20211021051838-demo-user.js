@@ -5,31 +5,26 @@ module.exports = {
     await queryInterface.bulkInsert('users', [{
       email: 'asdf@naver.com',
       name: 'John Doe',
-      password: '1234',
+      password: '$2b$10$WVMwG1CFa8VjdzbEt.nTiOEuQvhZUxHpZ1emdtO5OFxkYAsRltnH6',
       regularMember: true,
-      social: false,
-      refreshToken: null,
+      social: null,
+      authToken: null,
       createdAt: new Date(),
       updatedAt: new Date()
     },
     {
       email: 'qwer@naver.com',
       name: 'Kimcoding',
-      password: '1234',
+      password: '$2b$10$WVMwG1CFa8VjdzbEt.nTiOEuQvhZUxHpZ1emdtO5OFxkYAsRltnH6',
       regularMember: false,
-      social: false,
-      refreshToken: null,
+      social: null,
+      authToken: null,
       createdAt: new Date(),
       updatedAt: new Date()
     }], {});
   },
 
   down: async (queryInterface, Sequelize) => {
-    /**
-     * Add commands to revert seed here.
-     *
-     * Example:
-     * await queryInterface.bulkDelete('People', null, {});
-     */
+    await queryInterface.bulkDelete('users', null, {});
   }
 };

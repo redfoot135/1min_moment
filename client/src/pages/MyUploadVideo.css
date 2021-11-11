@@ -1,0 +1,47 @@
+.myuploadvideo-box {
+    box-sizing: border-box;
+    /* border: 1px solid black; */
+    /* background-color: #f9f9f9; */
+    /* padding: 40px 20px; */
+    padding-bottom: 0;
+    position:relative;
+    top: 80px;
+}
+
+.title {
+  position: relative;
+  top: 80px;
+}
+
+.uploadvideocard-box {
+    display: flex;
+    flex-wrap: wrap;
+    padding-left: 23px;
+}
+
+
+@media only screen and (max-width: 767px) {
+    .myuploadvideo-box {
+        box-sizing: border-box;
+        /* border: 1px solid black; */
+        background-color: #f9f9f9;
+        /* padding: 40px 20px; */
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        top: 80px;
+        position:relative;
+    }
+
+    .uploadvideocard-box {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        padding-left: 0;
+
+        /* align-items: center;
+        justify-content: center; */
+        /* flex-wrap: wrap; */
+    }
+}

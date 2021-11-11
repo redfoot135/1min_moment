@@ -1,14 +1,14 @@
-.videocard {
+.like-videocard {
     margin-bottom: 40px;
     width: 270px;
 }
 
-.videocard_thumbnail {
+.like-videocard-thumbnail {
     height: 140px;
     width: 250px;
 }
 
-.videocard_info {
+.like-videocard-info {
     display: flex;
     width: 250px;
     margin-top: 10px;
@@ -16,27 +16,60 @@
     padding-left: 10px;
 }
 
-.video_text {
-    margin-left: 15px;
+.like-video-text {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: flex-start;
+    margin-left: 5px;
 }
 
-.video_text > * {
+.like-video-icon {
+    width: 18px;
+    height: 18px;
+}
+
+.like-video-text > * {
     margin: 0;
-    float: left;
 }
 
-.video_text > h4 {
+.like-video_text > h4 {
     font-size: 14px;
     margin-bottom: 5px;
     display: flex;
 }
 
-.video_text > p {
+.like-video_text > p {
     font-size: 14px;
     color: rgb(63, 63, 63);
 }
 
-.videocard_avatar {
-    height: 35px !important;
-    width: 35px !important;
+@media only screen and (max-width: 767px) {
+    .like-videocard {
+        width: 100%;
+        height: 100%;
+        margin-bottom: 40px;
+    }
+
+    .like-videocard-thumbnail {
+        width: 100%;
+        height: 100%;
+    }
+
+    .like-videocard-info {
+        display: flex;
+        flex-direction: column;
+        width: 100%;
+        height: 100%;
+        margin-top: 10px;
+        padding: 0;
+    }
+
+    .like-video-text {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        margin: 0;
+    }
 }

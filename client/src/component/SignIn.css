@@ -1,4 +1,4 @@
-.modal {
+.modalContainer {
     position: fixed;
     top: 0;
     right: 0;
@@ -79,7 +79,7 @@
           font-size: 14px;
           padding: 13px 30px;
           cursor: pointer;
-          background-color: black;
+          background-color: rgb(20, 20, 20);
           color: white;
           line-height: 1px;
           margin-top: 20px;
@@ -93,10 +93,10 @@
           background-color: #f8d7da;
           border-color: #f5c6cb;
           position: relative;
-          padding: 0.75rem 1.25rem;
-          margin-bottom: 1rem;
+          padding: 6px 0px;
           border: 1px solid transparent;
           border-radius: 0.25rem;
+          margin: 0;
         }
   
          .socialBox {
@@ -156,6 +156,10 @@
               position: absolute;
               left: 45px;
             }            
+             .google-login-box button div svg {
+               position: absolute;
+               top:0px;
+             }
              .google-login-box button span {
               width: 300px;
               font-size: 15px;
@@ -171,10 +175,14 @@
         }
   
           .loginLine {
-            color: #bcbcbc;
-            font-size: 11px;
+            color: #000000;
+            font-size: 13px;
             margin-bottom: 35px;
-            cursor: pointer
+            cursor: pointer;
+          }
+
+          .loginLine:hover {
+            color: #F05C69;
           }
   
             a {

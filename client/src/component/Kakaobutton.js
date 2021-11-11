@@ -1,9 +1,14 @@
 import KaKaoLogin from 'react-kakao-login';
 import React from 'react';
+import { useHistory } from "react-router-dom";
+import axios from 'axios';
 
-const tokenId = '3a37b127322442649a53b5d283352373'
+ 
+const tokenId = process.env.REACT_APP_KAKAO_CLIENT_ID;
 
-export default function Kakaobutton () {
+export default function Kakaobutton ({ errorMessage, openModalFunc, handleAccessToken }) {
+
+    const history = useHistory();
 
     const buttonBlock = {
         background: '#fae101',
@@ -17,12 +22,31 @@ export default function Kakaobutton () {
         cursor: 'pointer'
       };
 
-    const kakaoOnSuccess = (response) => {
-    	console.log(response); // 우리 서비스 서버로 post 요청하여 엑세스토큰 받아오는 함수
+
+    const kakaoOnSuccess = (res) => {
+
+      // 우리 서비스 서버로 post 요청하여 엑세스토큰 받아오는 함수
+    	console.log(res); 
+
+      const token = res.response.access_token
+      const id = res.profile.id
+      const username = res.profile.properties.nickname
+         
+      axios.post("https://localhost:80/socialSignin",
+      {token, id, username},
+      {"content-type":"application/json", withCredentials: true}
+      ).then((res) => {
+        if(res.data.data.accessToken) {
+            handleAccessToken(res.data.data.accessToken)
+            openModalFunc();
+            history.push("/")
+          }
+      })
     }
 
     const kakaoOnFailure = (error) => {
         console.log(error);
+        errorMessage("카카오로부터 인증에 실패하셨습니다")
     }
 
     return (
@@ -39,4 +63,4 @@ export default function Kakaobutton () {
       </div>
     );
   
-}
+ }

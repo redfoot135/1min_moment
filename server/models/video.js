@@ -11,11 +11,15 @@ module.exports = (sequelize, DataTypes) => {
      */
     static associate(models) {
       // define association here
+      models.video.belongsTo(models.user, {foreignKey: "user_id"})
+      models.video.hasMany(models.views, {foreignKey: 'video_id'})
     }
   };
   video.init({
     title: DataTypes.STRING,
     user_id: DataTypes.INTEGER,
+    video: DataTypes.STRING,
+    thumbnail: DataTypes.STRING,
     category1: DataTypes.STRING,
     category2: DataTypes.STRING,
     category3: DataTypes.STRING

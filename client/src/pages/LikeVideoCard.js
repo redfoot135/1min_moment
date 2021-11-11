@@ -1,22 +1,15 @@
 import React from 'react'
-import Avatar from "@material-ui/core/Avatar";
 import "./LikeVideoCard.css"
 
-function LikeVideoCard({image, channelImage, title, channel, views, timestamp}) {
+function LikeVideoCard({image, title, views, like}) {
     return (
-        <div className="videocard">
-           <img className="videocard_thumbnail" src={image} alt=""/>
-           <div className="videocard_info">
-               <Avatar 
-                  className="videocard_avatar" 
-                  alt={channel} 
-                  src={channelImage} 
-               />
-               <div className="video_text">
-                   <h4>{title}</h4>
-                   <p>{channel}</p>
-                   <p>
-                       {views} · {timestamp}
+        <div className="like-videocard">
+           <img className="like-videocard-thumbnail" src={image} alt=""/>
+           <div className="like-videocard-info">
+               <div className="like-video-text">
+                   <h4 className="like-video-title">{title}</h4>
+                   <p className="like-video-views">
+                       {views} · <img className="like-video-icon" src="https://cdn-icons-png.flaticon.com/512/686/686308.png" alt=""/> {like}
                    </p>
                </div>
            </div>

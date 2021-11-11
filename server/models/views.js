@@ -14,8 +14,9 @@ module.exports = (sequelize, DataTypes) => {
     }
   };
   views.init({
-    user_id: DataTypes.INTEGER,
-    video_id: DataTypes.INTEGER
+    video_id: DataTypes.INTEGER,
+    ip: DataTypes.STRING,
+    createdAt: DataTypes.STRING
   }, {
     sequelize,
     modelName: 'views',
