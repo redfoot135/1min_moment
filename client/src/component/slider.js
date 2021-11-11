@@ -13,7 +13,7 @@ const category = ['생활','교통','법','의료','교육','무언가1','무언
 
 function Slider({idx,idx2,getvideoInfo}){
     let itemsToRender = null;
-    let idx3 = idx2;
+   
     const [sliderList, setSliderList] = useState([])
     const [loading, SetLoading] = useState(false)
     const [array, SetArray] = useState([])
@@ -47,7 +47,7 @@ function Slider({idx,idx2,getvideoInfo}){
  
 
 
-        
+
     }
    
      useEffect(() => {
