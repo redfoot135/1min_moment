@@ -1,20 +1,22 @@
 .upload-videocard {
-    margin-bottom: 40px;
-    width: 270px;
+    /* margin: 10px 0px 10px 0px; */
+    /* width: 1000px; */
+    height: 100%;
 }
 
 .upload-videocard_thumbnail {
-    height: 140px;
-    width: 250px;
+  width: 80%;
+  height: 80%;
+  border-radius: 20px;
 }
 
 .upload-videocard_info {
     display: flex;
     flex-direction: column;
-    width: 250px;
-    margin-top: 10px;
-    padding-right: 30px;
-    padding-left: 10px;
+    /* width: 250px; */
+    /* margin-top: 10px; */
+    /* padding-right: 30px; */
+    /* padding-left: 10px; */
 }
 
 .upload-video_text {
@@ -22,7 +24,7 @@
     flex-direction: column;
     align-items: center;
     justify-content: center;
-    margin-left: 15px;
+    margin-top: 10px;
 }
 
 .like-icon {

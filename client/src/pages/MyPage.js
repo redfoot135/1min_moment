@@ -27,7 +27,7 @@ const MyPage = ({ openSideBarlFunc, userInfo, accessToken, handleSecession }) =>
             <div className="mypage-bodybox">
                 <div className="my-info-box">
                    <img class="my-info-logo" src="https://i.ibb.co/c3FgzDy/info.png" />
-                   <div className="my-info txt" onClick={ openMyInfoModalFunc }>내 정보 보기</div>
+                   <div className="my-info txt" onClick={ openMyInfoModalFunc }>내 정보 보기　</div>
                 </div>
                {isMyInfoOpen === false ? null 
                : <MyInfo openMyInfoModalFunc={openMyInfoModalFunc} userInfo={userInfo} handleSecession={handleSecession} accessToken={accessToken}/>

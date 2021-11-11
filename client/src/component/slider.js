@@ -70,12 +70,11 @@ function Slider(){
     
     return(
     
-        <div className='container'>
+        <div>
             <div class = 'wrapper'>
             {/* {currentSlide} */}
             <div className='slidercontainer'>
-               
-                
+              {/* <div className="row"> */}
                 <Slide
                 title="1분만에 얻는 생활 꿀팁!"
                 views="10.5만 views"
@@ -319,6 +318,9 @@ function Slider(){
                 channel="1min_moment"
                 image="https://miricanvas.zendesk.com/hc/article_attachments/360049546931/__________._5.png"
                 />
+              {/* </div> */}
+               
+                
             </div>
              <div onClick={prevSlide} className='prevslide slide_btn'> <div className='slide_btn2'> &lt; </div></div>
              <div onClick={nextSlide} className='nextslide slide_btn'> <div className='slide_btn2'>&gt; </div></div>

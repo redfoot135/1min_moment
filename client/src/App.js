@@ -13,7 +13,7 @@ import Main from './component/main'
 import VideoPage from './pages/videopage'
 import UploadVideo from './pages/uploadVideo'
 import Loading from './pages/Loading'
-
+import Introduce from './component/Introduce'
 
 
 axios.defaults.withCredentials = true;
@@ -117,36 +117,62 @@ function App() {
 
   return (
     <BrowserRouter>
-    <div className="App">
-      <div>
-
+    <div className="App container-fluid p-0">
+    <div className="row-fluid px-0">
       {isLogin ===false ? 
-
         <Nav2 openModalFunc={openModalFunc} /> :
          <Nav openSideBarlFunc={openSideBarlFunc} handleSignOut={handleSignOut} />}
+    </div>
+    {
+    isModalOpen ===true ? null 
+    : <SignIn handleAccessToken={handleAccessToken} handleUserInfo={handleUserInfo} openModalFunc={openModalFunc} /> 
+    }
+    {isSideBarOpen === false ? null
+      : <MyPage openSideBarlFunc={openSideBarlFunc} userInfo={userInfo} accessToken={accessToken} handleSecession={handleSecession} />
+      }
+      {/* <MyLikeVideo /> */}
 
-      </div> 
-        <div>
-        {
-        isModalOpen ===true ? null 
-        : <SignIn handleAccessToken={handleAccessToken} handleUserInfo={handleUserInfo} openModalFunc={openModalFunc} /> 
-        }
-        {isSideBarOpen === false ? null
-         : <MyPage openSideBarlFunc={openSideBarlFunc} userInfo={userInfo} accessToken={accessToken} handleSecession={handleSecession} />
-         }
-         {/* <MyLikeVideo /> */}
-         
-       {/* <Slider/> */}
-       <Main/>
-       {/* <UploadVideo accessToken={accessToken}/> */}
-       {/* <VideoPage/> */}
-       
-       <Switch>
-       
-           <Route path="/mylikevideo"><MyLikeVideo /></Route>
-           <Route path="/myuploadvideo"><MyUploadVideo /></Route>
-        </Switch>
-       </div>
+      
+      <Switch>
+        <Route exact path='/'>
+          <div className="row-fluid px-0">
+            <Introduce />
+          </div>
+          <div className="row-fluid px-0">
+            <Slider/>
+          </div>
+          <Slider/>
+        </Route>
+        <Route exact path='/main'>
+          <Main/>
+        </Route>
+        <Route exact path='/uploadvideo'>
+          <UploadVideo accessToken={accessToken}/>
+        </Route>
+        <Route exact path='/videopage'> 
+          <VideoPage/>
+        </Route>
+        <Route exact path="/mylikevideo">
+          <MyLikeVideo />
+        </Route>
+        <Route exact path="/myuploadvideo">
+          <MyUploadVideo />
+        </Route>
+      </Switch>
+    
+
+
+
+    {/* <Main/> */}
+    {/* <UploadVideo accessToken={accessToken}/> */}
+    {/* <VideoPage/> */}
+    
+    {/* <Switch>
+    
+        <Route path="/mylikevideo"><MyLikeVideo /></Route>
+        <Route path="/myuploadvideo"><MyUploadVideo /></Route>
+    </Switch> */}
+
        {/* <BrowserRouter>
          <header className="App-header" onClick={openModalFunc}>
            로그인

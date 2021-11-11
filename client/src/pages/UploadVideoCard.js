@@ -3,7 +3,7 @@ import "./UploadVideoCard.css"
 
 const UploadVideoCard = ({image, title, views, like}) => {
     return (
-        <div className="upload-videocard">
+        <div className="upload-videocard col-lg-4 col-md-6 p-0 my-2">
            <img className="upload-videocard_thumbnail" src={image} alt=""/>
            <div className="upload-videocard_info">
                <div className="upload-video_text">

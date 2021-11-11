@@ -1,4 +1,5 @@
 import './nav.css'
+import {Link} from 'react-router-dom';
 import {useMediaQuery} from 'react-responsive'
 import Menu from './menu'
 import React, { useState,useEffect } from 'react';
@@ -15,15 +16,19 @@ function Nav({openSideBarlFunc , handleSignOut}){
    }
 
     return(
-    <nav className='navbar'>
+    <nav className='navContainer col-sm-12 '>
        
-        <div className='navbar_left'>
-            <img className='logo' src='https://i.ibb.co/7tYjgkr/1.png'/>
+        <div className='navbar_left'> 
+          <Link to={"/"}> 
+              <img className='logo' src='https://i.ibb.co/YNTHNMR/Kakao-Talk-Photo-2021-11-10-16-41-47-removebg-preview.png'/>
+          </Link>
             
             {isPc && <ul className = 'menu'>
-                <li className='mypage' onClick={openSideBarlFunc}>mypage</li>
-                <li className='category'>category</li>
-                <li className='postvideo'>addvidieo</li>
+                <li className='mypage' onClick={openSideBarlFunc}>마이페이지</li>
+                <li className='category'>카테고리</li>
+                <Link to={"/myuploadvideo"} style={{ textDecoration: 'none', color: "black" }}> 
+                  <li className='postvideo'>비디오 업로드</li>
+                </Link>
             </ul>}   
             {isMobile && <ul className = 'menu'>
                 <Menu />
@@ -32,13 +37,13 @@ function Nav({openSideBarlFunc , handleSignOut}){
         </div>
         <div className='navbar_right'>
             { searchBox=== false ?
-             (<div className= 'searchbox' onClick={openSeachBox}>search</div>)
+             (<div className= 'searchbox' onClick={openSeachBox}>검색</div>)
              :
              (<div className='seach_input_box'>
-                 <div className= 'searchbox' onClick={openSeachBox}>search</div><input type='text' />
+                 <div className= 'searchbox' onClick={openSeachBox}>검색</div><input type='text' />
              </div>)
             }
-             <div className='signup' onClick={handleSignOut}>singnout</div>
+             <div className='signup' onClick={handleSignOut}>로그아웃</div>
         </div>
     </nav>
     )
