@@ -9,3 +9,19 @@
 .mypage-txt {
   float: right;
 }
+
+.intro-box {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.nav-box {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  position: fixed;
+  left: 0px;
+  right: 0px;
+  z-index: 10;
+}

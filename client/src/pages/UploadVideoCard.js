@@ -8,15 +8,15 @@ const UploadVideoCard = ({movieData, setClickMyVideoDataFunc}) => {
     // onClick={setClickMyVideoDataFunc(title)}
 
     return (
-        <div className="upload-videocard col-lg-4 col-md-6 p-0 my-2">
+        <div className="upload-videocard col-lg-4 col-md-6 col-sm-12 p-0 my-2">
            <Link to={"/myvideopage"}>
-            <img className="like-videocard-thumbnail" src={movieData.image} alt="" onClick = {() => setClickMyVideoDataFunc(movieData.id)} />
+            <img className="upload-videocard_thumbnail col-11" src={movieData.thumbnail} alt="" onClick = {() => setClickMyVideoDataFunc(movieData.id)} />
            </Link>
            <div className="upload-videocard_info">
                <div className="upload-video_text">
                    <h4>{movieData.title}</h4>
                    <p>
-                       {movieData.views} · <img className="like-icon" src="https://cdn-icons-png.flaticon.com/512/686/686308.png" alt="" /> {movieData.likes}
+                       {movieData.views} · <img className="like-icon" src="https://i.ibb.co/hgRgsrY/image.png" alt="" /> {movieData.likes}
                    </p>
                </div>
            </div>
