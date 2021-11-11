@@ -177,19 +177,19 @@ const getvideoInfo = (image,title, views, timestamp,video,video_id) => {
   return (
     <BrowserRouter>
     <div className="App container-fluid p-0">
-    <div className="row-fluid px-0">
-      {isLogin ===false ? 
-        <Nav2 openModalFunc={openModalFunc} /> :
-         <Nav openSideBarlFunc={openSideBarlFunc} handleSignOut={handleSignOut} />}
-    </div>
-    {
-    isModalOpen ===true ? null 
-    : <SignIn handleAccessToken={handleAccessToken} handleUserInfo={handleUserInfo} openModalFunc={openModalFunc} /> 
-    }
-    {isSideBarOpen === false ? null
-      : <MyPage openSideBarlFunc={openSideBarlFunc} userInfo={userInfo} accessToken={accessToken} handleSecession={handleSecession} />
+      <div className="row-fluid px-0">
+        {isLogin ===false ? 
+          <Nav2 openModalFunc={openModalFunc} /> :
+          <Nav openSideBarlFunc={openSideBarlFunc} handleSignOut={handleSignOut} />}
+      </div>
+      {
+      isModalOpen ===true ? null 
+      : <SignIn handleAccessToken={handleAccessToken} handleUserInfo={handleUserInfo} openModalFunc={openModalFunc} /> 
       }
-      {/* <MyLikeVideo /> */}
+      {isSideBarOpen === false ? null
+        : <MyPage openSideBarlFunc={openSideBarlFunc} userInfo={userInfo} accessToken={accessToken} handleSecession={handleSecession} />
+        }
+        {/* <MyLikeVideo /> */}
 
       
       <Switch>
@@ -198,9 +198,8 @@ const getvideoInfo = (image,title, views, timestamp,video,video_id) => {
             <Introduce />
           </div>
           <div className="row-fluid px-0">
-            <Slider/>
+          <SlidesContainer getvideoInfo={getvideoInfo}/>
           </div>
-          <Slider/>
         </Route>
         <Route exact path='/main'>
           <Main/>
@@ -209,13 +208,13 @@ const getvideoInfo = (image,title, views, timestamp,video,video_id) => {
           <UploadVideo accessToken={accessToken}/>
         </Route>
         <Route exact path='/videopage'> 
-          <VideoPage/>
+          <VideoPage videoInfo={videoInfo} accessToken={accessToken}/>
         </Route>
         <Route exact path="/mylikevideo">
           <MyLikeVideo />
         </Route>
         <Route exact path="/myuploadvideo">
-          <MyUploadVideo />
+        <MyUploadVideo accessToken={accessToken} isUploadVideo={isUploadVideo} setClickMyVideoDataFunc={setClickMyVideoDataFunc}/>
         </Route>
       </Switch>
     
@@ -244,18 +243,17 @@ const getvideoInfo = (image,title, views, timestamp,video,video_id) => {
          {/* <MyLikeVideo /> */}
          
 
-       <SlidesContainer getvideoInfo={getvideoInfo}/>
+       
        
        {/* <Main/> */}
-       <UploadVideo accessToken={accessToken}/>
+       {/* <UploadVideo accessToken={accessToken}/> */}
        {/* <VideoPage/> */}
        
-       <Switch>
+       {/* <Switch>
            <Route path="/videos"><VideoPage videoInfo={videoInfo} accessToken={accessToken}/></Route>
-
            <Route path="/mylikevideo"><MyLikeVideo /></Route>
            <Route path="/myuploadvideo"><MyUploadVideo accessToken={accessToken} isUploadVideo={isUploadVideo} setClickMyVideoDataFunc={setClickMyVideoDataFunc}/></Route>
-        </Switch>
+        </Switch> */}
        </div>
        {/* <BrowserRouter>
          <header className="App-header" onClick={openModalFunc}>
@@ -273,7 +271,7 @@ const getvideoInfo = (image,title, views, timestamp,video,video_id) => {
            <Route path="/myuploadvideo"><MyUploadVideo /></Route>
          </Switch>
       </BrowserRouter>  */}
-    </div>
+    {/* </div> */}
     </BrowserRouter>
   );
 }
