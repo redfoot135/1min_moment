@@ -1,0 +1,25 @@
+.videopage2-container{
+    padding-top: 150px;
+   
+  }
+  .video-info-container{
+    text-align: center;
+    border: 1px solid red;
+    /* display: flex; */
+    width: 80%;
+    margin-left: 10%;
+    
+  }
+  .first-row{
+    display: flex;
+    justify-content: space-between;
+  }
+  .second-row{
+    display: flex;
+    justify-content: space-between;
+  }
+  .third-row{
+    display: flex;
+    justify-content: space-between;
+  }
+  

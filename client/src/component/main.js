@@ -15,7 +15,11 @@ export default function Main(){
     const [cursor, setCursor] = useState(50)
  //   const [result, setResult] = useState(video_list.slice(0, 20));
      // 
-     let x = 43;
+     //저위에있는것들지우고 정해진 갯수만큼 받아올꺼에요 20~30
+     // useEffect 를 사용할꺼에요 
+     // 하면서.. 저기에는 정해진 갯수만큼의 정보 -> x
+     let x;
+     let y;
     const openCategory = (e) =>{
    
     setshowCategory(!showCategory)
@@ -34,7 +38,7 @@ export default function Main(){
         else{
         setshowCategory(!showCategory)
         console.log(showCategory)
-         setCurrentCategory(checkList.join())
+         setCurrentCategory(checkList.join('/'))
          setCheckList([])
          console.log(currentCategory)
         }
@@ -69,9 +73,11 @@ export default function Main(){
       if(scrollTop + clientHeight === scrollHeight) {
         var config = {
           method: 'get',
-          url: `https://localhost:80/videos?category=법`,
+          url: `https://localhost:80/videos`,
           params: {
-            cursor: x
+            category: '법',
+            cursor: x,
+            limit: 10
           },
           headers: { }
         };
@@ -79,15 +85,16 @@ export default function Main(){
         .then((res)=>{
           console.log('itemList',itemList)
           //setItemList([itemList].concat(res.data))
-          setItemList(itemList => [...itemList, ...res.data])
+          setItemList(itemList => [...itemList, ...res.data.data])
           //console.log('res_____',res.data[res.data.length-1].id)
         
           // console.log('itemlist2_______',itemList)
          // setCursor(res.data[res.data.length-1].id)
-         if(res.data[res.data.length-1]){
+         if(res.data.data[res.data.data.length-1]){
           console.log('res@@@@@@@',res.data)
-          console.log('res_____',res.data[res.data.length-1].id)
-         x = res.data[res.data.length-1].id
+          console.log('res_____',res.data.data[res.data.data.length-1].id)
+         x = res.data.data[res.data.data.length-1].id
+         console.log(x)
          }
           
         })
@@ -102,15 +109,49 @@ export default function Main(){
       window.addEventListener('scroll', infiniteScroll, true);
       return () => window.removeEventListener('scroll', infiniteScroll, true);
       }, [infiniteScroll]);
-      const itemlist = itemList.map((obj, index) => <Video title={obj.title}  timestamp={obj.createdAt}/>)
+      //const itemlist = itemList.map((obj, index) => <Video title={obj.title}  timestamp={obj.createdAt}/>)
+
+
+     useEffect(()=>{
+      var config = {
+        method: 'get',
+        url: `https://localhost:80/videos?category=법`,
+        params: {
+          cursor: x
+        },
+        headers: { }
+      };
+      axios(config)
+      .then((res)=>{
+        console.log('itemList',itemList)
+        //setItemList([itemList].concat(res.data))
+        console.log(res.data)
+        setItemList(itemList => [...itemList, ...res.data.data])
+        //console.log('res_____',res.data[res.data.length-1].id)
+      
+        // console.log('itemlist2_______',itemList)
+       // setCursor(res.data[res.data.length-1].id)
+      //  if(res.data.data[0]){
+        
+      //  x = res.data.data[0].id
+      //  }
+      if(res.data.data[res.data.data.length-1]){
+        console.log('res@@@@@@@',res.data)
+        console.log('res_____',res.data.data[res.data.data.length-1].id)
+       x = res.data.data[res.data.data.length-1].id
+       console.log(x)
+       }
+      })
+     // 쿼리요청
+     
+     },[])
 
     return(
-      <div>
-      {/* <div className='categorycontainer'> 
-        <div className='currentmenu'>{currentCategory}</div>
-        <div className='addbox' onClick= {openCategory}>+</div>  
-        <Button onClick={infiniteScroll}>실험용</Button> 
-      </div>  */}
+     <div>
+     <div className='categorycontainer'> 
+      <div className='currentmenu'>{currentCategory}</div>
+      <div className='addbox' onClick= {openCategory}>+</div>      
+     </div> 
      <div>
        {showCategory === true ?
       (<Addcategory confirmBtn={confirmBtn} handleCategoty={handleCategoty}/>)
@@ -225,11 +266,8 @@ export default function Main(){
           />
           {itemList.map((obj, index) => <Video title={obj.title}  timestamp={obj.createdAt} image={obj.thumbnail}/>) }
         </div>
-    
-      
-     
-      
-      
+        
+        {itemList.map((obj, index) => <Video title={obj.title}  timestamp={obj.createdAt} image={obj.thumbnail}/>) }
      </div>
        </div>
     )

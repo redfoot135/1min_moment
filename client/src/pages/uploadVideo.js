@@ -2,11 +2,12 @@ import { BrowserRouter, Route, Switch, useHistory, Link} from 'react-router-dom'
 import React, {useState, useEffect, useCallback} from 'react';
 import axios from "axios"
 import './uploadVideo.css'
-import  Addcategory from '../component/addcategory'
+import  Addcategory2 from '../component/addcategory2'
 import AWS from "aws-sdk";
 import { v4 } from 'uuid';
 // import { Divider } from '@material-ui/core';
 import {useDropzone} from 'react-dropzone'
+import { Button } from '@material-ui/core';
 //const ffmpeg = require('fluent-ffmpeg');
 //axios.defaults.withCredentials = true;
 
@@ -268,14 +269,15 @@ function UploadVideo({accessToken}) {
           <div>
               <input className="upload-title" type='text' onChange={handleTargetTitle} value={title}/>
           </div>
-              <div className='addbox' onClick= {openCategory}>카테고리설정</div>   
+              <Button className='addbox' onClick= {openCategory}>카테고리설정</Button>   
+              {showCategory === true ?
+          (<Addcategory2 confirmBtn={confirmBtn} handleCategoty={handleCategoty}/>)
+          :
+          null}
             </div>
       </div> 
      <div>
-          {showCategory === true ?
-          (<Addcategory confirmBtn={confirmBtn} handleCategoty={handleCategoty}/>)
-          :
-          null}
+          
           <div className='currentmenu'>{currentCategory}</div>
          <div> 
           <button className='uploadBtn' onClick={uploadVideo}>영상 업로드</button>
