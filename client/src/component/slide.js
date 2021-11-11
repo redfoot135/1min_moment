@@ -18,7 +18,7 @@ export default function Slide({image, channelImage, title, channel, views, times
             {/* <Avatar 
                className="videocard_avatar" 
                alt={channel}  
-            />
+            />*/}
             <div className="video_text">
                 <h4>{title}</h4>
                 <p>{channel}</p>
