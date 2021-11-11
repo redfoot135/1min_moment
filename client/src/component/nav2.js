@@ -15,12 +15,12 @@ function Nav2({openModalFunc}){
    }
   
     return(
-    <nav className='navContainer col-sm-12'>
+    <nav className='navContainer col-md-9 col-11'>
        
         <div className='navbar_left'>
         <img className='logo' src='https://i.ibb.co/YNTHNMR/Kakao-Talk-Photo-2021-11-10-16-41-47-removebg-preview.png'/>
                 <ul className = 'menu'>
-                    <li className='category'>category</li>
+                    <li className='category'>모든 꿀팁</li>
                 </ul>   
             
         </div>

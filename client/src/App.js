@@ -178,7 +178,7 @@ const getvideoInfo = (image,title, views, timestamp,video,video_id) => {
   return (
     <BrowserRouter>
     <div className="App container-fluid p-0">
-      <div className="row-fluid px-0">
+      <div className="nav-box row-fluid px-0">
         {isLogin ===false ? 
           <Nav2 openModalFunc={openModalFunc} /> :
           <Nav openSideBarlFunc={openSideBarlFunc} handleSignOut={handleSignOut} />}
@@ -195,7 +195,7 @@ const getvideoInfo = (image,title, views, timestamp,video,video_id) => {
       
       <Switch>
         <Route exact path='/'>
-          <div className="row-fluid px-0">
+          <div className="intro-box row-fluid px-0">
             <Introduce />
           </div>
           <div className="row-fluid px-0">
