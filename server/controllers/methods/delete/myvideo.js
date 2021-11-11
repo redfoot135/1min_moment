@@ -2,7 +2,8 @@ const db = require('../../../models');
 const { tokenCheck } = require('../../token')
 
 module.exports = async (req, res) => {
-  const { id } = req.body; //또는 video_id
+  console.log(req.headers)
+  const { id } = req.query; //또는 video_id
   const { authorization, refreshToken } = req.headers;
   if(!authorization) {
     //인증 정보가 없으면

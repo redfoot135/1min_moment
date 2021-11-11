@@ -123,6 +123,7 @@ function App() {
 
   // 내가 업로드 한 영상 모음 객체 -> MyUploadVideo로 props 전달됨
   const [isUploadVideo, setIsUploadVideo] = useState(null)
+  console.log(isUploadVideo)
  
   // 내가 업로드 한 영상 요청 함수 -> MyUploadVideo로 props 전달됨
   const handleUpload = () => {
@@ -152,14 +153,12 @@ function App() {
     <BrowserRouter>
     <div className="App">
       <div>
-
-      {isLogin ===false ? 
-
-        <Nav2 openModalFunc={openModalFunc} /> :
-         <Nav openSideBarlFunc={openSideBarlFunc} handleSignOut={handleSignOut} />}
-
+       {isLogin ===false ? 
+         <Nav2 openModalFunc={openModalFunc} /> :
+         <Nav openSideBarlFunc={openSideBarlFunc} handleSignOut={handleSignOut} />
+       }
       </div> 
-        <div>
+      <div>
         {
         isModalOpen ===true ? null 
         : <SignIn handleAccessToken={handleAccessToken} handleUserInfo={handleUserInfo} openModalFunc={openModalFunc} /> 
@@ -167,35 +166,18 @@ function App() {
         {isSideBarOpen === false ? null
          : <MyPage openSideBarlFunc={openSideBarlFunc} userInfo={userInfo} accessToken={accessToken} handleSecession={handleSecession} handleUpload={handleUpload} />
          }
-         {/* <MyLikeVideo /> */}
          
        {/* <Slider/>
        <Main/>
        <UploadVideo accessToken={accessToken}/>
        <VideoPage/> */}
        
-       <Switch>
-           <Route path="/myvideopage"><VideoPage2 clickMyVideoData={clickMyVideoData}/></Route>
+        <Switch>
+           <Route path="/myvideopage"><VideoPage2 clickMyVideoData={clickMyVideoData} userInfo={userInfo} accessToken={accessToken} /></Route>
            <Route path="/mylikevideo"><MyLikeVideo /></Route>
            <Route path="/myuploadvideo"><MyUploadVideo accessToken={accessToken} isUploadVideo={isUploadVideo} setClickMyVideoDataFunc={setClickMyVideoDataFunc}/></Route>
         </Switch>
-       </div>
-       {/* <BrowserRouter>
-         <header className="App-header" onClick={openModalFunc}>
-           로그인
-         </header>
-         {isModalOpen === false ? null 
-         : <SignIn handleAccessToken={handleAccessToken} handleUserInfo={handleUserInfo} openModalFunc={openModalFunc} /> 
-         }
-         <div className-="mypage-txt" onClick={openSideBarlFunc}>마이페이지</div>
-         {isSideBarOpen === false ? null
-         : <MyPage openSideBarlFunc={openSideBarlFunc} />
-         }
-         <Switch>
-           <Route path="/mylikevideo"><MyLikeVideo /></Route>
-           <Route path="/myuploadvideo"><MyUploadVideo /></Route>
-         </Switch>
-      </BrowserRouter>  */}
+      </div>
     </div>
     </BrowserRouter>
   );
