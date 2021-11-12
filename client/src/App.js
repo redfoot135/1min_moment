@@ -196,8 +196,10 @@ const getvideoInfo = (image,title, views, timestamp,video,video_id) => {
     <div className="App container-fluid p-0">
       <div className="nav-box row-fluid px-0">
         {isLogin ===false ? 
+
           <Nav2 openModalFunc={openModalFunc}  getSearch={getSearch} searchInfo={searchInfo}/> :
           <Nav  handleSignOut={handleSignOut}  getSearch={getSearch} searchInfo={searchInfo}/>}
+
       </div>
       {
       isModalOpen ===true ? null 
@@ -209,7 +211,7 @@ const getvideoInfo = (image,title, views, timestamp,video,video_id) => {
             <Introduce />
           </div>
           <div className="row-fluid px-0">
-          <SlidesContainer getvideoInfo={getvideoInfo} getCategory={getCategory}/>
+          {/* <SlidesContainer getvideoInfo={getvideoInfo} getCategory={getCategory}/> */}
           </div>
         </Route>
         <Route exact path='/main'>
@@ -231,7 +233,7 @@ const getvideoInfo = (image,title, views, timestamp,video,video_id) => {
         <VideoPage2 clickMyVideoData={clickMyVideoData} userInfo={userInfo} accessToken={accessToken} viewStateFunc ={viewStateFunc}/>
         </Route>
         <Route path="/mypage">
-          <MyPage userInfo={userInfo} accessToken={accessToken} handleSecession={handleSecession} />
+          <MyPage userInfo={userInfo} accessToken={accessToken} handleSecession={handleSecession} handleUpload={handleUpload}/>
         </Route>
       </Switch>
     

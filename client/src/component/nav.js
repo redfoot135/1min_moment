@@ -4,7 +4,7 @@ import {useMediaQuery} from 'react-responsive'
 import Menu from './menu'
 import React, { useState,useEffect } from 'react';
 
-function Nav({openSideBarlFunc , handleSignOut,getSearch,searchInfo}){
+function Nav({handleSignOut,getSearch,searchInfo}){
     const history = useHistory();
     const [searchBox, setSearchBox]=useState(false)
     const [searchResult, setSearchResult]=useState('')
@@ -31,8 +31,8 @@ function Nav({openSideBarlFunc , handleSignOut,getSearch,searchInfo}){
    }
 
     return(
-    <nav className='navContainer col-md-9 col-11'>
-       
+    <nav className='navContainer col-12'>
+      <div className="navbox col-md-9 col-11 ">
         <div className='navbar_left'> 
           <Link to={"/"}> 
               <img className='logo' src='https://i.ibb.co/7RvGNZV/Kakao-Talk-Photo-2021-11-12-13-30-44-removebg-preview.png'/>
@@ -42,7 +42,7 @@ function Nav({openSideBarlFunc , handleSignOut,getSearch,searchInfo}){
                 <Link to={"/mypage"} style={{ textDecoration: 'none', color: "black" }}>
                   <li className='mypage'>마이페이지</li>
                 </Link>
-                <Link  to='/main'>
+                <Link  to='/main' style={{ textDecoration: 'none', color: "black" }}>
                 <li className='category'>모든 꿀팁</li>
                 </Link>
                 <Link to={"/uploadvideo"} style={{ textDecoration: 'none', color: "black" }}> 
@@ -64,6 +64,7 @@ function Nav({openSideBarlFunc , handleSignOut,getSearch,searchInfo}){
              </div>)
             }
              <div className='signup' onClick={handleSignOut}>로그아웃</div>
+        </div>
         </div>
     </nav>
     )

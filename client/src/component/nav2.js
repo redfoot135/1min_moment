@@ -37,9 +37,10 @@ function Nav2({openModalFunc,openSideBarlFunc , handleSignOut,getSearch,searchIn
        }
   
     return(
-    <nav className='navContainer col-md-9 col-11'>
-       
+    <nav className='navContainer col-12'>
+      <div className="navbox col-md-9 col-11 ">
         <div className='navbar_left'>
+
         <Link to={"/"}> 
               <img className='logo' src='https://i.ibb.co/7RvGNZV/Kakao-Talk-Photo-2021-11-12-13-30-44-removebg-preview.png'/>
           </Link>
@@ -61,6 +62,7 @@ function Nav2({openModalFunc,openSideBarlFunc , handleSignOut,getSearch,searchIn
              </div>)
             }
              <div className='signup' onClick={openModalFunc} >로그인</div>
+
         </div>
     </nav>
     )
