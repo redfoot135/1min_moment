@@ -55,15 +55,15 @@ function Nav({handleSignOut,getSearch,searchInfo}){
                 </ul>}
         </div>
         <div className='navbar_right'>
-            { searchBox=== false ?
+            {/* { searchBox=== false ?
              (<div className= 'searchbox' onClick={openSeachBox}>검색</div>)
-             :
-             (<div className='seach_input_box'>
-                 <div className= 'searchbox' onClick={openSeachBox}>검색</div><input type='text'  className="search-input" onChange={searchHandleChange}/><img className="search-icon" src="https://i.ibb.co/FgWPvVM/Kakao-Talk-Photo-2021-11-12-13-30-49-removebg-preview.png" onClick={SearchClick}/>
+             : */}
+             <div className='seach_input_box'>
+                <input type='text'  className="search-input" onChange={searchHandleChange}/><img className="search-icon" src="https://i.ibb.co/FgWPvVM/Kakao-Talk-Photo-2021-11-12-13-30-49-removebg-preview.png" onClick={SearchClick}/>
 
-             </div>)
-            }
-             <div className='signup' onClick={handleSignOut}>로그아웃</div>
+             </div>
+            {/* } */}
+             <div className='signout' onClick={handleSignOut}><img className="logout-icon" src="https://media.discordapp.net/attachments/857770257187733554/908765774041198692/premium-icon-logout-4034229.png"/></div>
         </div>
         </div>
     </nav>
