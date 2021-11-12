@@ -1,10 +1,13 @@
 import './nav.css'
-import {Link} from 'react-router-dom';
+import {Link,useHistory} from 'react-router-dom';
 import {useMediaQuery} from 'react-responsive'
 import Menu from './menu'
 import React, { useState,useEffect } from 'react';
-function Nav({openSideBarlFunc , handleSignOut}){
+
+function Nav({openSideBarlFunc , handleSignOut,getSearch,searchInfo}){
+    const history = useHistory();
     const [searchBox, setSearchBox]=useState(false)
+    const [searchResult, setSearchResult]=useState('')
     const isPc = useMediaQuery({
         query : "(min-width:768px)"
     })
@@ -13,6 +16,15 @@ function Nav({openSideBarlFunc , handleSignOut}){
     })
    const openSeachBox = () =>{
     setSearchBox(!searchBox)
+   }
+   const searchHandleChange=(e)=>{
+    getSearch(e.target.value)
+    
+    console.log(searchResult) 
+    history.push({pathname: "/main" })
+    if(searchInfo===''){
+        history.push('/')
+    }
    }
 
     return(
@@ -25,7 +37,9 @@ function Nav({openSideBarlFunc , handleSignOut}){
             
             {isPc && <ul className = 'menu'>
                 <li className='mypage' onClick={openSideBarlFunc}>마이페이지</li>
-                <li className='category'>카테고리</li>
+                <Link  to='/main'>
+                <li className='category'>전체비디오</li>
+                </Link>
                 <Link to={"/myuploadvideo"} style={{ textDecoration: 'none', color: "black" }}> 
                   <li className='postvideo'>비디오 업로드</li>
                 </Link>
@@ -40,7 +54,7 @@ function Nav({openSideBarlFunc , handleSignOut}){
              (<div className= 'searchbox' onClick={openSeachBox}>검색</div>)
              :
              (<div className='seach_input_box'>
-                 <div className= 'searchbox' onClick={openSeachBox}>검색</div><input type='text' />
+                 <div className= 'searchbox' onClick={openSeachBox}>검색</div><input type='text' onChange={searchHandleChange} />
              </div>)
             }
              <div className='signup' onClick={handleSignOut}>로그아웃</div>

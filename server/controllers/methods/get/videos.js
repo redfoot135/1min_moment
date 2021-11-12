@@ -14,6 +14,7 @@ const connection = mysql.createConnection({
 connection.connect();
 
 module.exports = async (req, res) => {
+  console.log('querrrrry',req.query)
   const { authorization, refreshToken } = req.headers;
   let id;
   if(authorization) {

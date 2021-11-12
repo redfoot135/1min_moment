@@ -26,7 +26,8 @@ function App() {
   const [isLogin, setIsLogin] = useState(false);
   const [userInfo, setUserInfo] = useState(null);
   const [accessToken, setAccessToken] = useState(null);
-
+  const [category, setcategory] = useState(null);
+  const [searchInfo, setSearchInfo] = useState('');
   const [videoInfo, setVideoInfo] = useState({
     image:'',
     title:'',
@@ -36,7 +37,17 @@ function App() {
     video:'',
     video_id:''
 });
+const getSearch= (search) =>{
+  setSearchInfo(search)
+  console.log(searchInfo)
+  console.log('hi!!!!!')
   
+ } 
+ const getCategory= (category) =>{
+  setcategory(category)
+  console.log(category)
+  console.log('hi!!!!!')
+ } 
   
 const getvideoInfo = (image,title, views, timestamp,video,video_id) => {
   
@@ -179,8 +190,8 @@ const getvideoInfo = (image,title, views, timestamp,video,video_id) => {
     <div className="App container-fluid p-0">
       <div className="row-fluid px-0">
         {isLogin ===false ? 
-          <Nav2 openModalFunc={openModalFunc} /> :
-          <Nav openSideBarlFunc={openSideBarlFunc} handleSignOut={handleSignOut} />}
+          <Nav2 openModalFunc={openModalFunc}  getSearch={getSearch}/> :
+          <Nav openSideBarlFunc={openSideBarlFunc} handleSignOut={handleSignOut}  getSearch={getSearch} searchInfo={searchInfo}/>}
       </div>
       {
       isModalOpen ===true ? null 
@@ -198,16 +209,16 @@ const getvideoInfo = (image,title, views, timestamp,video,video_id) => {
             <Introduce />
           </div>
           <div className="row-fluid px-0">
-          <SlidesContainer getvideoInfo={getvideoInfo}/>
+          <SlidesContainer getvideoInfo={getvideoInfo} getCategory={getCategory}/>
           </div>
         </Route>
         <Route exact path='/main'>
-          <Main/>
+          <Main category={category} searchInfo={searchInfo}  getvideoInfo={getvideoInfo}/>
         </Route>
         <Route exact path='/uploadvideo'>
           <UploadVideo accessToken={accessToken}/>
         </Route>
-        <Route exact path='/videopage'> 
+        <Route exact path='/videos'> 
           <VideoPage videoInfo={videoInfo} accessToken={accessToken}/>
         </Route>
         <Route exact path="/mylikevideo">
