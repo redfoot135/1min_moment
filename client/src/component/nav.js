@@ -9,10 +9,10 @@ function Nav({handleSignOut,getSearch,searchInfo}){
     const [searchBox, setSearchBox]=useState(false)
     const [searchResult, setSearchResult]=useState('')
     const isPc = useMediaQuery({
-        query : "(min-width:1000px)"
+        query : "(min-width:610px)"
     })
     const isMobile = useMediaQuery({
-        query : "(max-width:999px)"
+        query : "(max-width:609px)"
     })
    const openSeachBox = () =>{
     setSearchBox(!searchBox)
@@ -55,15 +55,15 @@ function Nav({handleSignOut,getSearch,searchInfo}){
                 </ul>}
         </div>
         <div className='navbar_right'>
-            { searchBox=== false ?
+            {/* { searchBox=== false ?
              (<div className= 'searchbox' onClick={openSeachBox}>검색</div>)
-             :
-             (<div className='seach_input_box'>
-                 <div className= 'searchbox' onClick={openSeachBox}>검색</div><input type='text'  className="search-input" onChange={searchHandleChange}/><img className="search-icon" src="https://i.ibb.co/FgWPvVM/Kakao-Talk-Photo-2021-11-12-13-30-49-removebg-preview.png" onClick={SearchClick}/>
+             : */}
+             <div className='seach_input_box'>
+                <input type='text'  className="search-input" onChange={searchHandleChange}/><img className="search-icon" src="https://i.ibb.co/FgWPvVM/Kakao-Talk-Photo-2021-11-12-13-30-49-removebg-preview.png" onClick={SearchClick}/>
 
-             </div>)
-            }
-             <div className='signup' onClick={handleSignOut}>로그아웃</div>
+             </div>
+            {/* } */}
+             <div className='signout' onClick={handleSignOut}><img className="logout-icon" src="https://i.ibb.co/SdZL2Zm/Kakao-Talk-Photo-2021-11-13-02-51-07-002-removebg-preview.png"/></div>
         </div>
         </div>
     </nav>

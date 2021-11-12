@@ -40,7 +40,9 @@ h1 {
   position: relative;
   /* top: 80px; */
   /* padding-top: 40px; */
-  border-radius: 40px;
+  border-radius: 50px;
+  border: 10px solid #f1c40e;
+
 }
 
 .start-ment {
@@ -54,16 +56,16 @@ h1 {
 .introduce {
   position: relative;
   /* top: 80px; */
-  padding-top: 40px;
+  /* padding-top: 40px; */
   margin-top: 40px;
   border-radius: 40px;
   border: 10px solid #f1c40e;
 }
 
 .introduce-input {
-  height: 8vh;
+  height: 35px;
   top:100px;
-  font-size: 25px;
+  font-size: 18px;
   padding-right: 50px;
 }
 
@@ -73,8 +75,8 @@ h1 {
   position: absolute;
 } 
 .introduce-search > .search-icon {
-  width: 32px;
-  height: 40px;
+  width: 16px;
+  height: 20px;
   top: 8px;
   right: 13px;
 }

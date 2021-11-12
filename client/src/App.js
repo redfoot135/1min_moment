@@ -202,7 +202,7 @@ const getvideoInfo = (image,title, views, timestamp,video,video_id) => {
 
       </div>
       {
-      isModalOpen ===true ? null 
+      isModalOpen ===false ? null 
       : <SignIn handleAccessToken={handleAccessToken} handleUserInfo={handleUserInfo} openModalFunc={openModalFunc} /> 
       }
       <Switch>
