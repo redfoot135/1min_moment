@@ -16,6 +16,7 @@ import UploadVideo from './pages/uploadVideo'
 import Loading from './pages/Loading'
 import Introduce from './component/Introduce'
 import SlidesContainer from './pages/slidesContainer'
+import Footer from './component/Footer'
 
 
 axios.defaults.withCredentials = true;
@@ -199,7 +200,7 @@ const getvideoInfo = (image,title, views, timestamp,video,video_id) => {
             <Introduce />
           </div>
           <div className="row-fluid px-0">
-          <SlidesContainer getvideoInfo={getvideoInfo}/>
+          {/* <SlidesContainer getvideoInfo={getvideoInfo}/> */}
           </div>
         </Route>
         <Route exact path='/main'>
@@ -222,7 +223,9 @@ const getvideoInfo = (image,title, views, timestamp,video,video_id) => {
         </Route>
       </Switch>
     
-
+        <div className="row-fluid col-12">
+          <Footer />
+        </div>
 
 
     {/* <Main/> */}
@@ -280,4 +283,4 @@ const getvideoInfo = (image,title, views, timestamp,video,video_id) => {
   );
 }
 
-export default App;
+export default App; 

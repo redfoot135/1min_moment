@@ -11,14 +11,14 @@ function SlidesContainer({getvideoInfo}){
     return (
         <div>
         <Slider idx = {idx[0]} idx2 = {idx2[0]} getvideoInfo={getvideoInfo}/>
-        <Slider idx = {idx[1]} idx2 = {idx2[1]} getvideoInfo={getvideoInfo}/>
+        {/* <Slider idx = {idx[1]} idx2 = {idx2[1]} getvideoInfo={getvideoInfo}/>
         <Slider idx = {idx[2]} idx2 = {idx2[2]} getvideoInfo={getvideoInfo}/>
         <Slider idx = {idx[3]} idx2 = {idx2[3]} getvideoInfo={getvideoInfo}/>
         <Slider idx = {idx[4]} idx2 = {idx2[4]} getvideoInfo={getvideoInfo}/>
         <Slider idx = {idx[5]} idx2 = {idx2[5]} getvideoInfo={getvideoInfo}/>
         <Slider idx = {idx[6]} idx2 = {idx2[6]} getvideoInfo={getvideoInfo}/>
         <Slider idx = {idx[7]} idx2 = {idx2[7]} getvideoInfo={getvideoInfo}/>
-        <Slider idx = {idx[8]} idx2 = {idx2[8]} getvideoInfo={getvideoInfo}/>
+        <Slider idx = {idx[8]} idx2 = {idx2[8]} getvideoInfo={getvideoInfo}/> */}
        
 
         </div>

@@ -29,7 +29,7 @@ function Nav2({openModalFunc}){
              (<div className= 'searchbox' onClick={openSeachBox}>검색</div>)
              :
              (<div className='seach_input_box'>
-                 <div className= 'searchbox' onClick={openSeachBox}>검색</div><input type='text' />
+                 <div className= 'searchbox' onClick={openSeachBox}>검색</div><input type='text' className="search-input"/><img className="search-icon" src="https://i.ibb.co/zbXCQFj/Kakao-Talk-Photo-2021-11-11-16-13-38-removebg-preview-1.png"/>
              </div>)
             }
              <div className='signup' onClick={openModalFunc} >로그인</div>
