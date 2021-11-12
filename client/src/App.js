@@ -142,7 +142,7 @@ const getvideoInfo = (image,title, views, timestamp,video,video_id) => {
     })
   }, []);
 
-
+ 
 
   // 회원탈퇴 후 실행되는 함수
   const handleSecession = () => { 
