@@ -6,15 +6,16 @@ import Addcategory from './addcategory'
 import { Button } from '@material-ui/core'
 import axios from 'axios';
 import { BrowserRouter, Route, Switch, useHistory, Link} from 'react-router-dom';
-export default function Main({category,searchResult,searchInfo,getvideoInfo}){
+export default function Main({category,searchResult,searchInfo,getvideoInfo,setSearchInfo}){
     const [currentCategory, setCurrentCategory]=useState('');
     const [showCategory, setshowCategory]=useState(false)
     const [categoryInfo, setcategoryInfo]= useState('')
     const [checkList, setCheckList] = useState([])
+    const [checkListDisplay, setCheckListDisplay] = useState([])
     const [itemIndex, setItemIndex] = useState(0);
     const [itemList, setItemList] = useState([])
     const [cursor, setCursor] = useState(50)
-    console.log('searchInfosearchInfosearchInfo',category)
+    console.log('searchInfosearchInfosearchInfo',searchInfo)
  //   const [result, setResult] = useState(video_list.slice(0, 20));
      // 
      //저위에있는것들지우고 정해진 갯수만큼 받아올꺼에요 20~30
@@ -26,10 +27,12 @@ export default function Main({category,searchResult,searchInfo,getvideoInfo}){
     const openCategory = (e) =>{
    
     setshowCategory(!showCategory)
+    console.log(checkListDisplay)
     setCheckList([])
+    setCheckListDisplay([])
     console.log(showCategory)
     console.log(currentCategory)
-     
+    
     }
     
     const confirmBtn = () =>{
@@ -41,8 +44,12 @@ export default function Main({category,searchResult,searchInfo,getvideoInfo}){
         else{
         setshowCategory(!showCategory)
         console.log(showCategory)
+        setCheckListDisplay(checkListDisplay=>[...checkListDisplay,...checkList])
+        
          setCurrentCategory(checkList.join('/'))
-         setCheckList([])
+         
+         console.log(checkListDisplay)
+         setCheckList('12121212',[])
          console.log(currentCategory)
         }
     }
@@ -58,6 +65,7 @@ export default function Main({category,searchResult,searchInfo,getvideoInfo}){
               setCheckList([...checkList,e.target.value])
         //console.log(categoryInfo)
         console.log('checklist',checkList)
+        console.log(checkListDisplay)
               }
           }
       
@@ -90,6 +98,7 @@ export default function Main({category,searchResult,searchInfo,getvideoInfo}){
           console.log('itemList',itemList)
           //setItemList([itemList].concat(res.data))
           setItemList(itemList => [...itemList, ...res.data.data])
+          
           //console.log('res_____',res.data[res.data.length-1].id)
         
           // console.log('itemlist2_______',itemList)
@@ -130,6 +139,7 @@ export default function Main({category,searchResult,searchInfo,getvideoInfo}){
       axios(config)
       .then((res)=>{
         setItemList([])
+       // setSearchInfo('')
         console.log('itemList',itemList)
         //setItemList([itemList].concat(res.data))
         console.log(res.data)
@@ -149,7 +159,7 @@ export default function Main({category,searchResult,searchInfo,getvideoInfo}){
        console.log(x)
        }
       })
-      history.push('/main')
+     
      // 쿼리요청
      
      },[searchInfo,currentCategory])
@@ -158,7 +168,24 @@ export default function Main({category,searchResult,searchInfo,getvideoInfo}){
     return(
      <div>
      <div className='categorycontainer'> 
-      <div className='currentmenu'>{currentCategory}</div>
+     {checkListDisplay.length ===3 ? 
+     ( <div className='categorycontainer2'>
+     <div className='currentmenu_category'>{checkListDisplay[0]}</div>
+      <div className='currentmenu_category'>{checkListDisplay[1]}</div>
+      <div className='currentmenu_category'>{checkListDisplay[2]}</div>
+      </div>) : null }
+      {checkListDisplay.length ===2 ? 
+     ( <div  className='categorycontainer2'>
+     <div className='currentmenu_category'>{checkListDisplay[0]}</div>
+      <div className='currentmenu_category'>{checkListDisplay[1]}</div>
+      
+      </div>) : null }
+      {checkListDisplay.length ===1 ? 
+       ( <div  className='categorycontainer2'>
+     <div className='currentmenu_category'>{checkListDisplay[0]}</div>
+    
+      </div>) : null }
+      
       <div className='addbox' onClick= {openCategory}>+</div>      
      </div> 
      <div>
