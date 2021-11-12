@@ -8,11 +8,17 @@
 .tab{
   font-family:  'Noto Sans KR', sans-serif;
   font-size: 16px;
-  padding: 8px 12px 
+  /* padding: 8px 12px  */
 }
 
 .tab2{
   font-family:  'Noto Sans KR', sans-serif;
   font-size: 16px;
-  padding: 8px 12px 
+  /* padding: 8px 12px  */
+}
+
+.menu-icon {
+  height: 20px;
+  width: 30px;
+  margin-bottom: 5px;
 }

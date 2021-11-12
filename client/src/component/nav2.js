@@ -54,13 +54,13 @@ function Nav2({openModalFunc,openSideBarlFunc , handleSignOut,getSearch,searchIn
             
         </div>
         <div className='navbar_right'>
-            { searchBox=== false ?
+            {/* { searchBox=== false ?
              (<div className= 'searchbox' onClick={openSeachBox}>검색</div>)
-             :
-             (<div className='seach_input_box'>
-                  <div className= 'searchbox' onClick={openSeachBox}>검색</div><input type='text'  className="search-input" onChange={searchHandleChange}/><img className="search-icon" src="https://i.ibb.co/FgWPvVM/Kakao-Talk-Photo-2021-11-12-13-30-49-removebg-preview.png" onClick={SearchClick}/>
-             </div>)
-            }
+             : */}
+             <div className='seach_input_box'>
+                  <input type='text'  className="search-input" onChange={searchHandleChange}/><img className="search-icon" src="https://i.ibb.co/FgWPvVM/Kakao-Talk-Photo-2021-11-12-13-30-49-removebg-preview.png" onClick={SearchClick}/>
+             </div>
+
              <div className='signup' onClick={openModalFunc} >로그인</div>
           </div>
         </div>
