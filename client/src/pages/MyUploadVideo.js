@@ -5,7 +5,7 @@ import UploadVideoCard from './UploadVideoCard';
 
 const MyUploadVideo = ({ isUploadVideo, setClickMyVideoDataFunc }) => { 
 
-    // console.log(isUploadVideo)
+    console.log(isUploadVideo)
 
     return (
       <div className="myvideos row sm-px-0">

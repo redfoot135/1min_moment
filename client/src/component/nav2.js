@@ -36,28 +36,28 @@ function Nav2({openModalFunc,}){
    }
   
     return(
-    <nav className='navContainer col-md-9 col-11'>
-       
+    <nav className='navContainer col-12'>
+      <div className="navbox col-md-9 col-11 ">
         <div className='navbar_left'>
-        <img className='logo' src='https://i.ibb.co/7RvGNZV/Kakao-Talk-Photo-2021-11-12-13-30-44-removebg-preview.png'/>
-                <ul className = 'menu'>
-
-                <Link  to='/main'>
-                <li className='category'>모든 꿀팁</li>
-                </Link>
-
-                </ul>   
-            
+          <Link to={"/"}> 
+            <img className='logo' src='https://i.ibb.co/7RvGNZV/Kakao-Talk-Photo-2021-11-12-13-30-44-removebg-preview.png'/>
+          </Link>        
+          <ul className = 'menu'>
+            <Link  to='/main' style={{ textDecoration: 'none', color: "black" }}>
+              <li className='category'>모든 꿀팁</li>
+            </Link>
+          </ul>   
         </div>
         <div className='navbar_right'>
-            { searchBox=== false ?
-             (<div className= 'searchbox' onClick={openSeachBox}>검색</div>)
-             :
-             (<div className='seach_input_box'>
-                 <div className= 'searchbox' onClick={openSeachBox}>검색</div><input type='text' onChange={searchHandleChange} className="search-input"/><img className="search-icon" src="https://i.ibb.co/FgWPvVM/Kakao-Talk-Photo-2021-11-12-13-30-49-removebg-preview.png"/>
-             </div>)
-            }
-             <div className='signup' onClick={openModalFunc} >로그인</div>
+          { searchBox=== false ?
+            (<div className= 'searchbox' onClick={openSeachBox}>검색</div>)
+            :
+            (<div className='seach_input_box'>
+                <div className= 'searchbox' onClick={openSeachBox}>검색</div><input type='text' onChange={searchHandleChange} className="search-input"/><img className="search-icon" src="https://i.ibb.co/FgWPvVM/Kakao-Talk-Photo-2021-11-12-13-30-49-removebg-preview.png"/>
+            </div>)
+          }
+            <div className='signup' onClick={openModalFunc} >로그인</div>
+        </div>
         </div>
     </nav>
     )
