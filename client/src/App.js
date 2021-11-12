@@ -18,7 +18,6 @@ import Introduce from './component/Introduce'
 import SlidesContainer from './pages/slidesContainer'
 import Footer from './component/Footer'
 
-
 axios.defaults.withCredentials = true;
 function App() {
   
@@ -27,7 +26,8 @@ function App() {
   const [isLogin, setIsLogin] = useState(false);
   const [userInfo, setUserInfo] = useState(null);
   const [accessToken, setAccessToken] = useState(null);
-
+  const [category, setcategory] = useState(null);
+  const [searchInfo, setSearchInfo] = useState('');
   const [videoInfo, setVideoInfo] = useState({
     image:'',
     title:'',
@@ -37,7 +37,17 @@ function App() {
     video:'',
     video_id:''
 });
+const getSearch= (search) =>{
+  setSearchInfo(search)
+  console.log(searchInfo)
+  console.log('hi!!!!!')
   
+ } 
+ const getCategory= (category) =>{
+  setcategory(category)
+  console.log(category)
+  console.log('hi!!!!!')
+ } 
   
 const getvideoInfo = (image,title, views, timestamp,video,video_id) => {
   
@@ -132,6 +142,8 @@ const getvideoInfo = (image,title, views, timestamp,video,video_id) => {
     })
   }, []);
 
+
+
   // 회원탈퇴 후 실행되는 함수
   const handleSecession = () => { 
     window.location.replace('/')  
@@ -167,14 +179,25 @@ const getvideoInfo = (image,title, views, timestamp,video,video_id) => {
     setClickMyVideoData(isUploadVideo.filter((el) => el.id === clickVideoData)[0])
   }
 
+    const viewStateFunc = (id) => {
+        axios.post("https://localhost:80/views",{id: id},
+          {
+            headers: {
+            authorization: `Bearer ${accessToken}`,
+            "Content-Type" : "application/json"   
+            },
+            withCredentials: true
+          }
+          )
+    }
 
   return (
     <BrowserRouter>
     <div className="App container-fluid p-0">
       <div className="nav-box row-fluid px-0">
         {isLogin ===false ? 
-          <Nav2 openModalFunc={openModalFunc} /> :
-          <Nav handleSignOut={handleSignOut} />}
+          <Nav2 openModalFunc={openModalFunc}  getSearch={getSearch}/> :
+          <Nav openSideBarlFunc={openSideBarlFunc} handleSignOut={handleSignOut}  getSearch={getSearch} searchInfo={searchInfo}/>}
       </div>
       {
       isModalOpen ===true ? null 
@@ -186,16 +209,16 @@ const getvideoInfo = (image,title, views, timestamp,video,video_id) => {
             <Introduce />
           </div>
           <div className="row-fluid px-0">
-          {/* <SlidesContainer getvideoInfo={getvideoInfo}/> */}
+          <SlidesContainer getvideoInfo={getvideoInfo} getCategory={getCategory}/>
           </div>
         </Route>
         <Route exact path='/main'>
-          <Main/>
+          <Main category={category} searchInfo={searchInfo}  getvideoInfo={getvideoInfo}/>
         </Route>
         <Route exact path='/uploadvideo'>
           <UploadVideo accessToken={accessToken}/>
         </Route>
-        <Route exact path='/videopage'> 
+        <Route exact path='/videos'> 
           <VideoPage videoInfo={videoInfo} accessToken={accessToken}/>
         </Route>
         <Route exact path="/mylikevideo">
@@ -205,7 +228,7 @@ const getvideoInfo = (image,title, views, timestamp,video,video_id) => {
         <MyUploadVideo accessToken={accessToken} isUploadVideo={isUploadVideo} setClickMyVideoDataFunc={setClickMyVideoDataFunc}/>
         </Route>
         <Route path="/myvideopage">
-        <VideoPage2 clickMyVideoData={clickMyVideoData} userInfo={userInfo} accessToken={accessToken} />
+        <VideoPage2 clickMyVideoData={clickMyVideoData} userInfo={userInfo} accessToken={accessToken} viewStateFunc ={viewStateFunc}/>
         </Route>
         <Route path="/mypage">
           <MyPage userInfo={userInfo} accessToken={accessToken} handleSecession={handleSecession} />
