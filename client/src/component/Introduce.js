@@ -9,53 +9,17 @@ const Introduce = () => {
 
   return (
       <>
-        <Carousel>
-          <Carousel.Item>
-            <div className="slideContainer1"></div>
-            <Carousel.Caption>
-              <div className="slide-coment">1번 슬라이드</div>
-            </Carousel.Caption>
-          </Carousel.Item>
-          <Carousel.Item>
-            <div className="slideContainer2"></div>
-            <Carousel.Caption>
-              <div className="slide-coment">2번 슬라이드</div>
-            </Carousel.Caption>
-          </Carousel.Item>
-          {/* <Carousel.Item>
-            <div className="slideContainer"></div>
-            <Carousel.Caption>
-              <div className="slide-coment">3번 슬라이드</div>
-            </Carousel.Caption>
-          </Carousel.Item>
-          <Carousel.Item>
-            <div className="slideContainer"></div>
-            <Carousel.Caption>
-              <div className="slide-coment">4번 슬라이드</div>
-            </Carousel.Caption>
-          </Carousel.Item> */}
-        </Carousel>
-
-      
-      <div class="header col-12">
-        <div class="inner-header">
-        {/* <h1>세상의 모든 꿀팁, <br/>1분 순삭에서 만나보세요</h1> */}
+        <img className="introduce1 col-11 col-md-9" src="https://i.ibb.co/x3XftJr/001.png"/>
+        <img className="introduce col-11 col-md-9" src="https://i.ibb.co/n1k9GLT/002.png"/>
+        <img className="introduce col-11 col-md-9" src="https://i.ibb.co/y5P6yZz/003.png"/>
+        <img className="introduce col-11 col-md-9" src="https://i.ibb.co/WnCvGNs/004.png"/>
+        <div className="start-ment col-11 col-md-9">
+          <img className="introduce col-12" src="https://i.ibb.co/LCjrTRf/005.png"/>
+          <div className='introduce-search seach_input_box col-6'>
+            <input type='text' className="introduce-input search-input col-12" placeholder="검색 시작하기"/>
+            <img className="search-icon" src="https://i.ibb.co/FgWPvVM/Kakao-Talk-Photo-2021-11-12-13-30-49-removebg-preview.png"/>
+          </div>
         </div>
-      
-        <div>
-          <svg class="waves" src="http://www.w3.org/2000/svg" viewBox="0 24 150 28" preserveAspectRatio="none" shape-rendering="auto">
-            <defs>
-            <path id="gentle-wave" d="M-160 44c30 0 58-18 88-18s 58 18 88 18 58-18 88-18 58 18 88 18 v44h-352z" />
-            </defs>
-            <g class="parallax">
-              <use href="#gentle-wave" x="48" y="0" fill="rgba(255,255,255,0.7" />
-              <use href="#gentle-wave" x="48" y="3" fill="rgba(255,255,255,0.5)" />
-              <use href="#gentle-wave" x="48" y="5" fill="rgba(255,255,255,0.3)" />
-              <use href="#gentle-wave" x="48" y="7" fill="#fff" />
-            </g>
-          </svg>
-        </div>
-      </div>
       </>    
   )
 }

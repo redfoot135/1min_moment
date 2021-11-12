@@ -11,7 +11,7 @@ const TOTAL_SLIDES = 390;
 const category = ['생활','교통','법','의료','교육','무언가1','무언가2','무언가3','무언가4']
 
 
-function Slider({idx,idx2,getvideoInfo}){
+function Slider({idx,idx2,getvideoInfo,getCategory}){
     let itemsToRender = null;
    
     const [sliderList, setSliderList] = useState([])
@@ -97,13 +97,22 @@ function Slider({idx,idx2,getvideoInfo}){
           console.log(array)
             itemsToRender = '...loading'
         }
+        const getrealcategory = () =>{
+            getCategory(category[idx2])
+            
+        }
    
     return(
         <div className='container'>
          
             <div class = 'wrapper'>
             {/* {currentSlide} */}
-            <span>{category[idx2]} +더보기</span>
+            <div>
+            <div>{category[idx2]}</div> 
+           
+            <div  className={category[idx2]} onClick={getrealcategory}>+더보기</div>
+            
+            </div>
             <div className={idx}>
                {itemsToRender}
                {itemsToRender}
