@@ -16,6 +16,7 @@ import UploadVideo from './pages/uploadVideo'
 import Loading from './pages/Loading'
 import Introduce from './component/Introduce'
 import SlidesContainer from './pages/slidesContainer'
+import Footer from './component/Footer'
 
 axios.defaults.withCredentials = true;
 function App() {
@@ -118,14 +119,6 @@ const getvideoInfo = (image,title, views, timestamp,video,video_id) => {
     console.log(isModalOpen)
   }
 
-  // 사이드바 모달 오픈 상태
-  const [isSideBarOpen, setIsSideBarOpen] = useState(false)
-
-  // 사이드바 모달 오픈 상태 변경 함수
-  const openSideBarlFunc = () => {
-    setIsSideBarOpen(!isSideBarOpen)
-  }
-
   // refresh token 보내주면서 리다이렉션 함수
   useEffect(() => {    
     
@@ -210,12 +203,6 @@ const getvideoInfo = (image,title, views, timestamp,video,video_id) => {
       isModalOpen ===true ? null 
       : <SignIn handleAccessToken={handleAccessToken} handleUserInfo={handleUserInfo} openModalFunc={openModalFunc} /> 
       }
-      {isSideBarOpen === false ? null
-        : <MyPage openSideBarlFunc={openSideBarlFunc} userInfo={userInfo} accessToken={accessToken} handleSecession={handleSecession} />
-        }
-        {/* <MyLikeVideo /> */}
-
-      
       <Switch>
         <Route exact path='/'>
           <div className="intro-box row-fluid px-0">
@@ -243,9 +230,14 @@ const getvideoInfo = (image,title, views, timestamp,video,video_id) => {
         <Route path="/myvideopage">
         <VideoPage2 clickMyVideoData={clickMyVideoData} userInfo={userInfo} accessToken={accessToken} viewStateFunc ={viewStateFunc}/>
         </Route>
+        <Route path="/mypage">
+          <MyPage userInfo={userInfo} accessToken={accessToken} handleSecession={handleSecession} />
+        </Route>
       </Switch>
     
-
+        <div className="row-fluid col-12">
+          <Footer />
+        </div>
 
 
     {/* <Main/> */}
@@ -260,13 +252,7 @@ const getvideoInfo = (image,title, views, timestamp,video,video_id) => {
 
       </div> 
       <div>
-        {
-        isModalOpen ===true ? null 
-        : <SignIn handleAccessToken={handleAccessToken} handleUserInfo={handleUserInfo} openModalFunc={openModalFunc} /> 
-        }
-        {isSideBarOpen === false ? null
-         : <MyPage openSideBarlFunc={openSideBarlFunc} userInfo={userInfo} accessToken={accessToken} handleSecession={handleSecession} handleUpload={handleUpload} />
-         }
+
          
 
        
@@ -303,4 +289,4 @@ const getvideoInfo = (image,title, views, timestamp,video,video_id) => {
   );
 }
 
-export default App;
+export default App; 

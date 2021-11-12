@@ -32,18 +32,18 @@ function Nav({openSideBarlFunc , handleSignOut,getSearch,searchInfo}){
        
         <div className='navbar_left'> 
           <Link to={"/"}> 
-              <img className='logo' src='https://i.ibb.co/YNTHNMR/Kakao-Talk-Photo-2021-11-10-16-41-47-removebg-preview.png'/>
+              <img className='logo' src='https://i.ibb.co/7RvGNZV/Kakao-Talk-Photo-2021-11-12-13-30-44-removebg-preview.png'/>
           </Link>
             
             {isPc && <ul className = 'menu'>
-                <li className='mypage' onClick={openSideBarlFunc}>마이페이지</li>
-
+                <Link to={"/mypage"} style={{ textDecoration: 'none', color: "black" }}>
+                  <li className='mypage'>마이페이지</li>
+                </Link>
                 <Link  to='/main'>
                 <li className='category'>모든 꿀팁</li>
                 </Link>
                 <Link to={"/myuploadvideo"} style={{ textDecoration: 'none', color: "black" }}> 
                   <li className='postvideo'>꿀팁 올리기</li>
-
                 </Link>
             </ul>}   
             {isMobile && <ul className = 'menu'>
@@ -56,9 +56,7 @@ function Nav({openSideBarlFunc , handleSignOut,getSearch,searchInfo}){
              (<div className= 'searchbox' onClick={openSeachBox}>검색</div>)
              :
              (<div className='seach_input_box'>
-
-
-                 <div className= 'searchbox' onClick={openSeachBox}>검색</div><input type='text' onChange={searchHandleChange} className="search-input"/>
+                 <div className= 'searchbox' onClick={openSeachBox}>검색</div><input type='text' onChange={searchHandleChange} className="search-input"/><img className="search-icon" src="https://i.ibb.co/FgWPvVM/Kakao-Talk-Photo-2021-11-12-13-30-49-removebg-preview.png"/>
 
              </div>)
             }

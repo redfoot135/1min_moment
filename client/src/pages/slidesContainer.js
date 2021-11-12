@@ -19,8 +19,6 @@ function SlidesContainer({getvideoInfo,getCategory}){
         <Slider idx = {idx[6]} idx2 = {idx2[6]} getvideoInfo={getvideoInfo} getCategory={getCategory}/>
         <Slider idx = {idx[7]} idx2 = {idx2[7]} getvideoInfo={getvideoInfo} getCategory={getCategory}/>
         <Slider idx = {idx[8]} idx2 = {idx2[8]} getvideoInfo={getvideoInfo} getCategory={getCategory}/>
-       
-
         </div>
     )
 }

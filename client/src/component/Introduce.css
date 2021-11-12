@@ -11,10 +11,10 @@ h1 {
   font-size:48px;
 }
 
-.carousel {
+/* .carousel {
   top: 80px;
   z-index: 1;
-}
+} */
 
 .carousel-indicators button {
   color: black;
@@ -38,20 +38,44 @@ h1 {
 
 .introduce1 {
   position: relative;
-  top: 80px;
+  /* top: 80px; */
   /* padding-top: 40px; */
   border-radius: 40px;
+}
+
+.start-ment {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  position: relative;
 }
 
 
 .introduce {
   position: relative;
-  top: 80px;
+  /* top: 80px; */
   padding-top: 40px;
   border-radius: 40px;
 }
 
+.introduce-input {
+  height: 8vh;
+  top:100px;
+  font-size: 25px;
+  padding-right: 50px;
+}
 
+.introduce-search {
+  z-index: 2;
+  top: 65%;
+  position: absolute;
+} 
+.introduce-search > .search-icon {
+  width: 32px;
+  height: 40px;
+  top: 8px;
+  right: 13px;
+}
 
 .inner-header {
   height:45vh;
