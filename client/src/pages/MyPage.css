@@ -27,10 +27,10 @@
 
 .mypage-content-box {
     position: absolute;
-    top: 50%;
+    top: 60%;
     left: 24.5%;
     display: flex;
-    justify-content: center;
+    justify-content:space-around;
     align-items: center;
     width: 50%;
 }
@@ -59,14 +59,16 @@
     background-color: #f1c40e;
     border-radius: 40px;
     width: 140px;
+    min-width: 140px;
     height: 140px;
+    min-height: 140px;
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: center;
     font-weight: 800;
     cursor: pointer;
-    margin-right: 40px;
+    /* margin-right: 40px; */
 }
   
 
@@ -82,7 +84,7 @@
     justify-content: center;
     font-weight: 750;
     cursor: pointer;
-    margin: 0 40px;
+    /* margin: 0 40px; */
 }
 
 .mypage-mylike-txt {
@@ -97,7 +99,7 @@
     justify-content: center;
     font-weight: 750;
     cursor: pointer;
-    margin-left: 40px;
+    /* margin-left: 40px; */
 }
 
 .btnbox:hover {
