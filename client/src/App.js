@@ -196,8 +196,8 @@ const getvideoInfo = (image,title, views, timestamp,video,video_id) => {
     <div className="App container-fluid p-0">
       <div className="nav-box row-fluid px-0">
         {isLogin ===false ? 
-          <Nav2 openModalFunc={openModalFunc}  getSearch={getSearch}/> :
-          <Nav openSideBarlFunc={openSideBarlFunc} handleSignOut={handleSignOut}  getSearch={getSearch} searchInfo={searchInfo}/>}
+          <Nav2 openModalFunc={openModalFunc}  getSearch={getSearch} searchInfo={searchInfo}/> :
+          <Nav  handleSignOut={handleSignOut}  getSearch={getSearch} searchInfo={searchInfo}/>}
       </div>
       {
       isModalOpen ===true ? null 
@@ -213,7 +213,7 @@ const getvideoInfo = (image,title, views, timestamp,video,video_id) => {
           </div>
         </Route>
         <Route exact path='/main'>
-          <Main category={category} searchInfo={searchInfo}  getvideoInfo={getvideoInfo}/>
+          <Main category={category} searchInfo={searchInfo}  getvideoInfo={getvideoInfo} setSearchInfo={setSearchInfo}/>
         </Route>
         <Route exact path='/uploadvideo'>
           <UploadVideo accessToken={accessToken}/>
