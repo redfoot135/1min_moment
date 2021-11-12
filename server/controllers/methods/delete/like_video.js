@@ -34,7 +34,7 @@ module.exports = async (req, res) => {
       }else {
         // 토큰 안의 유저 정보가 데이터베이스에 존재하면
         // 여기 부분은 에러날 가능성이 있으니 검토 해봐야할 부분!!
-        const { video_id } = req.body;
+        const { video_id } = req.query;
     
         db.video_like.destroy({
             where: { video_id: video_id}

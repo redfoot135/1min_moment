@@ -17,7 +17,6 @@ import Loading from './pages/Loading'
 import Introduce from './component/Introduce'
 import SlidesContainer from './pages/slidesContainer'
 
-
 axios.defaults.withCredentials = true;
 function App() {
   
@@ -139,6 +138,8 @@ const getvideoInfo = (image,title, views, timestamp,video,video_id) => {
     })
   }, []);
 
+
+
   // 회원탈퇴 후 실행되는 함수
   const handleSecession = () => { 
     window.location.replace('/')  
@@ -174,6 +175,17 @@ const getvideoInfo = (image,title, views, timestamp,video,video_id) => {
     setClickMyVideoData(isUploadVideo.filter((el) => el.id === clickVideoData)[0])
   }
 
+    const viewStateFunc = (id) => {
+        axios.post("https://localhost:80/views",{id: id},
+          {
+            headers: {
+            authorization: `Bearer ${accessToken}`,
+            "Content-Type" : "application/json"   
+            },
+            withCredentials: true
+          }
+          )
+    }
 
   return (
     <BrowserRouter>
@@ -218,7 +230,7 @@ const getvideoInfo = (image,title, views, timestamp,video,video_id) => {
         <MyUploadVideo accessToken={accessToken} isUploadVideo={isUploadVideo} setClickMyVideoDataFunc={setClickMyVideoDataFunc}/>
         </Route>
         <Route path="/myvideopage">
-        <VideoPage2 clickMyVideoData={clickMyVideoData} userInfo={userInfo} accessToken={accessToken} />
+        <VideoPage2 clickMyVideoData={clickMyVideoData} userInfo={userInfo} accessToken={accessToken} viewStateFunc ={viewStateFunc}/>
         </Route>
       </Switch>
     
