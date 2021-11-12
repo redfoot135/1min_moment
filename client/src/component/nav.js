@@ -18,13 +18,16 @@ function Nav({handleSignOut,getSearch,searchInfo}){
     setSearchBox(!searchBox)
    }
    const searchHandleChange=(e)=>{
-    getSearch(e.target.value)
+       
     
+    setSearchResult(e.target.value)
     console.log(searchResult) 
+    
+    
+   }
+   const SearchClick=()=>{
+    getSearch(searchResult)
     history.push({pathname: "/main" })
-    if(searchInfo===''){
-        history.push('/')
-    }
    }
 
     return(
@@ -56,7 +59,7 @@ function Nav({handleSignOut,getSearch,searchInfo}){
              (<div className= 'searchbox' onClick={openSeachBox}>검색</div>)
              :
              (<div className='seach_input_box'>
-                 <div className= 'searchbox' onClick={openSeachBox}>검색</div><input type='text' onChange={searchHandleChange} className="search-input"/><img className="search-icon" src="https://i.ibb.co/FgWPvVM/Kakao-Talk-Photo-2021-11-12-13-30-49-removebg-preview.png"/>
+                 <div className= 'searchbox' onClick={openSeachBox}>검색</div><input type='text'  className="search-input" onChange={searchHandleChange}/><img className="search-icon" src="https://i.ibb.co/FgWPvVM/Kakao-Talk-Photo-2021-11-12-13-30-49-removebg-preview.png" onClick={SearchClick}/>
 
              </div>)
             }

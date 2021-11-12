@@ -8,6 +8,10 @@
     padding-left: 2.6rem;
     padding-top: 100px;
     display: flex;
+    
+}  .categorycontainer2{
+    
+    display: flex;
 } 
 
 .videocontainer{
@@ -18,9 +22,29 @@
     margin-right: 2rem;
 }
 
-.currentmenu{
+.currentmenu_category{
     /* margin-left: 2rem; */
-    border: 1px solid black;
+    margin-right: 10px;
+    margin-bottom: 15px;
+    margin-top: 16px;
+    background-color: #f1c40e;
+    border-radius: 45px;
+    width: 100px;
+    height: 40px;
+    box-shadow:3px 3px  gray;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center
+    
+}
+.addbox{
+    
+    display: flex;
+    color:rgb(110, 191, 223);
+    font-size:40px;
+    margin-left :10px;
+    text-shadow:2px 2px gray;
     
 }
 
@@ -34,4 +58,7 @@
         grid-gap: 3rem;
     }
 }  */
+
+
+
 
