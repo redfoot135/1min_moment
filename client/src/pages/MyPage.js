@@ -31,7 +31,7 @@ const MyPage = ({ userInfo, accessToken, handleSecession, handleUpload }) => {
           <div className="mypage-controller col-12">
             <div className="mypage-myinfo-txt btnbox" onClick={ openMyInfoModalFunc }>
               <img className="mypage-myinfo-icon" src="https://cdn-icons-png.flaticon.com/512/64/64494.png" />
-              내 정보
+              <div className="mypage-button-text">내 정보</div>
             </div>
             {isMyInfoOpen === false ? null 
             : <MyInfo openMyInfoModalFunc={openMyInfoModalFunc} userInfo={userInfo} handleSecession={handleSecession} accessToken={accessToken} />
@@ -39,13 +39,13 @@ const MyPage = ({ userInfo, accessToken, handleSecession, handleUpload }) => {
             <Link to={"/myuploadvideo"} style={{ textDecoration: 'none', color: "black" }} >
             <div className="mypage-myupload-txt btnbox">
               <img className="mypage-myupload-icon" src="https://i.ibb.co/1rQXYwN/honey.png" />
-              만든 꿀
+              <div className="mypage-button-text">만든 꿀</div>
             </div>
             </Link>
             <Link to={"/mylikevideo"} style={{ textDecoration: 'none', color: "black" }} >
             <div className="mypage-mylike-txt btnbox">
             <img className="mypage-mylike-icon" src="https://i.ibb.co/BsGjp7X/idea.png" />
-              얻은 꿀
+              <div className="mypage-button-text">얻은 꿀</div>
             </div>
             </Link>
           </div>

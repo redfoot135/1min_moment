@@ -38,6 +38,7 @@
     width: 35px;
     height: 35px;
     margin-bottom: 10px;
+    margin-top: 5px;
 }
 
 .mypage-myupload-icon {
@@ -146,4 +147,79 @@
     top: 70%;
   }    
 
+ } 
+
+ @media only screen and (max-width: 650px) {
+  .mypage-content-box {
+    top: 80%;
+  }    
+  .mypage-title-txt {
+    width: 250px;
+    margin-top: 20px;
+  }
+ } 
+
+ @media only screen and (max-width: 595px) {
+  .mypage-content-box {
+    top: 80%;
+  }    
+  .mypage-button-text {
+    display: none;
+  }
+ } 
+ 
+ @media only screen and (max-width: 500px) {
+  .mypage-content-box {
+    top: 90%;
+  }    
+  .mypage-button-text {
+    display: none;
+  }
+  .mypage-title-txt {
+    width: 200px;
+    margin-top: 40px;
+  }
+  .mypage-myupload-icon {
+    width: 25px;
+    height: 25px;
+  }
+  .mypage-mylike-icon {
+    width: 25px;
+    height: 25px;
+  }
+  .mypage-myinfo-icon {
+    width: 25px;
+    height: 25px;
+  }
+ } 
+
+ @media only screen and (max-width: 400px) {
+  .mypage-content-box {
+    top: 95%;
+  }    
+  .mypage-button-text {
+    display: none;
+  }
+ } 
+
+ @media only screen and (max-width: 360px) {
+  .mypage-content-box {
+    top: 100%;
+  }    
+  .mypage-button-text {
+    display: none;
+  }
+  .mypage-title-txt {
+    width: 150px;
+    margin-top: 50px;
+  }
+ } 
+
+ @media only screen and (max-width: 360px) {
+  .mypage-content-box {
+    top: 100%;
+  }    
+  .mypage-button-text {
+    display: none;
+  }
  } 

@@ -10,8 +10,8 @@ const Introduce = () => {
   return (
       <>
         <img className="introduce1 col-11 col-md-9" src="https://i.ibb.co/x3XftJr/001.png"/>
-        <img className="introduce col-11 col-md-9" src="https://i.ibb.co/n1k9GLT/002.png"/>
-        <img className="introduce col-11 col-md-9" src="https://i.ibb.co/y5P6yZz/003.png"/>
+        <img className="introduce col-11 col-md-9" src="https://i.ibb.co/bvQ67sX/001.png"/>
+        <img className="introduce col-11 col-md-9" src="https://i.ibb.co/w4WsghX/001.png"/>
         <img className="introduce col-11 col-md-9" src="https://i.ibb.co/WnCvGNs/004.png"/>
         <div className="start-ment col-11 col-md-9">
           <img className="introduce col-12" src="https://i.ibb.co/2k9bF46/001.png"/>

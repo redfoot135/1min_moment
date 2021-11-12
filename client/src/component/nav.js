@@ -9,10 +9,10 @@ function Nav({handleSignOut,getSearch,searchInfo}){
     const [searchBox, setSearchBox]=useState(false)
     const [searchResult, setSearchResult]=useState('')
     const isPc = useMediaQuery({
-        query : "(min-width:1000px)"
+        query : "(min-width:610px)"
     })
     const isMobile = useMediaQuery({
-        query : "(max-width:999px)"
+        query : "(max-width:609px)"
     })
    const openSeachBox = () =>{
     setSearchBox(!searchBox)
@@ -63,7 +63,7 @@ function Nav({handleSignOut,getSearch,searchInfo}){
 
              </div>
             {/* } */}
-             <div className='signout' onClick={handleSignOut}><img className="logout-icon" src="https://media.discordapp.net/attachments/857770257187733554/908765774041198692/premium-icon-logout-4034229.png"/></div>
+             <div className='signout' onClick={handleSignOut}><img className="logout-icon" src="https://i.ibb.co/SdZL2Zm/Kakao-Talk-Photo-2021-11-13-02-51-07-002-removebg-preview.png"/></div>
         </div>
         </div>
     </nav>

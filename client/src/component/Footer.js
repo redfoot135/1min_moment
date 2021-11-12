@@ -6,7 +6,7 @@ const Footer = () => {
     <div className="Footer-container col-12">
       <div className="Footer-in-box col-12 col-md-9">
         <div className="copyright">
-        © 2021 1min-moment
+        © 2021&nbsp;&nbsp;&nbsp;1min-moment
         </div>
         <div className="member col-7 col-md-5">
           <div className="col-md-4 col-6">

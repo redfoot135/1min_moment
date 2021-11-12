@@ -56,7 +56,7 @@ h1 {
 .introduce {
   position: relative;
   /* top: 80px; */
-  padding-top: 40px;
+  /* padding-top: 40px; */
   margin-top: 40px;
   border-radius: 40px;
   border: 10px solid #f1c40e;
