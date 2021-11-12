@@ -1,25 +1,33 @@
-.videopage2-container{
-    padding-top: 150px;
-   
+.videopage2-container {
+    margin-top: 7%;
   }
-  .video-info-container{
+  
+  .video2-info-container {
     text-align: center;
     border: 1px solid red;
-    /* display: flex; */
     width: 80%;
     margin-left: 10%;
-    
+    font-size: 17px;
   }
-  .first-row{
+
+  .video2-first-row { 
+    display: flex;
+    flex-direction: column;
+    align-items:flex-start;
+    margin-top: 5px;
+    padding: 5px;
+  }
+
+  .video2-second-row{
     display: flex;
     justify-content: space-between;
+    margin-top: 5px;
+    padding: 5px;
   }
-  .second-row{
-    display: flex;
-    justify-content: space-between;
-  }
-  .third-row{
-    display: flex;
-    justify-content: space-between;
-  }
+
+  .like-icon {
+    width: 20px;
+    height: 20px;
+}
+
   

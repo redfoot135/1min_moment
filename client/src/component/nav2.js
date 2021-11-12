@@ -36,14 +36,16 @@ function Nav2({openModalFunc,}){
    }
   
     return(
-    <nav className='navContainer col-sm-12'>
+    <nav className='navContainer col-md-9 col-11'>
        
         <div className='navbar_left'>
         <img className='logo' src='https://i.ibb.co/YNTHNMR/Kakao-Talk-Photo-2021-11-10-16-41-47-removebg-preview.png'/>
                 <ul className = 'menu'>
+
                 <Link  to='/main'>
-                <li className='category'>전체비디오</li>
+                <li className='category'>모든 꿀팁</li>
                 </Link>
+
                 </ul>   
             
         </div>

@@ -39,12 +39,12 @@
     margin: 30px auto;
   }
   
-  .close {
+  /* .close {
     float: right;
     font-size: 25px;
     color: #F05C69;
     cursor: pointer
-  }
+  } */
 
   @font-face {
     font-family: 'SBAggroB';
