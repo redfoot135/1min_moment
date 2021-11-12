@@ -16,6 +16,7 @@ import UploadVideo from './pages/uploadVideo'
 import Loading from './pages/Loading'
 import Introduce from './component/Introduce'
 import SlidesContainer from './pages/slidesContainer'
+import Footer from './component/Footer'
 
 
 axios.defaults.withCredentials = true;
@@ -149,6 +150,7 @@ const getvideoInfo = (image,title, views, timestamp,video,video_id) => {
 
   // 내가 업로드 한 영상 모음 객체 -> MyUploadVideo로 props 전달됨
   const [isUploadVideo, setIsUploadVideo] = useState(null)
+  console.log(isUploadVideo)
  
   // 내가 업로드 한 영상 요청 함수 -> MyUploadVideo로 props 전달됨
   const handleUpload = () => {
@@ -177,7 +179,7 @@ const getvideoInfo = (image,title, views, timestamp,video,video_id) => {
   return (
     <BrowserRouter>
     <div className="App container-fluid p-0">
-      <div className="row-fluid px-0">
+      <div className="nav-box row-fluid px-0">
         {isLogin ===false ? 
           <Nav2 openModalFunc={openModalFunc} /> :
           <Nav openSideBarlFunc={openSideBarlFunc} handleSignOut={handleSignOut} />}
@@ -194,11 +196,11 @@ const getvideoInfo = (image,title, views, timestamp,video,video_id) => {
       
       <Switch>
         <Route exact path='/'>
-          <div className="row-fluid px-0">
+          <div className="intro-box row-fluid px-0">
             <Introduce />
           </div>
           <div className="row-fluid px-0">
-          <SlidesContainer getvideoInfo={getvideoInfo}/>
+          {/* <SlidesContainer getvideoInfo={getvideoInfo}/> */}
           </div>
         </Route>
         <Route exact path='/main'>
@@ -216,9 +218,14 @@ const getvideoInfo = (image,title, views, timestamp,video,video_id) => {
         <Route exact path="/myuploadvideo">
         <MyUploadVideo accessToken={accessToken} isUploadVideo={isUploadVideo} setClickMyVideoDataFunc={setClickMyVideoDataFunc}/>
         </Route>
+        <Route path="/myvideopage">
+        <VideoPage2 clickMyVideoData={clickMyVideoData} userInfo={userInfo} accessToken={accessToken} />
+        </Route>
       </Switch>
     
-
+        <div className="row-fluid col-12">
+          <Footer />
+        </div>
 
 
     {/* <Main/> */}
@@ -232,7 +239,7 @@ const getvideoInfo = (image,title, views, timestamp,video,video_id) => {
     </Switch> */}
 
       </div> 
-        <div>
+      <div>
         {
         isModalOpen ===true ? null 
         : <SignIn handleAccessToken={handleAccessToken} handleUserInfo={handleUserInfo} openModalFunc={openModalFunc} /> 
@@ -240,7 +247,6 @@ const getvideoInfo = (image,title, views, timestamp,video,video_id) => {
         {isSideBarOpen === false ? null
          : <MyPage openSideBarlFunc={openSideBarlFunc} userInfo={userInfo} accessToken={accessToken} handleSecession={handleSecession} handleUpload={handleUpload} />
          }
-         {/* <MyLikeVideo /> */}
          
 
        
@@ -272,8 +278,9 @@ const getvideoInfo = (image,title, views, timestamp,video,video_id) => {
          </Switch>
       </BrowserRouter>  */}
     {/* </div> */}
+
     </BrowserRouter>
   );
 }
 
-export default App;
+export default App; 

@@ -12,12 +12,12 @@
     width: 480px;
     height: 621px;
     background-color: white;
+    border: 10px solid #f1c40e;
     position: relative;
     box-sizing: border-box;
-    margin: 50px auto;
+    margin: 80px auto;
     padding: 20px;
-    background: #fff;   
-    border-radius: 80px 0px 80px 0px / 80px 0px 80px 0px;
+    border-radius: 80px;
   }
   
   
@@ -26,7 +26,9 @@
      float: right;
      font-size: 25px;
      color: black;
-     cursor: pointer
+     cursor: pointer;
+     padding-right: 10px;
+     padding-top: 10px;
    }
   
    .modalContents {
@@ -34,7 +36,7 @@
      margin: 0 auto;
      width: 100%;
      position: relative;
-     padding: 0 20px 32px;
+     padding: 20px;
      display: flex;
      justify-content: center;
      flex-direction: column;
