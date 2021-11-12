@@ -3,17 +3,12 @@ import { Link } from "react-router-dom";
 import "./MyPage.css";
 import MyInfo from "../component/MyInfo"
 
-const MyPage = ({ openSideBarlFunc, userInfo, accessToken, handleSecession, handleUpload }) => {
+const MyPage = ({ userInfo, accessToken, handleSecession, handleUpload }) => {
 
     const [isMyInfoOpen, setIsMyInfoOpen] = useState(false)
 
     const openMyInfoModalFunc = () => {
         setIsMyInfoOpen(!isMyInfoOpen)
-    }
-
-    const myUploadVideoFunc = () => {
-      openSideBarlFunc();
-      handleUpload();
     }
 
     return (
@@ -25,7 +20,7 @@ const MyPage = ({ openSideBarlFunc, userInfo, accessToken, handleSecession, hand
                      <div className="username">{userInfo.name}</div>
                      {userInfo.email === null ? null : <div className="usermail">{userInfo.email}</div>}
                   </div>
-                  <span className="mypage-close" onClick={openSideBarlFunc}>
+                  <span className="mypage-close">
                     &times;
                 </span>
             </div>
@@ -40,13 +35,13 @@ const MyPage = ({ openSideBarlFunc, userInfo, accessToken, handleSecession, hand
                <Link to={"/mylikevideo"} style={{ textDecoration: 'none', color: "white" }} >
                   <div className="like-video-box">
                      <img class="like-video-logo" src="https://i.ibb.co/J3mnNfH/like.png" />
-                     <div className="like-video txt" onClick={ openSideBarlFunc }>내가 찜한 영상</div>
+                     <div className="like-video txt">내가 찜한 영상</div>
                   </div>
                </Link>
                <Link to={"/myuploadvideo"} style={{ textDecoration: 'none', color: "white" }} >
                   <div className="upload-video-box">
                      <img class="upload-video-logo" src="https://i.ibb.co/1M79pDJ/video-camera.png" />
-                     <div className="upload-video txt" onClick={ myUploadVideoFunc }>내가 올린 영상</div>
+                     <div className="upload-video txt">내가 올린 영상</div>
                   </div>
                </Link>
             </div>
