@@ -1,5 +1,60 @@
 .categorycaontainer{
     position: absolute;
-    border : 1px solid red ;
+  
     background-color: white;
+    z-index: 9;
+    background-color: #f1c40e;
+    border-radius: 45px;
+    width: 300px;
+    height: 220px;
+    box-shadow:4px 4px  gray;
+    
+    
+}
+ .checkbox{
+   
+ }
+ .frisrow{
+     margin-top: 30px;
+     margin-left: 60px;
+     margin-right: 60px;
+
+     display: flex;
+     justify-content:  space-between;
+ }
+
+ .secondrow{
+    margin-top: 5px;
+    margin-left: 60px;
+    margin-right: 60px;
+
+    display: flex;
+    justify-content: space-between;
+ }
+
+ .thirdrow{
+    margin-top: 5px;
+    margin-left: 60px;
+    margin-right: 40px;
+
+    display: flex;
+    justify-content: space-between;
+ }
+ .forthrow{
+    margin-top: 5px;
+    margin-left: 60px;
+    margin-right: 40px;
+
+    display: flex;
+    justify-content: space-between;
+ }
+ 
+ .fithrow{
+    margin-top: 5px;
+    margin-left: 60px;
+    display: flex;
+    justify-content:start;
+ }
+ .btn{
+    background-color: gray;
 }

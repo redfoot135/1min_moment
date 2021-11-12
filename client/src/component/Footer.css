@@ -1,8 +1,56 @@
+@import url('https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@500&display=swap');
+
+
 .Footer-container {
-  background-color: gray;
-  height: 10vh;
+  background-color: #f1c40e;
+  /* height: 10vh; */
   position: relative;
-  top: 30vh;
+  top: 20vh;
   display: flex;
   align-items: center;
+  justify-content: center;
+}
+
+.Footer-in-box {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin: 20px 0px;
+}
+
+
+.member {
+  display: flex;
+  justify-content:space-around;
+}
+
+.member-position {
+  font-family:  'Noto Sans KR', sans-serif;
+  font-size: 16px;
+  display: flex;
+  flex-direction: column;
+}
+
+.git-icon {
+  width: 20px;
+  height: 20px;
+  margin-left: 5px;
+}
+
+.git-icon:hover {
+  cursor: pointer;
+}
+
+.person {
+  font-family:  'Noto Sans KR', sans-serif;
+  font-size: 16px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 5px 0px;
+}
+
+.copyright {
+  font-family:  'Noto Sans KR', sans-serif;
+  font-size: 16px;
 }

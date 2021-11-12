@@ -1,4 +1,5 @@
 import { Button } from '@material-ui/core';
+import { BrowserRouter, Route, Switch, useHistory, Link} from 'react-router-dom';
 import axios from 'axios';
 import React, {useState, useEffect} from 'react';
 import Comments from '../component/comments'
@@ -33,7 +34,9 @@ export default function VideoPage({videoInfo,accessToken}){
        }) 
    }
     return(
+      
         <div className='video_page_container'>
+          
             <video src={videoInfo.video} width='80%' controls />
             <div className='video_info_container'>
                 <div className='first_row'> 
@@ -54,6 +57,8 @@ export default function VideoPage({videoInfo,accessToken}){
             <div>
 
             </div>
+           
         </div>
+       
     )
 }
