@@ -18,7 +18,7 @@ function Nav2({openModalFunc}){
     <nav className='navContainer col-md-9 col-11'>
        
         <div className='navbar_left'>
-        <img className='logo' src='https://i.ibb.co/YNTHNMR/Kakao-Talk-Photo-2021-11-10-16-41-47-removebg-preview.png'/>
+        <img className='logo' src='https://i.ibb.co/7RvGNZV/Kakao-Talk-Photo-2021-11-12-13-30-44-removebg-preview.png'/>
                 <ul className = 'menu'>
                     <li className='category'>모든 꿀팁</li>
                 </ul>   
@@ -29,7 +29,7 @@ function Nav2({openModalFunc}){
              (<div className= 'searchbox' onClick={openSeachBox}>검색</div>)
              :
              (<div className='seach_input_box'>
-                 <div className= 'searchbox' onClick={openSeachBox}>검색</div><input type='text' className="search-input"/><img className="search-icon" src="https://i.ibb.co/zbXCQFj/Kakao-Talk-Photo-2021-11-11-16-13-38-removebg-preview-1.png"/>
+                 <div className= 'searchbox' onClick={openSeachBox}>검색</div><input type='text' className="search-input"/><img className="search-icon" src="https://i.ibb.co/FgWPvVM/Kakao-Talk-Photo-2021-11-12-13-30-49-removebg-preview.png"/>
              </div>)
             }
              <div className='signup' onClick={openModalFunc} >로그인</div>

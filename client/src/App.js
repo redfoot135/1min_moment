@@ -109,14 +109,6 @@ const getvideoInfo = (image,title, views, timestamp,video,video_id) => {
     console.log(isModalOpen)
   }
 
-  // 사이드바 모달 오픈 상태
-  const [isSideBarOpen, setIsSideBarOpen] = useState(false)
-
-  // 사이드바 모달 오픈 상태 변경 함수
-  const openSideBarlFunc = () => {
-    setIsSideBarOpen(!isSideBarOpen)
-  }
-
   // refresh token 보내주면서 리다이렉션 함수
   useEffect(() => {    
     
@@ -182,18 +174,12 @@ const getvideoInfo = (image,title, views, timestamp,video,video_id) => {
       <div className="nav-box row-fluid px-0">
         {isLogin ===false ? 
           <Nav2 openModalFunc={openModalFunc} /> :
-          <Nav openSideBarlFunc={openSideBarlFunc} handleSignOut={handleSignOut} />}
+          <Nav handleSignOut={handleSignOut} />}
       </div>
       {
       isModalOpen ===true ? null 
       : <SignIn handleAccessToken={handleAccessToken} handleUserInfo={handleUserInfo} openModalFunc={openModalFunc} /> 
       }
-      {isSideBarOpen === false ? null
-        : <MyPage openSideBarlFunc={openSideBarlFunc} userInfo={userInfo} accessToken={accessToken} handleSecession={handleSecession} />
-        }
-        {/* <MyLikeVideo /> */}
-
-      
       <Switch>
         <Route exact path='/'>
           <div className="intro-box row-fluid px-0">
@@ -221,6 +207,9 @@ const getvideoInfo = (image,title, views, timestamp,video,video_id) => {
         <Route path="/myvideopage">
         <VideoPage2 clickMyVideoData={clickMyVideoData} userInfo={userInfo} accessToken={accessToken} />
         </Route>
+        <Route path="/mypage">
+          <MyPage userInfo={userInfo} accessToken={accessToken} handleSecession={handleSecession} />
+        </Route>
       </Switch>
     
         <div className="row-fluid col-12">
@@ -240,13 +229,7 @@ const getvideoInfo = (image,title, views, timestamp,video,video_id) => {
 
       </div> 
       <div>
-        {
-        isModalOpen ===true ? null 
-        : <SignIn handleAccessToken={handleAccessToken} handleUserInfo={handleUserInfo} openModalFunc={openModalFunc} /> 
-        }
-        {isSideBarOpen === false ? null
-         : <MyPage openSideBarlFunc={openSideBarlFunc} userInfo={userInfo} accessToken={accessToken} handleSecession={handleSecession} handleUpload={handleUpload} />
-         }
+
          
 
        

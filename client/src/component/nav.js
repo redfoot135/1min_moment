@@ -20,11 +20,13 @@ function Nav({openSideBarlFunc , handleSignOut}){
        
         <div className='navbar_left'> 
           <Link to={"/"}> 
-              <img className='logo' src='https://i.ibb.co/YNTHNMR/Kakao-Talk-Photo-2021-11-10-16-41-47-removebg-preview.png'/>
+              <img className='logo' src='https://i.ibb.co/7RvGNZV/Kakao-Talk-Photo-2021-11-12-13-30-44-removebg-preview.png'/>
           </Link>
             
             {isPc && <ul className = 'menu'>
-                <li className='mypage' onClick={openSideBarlFunc}>마이페이지</li>
+                <Link to={"/mypage"} style={{ textDecoration: 'none', color: "black" }}>
+                  <li className='mypage'>마이페이지</li>
+                </Link>
                 <li className='category'>모든 꿀팁</li>
                 <Link to={"/uploadvideo"} style={{ textDecoration: 'none', color: "black" }}> 
                   <li className='postvideo'>꿀팁 올리기</li>
@@ -40,7 +42,7 @@ function Nav({openSideBarlFunc , handleSignOut}){
              (<div className= 'searchbox' onClick={openSeachBox}>검색</div>)
              :
              (<div className='seach_input_box'>
-                 <div className= 'searchbox' onClick={openSeachBox}>검색</div><input type='text' className="search-input"/><img className="search-icon" src="https://i.ibb.co/zbXCQFj/Kakao-Talk-Photo-2021-11-11-16-13-38-removebg-preview-1.png"/>
+                 <div className= 'searchbox' onClick={openSeachBox}>검색</div><input type='text' className="search-input"/><img className="search-icon" src="https://i.ibb.co/FgWPvVM/Kakao-Talk-Photo-2021-11-12-13-30-49-removebg-preview.png"/>
              </div>)
             }
              <div className='signup' onClick={handleSignOut}>로그아웃</div>
