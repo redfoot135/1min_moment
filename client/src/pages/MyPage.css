@@ -17,8 +17,7 @@
 
 .mypage-title {
     position: absolute;
-    top: 10%;
-    left: 39.5%;
+    top: 15%;
 }
 
 .mypage-title-txt {
@@ -36,32 +35,43 @@
 }
 
 .mypage-myinfo-icon {
+    width: 35px;
+    height: 35px;
+    margin-bottom: 10px;
+}
+
+.mypage-myupload-icon {
     width: 40px;
     height: 40px;
     margin-bottom: 10px;
 }
 
-.mypage-myupload-icon {
-    width: 45px;
-    height: 45px;
-    margin-bottom: 10px;
-}
-
 .mypage-mylike-icon {
-    width: 45px;
-    height: 45px;
+    width: 40px;
+    height: 40px;
     margin-bottom: 10px;
 }
 
+.mypage-controller {
+  position: relative;
+  display: flex;
+  justify-content:space-around;
+  width: 100%;
+  height: 0;
+  padding-bottom: 25%;
+  
+}
 
 .mypage-myinfo-txt {
+  position: absolute;
+  left: 5%;
     box-shadow: rgba(0, 0, 0, 0.24) 0px 8px 8px 0px, rgba(0, 0, 0, 0.24) 0px 0px 5px 0px;
     background-color: #f1c40e;
-    border-radius: 40px;
-    width: 140px;
-    min-width: 140px;
-    height: 140px;
-    min-height: 140px;
+    border-radius: 30px;
+    width: 25%;
+    /* min-width: 140px; */
+    height: 100%;
+    /* min-height: 140px; */
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -73,11 +83,13 @@
   
 
 .mypage-myupload-txt {
+  position: absolute;
+  left:37.5%;
     box-shadow: rgba(0, 0, 0, 0.24) 0px 8px 8px 0px, rgba(0, 0, 0, 0.24) 0px 0px 5px 0px;
     background-color: #f1c40e;
-    border-radius: 40px;
-    width: 140px;
-    height: 140px;
+    border-radius: 30px;
+    width: 25%;
+    height: 100%;
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -88,11 +100,13 @@
 }
 
 .mypage-mylike-txt {
+  position: absolute;
+  right: 5%;
     box-shadow: rgba(0, 0, 0, 0.24) 0px 8px 8px 0px, rgba(0, 0, 0, 0.24) 0px 0px 5px 0px;
     background-color: #f1c40e;
-    border-radius: 40px;
-    width: 140px;
-    height: 140px;
+    border-radius: 30px;
+    width: 25%;
+    height: 100%;
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -127,7 +141,9 @@
     font-style: normal;
   }
 
-/* @media only screen and (max-width: 767px) {
-    
+@media only screen and (max-width: 999px) {
+  .mypage-content-box {
+    top: 70%;
+  }    
 
- }  */
+ } 
