@@ -231,7 +231,7 @@ const getvideoInfo = (image,title, views, timestamp,video,video_id) => {
         <VideoPage2 clickMyVideoData={clickMyVideoData} userInfo={userInfo} accessToken={accessToken} viewStateFunc ={viewStateFunc}/>
         </Route>
         <Route path="/mypage">
-          <MyPage userInfo={userInfo} accessToken={accessToken} handleSecession={handleSecession} />
+          <MyPage userInfo={userInfo} accessToken={accessToken} handleSecession={handleSecession} handleUpload={handleUpload}/>
         </Route>
       </Switch>
     
