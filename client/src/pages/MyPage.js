@@ -25,8 +25,8 @@ const MyPage = ({ userInfo, accessToken, handleSecession, handleUpload }) => {
           <img className="mypage-backImage col-md-9 col-11" src="https://media.discordapp.net/attachments/894783138381836339/908383174336340018/7057cbcecaa171b.jpeg"/>
         </div>
         <div className="mypage-title col-12">
-          <img className="mypage-title-txt" src="https://i.ibb.co/sJ4KsyZ/001.png" />
-          </div>
+          <img className="mypage-title-txt" src="https://i.ibb.co/SrKT18c/image.png" />
+         </div>
         <div className="mypage-content-box row-fluid">
           <div className="mypage-controller col-12">
             <div className="mypage-myinfo-txt btnbox" onClick={ openMyInfoModalFunc }>
