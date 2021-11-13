@@ -109,6 +109,7 @@ h1 {
   z-index: 2;
   top: 65%;
   position: absolute;
+  width: 100%;
 } 
 
 #carouselExampleIndicators .search-icon {
