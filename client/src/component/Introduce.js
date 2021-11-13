@@ -10,13 +10,13 @@ const Introduce = () => {
   return (
       <>
         <img className="introduce1 col-11 col-md-9" src="https://i.ibb.co/x3XftJr/001.png"/>
-        <img className="introduce col-11 col-md-9" src="https://i.ibb.co/n1k9GLT/002.png"/>
-        <img className="introduce col-11 col-md-9" src="https://i.ibb.co/y5P6yZz/003.png"/>
+        <img className="introduce col-11 col-md-9" src="https://i.ibb.co/bvQ67sX/001.png"/>
+        <img className="introduce col-11 col-md-9" src="https://i.ibb.co/w4WsghX/001.png"/>
         <img className="introduce col-11 col-md-9" src="https://i.ibb.co/WnCvGNs/004.png"/>
         <div className="start-ment col-11 col-md-9">
-          <img className="introduce col-12" src="https://i.ibb.co/LCjrTRf/005.png"/>
+          <img className="introduce col-12" src="https://i.ibb.co/2k9bF46/001.png"/>
           <div className='introduce-search seach_input_box col-6'>
-            <input type='text' className="introduce-input search-input col-12" placeholder="검색 시작하기"/>
+            <input type='text' className="introduce-input search-input col-12" placeholder="검색 시작"/>
             <img className="search-icon" src="https://i.ibb.co/FgWPvVM/Kakao-Talk-Photo-2021-11-12-13-30-49-removebg-preview.png"/>
           </div>
         </div>

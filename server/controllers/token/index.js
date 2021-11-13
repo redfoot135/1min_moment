@@ -23,8 +23,6 @@ module.exports = {
       //엑세스토큰 만료시
       if(err) {
         const userdata = await jwt.decode(accessToken, access_secret)
-        console.log(userdata)
-        console.log(userdata.email)
         if(!userdata) {
           result = null;
         }else {
