@@ -1,5 +1,5 @@
 import React, {useState} from 'react';
-import { Link, useHistory } from "react-router-dom";
+import { useHistory } from "react-router-dom";
 import axios from "axios";
 import "./SignIn.css";
 import SignUp from "./SignUp";
@@ -50,7 +50,10 @@ export default function SignIn ({ handleAccessToken, handleUserInfo, openModalFu
                 }
             }).catch((err) => {
                 console.log(err)
-                if(err.response.data.message === "Please proceed with the verification process") {
+                console.log(err.response)
+                if(!err.response) {
+                  setErrorMessage("서버 연결이 불안정합니다")
+                }else if(err.response.data.message === "Please proceed with the verification process") {
                     setErrorMessage("이메일 인증 후 이용해주시기 바랍니다")
                 } else {
                     setErrorMessage("이메일 또는 비밀번호를 잘못 입력되었습니다")
@@ -68,7 +71,7 @@ export default function SignIn ({ handleAccessToken, handleUserInfo, openModalFu
                     &times;
                 </span>
                 <div className="modalContents">
-                    <img className="onemin_logo" src="https://i.ibb.co/7RvGNZV/Kakao-Talk-Photo-2021-11-12-13-30-44-removebg-preview.png" />
+                    <img className="onemin_logo" src="https://i.ibb.co/7RvGNZV/Kakao-Talk-Photo-2021-11-12-13-30-44-removebg-preview.png" alt="로고"/>
                     <input className="loginEmail" name="email" type="email" placeholder="이메일" onChange={handleInputValue("email")} ></input>
                     <input className="loginPassword" name="password" type="password" placeholder="비밀번호" onChange={handleInputValue("password")} ></input>
                     <button className="loginBtn" onClick={handleLogin}>로그인</button>

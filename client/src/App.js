@@ -1,4 +1,4 @@
-import { BrowserRouter, Route, Switch, useHistory, Link} from 'react-router-dom';
+import { BrowserRouter, Route, Switch, useHistory } from 'react-router-dom';
 import React, {useState, useEffect} from 'react';
 import axios from "axios"
 import './App.css';
@@ -8,14 +8,14 @@ import MyLikeVideo from "./pages/MyLikeVideo"
 import MyUploadVideo from "./pages/MyUploadVideo"
 import Nav from './component/nav'
 import Nav2 from './component/nav2'
-import Slider from './component/slider'
+// import Slider from './component/slider'
 import Main from './component/main'
 import VideoPage from './pages/videopage'
 import VideoPage2 from './pages/videopage2'
 import UploadVideo from './pages/uploadVideo'
 import Loading from './pages/Loading'
 import Introduce from './component/Introduce'
-import SlidesContainer from './pages/slidesContainer'
+// import SlidesContainer from './pages/slidesContainer'
 import Footer from './component/Footer'
 
 axios.defaults.withCredentials = true;
@@ -193,7 +193,7 @@ const getvideoInfo = (image,title, views, timestamp,video,video_id) => {
 
   return (
     <BrowserRouter>
-    <div className="App container-fluid p-0">
+    <div className="App container-fluid row-fluid p-0">
       <div className="nav-box row-fluid px-0">
         {isLogin ===false ? 
 

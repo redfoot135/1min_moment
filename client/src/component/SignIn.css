@@ -9,26 +9,35 @@
   }
   
   .loginModal {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
     width: 480px;
-    height: 620px;
+    height: 600px;
     background-color: white;
-    border: 10px solid #f1c40e;
     position: relative;
     box-sizing: border-box;
-    margin: 80px auto;
+    margin: 100px auto;
     padding: 20px;
-    border-radius: 80px;
+    background: #fff;   
+    border-radius: 30px 30px 30px 30px / 30px 30px 30px 30px;
+    border: 7px solid #f1c40e;
   }
   
   
   
    .close {
+     position: absolute;
+     top: 20px;
+     right: 20px;
      float: right;
      font-size: 25px;
      color: black;
      cursor: pointer;
-     padding-right: 10px;
-     padding-top: 10px;
+     z-index: 10;
+     /* padding-right: 10px;
+     padding-top: 10px; */
    }
   
    .modalContents {
@@ -124,7 +133,7 @@
             }
 
             .kakao-login-box button span{
-              width: 300px;
+              /* width: 300px; */
               font-size: 15px;
               text-align: center;
               display: inline-block;
@@ -163,7 +172,7 @@
                top:0px;
              }
              .google-login-box button span {
-              width: 300px;
+              /* width: 300px; */
               font-size: 15px;
               text-align: center;
               display: inline-block;
@@ -199,4 +208,12 @@
 
 
 
-  
+          @media only screen and (max-width: 480px) {
+            .loginModal {
+              width: 100vw;
+              height: 100vh;
+              margin: 0;
+              border-radius: 0;
+              border: 0;
+            }
+           } 
