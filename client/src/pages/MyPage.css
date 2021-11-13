@@ -13,11 +13,13 @@
 .mypage-backImage {
     position: relative;
     border-radius: 40px;
+    margin-top: 40px;
   }
 
 .mypage-title {
     position: absolute;
     top: 15%;
+    margin-top: 20px;
 }
 
 .mypage-title-txt {
@@ -34,22 +36,12 @@
     width: 50%;
 }
 
-.mypage-myinfo-icon {
-    width: 35px;
-    height: 35px;
-    margin-bottom: 10px;
+.mypage-icon {
+  margin: 5px;
 }
 
-.mypage-myupload-icon {
-    width: 40px;
-    height: 40px;
-    margin-bottom: 10px;
-}
-
-.mypage-mylike-icon {
-    width: 40px;
-    height: 40px;
-    margin-bottom: 10px;
+.mypage-button-text {
+  font-size: 25px;
 }
 
 .mypage-controller {
@@ -145,5 +137,128 @@
   .mypage-content-box {
     top: 70%;
   }    
+  .mypage-button-text {
+    font-size: 20px;
+  }
+  .mypage-myinfo-txt {
+    border-radius: 25px;
+  }
+  .mypage-myupload-txt {
+    border-radius: 25px;
+  }
+  .mypage-mylike-txt {
+    border-radius: 25px;
+  }
+ } 
 
+ @media only screen and (max-width: 767px) {
+  .mypage-content-box {
+    top: 75%;
+  }    
+  .mypage-title-txt {
+    width: 250px;
+    margin-top: 20px;
+  }
+  .mypage-myinfo-txt {
+    border-radius: 20px;
+  }
+  .mypage-myupload-txt {
+    border-radius: 20px;
+  }
+  .mypage-mylike-txt {
+    border-radius: 20px;
+  }
+  .mypage-button-text {
+    font-size: 18px;
+  }
+  .mypage-icon {
+    margin: 3px;
+  }
+ } 
+
+ @media only screen and (max-width: 600px) {
+  .mypage-content-box {
+    top: 80%;
+  }    
+  .mypage-myinfo-txt {
+    border-radius: 15px;
+  }
+  .mypage-myupload-txt {
+    border-radius: 15px;
+  }
+  .mypage-mylike-txt {
+    border-radius: 15px;
+  }
+  .mypage-button-text {
+    font-size: 16px;
+  }
+ } 
+ 
+ @media only screen and (max-width: 500px) {
+  .mypage-content-box {
+    top: 90%;
+  }    
+  .mypage-button-text {
+    font-size: 12px;
+  }
+  .mypage-title-txt {
+    width: 200px;
+    margin-top: 40px;
+  }
+  .mypage-myupload-icon {
+    width: 25px;
+    height: 25px;
+  }
+  .mypage-mylike-icon {
+    width: 25px;
+    height: 25px;
+  }
+  .mypage-myinfo-icon {
+    width: 25px;
+    height: 25px;
+  }
+ } 
+
+ @media only screen and (max-width: 400px) {
+  .mypage-content-box {
+    top: 95%;
+  }    
+  /* .mypage-button-text {
+    display: none;
+  } */
+  .mypage-myinfo-txt {
+    border-radius: 10px;
+  }
+  .mypage-myupload-txt {
+    border-radius: 10px;
+  }
+  .mypage-mylike-txt {
+    border-radius: 10px;
+  }
+  .mypage-button-text {
+    font-size: 10px;
+  }
+ } 
+
+ @media only screen and (max-width: 360px) {
+  .mypage-content-box {
+    top: 100%;
+  }    
+  .mypage-button-text {
+  }
+  .mypage-title-txt {
+    width: 150px;
+    margin-top: 50px;
+  }
+  .mypage-icon {
+    margin: 1px;
+  }
+ } 
+
+ @media only screen and (max-width: 360px) {
+  .mypage-content-box {
+    top: 95%;
+  }    
+  .mypage-button-text {
+  }
  } 

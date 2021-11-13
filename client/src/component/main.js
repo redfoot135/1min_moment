@@ -5,7 +5,7 @@ import { useCallback,useState, useEffect } from 'react'
 import Addcategory from './addcategory'
 import { Button } from '@material-ui/core'
 import axios from 'axios';
-import { BrowserRouter, Route, Switch, useHistory, Link} from 'react-router-dom';
+import { useHistory } from 'react-router-dom';
 export default function Main({category,searchResult,searchInfo,getvideoInfo,setSearchInfo}){
     const [currentCategory, setCurrentCategory]=useState('');
     const [showCategory, setshowCategory]=useState(false)
@@ -166,7 +166,7 @@ export default function Main({category,searchResult,searchInfo,getvideoInfo,setS
      
 
     return(
-     <div>
+     <div className="col-8">
      <div className='categorycontainer'> 
      {checkListDisplay.length ===3 ? 
      ( <div className='categorycontainer2'>
