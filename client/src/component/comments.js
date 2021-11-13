@@ -139,76 +139,70 @@ function Comments({accessToken,videoInfo}) {
            }) 
       },[])
  return(
-     <div className='commentscontainer'>
-         <br />
-         <p> 댓글 </p>
-         <hr/>
-         
-   <form style={{display:'flex'}} onSubmit={onSubmit}>
-       <TextArea
-            className='replyarea'
-            style={{width:'100%', borderRadius: '5px'}}
-            onChange = {handleclick}
-            value={commentValue}
-            placeholder='댓글을 입력해주세요'
-            />
-          <br/>
-          <button style={{width: '20%',height:'52px'}} >submit</button>
-          
-   </form>
+     <div className='commentscontainer row-fluid'>         
+        <form style={{display:'flex'}} onSubmit={onSubmit} className="comment-form col-md-9 col-11">
+            <TextArea
+                 className='replyarea'
+                 style={{width:'100%', borderRadius: '5px'}}
+                 onChange = {handleclick}
+                 value={commentValue}
+                 placeholder='댓글을 입력해주세요'
+                 />
+               
+               <button className="comment-form-btn" style={{width: '20%',height:'54px'}} >등록</button>
+               
+        </form>
    
-   <br />
-   <div>
-   <Comment
-         style={{display:'flex'}}
-         author='김코딩'
-          content={
-                <p>
-                날씨가 참 맑네요
-                </p>
-                }
-            ></Comment>
-            <hr/>
-    </div>
-    <div>
-   <Comment
-         style={{display:'flex'}}
-         author='김코딩'
-          content={
-                <p>
-                날씨가 참 맑네요
-                </p>
-                }
-            ></Comment>
-            <hr/>
-    </div>
-    <div>
-   <Comment
-         style={{display:'flex'}}
-         author='김코딩'
-          content={
-                <p>
-                날씨가 참 맑네요
-                </p>
-                }
-            ></Comment>
-            <hr/>
-    </div>
-    {commentList.map((obj, index) =>
-    <div>
-   <Comment
-         style={{display:'flex'}}
-         author={obj.writer}
-          content={
-                <p>
-                {obj.comment}
-                </p>
-                }
-            ></Comment>
-            <hr/>
-    </div> 
-    )}
-    
+        <div className="comment-box">
+        <Comment
+              style={{display:'flex', justifyContent:"flex-start"}}
+              author='김코딩'
+               content={
+                     <p className="comment-box-comment">
+                     날씨가 참 맑네요
+                     </p>
+                     }
+                 ></Comment>
+                
+         </div>
+         <div className="comment-box">
+          <Comment
+                style={{display:'flex'}}
+                author='김코딩'
+                 content={
+                       <p>
+                       날씨가 참 맑네요
+                       </p>
+                       }
+                   ></Comment>
+                  
+         </div>
+         <div className="comment-box">
+           <Comment
+                 style={{display:'flex'}}
+                 author='김코딩'
+                  content={
+                        <p>
+                        날씨가 참 맑네요
+                        </p>
+                        }
+                    ></Comment>
+                   
+          </div>
+          {commentList.map((obj, index) =>
+          <div className="comment-box">
+           <Comment
+                 style={{display:'flex'}}
+                 author={obj.writer}
+                  content={
+                        <p>
+                        {obj.comment}
+                        </p>
+                        }
+                    ></Comment>
+                   
+          </div> 
+          )}
      </div>
  )
 }

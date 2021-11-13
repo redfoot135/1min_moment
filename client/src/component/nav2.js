@@ -41,7 +41,7 @@ function Nav2({openModalFunc,openSideBarlFunc , handleSignOut,getSearch,searchIn
       <div className="navbox col-md-9 col-11 ">
         <div className='navbar_left'>
 
-        <Link to={"/"}> 
+          <Link to={"/"}> 
               <img className='logo' src='https://i.ibb.co/7RvGNZV/Kakao-Talk-Photo-2021-11-12-13-30-44-removebg-preview.png'/>
           </Link>
                 <ul className = 'menu'>
@@ -64,6 +64,7 @@ function Nav2({openModalFunc,openSideBarlFunc , handleSignOut,getSearch,searchIn
              <div className='signup' onClick={openModalFunc} ><img className="login-icon" src="https://i.ibb.co/TtLvxmP/Kakao-Talk-Photo-2021-11-13-02-51-07-001-removebg-preview.png"/></div>
           </div>
         </div>
+      </div>
     </nav>
     )
 }
