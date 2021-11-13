@@ -13,6 +13,8 @@
   display: flex;
   justify-content: space-between;
   align-items: center;
+  border-bottom: 4px solid #f1c40e;
+  height: 100%;
 
 }
 
@@ -134,11 +136,11 @@ padding: 8px 12px
 }
 
 .search-icon {
-  height: 22px;
-  width: 16px;
+  height: 20px;
+  width: 14px;
   position: absolute;
   right: 12px;
-  top: 5px;
+  top: 7px;
 }
 
 .search-icon:hover {
