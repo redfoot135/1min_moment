@@ -8,13 +8,20 @@
     top: 80px;
 }
 
+.myvideos {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
 .title {
   position: relative;
   top: 80px;
-  font-family: 'Jua', sans-serif;
-  font-size:50px;
-  color: #56c1fe;
-  text-shadow: 3px 3px 3px black;
+  
+}
+
+.myvideo-title {
+  width: 380px;
 }
 
 .uploadvideocard-box {
@@ -23,8 +30,3 @@
     /* padding-left: 23px; */
 }
 
-.myvideos {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-}

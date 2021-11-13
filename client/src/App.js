@@ -37,6 +37,7 @@ function App() {
     video:'',
     video_id:''
 });
+
 const getSearch= (search) =>{
   setSearchInfo(search)
   console.log(searchInfo)
@@ -178,7 +179,7 @@ const getvideoInfo = (image,title, views, timestamp,video,video_id) => {
     setClickMyVideoData(isUploadVideo.filter((el) => el.id === clickVideoData)[0])
   }
 
-  const viewStateFunc = (id) => {
+  const viewStateFunc = (id) => { // 조회수 요청 함수
       axios.post("https://localhost:80/views",{id: id},
         {
           headers: {
@@ -206,7 +207,14 @@ const getvideoInfo = (image,title, views, timestamp,video,video_id) => {
     }).catch((err) => {
       console.log(err)
     })
+  }
 
+  // 찜한 비디오 중 클릭한 영상 데이터 상태
+  const [clickMyLikeVideoData, setClickMyLikeVideoData] = useState(null)
+
+  // 찜한 비디오 중 클릭한 영상 데이터 상태 변경 함수
+  const clickMyLikeVideoDataFunc = (clickLikeVideoData) => {
+    setClickMyLikeVideoData(isLikeVideo.filter((el) => el.id === clickLikeVideoData)[0])
   }
 
   return (
@@ -242,7 +250,7 @@ const getvideoInfo = (image,title, views, timestamp,video,video_id) => {
           <VideoPage videoInfo={videoInfo} accessToken={accessToken}/>
         </Route>
         <Route exact path="/mylikevideo">
-          <MyLikeVideo handleLikeVideo={handleLikeVideo} isLikeVideo={isLikeVideo}/>
+          <MyLikeVideo handleLikeVideo={handleLikeVideo} isLikeVideo={isLikeVideo} clickMyLikeVideoDataFunc={clickMyLikeVideoDataFunc}/>
         </Route>
         <Route exact path="/myuploadvideo">
         <MyUploadVideo accessToken={accessToken} isUploadVideo={isUploadVideo} setClickMyVideoDataFunc={setClickMyVideoDataFunc}/>
