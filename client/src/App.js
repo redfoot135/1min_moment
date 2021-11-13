@@ -154,7 +154,6 @@ const getvideoInfo = (image,title, views, timestamp,video,video_id) => {
 
   // 내가 업로드 한 영상 모음 객체 -> MyUploadVideo로 props 전달됨
   const [isUploadVideo, setIsUploadVideo] = useState(null)
-  console.log(isUploadVideo)
  
   // 내가 업로드 한 영상 요청 함수 -> MyUploadVideo로 props 전달됨
   const handleUpload = () => {
@@ -179,17 +178,36 @@ const getvideoInfo = (image,title, views, timestamp,video,video_id) => {
     setClickMyVideoData(isUploadVideo.filter((el) => el.id === clickVideoData)[0])
   }
 
-    const viewStateFunc = (id) => {
-        axios.post("https://localhost:80/views",{id: id},
-          {
-            headers: {
-            authorization: `Bearer ${accessToken}`,
-            "Content-Type" : "application/json"   
-            },
-            withCredentials: true
-          }
-          )
-    }
+  const viewStateFunc = (id) => {
+      axios.post("https://localhost:80/views",{id: id},
+        {
+          headers: {
+          authorization: `Bearer ${accessToken}`,
+          "Content-Type" : "application/json"   
+          },
+          withCredentials: true
+        }
+        )
+  }
+
+  const [isLikeVideo, setIsLikeVideo] = useState(null)
+
+  // 찜한 영상 요청 함수
+  const handleLikeVideo = () => { 
+    axios.get("https://localhost:80/like/video",
+    {headers: {
+      authorization: `Bearer ${accessToken}`,
+      "Content-Type" : "application/json"   
+    },
+    withCredentials: true
+    }).then((res) => {
+      console.log(res) // res 영상 데이터 형식이 아리까리(?)
+      setIsLikeVideo(res.data.data.likeVideos) 
+    }).catch((err) => {
+      console.log(err)
+    })
+
+  }
 
   return (
     <BrowserRouter>
@@ -224,13 +242,13 @@ const getvideoInfo = (image,title, views, timestamp,video,video_id) => {
           <VideoPage videoInfo={videoInfo} accessToken={accessToken}/>
         </Route>
         <Route exact path="/mylikevideo">
-          <MyLikeVideo />
+          <MyLikeVideo handleLikeVideo={handleLikeVideo} isLikeVideo={isLikeVideo}/>
         </Route>
         <Route exact path="/myuploadvideo">
         <MyUploadVideo accessToken={accessToken} isUploadVideo={isUploadVideo} setClickMyVideoDataFunc={setClickMyVideoDataFunc}/>
         </Route>
         <Route path="/myvideopage">
-        <VideoPage2 clickMyVideoData={clickMyVideoData} userInfo={userInfo} accessToken={accessToken} viewStateFunc ={viewStateFunc}/>
+        <VideoPage2 clickMyVideoData={clickMyVideoData} userInfo={userInfo} accessToken={accessToken} viewStateFunc ={viewStateFunc} isLogin={isLogin} videoInfo={videoInfo}/>
         </Route>
         <Route path="/mypage">
           <MyPage userInfo={userInfo} accessToken={accessToken} handleSecession={handleSecession} handleUpload={handleUpload}/>

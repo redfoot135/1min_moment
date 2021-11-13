@@ -1,5 +1,45 @@
-.commentscontainer{
+.commentscontainer {
     width: 80%;
-    margin-left: 10%;
-    
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.commentscontainer form {
+    margin-top: 25px;
+    width: 65.5%;
+}
+
+.replyarea {
+    border: 1px solid #f1c40e;
+    margin-right: 3px;
+    border-radius: 20px;
+}
+
+.comment-form-btn {
+    border: 0px solid rgb(60, 60, 60);
+    background-color: #f1c40e;
+    border-radius: 6px;
+    color: black;
+    font-size: 15px;
+    font-weight: 650;
+}
+
+.comment-box {
+    margin-top: 18px;
+    width: 65.5%;
+    border-bottom: 1px solid rgb(205, 205, 205);
+}
+
+.ant-comment-content-author {
+    text-align: start;
+    color: black;
+    font-size: 18px;
+    font-weight: 500;
+}
+
+.comment-box-comment {
+    color: rgb(60, 60, 60);
+    font-size: 15px;
+    font-weight: 500;
 }

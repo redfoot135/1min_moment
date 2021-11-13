@@ -2,10 +2,11 @@ import React, {useState, useEffect} from 'react';
 import { useHistory } from "react-router-dom";
 import axios from "axios"
 import './videopage2.css'
+import Comments from '../component/comments'
 
 axios.defaults.withCredentials = true;
 
-export default function VideoPage2({clickMyVideoData, userInfo, accessToken, viewStateFunc}){
+export default function VideoPage2({clickMyVideoData, userInfo, accessToken, viewStateFunc, isLogin, videoInfo}){
 
     useEffect(() => {
         viewStateFunc(clickMyVideoData.id);
@@ -90,26 +91,37 @@ export default function VideoPage2({clickMyVideoData, userInfo, accessToken, vie
     
     return(
         <div className='videopage2-container'>
-            <video src={clickMyVideoData.video} width='80%' controls />
+            <div className="videopage2-videobox row-fluid">
+            <video className="videopage2-video col-md-9 col-11" src={clickMyVideoData.video} width='80%' controls />
+            </div>
             <div className='video2-info-container'>
                 <div className='video2-first-row'> 
+                  <div>
+                    <span className="video2-first-row-category">#{clickMyVideoData.category1}</span> 
+                    {clickMyVideoData.category2 ? <span className="video2-first-row-category">#{clickMyVideoData.category2}</span> : null}
+                    {clickMyVideoData.category3 ? <span className="video2-first-row-category">#{clickMyVideoData.category3}</span> : null}
+                  </div>
                     <div className='video2-first-row-title'>{clickMyVideoData.title}</div>
-                    <div className='video2-first-row-title'>{clickMyVideoData.createdAt}</div>
-                    <span>카테고리 {clickMyVideoData.category1}</span>
+                    <div className='video2-first-row-view-createdAt'>조회수 {clickMyVideoData.views} · {clickMyVideoData.createdAt.slice(0, 10)}</div>
                 </div> 
                 <div className='video2-second-row'>
-                    <div>작성자 {userInfo.name}</div>
-                    <div>view {clickMyVideoData.views}</div>
-                    <div onClick={likeVideoFunc}>찜
-                    {likeVideo === false ? 
-                    <img className="like-icon" src="https://i.ibb.co/C0ntKBK/2021-11-11-5-56-57-removebg-preview.png" alt="" /> :
-                    <img className="like-icon" src="https://i.ibb.co/Y0jmDXG/2021-11-11-5-58-41-removebg-preview.png" alt="" />
-                    } 
-                    {likeVideoCount}
+                    <div className='video2-second-row-creator'><img className="user-icon" src="https://i.ibb.co/ZV9MknX/profile-user.png"/> {userInfo.name}</div>
+                    <div className="video2-second-row-like-delete">
+                      <div className="like-myvideo btn2" onClick={likeVideoFunc}>
+                      {likeVideo === false ? 
+                      <img className="like-icon" src="https://i.ibb.co/C0ntKBK/2021-11-11-5-56-57-removebg-preview.png" alt="" /> :
+                      <img className="like-icon" src="https://i.ibb.co/Y0jmDXG/2021-11-11-5-58-41-removebg-preview.png" alt="" />
+                      }
+                      {likeVideoCount}
+                      </div>
+                      {isLogin === false ? null : 
+                      <div className="delete-myvideo btn2" onClick={deleteMyVideoFunc}>
+                      <img className="delete-icon" src="https://i.ibb.co/YkB7fMG/delete.png" /></div>
+                      }
                     </div>
-                    <div onClick={deleteMyVideoFunc}>삭제하기</div>
                 </div>
             </div>
+            <Comments accessToken={accessToken} videoInfo={videoInfo}/>
         </div>
     )
 }
