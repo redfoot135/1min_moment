@@ -209,9 +209,10 @@ const getvideoInfo = (image,title, views, timestamp,video,video_id) => {
         <Route exact path='/'>
           <div className="intro-box row-fluid px-0">
             <Introduce />
+            
           </div>
           <div className="row-fluid px-0">
-          {/* <SlidesContainer getvideoInfo={getvideoInfo} getCategory={getCategory}/> */}
+          <SlidesContainer getvideoInfo={getvideoInfo} getCategory={getCategory}/>
           </div>
         </Route>
         <Route exact path='/main'>

@@ -42,7 +42,7 @@ function Slider({idx,idx2,getvideoInfo,getCategory}){
         sliderElem.prepend(sliderElem.lastElementChild)
         sliderElem.style.transform = `translateX(-${3300}px)`;
         sliderElem.getBoundingClientRect();
-         sliderElem.style.transition = "all 0.5s ease-in-out";
+         sliderElem.style.transition = "all 1s ease-in-out";
         sliderElem.style.transform = `translateX(-${3000}px)`
  
 
@@ -103,7 +103,7 @@ function Slider({idx,idx2,getvideoInfo,getCategory}){
         }
    
     return(
-        <div className='container'>
+        <div className='slider_container'>
          
             <div class = 'wrapper'>
             {/* {currentSlide} */}

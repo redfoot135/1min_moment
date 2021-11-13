@@ -52,6 +52,8 @@ function Nav({handleSignOut,getSearch,searchInfo}){
             {isMobile && <ul className = 'menu'>
                 <Menu />
                 {/* <li>menu</li> */}
+               
+
                 </ul>}
         </div>
         <div className='navbar_right'>
@@ -65,7 +67,20 @@ function Nav({handleSignOut,getSearch,searchInfo}){
             }
              <div className='signup' onClick={handleSignOut}>로그아웃</div>
         </div>
+        
         </div>
+        {isMobile && <ul className = 'menu'>
+                
+                <div className='menu_container'>
+                <Link to={"/mypage"} style={{ textDecoration: 'none', color: "black" }}> <div>마이페이지</div> </Link>
+                <Link  to='/main' style={{ textDecoration: 'none', color: "black" }}> <div>모든 꿀팁</div> </Link>
+                <Link to={"/uploadvideo"} style={{ textDecoration: 'none', color: "black" }}>  <div>꿀팁 올리기</div></Link>
+                
+        </div>
+               
+
+                </ul>}
+       
     </nav>
     )
 }

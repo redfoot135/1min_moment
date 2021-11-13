@@ -62,7 +62,7 @@ function Nav2({openModalFunc,openSideBarlFunc , handleSignOut,getSearch,searchIn
              </div>)
             }
              <div className='signup' onClick={openModalFunc} >로그인</div>
-
+         </div>
         </div>
     </nav>
     )

@@ -7,15 +7,21 @@ const {TextArea} = Input;
  
 
 function Comments({accessToken,videoInfo}) {
+  let renderComment = null;
   let x ;
   const [commentList, setCommentList] = useState([])
   const [commentValue, setCommentValue] = useState('')
+  const [posting, setPosting] = useState('') // useEffect를위한 state입니다
+  const [videoId, setVideoId] = useState(null)
+
+  
   const handleclick = (e) =>{
     setCommentValue(e.currentTarget.value)
   }
   const onSubmit = (e)=>{
     e.preventDefault(); //for refresh block
     axios
+    
     .post(
       'https://localhost:80/comment',{
         video_id:videoInfo.video_id,
@@ -31,6 +37,7 @@ function Comments({accessToken,videoInfo}) {
            console.log(res)
        if(res.data.message==='Comment has been completed'){
         alert("성공")
+        setPosting('poting')
        // window.location.replace('/')
        }
        else{
@@ -38,6 +45,7 @@ function Comments({accessToken,videoInfo}) {
        }         
       
        }) 
+      
   }
   const uploadVideo = () => {
     axios
@@ -63,8 +71,11 @@ function Comments({accessToken,videoInfo}) {
        }         
       
        }) 
-       
 
+
+       
+       
+   
   }
   const infiniteScroll = useCallback(() => {
     let scrollHeight = Math.max(document.documentElement.scrollHeight, document.body.scrollHeight);
@@ -97,13 +108,27 @@ function Comments({accessToken,videoInfo}) {
            x = res.data.data[res.data.data.length-1].id
            console.log(x)
            }
-         
+           renderComment = commentList.map((obj, index) =>{
+            return  <div>
+            <Comment
+                  style={{display:'flex'}}
+                  author={obj.writer}
+                   content={
+                         <p>
+                         {obj.comment}
+                         </p>
+                         }
+                     ></Comment>
+                     <hr/>
+             </div> 
+           })
      
         
         
          })  
+         
     }
-  }, []);
+  }, [posting]);
 
 
   useEffect(() => {
@@ -132,11 +157,26 @@ function Comments({accessToken,videoInfo}) {
               console.log('res_____',res.data.data[res.data.data.length-1].id)
              x = res.data.data[res.data.data.length-1].id
              console.log(x)
+             
              }
-           
-                 
+            //  renderComment = commentList.map((obj, index) =>{
+            //   return  <div>
+            //   <Comment
+            //         style={{display:'flex'}}
+            //         author={obj.writer}
+            //          content={
+            //                <p>
+            //                {obj.comment}
+            //                </p>
+            //                }
+            //            ></Comment>
+            //            <hr/>
+            //    </div> 
+            //  })
+             
           
            }) 
+           
       },[])
  return(
      <div className='commentscontainer'>
@@ -158,42 +198,6 @@ function Comments({accessToken,videoInfo}) {
    </form>
    
    <br />
-   <div>
-   <Comment
-         style={{display:'flex'}}
-         author='김코딩'
-          content={
-                <p>
-                날씨가 참 맑네요
-                </p>
-                }
-            ></Comment>
-            <hr/>
-    </div>
-    <div>
-   <Comment
-         style={{display:'flex'}}
-         author='김코딩'
-          content={
-                <p>
-                날씨가 참 맑네요
-                </p>
-                }
-            ></Comment>
-            <hr/>
-    </div>
-    <div>
-   <Comment
-         style={{display:'flex'}}
-         author='김코딩'
-          content={
-                <p>
-                날씨가 참 맑네요
-                </p>
-                }
-            ></Comment>
-            <hr/>
-    </div>
     {commentList.map((obj, index) =>
     <div>
    <Comment
@@ -208,6 +212,7 @@ function Comments({accessToken,videoInfo}) {
             <hr/>
     </div> 
     )}
+  
     
      </div>
  )

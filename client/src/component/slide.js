@@ -9,17 +9,22 @@ export default function Slide({image, channelImage, title, channel, views, times
         getvideoInfo(image,title, views, timestamp,video,video_id)
         
     }
+    var sectionStyle = {
+        width: "300px",
+        height: "300px",
+        backgroundImage: `url(${image})`
+      };
         
     return (
-        <Link className="videocard" to='/videos'>
-    <div onClick={onClickVideo}>
-        <img className="videocard_thumbnail" src={image} alt=""/>
-        <div className="videocard_info">
+        <Link className='slide_link' to='/videos'>
+    <section className="slide_videocard" onClick={onClickVideo} style={ sectionStyle }>
+        
+        <div className="videocard_info2">
             {/* <Avatar 
                className="videocard_avatar" 
                alt={channel}  
             />*/}
-            <div className="video_text">
+            <div className="video_text2">
                 <h4>{title}</h4>
                 <p>{channel}</p>
                 <p>
@@ -27,7 +32,7 @@ export default function Slide({image, channelImage, title, channel, views, times
                 </p>
             </div>
         </div>
-    </div>
+    </section>
      </Link>
  )
     

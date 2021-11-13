@@ -249,14 +249,16 @@ function UploadVideo({accessToken}) {
       <div>
         {/* <input type="file" onChange={uploadFile} className='addVideo'  /> */}
             <div className="filebox" > 
-          <canvas id='canvas' width="250" height="140" ></canvas>
-          <video  id='video' ></video>
-             <div {...getRootProps()}>
+            <div>
+          
+            <video  id='video' ></video>
+            </div>
+             <div className='labelcontainer' {...getRootProps()}>
               <input  className="filebox"  type='file' {...getInputProps()} /> 
                 {
                 isDragActive ?
-                <label >ssss</label> :
-                <label >클릭 or 드래그로 업로드하기!</label> 
+                <label className='label' >ssss</label> :
+                <label className='label'><canvas id='canvas'  ></canvas></label> 
                 }
               </div>
               
@@ -269,7 +271,7 @@ function UploadVideo({accessToken}) {
           <div>
               <input className="upload-title" type='text' onChange={handleTargetTitle} value={title}/>
           </div>
-              <Button className='addbox' onClick= {openCategory}>카테고리설정</Button>   
+              <Button className='addcategory_upload' onClick= {openCategory}>카테고리설정</Button>   
               {showCategory === true ?
           (<Addcategory2 confirmBtn={confirmBtn} handleCategoty={handleCategoty}/>)
           :

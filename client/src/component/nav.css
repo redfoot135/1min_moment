@@ -123,3 +123,14 @@ padding: 8px 12px
 .search-icon:hover {
   cursor: pointer;
 }
+
+
+.navContainer{
+  display: flex;
+ flex-direction: column;
+}
+.menu_container{
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
