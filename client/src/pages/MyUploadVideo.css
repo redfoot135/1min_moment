@@ -5,22 +5,32 @@
     /* padding: 40px 20px; */
     padding-bottom: 0;
     position:relative;
-    top: 80px;
+    /* top: 80px; */
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+
 }
 
 .title {
   position: relative;
-  top: 80px;
+  /* top: 80px; */
   font-family: 'Jua', sans-serif;
   font-size:50px;
   color: #56c1fe;
   text-shadow: 3px 3px 3px black;
+  margin-top: 100px;
 }
 
 .uploadvideocard-box {
-    display: flex;
     flex-wrap: wrap;
     /* padding-left: 23px; */
+    display: flex;
+    /* flex-direction: column; */
+    align-items: center;
+    justify-content: space-between;
+
 }
 
 .myvideos {

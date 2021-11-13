@@ -7,9 +7,9 @@ const UploadVideoCard = ({movieData, setClickMyVideoDataFunc}) => {
     // console.log(image) // 모든 이미지가 다 콘솔에 뜸 
 
     return (
-        <div className="upload-videocard col-lg-4 col-md-6 col-sm-12 p-0 my-2">
+        <div id="videoCard" className="upload-videocard col-11 col-lg-4 col-md-6 col-sm-11 p-0 my-4">
            <Link to={"/myvideopage"}>
-            <img className="upload-videocard_thumbnail col-11" src={movieData.thumbnail} alt="" onClick = {() => setClickMyVideoDataFunc(movieData.id)} />
+            <img className="upload-videocard_thumbnail col-12" src={movieData.thumbnail} alt="" onClick = {() => setClickMyVideoDataFunc(movieData.id)} />
            </Link>
            <div className="upload-videocard_info">
                <div className="upload-video_text">

@@ -1,24 +1,41 @@
-.upload-videocard {
+#videoCard {
     /* margin: 10px 0px 10px 0px; */
     /* width: 1000px; */
     height: 100%;
+    background-color: #f1c40e;
+    border-radius: 30px;
+    /* margin: 5px; */
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    box-sizing: border-box;
+    border: 10px solid white;
+}
+
+#videoCard a {
+  width: 95%;
 }
 
 
 .upload-videocard_thumbnail {
   /* width: 80%;
   height: 80%; */
-  border-radius: 12px;
-
+  border-radius: 20px 20px 0 0;
+  margin-top: 10px;
 }
 
 .upload-videocard_info {
+  width: 95%;
     display: flex;
     flex-direction: column;
+    background-color: white;
     /* width: 250px; */
     /* margin-top: 10px; */
     /* padding-right: 30px; */
     /* padding-left: 10px; */
+    border-radius: 0 0 20px 20px;
+    margin-bottom: 10px;
 }
 
 .upload-video_text {
@@ -26,7 +43,8 @@
     flex-direction: column;
     align-items: center;
     justify-content: center;
-    margin-top: 3px;
+    margin-top: 2px;
+    margin-bottom: 3px;
 }
 
 .like-icon {

@@ -20,6 +20,10 @@ h1 {
   margin-top: 40px;
 }
 
+#carouselExampleIndicators .carousel-indicators {
+  z-index: 4;
+}
+
 .carousel-indicators button {
   color: black;
   background-color: black;
