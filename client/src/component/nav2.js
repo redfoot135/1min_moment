@@ -64,7 +64,6 @@ function Nav2({openModalFunc,openSideBarlFunc , handleSignOut,getSearch,searchIn
              <div className='signup' onClick={openModalFunc} ><img className="login-icon" src="https://i.ibb.co/TtLvxmP/Kakao-Talk-Photo-2021-11-13-02-51-07-001-removebg-preview.png"/></div>
           </div>
         </div>
-      </div>
     </nav>
     )
 }
