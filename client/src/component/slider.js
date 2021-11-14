@@ -29,10 +29,10 @@ function Slider({idx,idx2,getvideoInfo,getCategory}){
     var sliderElem = document.querySelector(`.${idx}`)
     sliderElem.style.transition = "none";
     sliderElem.append(sliderElem.firstElementChild)
-    sliderElem.style.transform = `translateX(-${2700}px)`;
+    sliderElem.style.transform = `translateX(-${299.7}vw)`;
     sliderElem.getBoundingClientRect();
      sliderElem.style.transition = "all 0.5s ease-in-out";
-    sliderElem.style.transform = `translateX(-${3000}px)`
+    sliderElem.style.transform = `translateX(-${333}vw)`
     };
     const prevSlide = () =>{
         
@@ -40,10 +40,10 @@ function Slider({idx,idx2,getvideoInfo,getCategory}){
     var sliderElem = document.querySelector(`.${idx}`)
         sliderElem.style.transition = "none";
         sliderElem.prepend(sliderElem.lastElementChild)
-        sliderElem.style.transform = `translateX(-${3300}px)`;
+        sliderElem.style.transform = `translateX(-${366.6}vw)`;
         sliderElem.getBoundingClientRect();
          sliderElem.style.transition = "all 1s ease-in-out";
-        sliderElem.style.transform = `translateX(-${3000}px)`
+        sliderElem.style.transform = `translateX(-${333}vw)`
  
 
 
@@ -54,7 +54,7 @@ function Slider({idx,idx2,getvideoInfo,getCategory}){
         var sliderElem = document.querySelector( `.${idx}`)
         console.log(sliderElem)
         //sliderElem.style.transition = "all 0.5s ease-in-out";
-         sliderElem.style.transform = `translateX(-${3000}px)`; // 사이드 * 3000
+         sliderElem.style.transform = `translateX(-${333}vw)`; // 사이드 * 3000
         // sliderElem.dataset.currentSlide = 3000
 
        }, []);
@@ -88,9 +88,13 @@ function Slider({idx,idx2,getvideoInfo,getCategory}){
        
      
        if(array){
+           console.log(array[0])
         //  console.log(res.data.data)
           itemsToRender = array.map((obj, index) =>{
-              return <Slide key={obj.id} title={obj.title}  timestamp={obj.createdAt} image={obj.thumbnail} video={obj.video} getvideoInfo={getvideoInfo} video_id={obj.id}/>
+              console.log(obj.category1)
+              console.log(obj.category2)
+              console.log(obj.category3)
+              return <Slide key={obj.id} title={obj.title}  timestamp={obj.createdAt} image={obj.thumbnail} video={obj.video} getvideoInfo={getvideoInfo} video_id={obj.id} category1={obj.category1} category2={obj.category2} category3={obj.category3}/>
              })
             // console.log(itemsToRender)
        }else{
@@ -104,12 +108,10 @@ function Slider({idx,idx2,getvideoInfo,getCategory}){
    
     return(
         <div className='slider_container'>
-         
             <div class = 'wrapper'>
             {/* {currentSlide} */}
-            <div>
+            <div className='slider_info'>
             <div>{category[idx2]}</div> 
-           
             <div  className={category[idx2]} onClick={getrealcategory}>+더보기</div>
             
             </div>

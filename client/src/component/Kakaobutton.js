@@ -57,7 +57,7 @@ export default function Kakaobutton ({ errorMessage, openModalFunc, handleAccess
         onFail={kakaoOnFailure}
         style={buttonBlock}
       >
-        <img className="kakaoLogo" src="https://i.ibb.co/BVSp3jm/ai-3-removebg-preview-1.png" />
+        <img className="kakaoLogo" src="https://i.ibb.co/BVSp3jm/ai-3-removebg-preview-1.png" alt="카카오 버튼 아이콘" />
         <span>카카오 계정으로 로그인</span>
       </KaKaoLogin>
       </div>

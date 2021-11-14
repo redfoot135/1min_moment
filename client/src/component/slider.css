@@ -12,64 +12,67 @@
 }
 .slidercontainer2 {
     
-    display: flex;
+      display: flex;
     width: 100%;
-    height: 300px;
+    height: 25.3vw;
     object-fit: cover;
 }
 .slidercontainer1 {
     display: flex;
     width: 100%;
-    height: 100px;
+    height: 25.3vw;
     object-fit: cover;
 }
 .slidercontainer3 {
     display: flex;
-    width: 300px;
-    height: 300px;
+    width: 100%;
+    height: 25.3vw;
     object-fit: cover;
 }
 .slidercontainer4 {
     display: flex;
-    width: 300px;
-    height: 300px;
+    width: 100%;
+    height: 25.3vw;
     object-fit: cover;
 }
 .slidercontainer5 {
     display: flex;
-    width: 300px;
-    height: 300px;
+    width: 100%;
+    height: 25.3vw;
     object-fit: cover;
 }
 .slidercontainer6 {
     display: flex;
-    width: 300px;
-    height: 300px;
+    width: 100%;
+    height: 25.3vw;
     object-fit: cover;
 }
 .slidercontainer7 {
     display: flex;
-    width: 300px;
-    height: 300px;
+    width: 100%;
+    height: 25.3vw;
     object-fit: cover;
 }
 .slidercontainer8 {
     display: flex;
-    width: 300px;
-    height: 300px;
+    width: 100%;
+    height: 25.3vw;
     object-fit: cover;
 }
 .slidercontainer9 {
     display: flex;
-    width: 300px;
-    height: 300px;
+    width: 100%;
+    height: 25.3vw;
+    object-fit: cover;display: flex;
+    width: 100%;
+    height: 25.3vw;
     object-fit: cover;
 }
 
 .prevslide{
   position: absolute;
-  height: 300px;
-  top: 46px;
+  height: 25.3vw;
+  top: 24px;
   left: 0px;
   width: 40px;
   background-color: black;
@@ -78,8 +81,8 @@
 .nextslide{
     
 position: absolute;
-height: 300px;
-top: 46px;
+height: 25.3vw;
+top: 24px;
 right: 0px;
 width: 40px;
 background-color: black;
@@ -103,5 +106,11 @@ opacity: 0.7;
 
 
 .slider_container{
-    
+    width: 100vw;
+}
+
+.slider_info{
+    display: flex;
+    justify-content:  space-between;
+    height: 24px;
 }

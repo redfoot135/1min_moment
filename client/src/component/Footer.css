@@ -32,8 +32,8 @@
 }
 
 .git-icon {
-  width: 20px;
-  height: 20px;
+  width: 16px;
+  height: 16px;
   margin-left: 5px;
 }
 
@@ -43,7 +43,7 @@
 
 .person {
   font-family:  'Noto Sans KR', sans-serif;
-  font-size: 16px;
+  font-size: 14px;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -52,5 +52,5 @@
 
 .copyright {
   font-family:  'Noto Sans KR', sans-serif;
-  font-size: 16px;
+  font-size: 14px;
 }

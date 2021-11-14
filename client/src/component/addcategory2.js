@@ -1,4 +1,3 @@
-
 import { useState } from 'react'
 
 //생활,교통,법,의료,교육, 
