@@ -1,5 +1,6 @@
 import React from 'react'
 import "./LikeVideoCard.css"
+import { Link } from "react-router-dom";
 
 function LikeVideoCard({likeVideoData, clickMyLikeVideoDataFunc}) {
     return (
