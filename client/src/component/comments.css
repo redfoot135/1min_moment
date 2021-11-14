@@ -43,3 +43,9 @@
     font-size: 15px;
     font-weight: 500;
 }
+.commentscontainer {
+}
+.commentsreverse{
+    display: flex;
+    flex-direction: column;
+}

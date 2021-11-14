@@ -15,7 +15,7 @@ import VideoPage2 from './pages/videopage2'
 import UploadVideo from './pages/uploadVideo'
 import Loading from './pages/Loading'
 import Introduce from './component/Introduce'
-// import SlidesContainer from './pages/slidesContainer'
+ import SlidesContainer from './pages/slidesContainer'
 import Footer from './component/Footer'
 
 axios.defaults.withCredentials = true;
@@ -35,7 +35,10 @@ function App() {
     views:'',
     timestamp:'',
     video:'',
-    video_id:''
+    video_id:'',
+    category1:'',
+    category2:'',
+    category3:''
 });
 
 const getSearch= (search) =>{
@@ -50,7 +53,7 @@ const getSearch= (search) =>{
   console.log('hi!!!!!')
  } 
   
-const getvideoInfo = (image,title, views, timestamp,video,video_id) => {
+const getvideoInfo = (image,title, views, timestamp,video,video_id,category1,category2,category3) => {
   
   console.log('hi!!!!!')
   setVideoInfo({
@@ -59,7 +62,10 @@ const getvideoInfo = (image,title, views, timestamp,video,video_id) => {
       views:views,
       timestamp:timestamp,
       video:video,
-      video_id:video_id
+      video_id:video_id,
+      category1:category1,
+      category2:category2,
+      category3:category3
   })
   console.log(videoInfo)
 }
@@ -235,9 +241,10 @@ const getvideoInfo = (image,title, views, timestamp,video,video_id) => {
         <Route exact path='/'>
           <div className="intro-box row-fluid px-0">
             <Introduce />
+            
           </div>
           <div className="row-fluid px-0">
-          {/* <SlidesContainer getvideoInfo={getvideoInfo} getCategory={getCategory}/> */}
+          <SlidesContainer getvideoInfo={getvideoInfo} getCategory={getCategory}/>
           </div>
         </Route>
         <Route exact path='/main'>
@@ -247,7 +254,7 @@ const getvideoInfo = (image,title, views, timestamp,video,video_id) => {
           <UploadVideo accessToken={accessToken}/>
         </Route>
         <Route exact path='/videos'> 
-          <VideoPage videoInfo={videoInfo} accessToken={accessToken}/>
+          <VideoPage videoInfo={videoInfo} accessToken={accessToken} userInfo={userInfo}/>
         </Route>
         <Route exact path="/mylikevideo">
           <MyLikeVideo handleLikeVideo={handleLikeVideo} isLikeVideo={isLikeVideo} clickMyLikeVideoDataFunc={clickMyLikeVideoDataFunc}/>
@@ -262,9 +269,8 @@ const getvideoInfo = (image,title, views, timestamp,video,video_id) => {
           <MyPage userInfo={userInfo} accessToken={accessToken} handleSecession={handleSecession} handleUpload={handleUpload}/>
         </Route>
       </Switch>
-    
         <div className="row-fluid col-12">
-          <Footer />
+          {/* <Footer /> */}
         </div>
 
 

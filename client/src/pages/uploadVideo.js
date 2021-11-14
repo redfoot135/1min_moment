@@ -14,6 +14,8 @@ import { Button } from '@material-ui/core';
 
 function UploadVideo({accessToken}) {
 
+
+
   const history = useHistory();
 
 
@@ -21,13 +23,18 @@ function UploadVideo({accessToken}) {
   const [selectedFile, setSelectedFile] = useState('');
   const [category, setCategory] = useState('')
   const [title, setTitle] = useState('')
-  const [checkList, setCheckList] = useState([])
+  //const [checkList, setCheckList] = useState([])
   const [checkList2, setCheckList2] = useState([])
   const [currentCategory, setCurrentCategory]=useState('');
   const [showCategory, setshowCategory]=useState(false)
   const [imgData , setImgData] = useState(null)
   const { Dropzone } = require("dropzone");
  
+
+
+  let checkList = []
+
+
 
   const confirmBtn = () =>{
     if(checkList.length>3){
@@ -41,30 +48,44 @@ function UploadVideo({accessToken}) {
      setCurrentCategory(checkList.join())
      setCheckList2(checkList)
      console.log('체크리스트!!!!!',checkList)
-     setCheckList([])
+    // setCheckList([])
      console.log(checkList2)
     }
 }
 
+const handleCategoty2=(e)=>{
+  handleCategoty(e)
+ }
 
   const handleCategoty = (e) =>{
-    //console.log(e.target.value)
+    console.log(e.target.value)
          if(!checkList.includes(e.target.value)){
              console.log(e.target.value)
              if(e.target.checked === true){
              console.log('들어왔어요')
              //setcategoryInfo(categoryInfo+`${e.target.value}`)
-             setCheckList([...checkList,e.target.value])
+            // setCheckList([...checkList,e.target.value])
              //console.log(categoryInfo)
+             checkList.push(e.target.value)
              console.log('checklist',checkList)
              }
          }
+         else {
+          for(let i = 0; i < checkList.length; i++) {
+            if(checkList[i] === e.target.value)  {
+              checkList.splice(i, 1);
+              i--;
+            }
+          }
+          console.log('checklist',checkList)
+         }
+         console.log('checklist',checkList)
      
    }
    const openCategory = (e) =>{
    
     setshowCategory(!showCategory)
-    setCheckList([])
+   // setCheckList([])
     console.log(showCategory)
     console.log(currentCategory)
      
@@ -85,6 +106,11 @@ function UploadVideo({accessToken}) {
   }
 
   const uploadVideo =  () => {
+    console.log(checkList)
+    if(checkList.length >3){
+     alert('체크리스트 최대갯수는 3개입니다.')
+    }
+    else{
     let buf =Buffer.from(imgData.replace(/^data:image\/\w+;base64,/, ""),'base64')
     console.log(buf)
     const S3 = new AWS.S3({
@@ -111,7 +137,7 @@ function UploadVideo({accessToken}) {
       }
     })
 
-       console.log('img22222222222',imgData)
+      //  console.log('img22222222222',imgData)
       const videoLink =`https://${process.env.REACT_APP_BUCKET}.s3.ap-northeast-2.amazonaws.com/videos/${videoName}.mp4`
       console.log("링크는 ", videoLink) 
         
@@ -140,7 +166,7 @@ function UploadVideo({accessToken}) {
     axios
     .post(
       'https://localhost:80/myvideo',{
-        title:title , video:videoLink, thumbnail:imgLink, category1:checkList2[0], category2:checkList2[1], category3:checkList2[2]
+        title:title , video:videoLink, thumbnail:imgLink, category1:checkList[0], category2:checkList[1], category3:checkList[2]
       },{
         headers: {
           authorization: `Bearer ${accessToken}`,
@@ -159,7 +185,7 @@ function UploadVideo({accessToken}) {
        }
       
        }) 
-
+      }
   }
 
   const onDrop = useCallback(acceptedFiles => {
@@ -249,14 +275,16 @@ function UploadVideo({accessToken}) {
       <div>
         {/* <input type="file" onChange={uploadFile} className='addVideo'  /> */}
             <div className="filebox" > 
-          <canvas id='canvas' width="250" height="140" ></canvas>
-          <video  id='video' ></video>
-             <div {...getRootProps()}>
+            <div>
+          
+            <video  id='video' ></video>
+            </div>
+             <div className='labelcontainer' {...getRootProps()}>
               <input  className="filebox"  type='file' {...getInputProps()} /> 
                 {
                 isDragActive ?
-                <label >ssss</label> :
-                <label >클릭 or 드래그로 업로드하기!</label> 
+                <label className='label' >ssss</label> :
+                <label className='label'><canvas id='canvas'  ></canvas></label> 
                 }
               </div>
               
@@ -269,11 +297,26 @@ function UploadVideo({accessToken}) {
           <div>
               <input className="upload-title" type='text' onChange={handleTargetTitle} value={title}/>
           </div>
-              <Button className='addbox' onClick= {openCategory}>카테고리설정</Button>   
-              {showCategory === true ?
+              <Button className='addcategory_upload' onClick= {openCategory}>카테고리설정</Button>   
+              {/* {showCategory === true ?
           (<Addcategory2 confirmBtn={confirmBtn} handleCategoty={handleCategoty}/>)
           :
-          null}
+          null} */}
+          <div>
+        <input type='checkbox' className='checkbox' onChange={handleCategoty}  value='생활'/>생활
+        <input type='checkbox' className='checkbox' onChange={handleCategoty} value='교통'/>교통
+        <input type='checkbox' className='checkbox' onChange={handleCategoty} value='법'/>법
+        </div>
+        <div>
+        <input type='checkbox' className='checkbox' onChange={handleCategoty} value='의료'/>의료
+        <input type='checkbox' className='checkbox' onChange={handleCategoty} value='교육'/>교육
+        <input type='checkbox' className='checkbox' onChange={handleCategoty} value='무언가1'/>무언가1
+        </div>
+        <div>
+        <input type='checkbox' className='checkbox' onChange={handleCategoty} value='무언가2'/>무언가2
+        <input type='checkbox' className='checkbox' onChange={handleCategoty} value='무언가3'/>무언가3
+        <input type='checkbox' className='checkbox' onChange={handleCategoty} value='무언가4'/>무언가4
+        </div>
             </div>
       </div> 
      <div>

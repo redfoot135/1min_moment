@@ -1,0 +1,25 @@
+.slide_link{
+    width: 100%;
+}
+
+.video_text2{
+    /* display: flex; */
+}
+
+.videocard_info2{
+    /* display: flex; */
+}
+
+
+.slide_videocard{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: flex-end;
+    padding: 0;
+    background-color:#eaeaea;
+}
+.slide_info{
+width: 100%;
+    background-color: rgba(200,200,200,0.8);
+}

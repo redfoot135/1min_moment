@@ -7,6 +7,8 @@ import React, { useState,useEffect } from 'react';
 function Nav({handleSignOut,getSearch,searchInfo}){
     const history = useHistory();
     const [searchBox, setSearchBox]=useState(false)
+    const [tabStatus, setTabStatus]=useState({display:'none'})
+    const [isTabOpen, setIstabOpen]=useState(false) 
     const [searchResult, setSearchResult]=useState('')
     const isPc = useMediaQuery({
         query : "(min-width:610px)"
@@ -29,8 +31,19 @@ function Nav({handleSignOut,getSearch,searchInfo}){
     getSearch(searchResult)
     history.push({pathname: "/main" })
    }
-
+    
+   const showTabList=()=>{
+    if(isTabOpen===false){
+    setTabStatus(null)
+    setIstabOpen(true)
+    }
+    else{
+        setIstabOpen(false)
+        setTabStatus({display:'none'})
+    }
+   }
     return(
+        
     <nav className='navContainer col-12'>
       <div className="navbox col-md-9 col-11 ">
         <div className='navbar_left'> 
@@ -49,8 +62,8 @@ function Nav({handleSignOut,getSearch,searchInfo}){
                   <li className='postvideo'>꿀팁 올리기</li>
                 </Link>
             </ul>}   
-            {isMobile && <ul className = 'menu'>
-                <Menu />
+            {isMobile && <ul className = 'menu' onClick={showTabList}>
+                <img className='menu-icon' src='https://i.ibb.co/ThFZQf9/Kakao-Talk-Photo-2021-11-13-01-59-17.png"'/>
                 {/* <li>menu</li> */}
                 </ul>}
         </div>
@@ -65,7 +78,15 @@ function Nav({handleSignOut,getSearch,searchInfo}){
             {/* } */}
              <div className='signout' onClick={handleSignOut}><img className="logout-icon" src="https://i.ibb.co/SdZL2Zm/Kakao-Talk-Photo-2021-11-13-02-51-07-002-removebg-preview.png"/></div>
         </div>
+        
         </div>
+        {isMobile && <ul className = 'menu_bottom'>
+                <div className='menu_container'>
+                <Link to={"/mypage"} style={{ textDecoration: 'none', color: "black" }}> <div style={tabStatus}>마이페이지   </div> </Link>
+                <Link  to='/main' style={{ textDecoration: 'none', color: "black" }}> <div style={tabStatus}  className='menu_bottom_info'>모든 꿀팁</div> </Link>
+                <Link to={"/uploadvideo"} style={{ textDecoration: 'none', color: "black" }}>  <div style={tabStatus} className='menu_bottom_info'> 꿀팁 올리기</div></Link>
+                </div>
+                </ul>}
     </nav>
     )
 }

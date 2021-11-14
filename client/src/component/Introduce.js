@@ -16,7 +16,7 @@ const Introduce = () => {
           </div>
           <div class="carousel-inner">
             <div class="carousel-item active">
-              <img src="https://i.ibb.co/x3XftJr/001.png" class="d-block w-100 introduce" alt="..."/>
+              <img src="https://i.ibb.co/x3XftJr/001.png" class="d-block col-12 introduce" alt="..."/>
             </div>
             <div class="carousel-item">
               <img src="https://i.ibb.co/w4xB99n/003.png" class="d-block w-100 introduce" alt="..."/>
