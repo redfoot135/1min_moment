@@ -87,7 +87,7 @@ export default function Main({category,searchResult,searchInfo,getvideoInfo,setS
       if(scrollTop + clientHeight+1 >scrollHeight) {
         var config = {
           method: 'get',
-          url: `https://localhost:80/videos`,
+          url: `${process.env.REACT_APP_SERVER}/videos`,
           params: {
             category: currentCategory,
             cursor: x,
@@ -130,7 +130,7 @@ export default function Main({category,searchResult,searchInfo,getvideoInfo,setS
      useEffect(()=>{
       var config = {
         method: 'get',
-        url: `https://localhost:80/videos`,
+        url: `${process.env.REACT_APP_SERVER}/videos`,
         params: {
           cursor: x,
           category:currentCategory,
