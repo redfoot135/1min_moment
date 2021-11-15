@@ -6,10 +6,11 @@ const sequelize = require('sequelize');
 const mysql = require('mysql');
 const { tokenCheck } = require('../../token')
 const connection = mysql.createConnection({
-  host     : '127.0.0.1',
+  host     : DATABASE_HOST,
   user     : DATABASE_USERNAME,
   password : DATABASE_PASSWORD,
-  database : DATABASE_NAME
+  database : DATABASE_NAME,
+  port     : DATABASE_PORT
 });
 connection.connect();
 

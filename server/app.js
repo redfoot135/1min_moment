@@ -26,13 +26,13 @@ app.use(
 
 //로그인 로그아웃 회원가입
 app.post("/signin", controllers.post_signin); //성근/완료
-// app.post("/signup", controllers.post_signup); //재훈//완료
+app.post("/signup", controllers.post_signup); //재훈//완료
 app.post("/signout", controllers.post_signout); //성근/완료
-// app.post("/socialSignin", controllers.post_socialSignin);//재훈
+app.post("/socialSignin", controllers.post_socialSignin);//재훈
 // //이메일 인증용도
-// app.get("/emailauth", controllers.get_emailauth);//재훈//완료
+app.get("/emailauth", controllers.get_emailauth);//재훈//완료
 // //패스워드 확인
-// app.post("/checkPW", controllers.post_checkPW);
+app.post("/checkPW", controllers.post_checkPW);
 
 // //마이비디오
 // //조회, 올리고, 수정하고, 삭제하고
