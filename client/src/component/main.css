@@ -48,6 +48,16 @@
     
 }
 
+.title {
+    position: relative;
+    top: 80px;
+  }
+  
+  .main-title {
+    width: 380px;
+  }
+
+
 /* @media screen and (min-width: 769px){
     .videocontainer{
         margin-left: 2rem;

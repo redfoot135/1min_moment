@@ -169,45 +169,44 @@ export default function Main({category,searchResult,searchInfo,getvideoInfo,setS
      
 
     return(
-     <div className="col-8">
-     <div className='categorycontainer'> 
-     {checkListDisplay.length ===3 ? 
-     ( <div className='categorycontainer2'>
-     <div className='currentmenu_category'>{checkListDisplay[0]}</div>
-      <div className='currentmenu_category'>{checkListDisplay[1]}</div>
-      <div className='currentmenu_category'>{checkListDisplay[2]}</div>
-      </div>) : null }
-      {checkListDisplay.length ===2 ? 
-     ( <div  className='categorycontainer2'>
-     <div className='currentmenu_category'>{checkListDisplay[0]}</div>
-      <div className='currentmenu_category'>{checkListDisplay[1]}</div>
-      
-      </div>) : null }
-      {checkListDisplay.length ===1 ? 
-       ( <div  className='categorycontainer2'>
-     <div className='currentmenu_category'>{checkListDisplay[0]}</div>
-    
-      </div>) : null }
-      
-      <div className='addbox' onClick= {openCategory}>+</div>      
-     </div> 
-     <div>
-       {showCategory === true ?
-      (<Addcategory confirmBtn={confirmBtn} handleCategoty={handleCategoty}/>)
-      :
-      null}
-      </div>
-      <div className='videocontainer container px-0 m-0'> {/*//곧 map으로 뿌릴 예정 ;; */}
-        <div className="row">
+     <div className="main col-12 sm-px-0">
+       <div className="col-md-10">
+         <div className="title"><img className="main-title" src="https://i.ibb.co/zRP56gQ/2021-11-15-4-55-45-removebg-preview.png"/></div>
+        <div className='categorycontainer'> 
+        {checkListDisplay.length ===3 ? 
+        ( <div className='categorycontainer2'>
+        <div className='currentmenu_category'>{checkListDisplay[0]}</div>
+          <div className='currentmenu_category'>{checkListDisplay[1]}</div>
+          <div className='currentmenu_category'>{checkListDisplay[2]}</div>
+          </div>) : null }
+          {checkListDisplay.length ===2 ? 
+        ( <div  className='categorycontainer2'>
+        <div className='currentmenu_category'>{checkListDisplay[0]}</div>
+          <div className='currentmenu_category'>{checkListDisplay[1]}</div>
+          
+          </div>) : null }
+          {checkListDisplay.length ===1 ? 
+          ( <div  className='categorycontainer2'>
+        <div className='currentmenu_category'>{checkListDisplay[0]}</div>
         
-          {itemList.map((obj, index) => <Video key={obj.id} movieData={obj}/>) }
+          </div>) : null }
+          
+          <div className='addbox' onClick= {openCategory}>+</div>      
+        </div> 
+        <div>
+          {showCategory === true ?
+          (<Addcategory confirmBtn={confirmBtn} handleCategoty={handleCategoty}/>)
+          :
+          null}
+          </div>
+          <div className='videocontainer container px-0 m-0'> {/*//곧 map으로 뿌릴 예정 ;; */}
+            <div className="row">
+            
+              {itemList.map((obj, index) => <Video key={obj.id} movieData={obj}/>) }
+            </div>   
         </div>
-        
-        
-     </div>
        </div>
+      </div>
     )
-
-    
 }
 
