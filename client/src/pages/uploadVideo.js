@@ -202,15 +202,15 @@ const handleCategoty2=(e)=>{
     setSelectedFile(acceptedFiles[0])
     var canvas = document.getElementById('canvas'); //이미지를 따오기
       var video = document.getElementById('video'); //video tag 넣기
-      const file = acceptedFiles[0]; 
-      const videourl = URL.createObjectURL(file); 
-      video.setAttribute("src", videourl); //비디오가만들어지는데 이거는 내장함수잖아요 ... 안되더라고요..
-
+      const file = acceptedFiles[0]; //파일정보를가져와서
+      const videourl = URL.createObjectURL(file); //비디오 url생성
+      video.setAttribute("src", videourl+'#t=20'); //비디오가만들어지는데 이거는 내장함수잖아요 ... 안되더라고요..
+///////////////////////////
       video.onloadeddata = function(){ //이미지 따오는 함수 비디오가 업로드되엇을때 
         console.log(canvas)
         setTimeout(() => {
           let ctx = canvas.getContext('2d');  // 2d
-          canvas.getContext('2d').drawImage(video, 0, 0, 250, 140); //그리기
+          canvas.getContext('2d').drawImage(video, 0, 0, 300, 200); //그리기
          var img  = canvas.toDataURL("image/png") //url로변환하기
         console.log('imgimgimgimgimgs',img) 
         console.log('heeeeeeeeeee',video.videoHeight)
@@ -277,14 +277,14 @@ const handleCategoty2=(e)=>{
             <div className="filebox" > 
             <div>
           
-            <video  id='video' ></video>
+            <video id='video'></video>
             </div>
              <div className='labelcontainer' {...getRootProps()}>
               <input  className="filebox"  type='file' {...getInputProps()} /> 
                 {
                 isDragActive ?
-                <label className='label' >ssss</label> :
-                <label className='label'><canvas id='canvas'  ></canvas></label> 
+                <label className='label' >들어왔어요!</label> :
+                <label className='label'><canvas id='canvas'></canvas></label> 
                 }
               </div>
               

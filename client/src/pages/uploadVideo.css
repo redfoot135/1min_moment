@@ -94,12 +94,12 @@
 
 #canvas{
  display: flex;
- width:"525px"; 
- height:"300px";
+ width:525px; 
+ height:300px;
 }
 
 #video{
-  opacity:0; 
+  
   width: 255px;
   height: 140px;
 }

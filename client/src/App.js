@@ -273,7 +273,7 @@ const getvideoInfo = (image,title, views, timestamp,video,video_id,category1,cat
           {/* <Footer /> */}
         </div>
 
-
+   
     {/* <Main/> */}
     {/* <UploadVideo accessToken={accessToken}/> */}
     {/* <VideoPage/> */}
