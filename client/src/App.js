@@ -165,6 +165,7 @@ const getvideoInfo = (image,title, views, timestamp,video,video_id) => {
     },
     withCredentials: true
     }).then((res) => {
+      console.log(res)
       setIsUploadVideo(res.data.data.myvideos)
     }).catch((err) => {
       console.log(err)
@@ -191,6 +192,7 @@ const getvideoInfo = (image,title, views, timestamp,video,video_id) => {
         )
   }
 
+  // 찜한 영상 데이터 상태
   const [isLikeVideo, setIsLikeVideo] = useState(null)
 
   // 찜한 영상 요청 함수
@@ -202,7 +204,7 @@ const getvideoInfo = (image,title, views, timestamp,video,video_id) => {
     },
     withCredentials: true
     }).then((res) => {
-      console.log(res) // res 영상 데이터 형식이 아리까리(?)
+      console.log(res.data) // res 영상 데이터 형식이 아리까리(?)
       setIsLikeVideo(res.data.data.likeVideos) 
     }).catch((err) => {
       console.log(err)

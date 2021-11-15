@@ -34,7 +34,7 @@ module.exports = async (req, res) => {
         // 토큰 안의 유저 정보가 데이터베이스에 존재하면
         // 여기 부분은 에러날 가능성이 있으니 검토 해봐야할 부분!!
     
-        const videoLikeData = db.video_like.findAll({
+        const videoLikeData = await db.video_like.findAll({
           where: { user_id: userData.dataValues.id }
         })
     

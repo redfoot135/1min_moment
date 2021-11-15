@@ -83,11 +83,11 @@
 
 
 #canvas{
- display: none; 
+ /* display: none;  */
 }
 
 #video{
-  opacity:0; 
+  /* opacity:0;  */
   width: 255px;
   height: 140px;
 }
