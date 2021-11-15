@@ -1,12 +1,9 @@
-.myuploadvideo-box {
+/* .myuploadvideo-box {
     box-sizing: border-box;
-    /* border: 1px solid black; */
-    /* background-color: #f9f9f9; */
-    /* padding: 40px 20px; */
     padding-bottom: 0;
     position:relative;
     top: 80px;
-}
+} */
 
 .myvideos {
   display: flex;
