@@ -18,7 +18,7 @@ export default function Main({category,searchResult,searchInfo,getvideoInfo,setS
     const [itemIndex, setItemIndex] = useState(0);
     const [itemList, setItemList] = useState([])
     const [cursor, setCursor] = useState(50)
-    console.log('searchInfosearchInfosearchInfo',searchInfo)
+
  //   const [result, setResult] = useState(video_list.slice(0, 20));
      // 
      //저위에있는것들지우고 정해진 갯수만큼 받아올꺼에요 20~30
@@ -79,11 +79,11 @@ export default function Main({category,searchResult,searchInfo,getvideoInfo,setS
       let scrollHeight = Math.max(document.documentElement.scrollHeight, document.body.scrollHeight);
       let scrollTop = Math.max(document.documentElement.scrollTop, document.body.scrollTop);
       let clientHeight = document.documentElement.clientHeight;
-        console.log('scrollHeight',scrollHeight)
-        console.log('scrollTop',scrollTop)
-        console.log('clientHeight',clientHeight)
-        console.log('itemlist_______',itemList[itemList.length-1])
-        console.log('xxxxxxxxxxxxxxxxxx',x)
+        // console.log('scrollHeight',scrollHeight)
+        // console.log('scrollTop',scrollTop)
+        // console.log('clientHeight',clientHeight)
+        // console.log('itemlist_______',itemList[itemList.length-1])
+        // console.log('xxxxxxxxxxxxxxxxxx',x)
       if(scrollTop + clientHeight+1 >scrollHeight) {
         var config = {
           method: 'get',
@@ -142,10 +142,9 @@ export default function Main({category,searchResult,searchInfo,getvideoInfo,setS
       .then((res)=>{
         setItemList([])
        // setSearchInfo('')
-        console.log('itemList',itemList)
         //setItemList([itemList].concat(res.data))
-        console.log(res.data)
         setItemList(itemList => [...itemList, ...res.data.data])
+        console.log('itemList',itemList)
         setIsUploadVideo(res.data.data)
         //console.log('res_____',res.data[res.data.length-1].id)
       
@@ -156,10 +155,10 @@ export default function Main({category,searchResult,searchInfo,getvideoInfo,setS
       //  x = res.data.data[0].id
       //  }
       if(res.data.data[res.data.data.length-1]){
-        console.log('res@@@@@@@',res.data)
-        console.log('res_____',res.data.data[res.data.data.length-1].id)
+        // console.log('res@@@@@@@',res.data)
+        // console.log('res_____',res.data.data[res.data.data.length-1].id)
        x = res.data.data[res.data.data.length-1].id
-       console.log(x)
+      //  console.log(x)
        }
       })
      

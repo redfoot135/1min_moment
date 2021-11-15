@@ -7,8 +7,9 @@ import './videopage.css'
 
 
 export default function VideoPage({videoInfo,accessToken,userInfo}){
-   console.log(videoInfo)
-   console.log(accessToken)
+  //  console.log(videoInfo)
+  //  console.log(accessToken)
+
    const clickLikeBtn = () =>{
     axios
     .post(

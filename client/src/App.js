@@ -161,7 +161,7 @@ const getvideoInfo = (image,title, views, timestamp,video,video_id,category1,cat
 
   // 내가 업로드 한 영상 모음 객체 -> MyUploadVideo로 props 전달됨
   const [isUploadVideo, setIsUploadVideo] = useState(null)
- 
+  
   // 내가 업로드 한 영상 요청 함수 -> MyUploadVideo로 props 전달됨
   const handleUpload = () => {
     axios.get("https://localhost:80/myvideo",
@@ -171,7 +171,7 @@ const getvideoInfo = (image,title, views, timestamp,video,video_id,category1,cat
     },
     withCredentials: true
     }).then((res) => {
-      console.log(res)
+      console.log('uploadVideo', res)
       setIsUploadVideo(res.data.data.myvideos)
     }).catch((err) => {
       console.log(err)
@@ -180,7 +180,7 @@ const getvideoInfo = (image,title, views, timestamp,video,video_id,category1,cat
   
   // 업로드 비디오 중 클릭한 영상 데이터 상태
   const [clickMyVideoData, setClickMyVideoData] = useState(null)
-  console.log(clickMyVideoData)
+
   // 업로드 비디오 중 클릭한 영상 데이터 상태 변경 함수
   const setClickMyVideoDataFunc = (clickVideoData) => {
     setClickMyVideoData(isUploadVideo.filter((el) => el.id === clickVideoData)[0])
@@ -200,7 +200,6 @@ const getvideoInfo = (image,title, views, timestamp,video,video_id,category1,cat
 
   // 찜한 영상 데이터 상태
   const [isLikeVideo, setIsLikeVideo] = useState(null)
-  console.log(isLikeVideo)
 
   // 찜한 영상 요청 함수
   const handleLikeVideo = () => { 
@@ -212,7 +211,7 @@ const getvideoInfo = (image,title, views, timestamp,video,video_id,category1,cat
     withCredentials: true
     }).then((res) => {
       console.log(res.data) // res 영상 데이터 형식이 아리까리(?)
-      setIsLikeVideo(res.data.data.likeVideos) 
+      setIsLikeVideo(res.data.data.myvideos) 
     }).catch((err) => {
       console.log(err)
     })

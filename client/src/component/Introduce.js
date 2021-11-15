@@ -22,10 +22,10 @@ const Introduce = () => {
               <img src="https://i.ibb.co/w4xB99n/003.png" class="d-block w-100 introduce" alt="..."/>
             </div>
             <div class="carousel-item">
-              <img src="https://i.ibb.co/7Sx8WwC/004.png" class="d-block w-100 introduce" alt="..."/>
+              <img src="https://i.ibb.co/2qWYXcb/001.jpg" class="d-block w-100 introduce" alt="..."/>
             </div>
             <div class="carousel-item">
-              <img src="https://i.ibb.co/HqmnkxK/005.png" class="d-block w-100 introduce" alt="..."/>
+              <img src="https://i.ibb.co/znNPcgK/5-001.jpg" class="d-block w-100 introduce" alt="..."/>
             </div>
             <div class="carousel-item">
               <img src="https://i.ibb.co/GJwwpWP/006.png" class="d-block w-100 introduce" alt="..."/>
