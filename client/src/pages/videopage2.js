@@ -22,7 +22,7 @@ export default function VideoPage2({clickMyVideoData, userInfo, accessToken, vie
     const deleteMyVideoFunc = () => {
         console.log(accessToken)
         console.log(clickMyVideoData)
-        axios.delete(`https://localhost:80/myvideo?id=${clickMyVideoData.id}`,{
+        axios.delete(`${process.env.REACT_APP_SERVER}/myvideo?id=${clickMyVideoData.id}`,{
             headers: {
             authorization: `Bearer ${accessToken}`,
             "Content-Type" : "application/json"   
@@ -138,7 +138,7 @@ export default function VideoPage2({clickMyVideoData, userInfo, accessToken, vie
                     </div>
                 </div>
             </div>
-            <Comments accessToken={accessToken} videoInfo={videoInfo}/>
+            <Comments accessToken={accessToken} videoInfo={videoInfo} userInfo={userInfo}/>
         </div>
     )
 }

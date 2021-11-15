@@ -1,226 +1,240 @@
 .mypage-box {
-    position: relative;
+  position: relative;
 }
 
 .mypage-backImage-box {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    position: relative;
-    top: 80px;
-  }
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  position: relative;
+  top: 80px;
+}
 
 .mypage-backImage {
-    position: relative;
-    border-radius: 40px;
-    margin-top: 40px;
-  }
+  position: relative;
+  border-radius: 40px;
+  margin-top: 40px;
+}
 
 .mypage-title {
-    position: absolute;
-    top: 25%;
+  position: absolute;
+  top: 0;
+  margin-top: 150px;
 }
 
 .mypage-title-txt {
-    width: 380px;
+  width: 380px;
 }
 
 .mypage-content-box {
-    position: absolute;
-    top: 60%;
-    left: 24.5%;
-    display: flex;
-    justify-content:space-around;
-    align-items: center;
-    width: 50%;
+  position: absolute;
+  top: 60%;
+  left: 24.5%;
+  display: flex;
+  justify-content:space-around;
+  align-items: center;
+  width: 50%;
 }
 
-.mypage-myinfo-icon {
-    width: 35px;
-    height: 35px;
-    margin-bottom: 10px;
-    margin-top: 5px;
+.mypage-icon {
+margin: 5px;
 }
 
-.mypage-myupload-icon {
-    width: 40px;
-    height: 40px;
-    margin-bottom: 10px;
-}
-
-.mypage-mylike-icon {
-    width: 40px;
-    height: 40px;
-    margin-bottom: 10px;
+.mypage-button-text {
+font-size: 2vw;
 }
 
 .mypage-controller {
-  position: relative;
-  display: flex;
-  justify-content:space-around;
-  width: 100%;
-  height: 0;
-  padding-bottom: 25%;
-  
+position: relative;
+display: flex;
+justify-content:space-around;
+width: 100%;
+height: 0;
+padding-bottom: 25%;
+
 }
 
 .mypage-myinfo-txt {
-  position: absolute;
-  left: 5%;
-    box-shadow: rgba(0, 0, 0, 0.24) 0px 8px 8px 0px, rgba(0, 0, 0, 0.24) 0px 0px 5px 0px;
-    background-color: #f1c40e;
-    border-radius: 30px;
-    width: 25%;
-    /* min-width: 140px; */
-    height: 100%;
-    /* min-height: 140px; */
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    font-weight: 800;
-    cursor: pointer;
-    /* margin-right: 40px; */
+position: absolute;
+left: 5%;
+  box-shadow: rgba(0, 0, 0, 0.24) 0px 8px 8px 0px, rgba(0, 0, 0, 0.24) 0px 0px 5px 0px;
+  background-color: #f1c40e;
+  border-radius: 30px;
+  width: 25%;
+  /* min-width: 140px; */
+  height: 100%;
+  /* min-height: 140px; */
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  font-weight: 800;
+  cursor: pointer;
+  /* margin-right: 40px; */
 }
-  
+
 
 .mypage-myupload-txt {
-  position: absolute;
-  left:37.5%;
-    box-shadow: rgba(0, 0, 0, 0.24) 0px 8px 8px 0px, rgba(0, 0, 0, 0.24) 0px 0px 5px 0px;
-    background-color: #f1c40e;
-    border-radius: 30px;
-    width: 25%;
-    height: 100%;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    font-weight: 750;
-    cursor: pointer;
-    /* margin: 0 40px; */
+position: absolute;
+left:37.5%;
+  box-shadow: rgba(0, 0, 0, 0.24) 0px 8px 8px 0px, rgba(0, 0, 0, 0.24) 0px 0px 5px 0px;
+  background-color: #f1c40e;
+  border-radius: 30px;
+  width: 25%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  font-weight: 750;
+  cursor: pointer;
+  /* margin: 0 40px; */
 }
 
 .mypage-mylike-txt {
-  position: absolute;
-  right: 5%;
-    box-shadow: rgba(0, 0, 0, 0.24) 0px 8px 8px 0px, rgba(0, 0, 0, 0.24) 0px 0px 5px 0px;
-    background-color: #f1c40e;
-    border-radius: 30px;
-    width: 25%;
-    height: 100%;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    font-weight: 750;
-    cursor: pointer;
-    /* margin-left: 40px; */
+position: absolute;
+right: 5%;
+  box-shadow: rgba(0, 0, 0, 0.24) 0px 8px 8px 0px, rgba(0, 0, 0, 0.24) 0px 0px 5px 0px;
+  background-color: #f1c40e;
+  border-radius: 30px;
+  width: 25%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  font-weight: 750;
+  cursor: pointer;
+  /* margin-left: 40px; */
 }
 
 .btnbox:hover {
-    box-shadow: rgba(0, 0, 0, 0.24) 1px 1px 8px 8px
+  box-shadow: rgba(0, 0, 0, 0.24) 1px 1px 8px 8px
 }
 
 @font-face {
-    font-family: 'SBAggroB';
-    src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2108@1.1/SBAggroB.woff') format('woff');
-    font-weight: normal;
-    font-style: normal;
-}
-
-@font-face {
-  font-family: 'SBAggroM';
-  src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2108@1.1/SBAggroM.woff') format('woff');
+  font-family: 'SBAggroB';
+  src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2108@1.1/SBAggroB.woff') format('woff');
   font-weight: normal;
   font-style: normal;
 }
 
 @font-face {
-    font-family: 'SBAggro';
-    src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2108@1.1/SBAggro.woff') format('woff');
-    font-weight: normal;
-    font-style: normal;
-  }
+font-family: 'SBAggroM';
+src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2108@1.1/SBAggroM.woff') format('woff');
+font-weight: normal;
+font-style: normal;
+}
+
+@font-face {
+  font-family: 'SBAggro';
+  src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2108@1.1/SBAggro.woff') format('woff');
+  font-weight: normal;
+  font-style: normal;
+}
 
 @media only screen and (max-width: 999px) {
-  .mypage-content-box {
-    top: 70%;
-  }    
+.mypage-content-box {
+  top: 70%;
+}    
 
- } 
+.mypage-myinfo-txt {
+  border-radius: 25px;
+}
+.mypage-myupload-txt {
+  border-radius: 25px;
+}
+.mypage-mylike-txt {
+  border-radius: 25px;
+}
+} 
 
- @media only screen and (max-width: 650px) {
-  .mypage-content-box {
-    top: 80%;
-  }    
-  .mypage-title-txt {
-    width: 250px;
-    margin-top: 20px;
-  }
- } 
+@media only screen and (max-width: 767px) {
+.mypage-content-box {
+  top: 75%;
+}    
+.mypage-title-txt {
+  width: 250px;
+}
+.mypage-myinfo-txt {
+  border-radius: 20px;
+}
+.mypage-myupload-txt {
+  border-radius: 20px;
+}
+.mypage-mylike-txt {
+  border-radius: 20px;
+}
+.mypage-icon {
+  margin: 3px;
+}
+} 
 
- @media only screen and (max-width: 595px) {
-  .mypage-content-box {
-    top: 80%;
-  }    
-  .mypage-button-text {
-    display: none;
-  }
- } 
- 
- @media only screen and (max-width: 500px) {
-  .mypage-content-box {
-    top: 90%;
-  }    
-  .mypage-button-text {
-    display: none;
-  }
-  .mypage-title-txt {
-    width: 200px;
-    margin-top: 40px;
-  }
-  .mypage-myupload-icon {
-    width: 25px;
-    height: 25px;
-  }
-  .mypage-mylike-icon {
-    width: 25px;
-    height: 25px;
-  }
-  .mypage-myinfo-icon {
-    width: 25px;
-    height: 25px;
-  }
- } 
+@media only screen and (max-width: 600px) {
+.mypage-content-box {
+  top: 80%;
+}    
+.mypage-myinfo-txt {
+  border-radius: 15px;
+}
+.mypage-myupload-txt {
+  border-radius: 15px;
+}
+.mypage-mylike-txt {
+  border-radius: 15px;
+}
+} 
 
- @media only screen and (max-width: 400px) {
-  .mypage-content-box {
-    top: 95%;
-  }    
-  .mypage-button-text {
-    display: none;
-  }
- } 
+@media only screen and (max-width: 500px) {
+.mypage-content-box {
+  top: 90%;
+}    
+.mypage-title-txt {
+  width: 200px;
+}
+.mypage-myupload-icon {
+  width: 25px;
+  height: 25px;
+}
+.mypage-mylike-icon {
+  width: 25px;
+  height: 25px;
+}
+.mypage-myinfo-icon {
+  width: 25px;
+  height: 25px;
+}
+} 
 
- @media only screen and (max-width: 360px) {
-  .mypage-content-box {
-    top: 100%;
-  }    
-  .mypage-button-text {
-    display: none;
-  }
-  .mypage-title-txt {
-    width: 150px;
-    margin-top: 50px;
-  }
- } 
+@media only screen and (max-width: 400px) {
+.mypage-content-box {
+  top: 95%;
+}    
+.mypage-myinfo-txt {
+  border-radius: 10px;
+}
+.mypage-myupload-txt {
+  border-radius: 10px;
+}
+.mypage-mylike-txt {
+  border-radius: 10px;
+}
+} 
 
- @media only screen and (max-width: 360px) {
-  .mypage-content-box {
-    top: 100%;
-  }    
-  .mypage-button-text {
-    display: none;
-  }
- } 
+@media only screen and (max-width: 360px) {
+.mypage-content-box {
+  top: 100%;
+}    
+.mypage-title-txt {
+  width: 150px;
+}
+.mypage-icon {
+  margin: 1px;
+}
+} 
+
+@media only screen and (max-width: 360px) {
+.mypage-content-box {
+  top: 95%;
+}    
+} 

@@ -73,7 +73,9 @@ app.post("/like/comment", controllers.post_like_comment); //성근/완료
 app.get("/like/comment", controllers.get_like_comment); //성근/?? 이거 와이어 프레임에 존재 하지않음 (보류)
 app.delete("/like/comment", controllers.delete_like_comment); //성근/완료
 
-
+app.get("/", (req, res) => {
+  res.send("hello world")
+})
 let server;
 if(fs.existsSync("./key.pem") && fs.existsSync("./cert.pem")){
 

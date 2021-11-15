@@ -13,7 +13,7 @@ export default function VideoPage({videoInfo,accessToken,userInfo}){
    const clickLikeBtn = () =>{
     axios
     .post(
-      'https://localhost:80/like/video',{
+      `${process.env.REACT_APP_SERVER}/like/video`,{
         video_id:videoInfo.video_id
       },{
         headers: {

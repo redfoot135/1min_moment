@@ -165,7 +165,7 @@ const handleCategoty2=(e)=>{
       console.log(accessToken)
     axios
     .post(
-      'https://localhost:80/myvideo',{
+      `${process.env.REACT_APP_SERVER}/myvideo`,{
         title:title , video:videoLink, thumbnail:imgLink, category1:checkList[0], category2:checkList[1], category3:checkList[2]
       },{
         headers: {

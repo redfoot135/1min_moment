@@ -42,7 +42,7 @@ const SignUp = ({ openSignUpModalFunc }) => {
         } else if(password !== passwordConfirm) {
             setErrorMessage("비밀번호가 서로 다릅니다")
         }else {
-            axios.post("https://localhost:80/signup",
+            axios.post(`${process.env.REACT_APP_SERVER}/signup`,
             {username, email, password},
             {"content-type":"application/json", withCredentials: true}
             )
