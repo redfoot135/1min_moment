@@ -217,7 +217,7 @@ const handleCategoty2=(e)=>{
         console.log('wiiiiiiiiiiid',video.videoWidth)     
         setImgData(img)
         console.log('22223838585858',imgData)
-        }, 1000);
+        }, 3000);
         
       }
       
@@ -271,7 +271,9 @@ const handleCategoty2=(e)=>{
           
     <div className="add_file">      
       
-      
+      <div className="uploadTitle">
+        <img className="uploadTitle-text" src="https://i.ibb.co/ZmbDdtD/image.png" alt="" />
+      </div>
       <div>
         {/* <input type="file" onChange={uploadFile} className='addVideo'  /> */}
             <div className="filebox" > 
@@ -291,11 +293,11 @@ const handleCategoty2=(e)=>{
             </div>
             
             <div className='videoInfo'>
-          <div>
-            <input className="upload-name" value={selectedFile.name}/>
+          <div className="upload-holder">
+            <input className="upload-name" value={selectedFile.name} placeholder={'파일이름'}/>
           </div>
-          <div>
-              <input className="upload-title" type='text' onChange={handleTargetTitle} value={title}/>
+          <div className="upload-holder">
+              <input className="upload-title" type='text' onChange={handleTargetTitle} value={title} placeholder={'제목'}/>
           </div>
               <Button className='addcategory_upload' onClick= {openCategory}>카테고리설정</Button>   
               {/* {showCategory === true ?
@@ -310,12 +312,12 @@ const handleCategoty2=(e)=>{
         <div>
         <input type='checkbox' className='checkbox' onChange={handleCategoty} value='의료'/>의료
         <input type='checkbox' className='checkbox' onChange={handleCategoty} value='교육'/>교육
-        <input type='checkbox' className='checkbox' onChange={handleCategoty} value='무언가1'/>무언가1
+        <input type='checkbox' className='checkbox' onChange={handleCategoty} value='무언가1'/>세금
         </div>
         <div>
-        <input type='checkbox' className='checkbox' onChange={handleCategoty} value='무언가2'/>무언가2
-        <input type='checkbox' className='checkbox' onChange={handleCategoty} value='무언가3'/>무언가3
-        <input type='checkbox' className='checkbox' onChange={handleCategoty} value='무언가4'/>무언가4
+        <input type='checkbox' className='checkbox' onChange={handleCategoty} value='무언가2'/>음식
+        <input type='checkbox' className='checkbox' onChange={handleCategoty} value='무언가3'/>뷰티
+        <input type='checkbox' className='checkbox' onChange={handleCategoty} value='무언가4'/>육아
         </div>
             </div>
       </div> 

@@ -4,7 +4,7 @@ import "./UploadVideoCard.css"
 
 const UploadVideoCard = ({movieData, setClickMyVideoDataFunc}) => {
 
-    // console.log(image) // 모든 이미지가 다 콘솔에 뜸 
+    console.log(movieData)
 
     return (
         <div className="upload-videocard col-lg-4 col-md-6 col-sm-12 p-0 my-2">

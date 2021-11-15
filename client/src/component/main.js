@@ -9,7 +9,7 @@ import { useHistory } from 'react-router-dom';
 import UploadVideoCard from '../pages/UploadVideoCard';
 
 
-export default function Main({category,searchResult,searchInfo,getvideoInfo,setSearchInfo}){
+export default function Main({category,searchResult,searchInfo,getvideoInfo,setSearchInfo, setClickMyVideoDataFunc, setIsLikeVideo}){
     const [currentCategory, setCurrentCategory]=useState('');
     const [showCategory, setshowCategory]=useState(false)
     const [categoryInfo, setcategoryInfo]= useState('')
@@ -101,7 +101,6 @@ export default function Main({category,searchResult,searchInfo,getvideoInfo,setS
           console.log('itemList',itemList)
           //setItemList([itemList].concat(res.data))
           setItemList(itemList => [...itemList, ...res.data.data])
-          
           //console.log('res_____',res.data[res.data.length-1].id)
         
           // console.log('itemlist2_______',itemList)
@@ -147,6 +146,7 @@ export default function Main({category,searchResult,searchInfo,getvideoInfo,setS
         //setItemList([itemList].concat(res.data))
         console.log(res.data)
         setItemList(itemList => [...itemList, ...res.data.data])
+        setIsLikeVideo(res.data.data)
         //console.log('res_____',res.data[res.data.length-1].id)
       
         // console.log('itemlist2_______',itemList)
@@ -167,47 +167,49 @@ export default function Main({category,searchResult,searchInfo,getvideoInfo,setS
      
      },[searchInfo,currentCategory])
      
+     console.log(itemList)
 
     return(
-     <div className="col-8">
-     <div className='categorycontainer'> 
-     {checkListDisplay.length ===3 ? 
-     ( <div className='categorycontainer2'>
-     <div className='currentmenu_category'>{checkListDisplay[0]}</div>
-      <div className='currentmenu_category'>{checkListDisplay[1]}</div>
-      <div className='currentmenu_category'>{checkListDisplay[2]}</div>
-      </div>) : null }
-      {checkListDisplay.length ===2 ? 
-     ( <div  className='categorycontainer2'>
-     <div className='currentmenu_category'>{checkListDisplay[0]}</div>
-      <div className='currentmenu_category'>{checkListDisplay[1]}</div>
-      
-      </div>) : null }
-      {checkListDisplay.length ===1 ? 
-       ( <div  className='categorycontainer2'>
-     <div className='currentmenu_category'>{checkListDisplay[0]}</div>
-    
-      </div>) : null }
-      
-      <div className='addbox' onClick= {openCategory}>+</div>      
-     </div> 
-     <div>
-       {showCategory === true ?
-      (<Addcategory confirmBtn={confirmBtn} handleCategoty={handleCategoty}/>)
-      :
-      null}
-      </div>
-      <div className='videocontainer container px-0 m-0'> {/*//곧 map으로 뿌릴 예정 ;; */}
-        <div className="row">
-        
-          {itemList.map((obj, index) => <Video key={obj.id} movieData={obj}/>) }
-        </div>
-        
-        
-     </div>
-       </div>
-    )
 
-    
+     <div className="main col-12 sm-px-0">
+       <div className="col-md-10">
+         <div className="title"><img className="main-title" src="https://i.ibb.co/zRP56gQ/2021-11-15-4-55-45-removebg-preview.png"/></div>
+        <div className='categorycontainer'> 
+        {checkListDisplay.length ===3 ? 
+        ( <div className='categorycontainer2'>
+        <div className='currentmenu_category'>{checkListDisplay[0]}</div>
+          <div className='currentmenu_category'>{checkListDisplay[1]}</div>
+          <div className='currentmenu_category'>{checkListDisplay[2]}</div>
+          </div>) : null }
+          {checkListDisplay.length ===2 ? 
+        ( <div  className='categorycontainer2'>
+        <div className='currentmenu_category'>{checkListDisplay[0]}</div>
+          <div className='currentmenu_category'>{checkListDisplay[1]}</div>
+          
+          </div>) : null }
+          {checkListDisplay.length ===1 ? 
+          ( <div  className='categorycontainer2'>
+        <div className='currentmenu_category'>{checkListDisplay[0]}</div>
+        
+          </div>) : null }
+          
+          <div className='addbox' onClick= {openCategory}>+</div>      
+        </div> 
+        <div>
+          {showCategory === true ?
+          (<Addcategory confirmBtn={confirmBtn} handleCategoty={handleCategoty}/>)
+          :
+          null}
+          </div>
+          <div className='videocontainer container px-0 m-0'> {/*//곧 map으로 뿌릴 예정 ;; */}
+            <div className="row">
+            
+              {itemList.map((obj, index) => <Video key={obj.id} movieData={obj}/>) }
+            </div>   
+
+        </div>
+       </div>
+      </div>
+    )
 }
 

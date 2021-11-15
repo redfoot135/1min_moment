@@ -46,7 +46,7 @@ function Nav2({openModalFunc,openSideBarlFunc , handleSignOut,getSearch,searchIn
           </Link>
                 <ul className = 'menu'>
 
-                <Link  to='/main'>
+                <Link  to='/main' style={{ textDecoration: 'none', color: "black" }}>
                 <li className='category'>모든 꿀팁</li>
                 </Link>
 
