@@ -19,7 +19,7 @@ export default function VideoPage2({clickMyVideoData, userInfo, accessToken, vie
     const deleteMyVideoFunc = () => {
         console.log(accessToken)
         console.log(clickMyVideoData)
-        axios.delete(`https://localhost:80/myvideo?id=${clickMyVideoData.id}`,{
+        axios.delete(`${process.env.REACT_APP_SERVER}/myvideo?id=${clickMyVideoData.id}`,{
             headers: {
             authorization: `Bearer ${accessToken}`,
             "Content-Type" : "application/json"   
@@ -58,7 +58,7 @@ export default function VideoPage2({clickMyVideoData, userInfo, accessToken, vie
     const likeVideoFunc = () => {
         console.log(likeVideo)
         if(likeVideo === false) {
-            axios.post("https://localhost:80/like/video",{video_id: clickMyVideoData.id},
+            axios.post(`${process.env.REACT_APP_SERVER}/like/video`,{video_id: clickMyVideoData.id},
             {
               headers: {
               authorization: `Bearer ${accessToken}`,
@@ -72,7 +72,7 @@ export default function VideoPage2({clickMyVideoData, userInfo, accessToken, vie
                 likeCountPlusFunc(); // 좋아요 카운트 +1
             })
         } else if(likeVideo === true) {
-            axios.delete(`https://localhost:80/like/video?video_id=${clickMyVideoData.id}`,
+            axios.delete(`${process.env.REACT_APP_SERVER}/like/video?video_id=${clickMyVideoData.id}`,
             {
               headers: {
               authorization: `Bearer ${accessToken}`,

@@ -34,7 +34,7 @@ export default function SignIn ({ handleAccessToken, handleUserInfo, openModalFu
         if(email === "" || password === "") {
             setErrorMessage("이메일과 비밀번호를 입력하세요")
         } else {
-            axios.post("https://localhost:80/signin",
+            axios.post(`${process.env.REACT_APP_SERVER}/signin`,
             {email, password},
             {"content-type":"application/json", withCredentials: true}
             )

@@ -74,7 +74,7 @@ const getvideoInfo = (image,title, views, timestamp,video,video_id,category1,cat
 
     setAccessToken(tokenData) 
 
-    axios.get("https://localhost:80/userinfo",
+    axios.get(`${process.env.REACT_APP_SERVER}/userinfo`,
     {headers: {
       authorization: `Bearer ${tokenData}`,
       "Content-Type" : "application/json"   
@@ -91,7 +91,7 @@ const getvideoInfo = (image,title, views, timestamp,video,video_id,category1,cat
   // 일반로그인 후 실행되는 함수
   const handleUserInfo = (userData) => { 
     setAccessToken(userData.accessToken)
-    axios.get("https://localhost:80/userinfo",
+    axios.get(`${process.env.REACT_APP_SERVER}/userinfo`,
     {headers: {
       authorization: `Bearer ${userData.accessToken}`,
       "Content-Type" : "application/json"   
@@ -108,7 +108,7 @@ const getvideoInfo = (image,title, views, timestamp,video,video_id,category1,cat
 
   // 로그아웃 버튼 클릭 후 실행되는 함수 
   const handleSignOut = () => {
-    axios.post("https://localhost:80/signout")
+    axios.post(`${process.env.REACT_APP_SERVER}/signout`)
     .then((res) => {
       setIsLogin(false);
       setUserInfo(null);
@@ -129,11 +129,11 @@ const getvideoInfo = (image,title, views, timestamp,video,video_id,category1,cat
   // refresh token 보내주면서 리다이렉션 함수
   useEffect(() => {    
     
-    axios.get("https://localhost:80/token")
+    axios.get(`${process.env.REACT_APP_SERVER}/token`)
     .then((res) => {
 
       if(res.data.data.accessToken) {
-        axios.get("https://localhost:80/userinfo",
+        axios.get(`${process.env.REACT_APP_SERVER}/userinfo`,
         {headers: {
         authorization: `Bearer ${res.data.data.accessToken}`,
         "Content-Type" : "application/json"   
@@ -164,7 +164,7 @@ const getvideoInfo = (image,title, views, timestamp,video,video_id,category1,cat
  
   // 내가 업로드 한 영상 요청 함수 -> MyUploadVideo로 props 전달됨
   const handleUpload = () => {
-    axios.get("https://localhost:80/myvideo",
+    axios.get(`${process.env.REACT_APP_SERVER}/myvideo`,
     {headers: {
       authorization: `Bearer ${accessToken}`,
       "Content-Type" : "application/json"   
@@ -187,7 +187,7 @@ const getvideoInfo = (image,title, views, timestamp,video,video_id,category1,cat
   }
 
   const viewStateFunc = (id) => { // 조회수 요청 함수
-      axios.post("https://localhost:80/views",{id: id},
+      axios.post(`${process.env.REACT_APP_SERVER}/views`,{id: id},
         {
           headers: {
           authorization: `Bearer ${accessToken}`,
@@ -204,7 +204,7 @@ const getvideoInfo = (image,title, views, timestamp,video,video_id,category1,cat
 
   // 찜한 영상 요청 함수
   const handleLikeVideo = () => { 
-    axios.get("https://localhost:80/like/video",
+    axios.get(`${process.env.REACT_APP_SERVER}/like/video`,
     {headers: {
       authorization: `Bearer ${accessToken}`,
       "Content-Type" : "application/json"   

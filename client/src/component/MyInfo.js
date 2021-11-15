@@ -50,7 +50,7 @@ const MyInfo = ({openMyInfoModalFunc, userInfo, accessToken, handleSecession}) =
           setErrorMessage("비밀번호가 서로 다릅니다")
       } else
         // 비밀번호 확인 요청 보내고
-        axios.post("https://localhost:80/checkPW",{password: password},
+        axios.post(`${process.env.REACT_APP_SERVER}/checkPW`,{password: password},
         {
           headers: {
           authorization: `Bearer ${accessToken}`,
@@ -60,7 +60,7 @@ const MyInfo = ({openMyInfoModalFunc, userInfo, accessToken, handleSecession}) =
         })
         .then((res) => {
             if(res.data.message === "비밀번호가 일치합니다") {
-                axios.delete("https://localhost:80/userinfo",
+                axios.delete(`${process.env.REACT_APP_SERVER}/userinfo`,
                 {
                 headers: {
                 authorization: `Bearer ${accessToken}`,
@@ -91,7 +91,7 @@ const MyInfo = ({openMyInfoModalFunc, userInfo, accessToken, handleSecession}) =
             setErrorMessage("비밀번호가 서로 다릅니다")
         } else
           // 비밀번호 확인 요청 보내고
-          axios.post("https://localhost:80/checkPW",{password: password},
+          axios.post(`${process.env.REACT_APP_SERVER}/checkPW`,{password: password},
           {
             headers: {
             authorization: `Bearer ${accessToken}`,
@@ -122,7 +122,7 @@ const MyInfo = ({openMyInfoModalFunc, userInfo, accessToken, handleSecession}) =
             setErrorMessage("비밀번호가 서로 다릅니다")
         } else
           // 비밀번호 변경 요청 보내고
-          axios.put("https://localhost:80/userinfo",{password: password2},
+          axios.put(`${process.env.REACT_APP_SERVER}/userinfo`,{password: password2},
           {
             headers: {
             authorization: `Bearer ${accessToken}`,
