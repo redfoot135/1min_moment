@@ -1,21 +1,20 @@
-.myuploadvideo-box {
-    box-sizing: border-box;
-    /* border: 1px solid black; */
-    /* background-color: #f9f9f9; */
-    /* padding: 40px 20px; */
-    padding-bottom: 0;
-    position:relative;
-    top: 80px;
+.mylikevideo {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
 }
 
 .title {
     position: relative;
     top: 80px;
-    
 }
 
 .mylikevideo-title {
     width: 380px;
+}
+
+.mylikevideo-box {
+    margin-top: 90px;
 }
 
 .likevideocard-box {
@@ -24,11 +23,6 @@
     /* padding-left: 23px; */
 }
 
-.mylikevideo {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-}
 
 
 /* @media only screen and (max-width: 767px) {

@@ -21,6 +21,10 @@
   width: 380px;
 }
 
+.myuploadvideo-box {
+  margin-top: 90px;
+}
+
 .uploadvideocard-box {
     display: flex;
     flex-wrap: wrap;

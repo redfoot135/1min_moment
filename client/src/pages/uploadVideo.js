@@ -178,7 +178,7 @@ const handleCategoty2=(e)=>{
            console.log(res)
        if(res.data.message==='Video registration is complete'){
         alert("성공")
-       // window.location.replace('/')
+       window.location.replace('/')
        }
        else{
         alert("실패")

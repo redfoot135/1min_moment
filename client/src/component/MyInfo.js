@@ -151,8 +151,8 @@ const MyInfo = ({openMyInfoModalFunc, userInfo, accessToken, handleSecession}) =
               </span>
               <div className="myInfo-modal-content">
                   <div className="myInfo-modal-title">내 정보</div>
-                  <div className="myInfo-modal-username">유저네임: {userInfo.name}</div>
-                  {userInfo.email === null ? null : <div className="myInfo-modal-useremail">이메일: {userInfo.email}</div>}
+                  <div className="myInfo-modal-username">{userInfo.name}</div>
+                  {userInfo.email === null ? null : <div className="myInfo-modal-useremail">{userInfo.email}</div>}
                   {isModifiedOpen === false ? 
                   <div className="myInfo-modal-buttonbox">
                   <button className="myInfo-modal-editmyinfo btn" onClick={openModifiedModalFunc}>비밀번호 변경하기</button>
@@ -163,7 +163,7 @@ const MyInfo = ({openMyInfoModalFunc, userInfo, accessToken, handleSecession}) =
                   <input className="current-password confirm" name="password" type="password" placeholder="현재 비밀번호 확인" onChange={passwordConfirmInputValue}></input>
                   { errorMessage === "" ? null 
                     : 
-                    <div className="password-errormessege">{errorMessage}</div>
+                    <div className="password-errormessege errorMessege2">{errorMessage}</div>
                   }
                   <button className="myInfo-modal-secession-last btn" onClick={modifiedFunc}>비밀번호 변경하기</button>
                   </div>
@@ -173,7 +173,7 @@ const MyInfo = ({openMyInfoModalFunc, userInfo, accessToken, handleSecession}) =
                   <input className="modified-password confirm" name="password" value={passwordConfirm2} type="password" placeholder="변경 비밀번호 확인" onChange={passwordConfirmInputValue2}></input>
                   { errorMessage === "" ? null 
                     : 
-                    <div className="password-errormessege">{errorMessage}</div>
+                    <div className="password-errormessege errorMessege2">{errorMessage}</div>
                   }
                   <button className="myInfo-modal-secession-last btn" onClick={modifiedFunc2} >비밀번호 변경하기</button>
                   </div>
@@ -188,7 +188,7 @@ const MyInfo = ({openMyInfoModalFunc, userInfo, accessToken, handleSecession}) =
                   <input className="currentn-password confirm" name="password" type="password" placeholder="비밀번호 확인" onChange={passwordConfirmInputValue}></input>
                   { errorMessage === "" ? null 
                     : 
-                    <div className="password-errormessege">{errorMessage}</div>
+                    <div className="password-errormessege errorMessege2">{errorMessage}</div>
                   }
                   <button className="myInfo-modal-secession-last btn" onClick={secessionFunc}>탈퇴하기</button>
                   </div>

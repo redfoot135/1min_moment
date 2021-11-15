@@ -44,7 +44,7 @@ export default function SignIn ({ handleAccessToken, handleUserInfo, openModalFu
                     console.log(res.cookies)
                     handleUserInfo(res.data.data)
                     openModalFunc();
-                    history.push("/")
+                    history.push("/main")
                 } else if(res.data.message === "이메일 인증 해주세요"){ // 이메일 인증 안된 사람
                     setErrorMessage("이메일 인증 후 이용해주시기 바랍니다")
                 }
