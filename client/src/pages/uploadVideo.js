@@ -271,7 +271,9 @@ const handleCategoty2=(e)=>{
           
     <div className="add_file">      
       
-      
+      <div className="uploadTitle">
+        <img className="uploadTitle-text" src="https://i.ibb.co/ZmbDdtD/image.png" alt="" />
+      </div>
       <div>
         {/* <input type="file" onChange={uploadFile} className='addVideo'  /> */}
             <div className="filebox" > 

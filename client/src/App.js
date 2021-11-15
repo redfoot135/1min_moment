@@ -180,7 +180,7 @@ const getvideoInfo = (image,title, views, timestamp,video,video_id,category1,cat
   
   // 업로드 비디오 중 클릭한 영상 데이터 상태
   const [clickMyVideoData, setClickMyVideoData] = useState(null)
-
+  console.log(clickMyVideoData)
   // 업로드 비디오 중 클릭한 영상 데이터 상태 변경 함수
   const setClickMyVideoDataFunc = (clickVideoData) => {
     setClickMyVideoData(isUploadVideo.filter((el) => el.id === clickVideoData)[0])
@@ -200,6 +200,7 @@ const getvideoInfo = (image,title, views, timestamp,video,video_id,category1,cat
 
   // 찜한 영상 데이터 상태
   const [isLikeVideo, setIsLikeVideo] = useState(null)
+  console.log(isLikeVideo)
 
   // 찜한 영상 요청 함수
   const handleLikeVideo = () => { 
@@ -250,7 +251,7 @@ const getvideoInfo = (image,title, views, timestamp,video,video_id,category1,cat
           </div>
         </Route>
         <Route exact path='/main'>
-          <Main category={category} searchInfo={searchInfo}  getvideoInfo={getvideoInfo} setSearchInfo={setSearchInfo}/>
+          <Main category={category} searchInfo={searchInfo}  getvideoInfo={getvideoInfo} setSearchInfo={setSearchInfo} setIsLikeVideo={setIsLikeVideo} setClickMyVideoDataFunc={setClickMyVideoDataFunc} />
         </Route>
         <Route exact path='/uploadvideo'>
           <UploadVideo accessToken={accessToken}/>

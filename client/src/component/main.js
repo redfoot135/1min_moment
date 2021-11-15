@@ -9,7 +9,7 @@ import { useHistory } from 'react-router-dom';
 import UploadVideoCard from '../pages/UploadVideoCard';
 
 
-export default function Main({category,searchResult,searchInfo,getvideoInfo,setSearchInfo}){
+export default function Main({category,searchResult,searchInfo,getvideoInfo,setSearchInfo, setClickMyVideoDataFunc, setIsLikeVideo}){
     const [currentCategory, setCurrentCategory]=useState('');
     const [showCategory, setshowCategory]=useState(false)
     const [categoryInfo, setcategoryInfo]= useState('')
@@ -101,7 +101,6 @@ export default function Main({category,searchResult,searchInfo,getvideoInfo,setS
           console.log('itemList',itemList)
           //setItemList([itemList].concat(res.data))
           setItemList(itemList => [...itemList, ...res.data.data])
-          
           //console.log('res_____',res.data[res.data.length-1].id)
         
           // console.log('itemlist2_______',itemList)
@@ -147,6 +146,7 @@ export default function Main({category,searchResult,searchInfo,getvideoInfo,setS
         //setItemList([itemList].concat(res.data))
         console.log(res.data)
         setItemList(itemList => [...itemList, ...res.data.data])
+        setIsLikeVideo(res.data.data)
         //console.log('res_____',res.data[res.data.length-1].id)
       
         // console.log('itemlist2_______',itemList)
@@ -167,6 +167,7 @@ export default function Main({category,searchResult,searchInfo,getvideoInfo,setS
      
      },[searchInfo,currentCategory])
      
+     console.log(itemList)
 
     return(
      <div className="col-8">
@@ -199,8 +200,7 @@ export default function Main({category,searchResult,searchInfo,getvideoInfo,setS
       </div>
       <div className='videocontainer container px-0 m-0'> {/*//곧 map으로 뿌릴 예정 ;; */}
         <div className="row">
-        
-          {itemList.map((obj, index) => <Video key={obj.id} movieData={obj}/>) }
+          {itemList.map((obj) => <Video key={obj.id} movieData={obj} setClickMyVideoDataFunc={setClickMyVideoDataFunc}/>) }
         </div>
         
         
