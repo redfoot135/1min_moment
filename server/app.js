@@ -25,10 +25,10 @@ app.use(
 );
 
 //로그인 로그아웃 회원가입
-app.post("/signin", controllers.post_signin); //성근/완료
-app.post("/signup", controllers.post_signup); //재훈//완료
+// app.post("/signin", controllers.post_signin); //성근/완료
+// app.post("/signup", controllers.post_signup); //재훈//완료
 app.post("/signout", controllers.post_signout); //성근/완료
-app.post("/socialSignin", controllers.post_socialSignin);//재훈
+// app.post("/socialSignin", controllers.post_socialSignin);//재훈
 // //이메일 인증용도
 // app.get("/emailauth", controllers.get_emailauth);//재훈//완료
 // //패스워드 확인
@@ -64,7 +64,7 @@ app.post("/socialSignin", controllers.post_socialSignin);//재훈
 // //비디오 좋아요
 
 // app.post("/like/video", controllers.post_like_video); //성근/완료
-// app.get("/like/video", controllers.get_like_video);  //성근/완료
+app.get("/like/video", controllers.get_like_video);  //성근/완료
 // app.delete("/like/video", controllers.delete_like_video);  //성근/완료
 
 
