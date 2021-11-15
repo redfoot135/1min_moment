@@ -21,11 +21,12 @@
 
  .categorycontainer{
     display: flex;
+    margin-top: 80px;
+
 } 
 
  .categorycontainer2{
     display: flex;
-    margin-top: 30px;
 } 
 
 .videocontainer{
@@ -59,7 +60,7 @@
     font-size:40px;
     margin-left :10px;
     text-shadow:2px 2px gray;
-    margin-top: 50px;
+    /* margin-top: 50px; */
     cursor: pointer;
 }
 
