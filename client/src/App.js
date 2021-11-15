@@ -251,7 +251,7 @@ const getvideoInfo = (image,title, views, timestamp,video,video_id,category1,cat
           </div> */}
         </Route>
         <Route exact path='/main'>
-          <Main category={category} searchInfo={searchInfo}  getvideoInfo={getvideoInfo} setSearchInfo={setSearchInfo} setIsLikeVideo={setIsLikeVideo} setClickMyVideoDataFunc={setClickMyVideoDataFunc} />
+          <Main category={category} searchInfo={searchInfo}  getvideoInfo={getvideoInfo} setSearchInfo={setSearchInfo} setIsUploadVideo={setIsUploadVideo} setClickMyVideoDataFunc={setClickMyVideoDataFunc} />
         </Route>
         <Route exact path='/uploadvideo'>
           <UploadVideo accessToken={accessToken}/>
