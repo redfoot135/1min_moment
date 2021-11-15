@@ -1,129 +1,226 @@
-.mypage-sidebar {
+.mypage-box {
+    position: relative;
+}
+
+.mypage-backImage-box {
     display: flex;
-    /* border-right: 1px solid #e0e0e0; */
+    flex-direction: column;
+    align-items: center;
+    position: relative;
+    top: 80px;
+  }
+
+.mypage-backImage {
+    position: relative;
+    border-radius: 40px;
+    margin-top: 40px;
+  }
+
+.mypage-title {
+    position: absolute;
+    top: 25%;
+}
+
+.mypage-title-txt {
+    width: 380px;
+}
+
+.mypage-content-box {
+    position: absolute;
+    top: 60%;
+    left: 24.5%;
+    display: flex;
+    justify-content:space-around;
+    align-items: center;
+    width: 50%;
+}
+
+.mypage-myinfo-icon {
+    width: 35px;
+    height: 35px;
+    margin-bottom: 10px;
+    margin-top: 5px;
+}
+
+.mypage-myupload-icon {
+    width: 40px;
+    height: 40px;
+    margin-bottom: 10px;
+}
+
+.mypage-mylike-icon {
+    width: 40px;
+    height: 40px;
+    margin-bottom: 10px;
+}
+
+.mypage-controller {
+  position: relative;
+  display: flex;
+  justify-content:space-around;
+  width: 100%;
+  height: 0;
+  padding-bottom: 25%;
+  
+}
+
+.mypage-myinfo-txt {
+  position: absolute;
+  left: 5%;
+    box-shadow: rgba(0, 0, 0, 0.24) 0px 8px 8px 0px, rgba(0, 0, 0, 0.24) 0px 0px 5px 0px;
+    background-color: #f1c40e;
+    border-radius: 30px;
+    width: 25%;
+    /* min-width: 140px; */
+    height: 100%;
+    /* min-height: 140px; */
+    display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: center;
-    width: 200px;
-    height: calc(100% - 80px);
-    box-sizing: border-box;
-    overflow: hidden;
-    position: fixed;
-    top: 80px;
-    transition-property: all ease 2.5s;
-    z-index: 2;
-    background-color: #2983C5;   
-    font-weight: bold;
-    border-radius: 0px 40px 40px 0px 
-
+    font-weight: 800;
+    cursor: pointer;
+    /* margin-right: 40px; */
 }
+  
 
-.mypage-userbox {
-    background-color: #E6F4F1;
-    height: 22%;
-    width: 100%;
-    position: absolute;
-    top: 0;
-    box-sizing: border-box;
+.mypage-myupload-txt {
+  position: absolute;
+  left:37.5%;
+    box-shadow: rgba(0, 0, 0, 0.24) 0px 8px 8px 0px, rgba(0, 0, 0, 0.24) 0px 0px 5px 0px;
+    background-color: #f1c40e;
+    border-radius: 30px;
+    width: 25%;
+    height: 100%;
     display: flex;
-    justify-content: center;
+    flex-direction: column;
     align-items: center;
-    /* padding-right: 8%; */
+    justify-content: center;
+    font-weight: 750;
+    cursor: pointer;
+    /* margin: 0 40px; */
 }
 
-.mypage-close {
-    position: absolute;
-    top: 5px;
-    right: 15px;
+.mypage-mylike-txt {
+  position: absolute;
+  right: 5%;
+    box-shadow: rgba(0, 0, 0, 0.24) 0px 8px 8px 0px, rgba(0, 0, 0, 0.24) 0px 0px 5px 0px;
+    background-color: #f1c40e;
+    border-radius: 30px;
+    width: 25%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    font-weight: 750;
+    cursor: pointer;
+    /* margin-left: 40px; */
+}
+
+.btnbox:hover {
+    box-shadow: rgba(0, 0, 0, 0.24) 1px 1px 8px 8px
+}
+
+@font-face {
+    font-family: 'SBAggroB';
+    src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2108@1.1/SBAggroB.woff') format('woff');
     font-weight: normal;
-    font-size: 25px;
-    color: black;
-    cursor: pointer
+    font-style: normal;
 }
 
-.user-logo {
-    width: 28px;
-    height: 29px;
-    color: white;
+@font-face {
+  font-family: 'SBAggroM';
+  src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2108@1.1/SBAggroM.woff') format('woff');
+  font-weight: normal;
+  font-style: normal;
 }
 
-.username {
-    color:rgb(54, 53, 53);
-    margin: 20px 20px;
-}
+@font-face {
+    font-family: 'SBAggro';
+    src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2108@1.1/SBAggro.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+  }
 
-.usermail {
-    color:rgb(54, 53, 53);
-    margin: 20px 20px;
-}
+@media only screen and (max-width: 999px) {
+  .mypage-content-box {
+    top: 70%;
+  }    
 
-.my-info-box {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-}
+ } 
 
-.my-info {
-    color:white;
-    margin: 20px 20px;
-    cursor: pointer;
-}
+ @media only screen and (max-width: 650px) {
+  .mypage-content-box {
+    top: 80%;
+  }    
+  .mypage-title-txt {
+    width: 250px;
+    margin-top: 20px;
+  }
+ } 
 
-.my-info-logo {
-    width: 24px;
+ @media only screen and (max-width: 595px) {
+  .mypage-content-box {
+    top: 80%;
+  }    
+  .mypage-button-text {
+    display: none;
+  }
+ } 
+ 
+ @media only screen and (max-width: 500px) {
+  .mypage-content-box {
+    top: 90%;
+  }    
+  .mypage-button-text {
+    display: none;
+  }
+  .mypage-title-txt {
+    width: 200px;
+    margin-top: 40px;
+  }
+  .mypage-myupload-icon {
+    width: 25px;
     height: 25px;
-    margin: 0px 2px 0px 2px;
-    color: white;
-}
-
-.like-video-box {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-}
-
-.like-video-logo {
-    width: 24px;
+  }
+  .mypage-mylike-icon {
+    width: 25px;
     height: 25px;
-    /* padding-left: 10px; */
-    color: white;
-}
-
-.like-video {
-    color:white;
-    margin: 20px 20px;
-    cursor: pointer;
-}
-
-.upload-video-box {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-}
-
-.upload-video-logo {
-    width: 24px;
+  }
+  .mypage-myinfo-icon {
+    width: 25px;
     height: 25px;
-    /* padding-left: 12px; */
-    color: white;
-}
+  }
+ } 
 
-.upload-video {
-    color:white;
-    margin: 20px 20px;
-    cursor: pointer;
-}
+ @media only screen and (max-width: 400px) {
+  .mypage-content-box {
+    top: 95%;
+  }    
+  .mypage-button-text {
+    display: none;
+  }
+ } 
 
-.txt:hover {
-    color: #F05C69;
-    border-radius: 2px;
-}
+ @media only screen and (max-width: 360px) {
+  .mypage-content-box {
+    top: 100%;
+  }    
+  .mypage-button-text {
+    display: none;
+  }
+  .mypage-title-txt {
+    width: 150px;
+    margin-top: 50px;
+  }
+ } 
 
-@media only screen and (max-width: 767px) {
-    .mypage-sidebar {
-      width: 100%;
-      border-radius: 0px 0px 0px 0px / 0px 0px 0px 0px;
-
-    }
-}
-
+ @media only screen and (max-width: 360px) {
+  .mypage-content-box {
+    top: 100%;
+  }    
+  .mypage-button-text {
+    display: none;
+  }
+ } 

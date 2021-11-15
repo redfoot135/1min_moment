@@ -14,6 +14,7 @@ const connection = mysql.createConnection({
 connection.connect();
 
 module.exports = async (req, res) => {
+  console.log('querrrrry',req.query)
   const { authorization, refreshToken } = req.headers;
   let id;
   if(authorization) {
@@ -134,40 +135,42 @@ module.exports = async (req, res) => {
     connection.query(`${select} from videos left join views on videos.id = views.video_id left join video_likes on videos.id = video_likes.video_id left join users on videos.user_id = users.id ${query2} group by videos.id ${having2} ${order} limit ${num}`, async function (error, results, fields) {
       if (error) {
           console.log(error);
-      }
-
-      const mychoice = await Promise.all(
-        results.map( async (el) => {
-          if(id) {
-            const isHave = await db.video_like.findOne({
-              where: {
-                video_id: el.id,
-                user_id: id
+      } else{
+        const mychoice = await Promise.all(
+          results.map( async (el) => {
+            if(id) {
+              const isHave = await db.video_like.findOne({
+                where: {
+                  video_id: el.id,
+                  user_id: id
+                }
+              })
+      
+              if(isHave) {
+                console.log("있음")
+                return true;
+              }else {
+                console.log("없음")
+                return false;
               }
-            })
-    
-            if(isHave) {
-              console.log("있음")
-              return true;
             }else {
-              console.log("없음")
               return false;
             }
-          }else {
-            return false;
-          }
+          })
+        )
+        const data = results.map((el, idx) => {
+          el.mychoice = mychoice[idx]
+          return el;
         })
-      )
-      const data = results.map((el, idx) => {
-        el.mychoice = mychoice[idx]
-        return el;
-      })
+  
+        console.log(mychoice)
+  
+        res.json({
+          data: data,
+          message: "completed the inquiry",
+        })
 
-      console.log(mychoice)
+      }
 
-      res.json({
-        data: data,
-        message: "completed the inquiry",
-      })
     });
   }

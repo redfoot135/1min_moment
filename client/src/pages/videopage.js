@@ -1,11 +1,12 @@
 import { Button } from '@material-ui/core';
+import { BrowserRouter, Route, Switch, useHistory, Link} from 'react-router-dom';
 import axios from 'axios';
 import React, {useState, useEffect} from 'react';
 import Comments from '../component/comments'
 import './videopage.css'
 
 
-export default function VideoPage({videoInfo,accessToken}){
+export default function VideoPage({videoInfo,accessToken,userInfo}){
    console.log(videoInfo)
    console.log(accessToken)
    const clickLikeBtn = () =>{
@@ -33,7 +34,9 @@ export default function VideoPage({videoInfo,accessToken}){
        }) 
    }
     return(
+      
         <div className='video_page_container'>
+          
             <video src={videoInfo.video} width='80%' controls />
             <div className='video_info_container'>
                 <div className='first_row'> 
@@ -43,17 +46,19 @@ export default function VideoPage({videoInfo,accessToken}){
                 <div className='second_row'>
                     <div>{videoInfo.timestamp}</div> 
                     <div>{videoInfo.views}</div>
-                    <div>삭제하기</div>
+                    <div></div>
                 </div>
                 <div className='third_row'>
-                    <div>카테고리</div>
+                    <div></div>
                 </div>   
                
             </div>
-               <Comments accessToken={accessToken} videoInfo={videoInfo}/>
+               <Comments accessToken={accessToken} videoInfo={videoInfo} userInfo={userInfo}/>
             <div>
 
             </div>
+           
         </div>
+       
     )
 }

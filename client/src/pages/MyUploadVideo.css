@@ -8,9 +8,20 @@
     top: 80px;
 }
 
+.myvideos {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
 .title {
   position: relative;
   top: 80px;
+  
+}
+
+.myvideo-title {
+  width: 380px;
 }
 
 .uploadvideocard-box {
@@ -19,8 +30,3 @@
     /* padding-left: 23px; */
 }
 
-.myvideos {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-}
