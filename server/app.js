@@ -36,7 +36,7 @@ app.post("/checkPW", controllers.post_checkPW);
 
 //마이비디오
 //조회, 올리고, 수정하고, 삭제하고
-app.get("/myvideo", controllers.get_myvideo);
+// app.get("/myvideo", controllers.get_myvideo);
 app.post("/myvideo", controllers.post_myvideo);
 app.put("/myvideo", controllers.put_myvideo);
 app.delete("/myvideo", controllers.delete_myvideo);
@@ -45,7 +45,7 @@ app.delete("/myvideo", controllers.delete_myvideo);
 app.post("/views", controllers.post_views);
 
 //메인 페이지 전체 비디오 조회
-app.get("/videos", controllers.get_videos); //성근
+// app.get("/videos", controllers.get_videos); //성근
 
 //최초 리프레시 토큰 유효한지 확인
 app.get("/token", controllers.get_token);
@@ -64,7 +64,7 @@ app.delete("/comment", controllers.delete_comment); //성근/완료
 //비디오 좋아요
 
 app.post("/like/video", controllers.post_like_video); //성근/완료
-app.get("/like/video", controllers.get_like_video);  //성근/완료
+// app.get("/like/video", controllers.get_like_video);  //성근/완료
 app.delete("/like/video", controllers.delete_like_video);  //성근/완료
 
 
