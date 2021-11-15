@@ -217,7 +217,7 @@ const handleCategoty2=(e)=>{
         console.log('wiiiiiiiiiiid',video.videoWidth)     
         setImgData(img)
         console.log('22223838585858',imgData)
-        }, 1000);
+        }, 3000);
         
       }
       
