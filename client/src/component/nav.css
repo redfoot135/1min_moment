@@ -15,12 +15,13 @@
   align-items: center;
   border-bottom: 4px solid #f1c40e;
   height: 100%;
-
+ 
 }
 
 .navContainer{
     /* margin: 0px 20px 0px 20px; */
     /* padding: 0% 6% 0% 7%; */
+    padding-top: 20px;
     height: 80px;
     display: flex;
     justify-content: center;
@@ -147,7 +148,18 @@ padding: 8px 12px
   cursor: pointer;
 }
 
-.logout-icon {
+
+.navContainer{
+  display: flex;
+ flex-direction: column;
+}
+.menu_container{
+  display: flex;
+  
+  
+}
+
+ .logout-icon {
   height: 30px;
   width: 30px;
 }
@@ -155,4 +167,21 @@ padding: 8px 12px
 .login-icon {
   height: 30px;
   width: 30px;
+}
+
+.menu_bottom{
+  padding-right: 30%;
+  font-family:  'Noto Sans KR', sans-serif;
+  font-size: 16px;
+}
+
+.menu_bottom_info{
+  padding-left: 20px;
+}
+
+
+.menu-icon {
+  height: 20px;
+  width: 30px;
+  margin-bottom: 5px;
 }

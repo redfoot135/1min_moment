@@ -30,7 +30,7 @@ module.exports = async (req, res) => {
         search.social = check.social
       }
       //받아온 정보가 부족하면
-      console.log('123444')
+      console.log('category1',category1)
       if(!title || !video || !thumbnail || !category1) {
         res.status(422).json({message: "insufficient parameters supplied"});
       }else {

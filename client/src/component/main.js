@@ -6,6 +6,9 @@ import Addcategory from './addcategory'
 import { Button } from '@material-ui/core'
 import axios from 'axios';
 import { useHistory } from 'react-router-dom';
+import UploadVideoCard from '../pages/UploadVideoCard';
+
+
 export default function Main({category,searchResult,searchInfo,getvideoInfo,setSearchInfo}){
     const [currentCategory, setCurrentCategory]=useState('');
     const [showCategory, setshowCategory]=useState(false)
@@ -71,7 +74,7 @@ export default function Main({category,searchResult,searchInfo,getvideoInfo,setS
       
     }
 
-    
+    //어디선가 0.5정도 먹고있음 찾아서 처리할것!    
     const infiniteScroll = useCallback(() => {
       let scrollHeight = Math.max(document.documentElement.scrollHeight, document.body.scrollHeight);
       let scrollTop = Math.max(document.documentElement.scrollTop, document.body.scrollTop);
@@ -81,7 +84,7 @@ export default function Main({category,searchResult,searchInfo,getvideoInfo,setS
         console.log('clientHeight',clientHeight)
         console.log('itemlist_______',itemList[itemList.length-1])
         console.log('xxxxxxxxxxxxxxxxxx',x)
-      if(scrollTop + clientHeight === scrollHeight) {
+      if(scrollTop + clientHeight+1 >scrollHeight) {
         var config = {
           method: 'get',
           url: `https://localhost:80/videos`,
@@ -197,7 +200,7 @@ export default function Main({category,searchResult,searchInfo,getvideoInfo,setS
       <div className='videocontainer container px-0 m-0'> {/*//곧 map으로 뿌릴 예정 ;; */}
         <div className="row">
         
-          {itemList.map((obj, index) => <Video key={obj.id} title={obj.title}  timestamp={obj.createdAt} image={obj.thumbnail} video={obj.video} getvideoInfo={getvideoInfo} video_id={obj.id}/>) }
+          {itemList.map((obj, index) => <Video key={obj.id} movieData={obj}/>) }
         </div>
         
         

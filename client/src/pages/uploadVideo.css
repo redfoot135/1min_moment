@@ -7,10 +7,15 @@
     border: 0;
 }  */
 .filebox{
-
+  padding-right:255px ;
+  margin-top: 300px;
+  display: flex;
+  justify-content: center;
+    align-items: center;
 }
+
 .filebox label {
-    display: inline-block;
+    display: flex;
     padding: 10px 20px;
     color: #999;
     vertical-align: middle;
@@ -19,8 +24,12 @@
     cursor: pointer;
     border: 1px solid #ebebeb;
     border-radius: 5px;
-    width: 700px;
-    height: 600px;
+    width: 525px;
+    height: 300px;
+    justify-content: center;
+    align-items: center;
+    /* align-items: center;
+    justify-content: center; */
 }
 
 
@@ -52,6 +61,7 @@
 }
 
 .addfile{
+  
     display: inline-block;
     vertical-align: middle;
 }
@@ -83,7 +93,11 @@
 
 
 #canvas{
- /* display: none;  */
+
+ display: flex;
+ width:"525px"; 
+ height:"300px";
+
 }
 
 #video{
@@ -91,3 +105,4 @@
   width: 255px;
   height: 140px;
 }
+

@@ -6,7 +6,7 @@ import Comments from '../component/comments'
 import './videopage.css'
 
 
-export default function VideoPage({videoInfo,accessToken}){
+export default function VideoPage({videoInfo,accessToken,userInfo}){
    console.log(videoInfo)
    console.log(accessToken)
    const clickLikeBtn = () =>{
@@ -46,14 +46,14 @@ export default function VideoPage({videoInfo,accessToken}){
                 <div className='second_row'>
                     <div>{videoInfo.timestamp}</div> 
                     <div>{videoInfo.views}</div>
-                    <div>삭제하기</div>
+                    <div></div>
                 </div>
                 <div className='third_row'>
-                    <div>카테고리</div>
+                    <div></div>
                 </div>   
                
             </div>
-               <Comments accessToken={accessToken} videoInfo={videoInfo}/>
+               <Comments accessToken={accessToken} videoInfo={videoInfo} userInfo={userInfo}/>
             <div>
 
             </div>

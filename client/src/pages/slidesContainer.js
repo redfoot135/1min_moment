@@ -1,6 +1,6 @@
 import Slider from '../component/slider'
 import React, {useState, useEffect, useRef} from 'react'
-
+import './slideContainer.css'
 
 function SlidesContainer({getvideoInfo,getCategory}){
   
@@ -9,7 +9,7 @@ function SlidesContainer({getvideoInfo,getCategory}){
 
     
     return (
-        <div>
+        <div className='sliderContainer_container'>
         <Slider idx = {idx[0]} idx2 = {idx2[0]} getvideoInfo={getvideoInfo} getCategory={getCategory}/>
         <Slider idx = {idx[1]} idx2 = {idx2[1]} getvideoInfo={getvideoInfo} getCategory={getCategory}/>
         <Slider idx = {idx[2]} idx2 = {idx2[2]} getvideoInfo={getvideoInfo} getCategory={getCategory}/>
