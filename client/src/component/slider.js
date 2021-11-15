@@ -64,7 +64,7 @@ function Slider({idx,idx2,getvideoInfo,getCategory}){
          axios(
             {
             method: 'get',
-            url: `https://localhost:80/videos`,
+            url: `${process.env.REACT_APP_SERVER}/videos`,
             params: {
              //솔트 넘겨주기
              sort: 'views',
