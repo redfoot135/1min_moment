@@ -29,49 +29,49 @@ app.post("/signin", controllers.post_signin); //성근/완료
 app.post("/signup", controllers.post_signup); //재훈//완료
 app.post("/signout", controllers.post_signout); //성근/완료
 app.post("/socialSignin", controllers.post_socialSignin);//재훈
-//이메일 인증용도
-app.get("/emailauth", controllers.get_emailauth);//재훈//완료
-//패스워드 확인
-app.post("/checkPW", controllers.post_checkPW);
+// //이메일 인증용도
+// app.get("/emailauth", controllers.get_emailauth);//재훈//완료
+// //패스워드 확인
+// app.post("/checkPW", controllers.post_checkPW);
 
-//마이비디오
-//조회, 올리고, 수정하고, 삭제하고
+// //마이비디오
+// //조회, 올리고, 수정하고, 삭제하고
 // app.get("/myvideo", controllers.get_myvideo);
-app.post("/myvideo", controllers.post_myvideo);
-app.put("/myvideo", controllers.put_myvideo);
-app.delete("/myvideo", controllers.delete_myvideo);
+// app.post("/myvideo", controllers.post_myvideo);
+// app.put("/myvideo", controllers.put_myvideo);
+// app.delete("/myvideo", controllers.delete_myvideo);
 
-//조회수 
-app.post("/views", controllers.post_views);
+// //조회수 
+// app.post("/views", controllers.post_views);
 
-//메인 페이지 전체 비디오 조회
+// //메인 페이지 전체 비디오 조회
 // app.get("/videos", controllers.get_videos); //성근
 
-//최초 리프레시 토큰 유효한지 확인
-app.get("/token", controllers.get_token);
+// //최초 리프레시 토큰 유효한지 확인
+// app.get("/token", controllers.get_token);
 
-//유저인포
-app.get("/userinfo", controllers.get_userinfo); //재훈
-app.put("/userinfo", controllers.put_userinfo); //재훈
-app.delete("/userinfo", controllers.delete_userinfo); //재훈
+// //유저인포
+// app.get("/userinfo", controllers.get_userinfo); //재훈
+// app.put("/userinfo", controllers.put_userinfo); //재훈
+// app.delete("/userinfo", controllers.delete_userinfo); //재훈
 
-//코멘트
-app.get("/comments", controllers.get_comments);
-app.post("/comment", controllers.post_comment); //성근/완료
-app.put("/comment", controllers.put_comment); //성근/완료
-app.delete("/comment", controllers.delete_comment); //성근/완료
+// //코멘트
+// app.get("/comments", controllers.get_comments);
+// app.post("/comment", controllers.post_comment); //성근/완료
+// app.put("/comment", controllers.put_comment); //성근/완료
+// app.delete("/comment", controllers.delete_comment); //성근/완료
 
-//비디오 좋아요
+// //비디오 좋아요
 
-app.post("/like/video", controllers.post_like_video); //성근/완료
+// app.post("/like/video", controllers.post_like_video); //성근/완료
 // app.get("/like/video", controllers.get_like_video);  //성근/완료
-app.delete("/like/video", controllers.delete_like_video);  //성근/완료
+// app.delete("/like/video", controllers.delete_like_video);  //성근/완료
 
 
-//코멘트 좋아요
-app.post("/like/comment", controllers.post_like_comment); //성근/완료
-app.get("/like/comment", controllers.get_like_comment); //성근/?? 이거 와이어 프레임에 존재 하지않음 (보류)
-app.delete("/like/comment", controllers.delete_like_comment); //성근/완료
+// //코멘트 좋아요
+// app.post("/like/comment", controllers.post_like_comment); //성근/완료
+// app.get("/like/comment", controllers.get_like_comment); //성근/?? 이거 와이어 프레임에 존재 하지않음 (보류)
+// app.delete("/like/comment", controllers.delete_like_comment); //성근/완료
 
 app.get("/", (req, res) => {
   res.send("hello world")
