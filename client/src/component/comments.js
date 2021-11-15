@@ -23,7 +23,6 @@ function Comments({accessToken,videoInfo,userInfo}) {
   const onSubmit = (e)=>{
     e.preventDefault(); //for refresh block
     axios
-    
     .post(
       `${process.env.REACT_APP_SERVER}/comment`,{
         video_id:videoInfo.video_id,
