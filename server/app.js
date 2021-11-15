@@ -75,17 +75,17 @@ app.delete("/like/comment", controllers.delete_like_comment); //성근/완료
 
 
 let server;
-// if(fs.existsSync("./key.pem") && fs.existsSync("./cert.pem")){
+if(fs.existsSync("./key.pem") && fs.existsSync("./cert.pem")){
 
-//   const privateKey = fs.readFileSync(__dirname + "/key.pem", "utf8");
-//   const certificate = fs.readFileSync(__dirname + "/cert.pem", "utf8");
-//   const credentials = { key: privateKey, cert: certificate };
+  const privateKey = fs.readFileSync(__dirname + "/key.pem", "utf8");
+  const certificate = fs.readFileSync(__dirname + "/cert.pem", "utf8");
+  const credentials = { key: privateKey, cert: certificate };
 
-//   server = https.createServer(credentials, app);
-//   server.listen(HTTPS_PORT, () => console.log("Port : 80, server runnning"));
+  server = https.createServer(credentials, app);
+  server.listen(HTTPS_PORT, () => console.log("Port : 80, server runnning"));
 
-// } else {
+} else {
   server = app.listen(HTTPS_PORT)
-// }
+}
 
 module.exports = server;
