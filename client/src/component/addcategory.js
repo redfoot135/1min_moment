@@ -15,23 +15,33 @@ export default function Addcategory({confirmBtn,handleCategoty}){
 
     return(
     <div className='categorycaontainer'>
-        <div>
-        <input type='checkbox' className='checkbox' onChange={handleCategoty2} value='생활'/>생활
-        <input type='checkbox' className='checkbox' onChange={handleCategoty2} value='교통'/>교통
-        <input type='checkbox' className='checkbox' onChange={handleCategoty2} value='법'/>법
+
+        <div className='frisrow'>
+        <div><input type='checkbox' className='checkbox'  class="form-check-input position-static" onChange={handleCategoty2} value='생활'/>생활</div>
+        <div> <input type='checkbox' className='checkbox' class="form-check-input position-static" onChange={handleCategoty2} value='교통'/>교통</div>
         </div>
-        <div>
-        <input type='checkbox' className='checkbox' onChange={handleCategoty2} value='의료'/>의료
-        <input type='checkbox' className='checkbox' onChange={handleCategoty2} value='교육'/>교육
-        <input type='checkbox' className='checkbox' onChange={handleCategoty2} value='무언가1'/>무언가1
+
+        <div className='secondrow'>
+        <div> <input type='checkbox' className='checkbox'class="form-check-input position-static" onChange={handleCategoty2} value='법'/>법</div>
+        <div><input type='checkbox' className='checkbox' class="form-check-input position-static" onChange={handleCategoty2} value='의료'/>의료</div> 
         </div>
-        <div>
-        <input type='checkbox' className='checkbox' onChange={handleCategoty2} value='무언가2'/>무언가2
-        <input type='checkbox' className='checkbox' onChange={handleCategoty2} value='무언가3'/>무언가3
-        <input type='checkbox' className='checkbox' onChange={handleCategoty2} value='무언가4'/>무언가4
+
+        <div className='thirdrow'>
+        <div> <input type='checkbox' className='checkbox' class="form-check-input position-static" onChange={handleCategoty2} value='교육'/>교육</div> 
+        <div><input type='checkbox' className='checkbox' class="form-check-input position-static" onChange={handleCategoty2} value='무언가1'/>세금</div> 
         </div>
+
+        <div className='forthrow'>
+        <div><input type='checkbox' className='checkbox' class="form-check-input position-static" onChange={handleCategoty2} value='무언가2'/>음식</div> 
+        <div><input type='checkbox' className='checkbox' class="form-check-input position-static" onChange={handleCategoty2} value='무언가3'/>뷰티</div> 
+        </div>
+        <div className='fithrow'>
+        <div><input type='checkbox' className='checkbox' class="form-check-input position-static" onChange={handleCategoty2} value='무언가4'/>육아</div> 
+        </div>
+
+
         <div>
-        <button onClick={confirmBtn}>확인</button>
+        <button className ='btn' onClick={confirmBtn}>확인</button>
         </div>
     </div>
     )
