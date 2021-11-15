@@ -171,7 +171,7 @@ export default function Main({category,searchResult,searchInfo,getvideoInfo,setS
     return(
 
      <div className="main-container col-12 sm-px-0">
-       <div className="main-box col-md-10">
+       <div className="main-box col-md-9">
           <div className="title"><img className="main-title" src="https://i.ibb.co/7XrttV3/image.png"/></div>
           <div className='categorycontainer'> 
             {checkListDisplay.length ===3 ? 
@@ -201,8 +201,8 @@ export default function Main({category,searchResult,searchInfo,getvideoInfo,setS
               :
               null}
           </div>
-          <div className='videocontainer container-fluid'> {/*//곧 map으로 뿌릴 예정 ;; */}
-            <div className="videocontainer-box row sm-p-5">
+          <div className='videocontainer container-fluid col-12'> {/*//곧 map으로 뿌릴 예정 ;; */}
+            <div className="videocontainer-box col-12 row sm-p-5">
               {itemList.map((obj, index) => <Video key={obj.id} movieData={obj} setClickMyVideoDataFunc={setClickMyVideoDataFunc}/>) }
             </div>   
           </div>
