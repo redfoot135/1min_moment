@@ -6,6 +6,16 @@
     overflow: hidden;
     border: 0;
 }  */
+
+.uploadTitle {
+  position: relative;
+  top: 80px;
+}
+
+.uploadTitle-text {
+  width: 380px;
+}
+
 .filebox{
   padding-right:255px ;
   margin-top: 300px;
