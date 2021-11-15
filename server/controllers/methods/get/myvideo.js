@@ -1,5 +1,5 @@
 require("dotenv").config();
-const { DATABASE_USERNAME, DATABASE_PASSWORD, DATABASE_NAME} = process.env;
+const { DATABASE_HOST, DATABASE_HOST, DATABASE_USERNAME, DATABASE_PASSWORD, DATABASE_NAME} = process.env;
 const db = require('../../../models');
 const { tokenCheck } = require('../../token')
 const mysql = require('mysql');
