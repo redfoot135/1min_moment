@@ -246,9 +246,9 @@ const getvideoInfo = (image,title, views, timestamp,video,video_id,category1,cat
             <Introduce />
             
           </div>
-          <div className="row-fluid px-0">
+          {/* <div className="row-fluid px-0">
           <SlidesContainer getvideoInfo={getvideoInfo} getCategory={getCategory}/>
-          </div>
+          </div> */}
         </Route>
         <Route exact path='/main'>
           <Main category={category} searchInfo={searchInfo}  getvideoInfo={getvideoInfo} setSearchInfo={setSearchInfo} setIsLikeVideo={setIsLikeVideo} setClickMyVideoDataFunc={setClickMyVideoDataFunc} />
