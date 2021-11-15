@@ -55,7 +55,7 @@ function Nav({handleSignOut,getSearch,searchInfo}){
                 <Link to={"/mypage"} style={{ textDecoration: 'none', color: "black" }}>
                   <li className='mypage'>마이페이지</li>
                 </Link>
-                <Link  to='/main' style={{ textDecoration: 'none', color: "black" }}>
+                <Link  to={'/main'} style={{ textDecoration: 'none', color: "black" }}>
                 <li className='category'>모든 꿀팁</li>
                 </Link>
                 <Link to={"/uploadvideo"} style={{ textDecoration: 'none', color: "black" }}> 
