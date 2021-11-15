@@ -1,5 +1,5 @@
 require("dotenv").config();
-const { DATABASE_HOST, DATABASE_HOST, DATABASE_USERNAME, DATABASE_PASSWORD, DATABASE_NAME} = process.env;
+const { DATABASE_HOST, DATABASE_PORT, DATABASE_USERNAME, DATABASE_PASSWORD, DATABASE_NAME} = process.env;
 const db = require('../../../models');
 const { Op, fn, col } = require('sequelize');
 const sequelize = require('sequelize');
@@ -10,7 +10,7 @@ const connection = mysql.createConnection({
   user     : DATABASE_USERNAME,
   password : DATABASE_PASSWORD,
   database : DATABASE_NAME,
-  port     : DATABASE_HOST
+  port     : DATABASE_PORT
 });
 connection.connect();
 
