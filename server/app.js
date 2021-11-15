@@ -25,7 +25,7 @@ app.use(
 );
 
 //로그인 로그아웃 회원가입
-// app.post("/signin", controllers.post_signin); //성근/완료
+app.post("/signin", controllers.post_signin); //성근/완료
 // app.post("/signup", controllers.post_signup); //재훈//완료
 app.post("/signout", controllers.post_signout); //성근/완료
 // app.post("/socialSignin", controllers.post_socialSignin);//재훈

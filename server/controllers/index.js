@@ -1,5 +1,5 @@
 module.exports = {
-  // post_signin : require('./methods/post/signin.js'),
+  post_signin : require('./methods/post/signin.js'),
   // post_signup : require('./methods/post/signup'),
   post_signout : require('./methods/post/signout'),
   // post_myvideo : require('./methods/post/myvideo'),
