@@ -121,7 +121,7 @@ export default function VideoPage2({clickMyVideoData, userInfo, accessToken, vie
                     </div>
                 </div>
             </div>
-            <Comments accessToken={accessToken} videoInfo={videoInfo}/>
+            <Comments accessToken={accessToken} videoInfo={videoInfo} userInfo={userInfo}/>
         </div>
     )
 }

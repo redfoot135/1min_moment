@@ -23,7 +23,6 @@ function Comments({accessToken,videoInfo,userInfo}) {
   const onSubmit = (e)=>{
     e.preventDefault(); //for refresh block
     axios
-    
     .post(
       'https://localhost:80/comment',{
         video_id:videoInfo.video_id,
