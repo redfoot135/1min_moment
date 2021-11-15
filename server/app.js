@@ -4,7 +4,7 @@ const express = require('express');
 const cors = require('cors');
 const jwt = require('jsonwebtoken');
 const cookieParser = require("cookie-parser");
-const controllers = require("./controllers")
+// const controllers = require("./controllers")
 
 const app = express();
 app.use(express.json());
