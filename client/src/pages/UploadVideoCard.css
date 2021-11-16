@@ -15,7 +15,8 @@
 .upload-videocard_info {
     display: flex;
     flex-direction: column;
-    /* width: 250px; */
+    align-items: center;
+    /* margin-top: 5px; */
     /* margin-top: 10px; */
     /* padding-right: 30px; */
     /* padding-left: 10px; */
@@ -23,15 +24,20 @@
 
 .upload-video_text {
     display: flex;
-    flex-direction: column;
     align-items: center;
-    justify-content: center;
+    justify-content: space-between;
+    padding: 0 10px;
+    padding-bottom: 5px;
     margin-top: 3px;
+    margin-bottom: 5px;
+    border-bottom: 1px solid #f1c40e;
+    /* padding-left: 25px; */
 }
 
-.like-icon {
-    width: 80px;
-    height: 27px;
+.upload-video-like-icon {
+    width: 70px;
+    height: 25px;
+    margin-right: 5px;
 }
 
 .upload-video_text > * {
@@ -39,14 +45,16 @@
 }
 
 .upload-video_text > h4 {
-    font-size: 14px;
+    font-size: 18px;
+    font-weight: 600;
+    margin-top: 5px;
     margin-bottom: 5px;
     display: flex;
 }
 
 .upload-video_text > p {
-    font-size: 14px;
-    color: rgb(63, 63, 63);
+    font-size: 15px;
+    color: rgb(60, 60, 60);
 }
 /* 
 @media only screen and (max-width: 767px) {

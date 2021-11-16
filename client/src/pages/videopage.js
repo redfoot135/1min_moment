@@ -6,13 +6,12 @@ import Comments from '../component/comments'
 import './videopage.css'
 
 
-export default function VideoPage({videoInfo,accessToken}){
-   console.log(videoInfo)
-   console.log(accessToken)
+export default function VideoPage({videoInfo,accessToken,userInfo}){
+
    const clickLikeBtn = () =>{
     axios
     .post(
-      'https://localhost:80/like/video',{
+      `${process.env.REACT_APP_SERVER}/like/video`,{
         video_id:videoInfo.video_id
       },{
         headers: {
@@ -22,7 +21,6 @@ export default function VideoPage({videoInfo,accessToken}){
       withCredentials: true
     }
       ).then((res)=>{
-           console.log(res)
        if(res.data.message==='Likes are reflected'){
         alert("성공")
        // window.location.replace('/')
@@ -46,14 +44,14 @@ export default function VideoPage({videoInfo,accessToken}){
                 <div className='second_row'>
                     <div>{videoInfo.timestamp}</div> 
                     <div>{videoInfo.views}</div>
-                    <div>삭제하기</div>
+                    <div></div>
                 </div>
                 <div className='third_row'>
-                    <div>카테고리</div>
+                    <div></div>
                 </div>   
                
             </div>
-               <Comments accessToken={accessToken} videoInfo={videoInfo}/>
+               <Comments accessToken={accessToken} videoInfo={videoInfo} userInfo={userInfo}/>
             <div>
 
             </div>

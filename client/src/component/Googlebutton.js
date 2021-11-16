@@ -16,7 +16,7 @@ export default function GoogleButton({ errorMessage, openModalFunc, handleAccess
         const id = res.googleId
         const username = res.profileObj.name
          
-        axios.post("https://localhost:80/socialSignin",
+        axios.post(`${process.env.REACT_APP_SERVER}/socialSignin`,
         {token, id, username},
         {"content-type":"application/json", withCredentials: true}
         ).then((res) => {
@@ -29,7 +29,6 @@ export default function GoogleButton({ errorMessage, openModalFunc, handleAccess
       }
 
     const googleOnFailure = (error) => {
-        console.log(error);
         errorMessage("구글로부터 인증에 실패하셨습니다")
     }
 

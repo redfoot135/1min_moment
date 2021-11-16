@@ -42,18 +42,16 @@ const SignUp = ({ openSignUpModalFunc }) => {
         } else if(password !== passwordConfirm) {
             setErrorMessage("비밀번호가 서로 다릅니다")
         }else {
-            axios.post("https://localhost:80/signup",
+            axios.post(`${process.env.REACT_APP_SERVER}/signup`,
             {username, email, password},
             {"content-type":"application/json", withCredentials: true}
             )
             .then((res) => {
-                console.log(res)
                    //회원가입 성공 모달창 띄우기
                    signUpCompleteModalFunc();
               
                 
             }).catch((err) => {
-                console.log(err)
                 alert("잘못된 아이디거나, 비밀번호 입니다")
             })
         }

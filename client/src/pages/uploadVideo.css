@@ -6,11 +6,26 @@
     overflow: hidden;
     border: 0;
 }  */
-.filebox{
 
+.uploadTitle {
+  position: relative;
+  top: 80px;
 }
+
+.uploadTitle-text {
+  width: 380px;
+}
+
+.filebox{
+  padding-right:255px ;
+  margin-top: 300px;
+  display: flex;
+  justify-content: center;
+    align-items: center;
+}
+
 .filebox label {
-    display: inline-block;
+    display: flex;
     padding: 10px 20px;
     color: #999;
     vertical-align: middle;
@@ -19,8 +34,12 @@
     cursor: pointer;
     border: 1px solid #ebebeb;
     border-radius: 5px;
-    width: 700px;
-    height: 600px;
+    width: 525px;
+    height: 300px;
+    justify-content: center;
+    align-items: center;
+    /* align-items: center;
+    justify-content: center; */
 }
 
 
@@ -29,7 +48,8 @@
     vertical-align: middle;
   height: 35px;
   font-size:18px; 
-  padding: 0 10px;
+  padding-top: 10px;
+  padding: 0px 10px;
 
     background-color: #f5f5f5;
   border: 1px solid #ebebeb;
@@ -41,6 +61,7 @@
     vertical-align: middle;
   height: 35px;
   font-size:18px; 
+  padding-top: 10px;
   padding: 0 10px;
 
     background-color: #f5f5f5;
@@ -52,6 +73,7 @@
 }
 
 .addfile{
+  
     display: inline-block;
     vertical-align: middle;
 }
@@ -60,12 +82,14 @@
 
 
 .upload_title{
+    padding-top: 5px;
     display: inline-block;
     vertical-align: middle;
 }
 
 .videoInfo{
-    display: inline-block;
+  padding-top: 5px;
+       display: inline-block;
     vertical-align: middle;
 
 }
@@ -83,11 +107,18 @@
 
 
 #canvas{
- display: none; 
+
+ display: flex;
+ width:525px; 
+ height:300px;
 }
 
 #video{
-  opacity:0; 
+  opacity: 0;
   width: 255px;
   height: 140px;
+}
+
+.upload-holder{
+  padding-top: 3px;
 }

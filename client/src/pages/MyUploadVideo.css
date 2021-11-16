@@ -1,20 +1,28 @@
-.myuploadvideo-box {
+/* .myuploadvideo-box {
     box-sizing: border-box;
-    /* border: 1px solid black; */
-    /* background-color: #f9f9f9; */
-    /* padding: 40px 20px; */
     padding-bottom: 0;
     position:relative;
     top: 80px;
+} */
+
+.myvideos {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }
 
 .title {
   position: relative;
   top: 80px;
-  font-family: 'Jua', sans-serif;
-  font-size:50px;
-  color: #56c1fe;
-  text-shadow: 3px 3px 3px black;
+  
+}
+
+.myvideo-title {
+  width: 380px;
+}
+
+.myuploadvideo-box {
+  margin-top: 90px;
 }
 
 .uploadvideocard-box {
@@ -23,8 +31,3 @@
     /* padding-left: 23px; */
 }
 
-.myvideos {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-}

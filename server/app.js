@@ -73,6 +73,9 @@ app.post("/like/comment", controllers.post_like_comment); //성근/완료
 app.get("/like/comment", controllers.get_like_comment); //성근/?? 이거 와이어 프레임에 존재 하지않음 (보류)
 app.delete("/like/comment", controllers.delete_like_comment); //성근/완료
 
+// app.get("/", (req, res) => {
+//   res.send("hello world")
+// })
 
 let server;
 if(fs.existsSync("./key.pem") && fs.existsSync("./cert.pem")){
@@ -82,7 +85,7 @@ if(fs.existsSync("./key.pem") && fs.existsSync("./cert.pem")){
   const credentials = { key: privateKey, cert: certificate };
 
   server = https.createServer(credentials, app);
-  server.listen(HTTPS_PORT, () => console.log("Port : 80, server runnning"));
+  server.listen(HTTPS_PORT, () => console.log(`Port : ${HTTPS_PORT}, server runnning`));
 
 } else {
   server = app.listen(HTTPS_PORT)

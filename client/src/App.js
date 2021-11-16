@@ -15,7 +15,7 @@ import VideoPage2 from './pages/videopage2'
 import UploadVideo from './pages/uploadVideo'
 import Loading from './pages/Loading'
 import Introduce from './component/Introduce'
-// import SlidesContainer from './pages/slidesContainer'
+ import SlidesContainer from './pages/slidesContainer'
 import Footer from './component/Footer'
 
 axios.defaults.withCredentials = true;
@@ -35,39 +35,40 @@ function App() {
     views:'',
     timestamp:'',
     video:'',
-    video_id:''
+    video_id:'',
+    category1:'',
+    category2:'',
+    category3:''
 });
+
 const getSearch= (search) =>{
   setSearchInfo(search)
-  console.log(searchInfo)
-  console.log('hi!!!!!')
   
  } 
  const getCategory= (category) =>{
   setcategory(category)
-  console.log(category)
-  console.log('hi!!!!!')
  } 
   
-const getvideoInfo = (image,title, views, timestamp,video,video_id) => {
+const getvideoInfo = (image,title, views, timestamp,video,video_id,category1,category2,category3) => {
   
-  console.log('hi!!!!!')
   setVideoInfo({
       image:image,
       title:title,
       views:views,
       timestamp:timestamp,
       video:video,
-      video_id:video_id
+      video_id:video_id,
+      category1:category1,
+      category2:category2,
+      category3:category3
   })
-  console.log(videoInfo)
 }
 
   const handleAccessToken = (tokenData) => { // 소셜로그인 후 함수
 
     setAccessToken(tokenData) 
 
-    axios.get("https://localhost:80/userinfo",
+    axios.get(`${process.env.REACT_APP_SERVER}/userinfo`,
     {headers: {
       authorization: `Bearer ${tokenData}`,
       "Content-Type" : "application/json"   
@@ -77,14 +78,13 @@ const getvideoInfo = (image,title, views, timestamp,video,video_id) => {
       setUserInfo(res.data.data.userinfo) // id, email, name (+ social 정보 들어갈 예정)
       setIsLogin(true) // 로그인 상태 변경
     }).catch((err) => {
-      console.log(err)
     })
   }
 
   // 일반로그인 후 실행되는 함수
   const handleUserInfo = (userData) => { 
     setAccessToken(userData.accessToken)
-    axios.get("https://localhost:80/userinfo",
+    axios.get(`${process.env.REACT_APP_SERVER}/userinfo`,
     {headers: {
       authorization: `Bearer ${userData.accessToken}`,
       "Content-Type" : "application/json"   
@@ -94,14 +94,13 @@ const getvideoInfo = (image,title, views, timestamp,video,video_id) => {
       setUserInfo(res.data.data.userinfo) // id, email, name (+ social 정보 들어갈 예정)
       setIsLogin(true) // 로그인 상태 변경
     }).catch((err) => {
-      console.log(err)
     })
 
   }
 
   // 로그아웃 버튼 클릭 후 실행되는 함수 
   const handleSignOut = () => {
-    axios.post("https://localhost:80/signout")
+    axios.post(`${process.env.REACT_APP_SERVER}/signout`)
     .then((res) => {
       setIsLogin(false);
       setUserInfo(null);
@@ -116,17 +115,16 @@ const getvideoInfo = (image,title, views, timestamp,video,video_id) => {
   // 로그인 모달 오픈 상태 변경 함수
   const openModalFunc = () => {
     setIsModalOpen(!isModalOpen)
-    console.log(isModalOpen)
   }
 
   // refresh token 보내주면서 리다이렉션 함수
   useEffect(() => {    
     
-    axios.get("https://localhost:80/token")
+    axios.get(`${process.env.REACT_APP_SERVER}/token`)
     .then((res) => {
 
       if(res.data.data.accessToken) {
-        axios.get("https://localhost:80/userinfo",
+        axios.get(`${process.env.REACT_APP_SERVER}/userinfo`,
         {headers: {
         authorization: `Bearer ${res.data.data.accessToken}`,
         "Content-Type" : "application/json"   
@@ -154,11 +152,10 @@ const getvideoInfo = (image,title, views, timestamp,video,video_id) => {
 
   // 내가 업로드 한 영상 모음 객체 -> MyUploadVideo로 props 전달됨
   const [isUploadVideo, setIsUploadVideo] = useState(null)
-  console.log(isUploadVideo)
- 
+  
   // 내가 업로드 한 영상 요청 함수 -> MyUploadVideo로 props 전달됨
   const handleUpload = () => {
-    axios.get("https://localhost:80/myvideo",
+    axios.get(`${process.env.REACT_APP_SERVER}/myvideo`,
     {headers: {
       authorization: `Bearer ${accessToken}`,
       "Content-Type" : "application/json"   
@@ -167,7 +164,6 @@ const getvideoInfo = (image,title, views, timestamp,video,video_id) => {
     }).then((res) => {
       setIsUploadVideo(res.data.data.myvideos)
     }).catch((err) => {
-      console.log(err)
     })
   }
   
@@ -179,17 +175,42 @@ const getvideoInfo = (image,title, views, timestamp,video,video_id) => {
     setClickMyVideoData(isUploadVideo.filter((el) => el.id === clickVideoData)[0])
   }
 
-    const viewStateFunc = (id) => {
-        axios.post("https://localhost:80/views",{id: id},
-          {
-            headers: {
-            authorization: `Bearer ${accessToken}`,
-            "Content-Type" : "application/json"   
-            },
-            withCredentials: true
-          }
-          )
-    }
+  const viewStateFunc = (id) => { // 조회수 요청 함수
+      axios.post(`${process.env.REACT_APP_SERVER}/views`,{id: id},
+        {
+          headers: {
+          authorization: `Bearer ${accessToken}`,
+          "Content-Type" : "application/json"   
+          },
+          withCredentials: true
+        }
+        )
+  }
+
+  // 찜한 영상 데이터 상태
+  const [isLikeVideo, setIsLikeVideo] = useState(null)
+
+  // 찜한 영상 요청 함수
+  const handleLikeVideo = () => { 
+    axios.get(`${process.env.REACT_APP_SERVER}/like/video`,
+    {headers: {
+      authorization: `Bearer ${accessToken}`,
+      "Content-Type" : "application/json"   
+    },
+    withCredentials: true
+    }).then((res) => {
+      setIsLikeVideo(res.data.data.myvideos) 
+    }).catch((err) => {
+    })
+  }
+
+  // 찜한 비디오 중 클릭한 영상 데이터 상태
+  const [clickMyLikeVideoData, setClickMyLikeVideoData] = useState(null)
+
+  // 찜한 비디오 중 클릭한 영상 데이터 상태 변경 함수
+  const clickMyLikeVideoDataFunc = (clickLikeVideoData) => {
+    setClickMyLikeVideoData(isLikeVideo.filter((el) => el.id === clickLikeVideoData)[0])
+  }
 
   return (
     <BrowserRouter>
@@ -209,39 +230,39 @@ const getvideoInfo = (image,title, views, timestamp,video,video_id) => {
         <Route exact path='/'>
           <div className="intro-box row-fluid px-0">
             <Introduce />
+            
           </div>
-          <div className="row-fluid px-0">
-          {/* <SlidesContainer getvideoInfo={getvideoInfo} getCategory={getCategory}/> */}
-          </div>
+          {/* <div className="row-fluid px-0">
+          <SlidesContainer getvideoInfo={getvideoInfo} getCategory={getCategory}/>
+          </div> */}
         </Route>
         <Route exact path='/main'>
-          <Main category={category} searchInfo={searchInfo}  getvideoInfo={getvideoInfo} setSearchInfo={setSearchInfo}/>
+          <Main category={category} searchInfo={searchInfo}  getvideoInfo={getvideoInfo} setSearchInfo={setSearchInfo} setIsUploadVideo={setIsUploadVideo} setClickMyVideoDataFunc={setClickMyVideoDataFunc} />
         </Route>
         <Route exact path='/uploadvideo'>
           <UploadVideo accessToken={accessToken}/>
         </Route>
         <Route exact path='/videos'> 
-          <VideoPage videoInfo={videoInfo} accessToken={accessToken}/>
+          <VideoPage videoInfo={videoInfo} accessToken={accessToken} userInfo={userInfo}/>
         </Route>
         <Route exact path="/mylikevideo">
-          <MyLikeVideo />
+          <MyLikeVideo handleLikeVideo={handleLikeVideo} isLikeVideo={isLikeVideo} clickMyLikeVideoDataFunc={clickMyLikeVideoDataFunc}/>
         </Route>
         <Route exact path="/myuploadvideo">
         <MyUploadVideo accessToken={accessToken} isUploadVideo={isUploadVideo} setClickMyVideoDataFunc={setClickMyVideoDataFunc}/>
         </Route>
         <Route path="/myvideopage">
-        <VideoPage2 clickMyVideoData={clickMyVideoData} userInfo={userInfo} accessToken={accessToken} viewStateFunc ={viewStateFunc}/>
+        <VideoPage2 clickMyVideoData={clickMyVideoData} userInfo={userInfo} accessToken={accessToken} viewStateFunc ={viewStateFunc} isLogin={isLogin} videoInfo={videoInfo}/>
         </Route>
         <Route path="/mypage">
           <MyPage userInfo={userInfo} accessToken={accessToken} handleSecession={handleSecession} handleUpload={handleUpload}/>
         </Route>
       </Switch>
-    
         <div className="row-fluid col-12">
-          <Footer />
+          {/* <Footer /> */}
         </div>
 
-
+   
     {/* <Main/> */}
     {/* <UploadVideo accessToken={accessToken}/> */}
     {/* <VideoPage/> */}

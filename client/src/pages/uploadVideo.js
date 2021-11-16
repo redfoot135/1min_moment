@@ -14,6 +14,8 @@ import { Button } from '@material-ui/core';
 
 function UploadVideo({accessToken}) {
 
+
+
   const history = useHistory();
 
 
@@ -21,7 +23,7 @@ function UploadVideo({accessToken}) {
   const [selectedFile, setSelectedFile] = useState('');
   const [category, setCategory] = useState('')
   const [title, setTitle] = useState('')
-  const [checkList, setCheckList] = useState([])
+  //const [checkList, setCheckList] = useState([])
   const [checkList2, setCheckList2] = useState([])
   const [currentCategory, setCurrentCategory]=useState('');
   const [showCategory, setshowCategory]=useState(false)
@@ -29,44 +31,50 @@ function UploadVideo({accessToken}) {
   const { Dropzone } = require("dropzone");
  
 
+
+  let checkList = []
+
+
+
   const confirmBtn = () =>{
     if(checkList.length>3){
      alert('dkdkdk')
-     console.log(checkList)
      setshowCategory(!showCategory)
     }
     else{
     setshowCategory(!showCategory)
-    console.log(showCategory)
      setCurrentCategory(checkList.join())
      setCheckList2(checkList)
-     console.log('체크리스트!!!!!',checkList)
-     setCheckList([])
-     console.log(checkList2)
+    // setCheckList([])
     }
 }
 
+const handleCategoty2=(e)=>{
+  handleCategoty(e)
+ }
 
   const handleCategoty = (e) =>{
-    //console.log(e.target.value)
          if(!checkList.includes(e.target.value)){
-             console.log(e.target.value)
              if(e.target.checked === true){
-             console.log('들어왔어요')
              //setcategoryInfo(categoryInfo+`${e.target.value}`)
-             setCheckList([...checkList,e.target.value])
-             //console.log(categoryInfo)
-             console.log('checklist',checkList)
+            // setCheckList([...checkList,e.target.value])
+             checkList.push(e.target.value)
              }
+         }
+         else {
+          for(let i = 0; i < checkList.length; i++) {
+            if(checkList[i] === e.target.value)  {
+              checkList.splice(i, 1);
+              i--;
+            }
+          }
          }
      
    }
    const openCategory = (e) =>{
    
     setshowCategory(!showCategory)
-    setCheckList([])
-    console.log(showCategory)
-    console.log(currentCategory)
+   // setCheckList([])
      
     }
 
@@ -80,13 +88,15 @@ function UploadVideo({accessToken}) {
 
   const uploadFile = (e) => {
     const file = e.target.files[0];
-    console.log(file)
     setSelectedFile(file)
   }
 
   const uploadVideo =  () => {
+    if(checkList.length >3){
+     alert('체크리스트 최대갯수는 3개입니다.')
+    }
+    else{
     let buf =Buffer.from(imgData.replace(/^data:image\/\w+;base64,/, ""),'base64')
-    console.log(buf)
     const S3 = new AWS.S3({
       region: 'ap-northeast-2',
       accessKeyId: process.env.REACT_APP_ACCESSKEY,
@@ -103,17 +113,11 @@ function UploadVideo({accessToken}) {
       ContentType: 'video/mp4',
     }, (err, data) => {
       if (err) {
-        console.log("전송 에러");
       }else {
-        console.log('sucess')
-        console.log(data)
-        console.log(checkList2)
       }
     })
 
-       console.log('img22222222222',imgData)
       const videoLink =`https://${process.env.REACT_APP_BUCKET}.s3.ap-northeast-2.amazonaws.com/videos/${videoName}.mp4`
-      console.log("링크는 ", videoLink) 
         
      // var buf = Buffer.from(imgData.replace(/^data:image\/\w+;base64,/, ""),'base64')
      const imgName = v4();
@@ -128,19 +132,14 @@ function UploadVideo({accessToken}) {
 
       S3.upload(data, function(err, data){
           if (err) { 
-            console.log(err);
-            console.log('Error uploading data: ', data); 
           } else {
-            console.log('successfully uploaded the image!');
           }
       });
       const imgLink =`https://${process.env.REACT_APP_BUCKET}.s3.ap-northeast-2.amazonaws.com/images/${imgName}.jpeg`
-      console.log('링크2',imgLink)
-      console.log(accessToken)
     axios
     .post(
-      'https://localhost:80/myvideo',{
-        title:title , video:videoLink, thumbnail:imgLink, category1:checkList2[0], category2:checkList2[1], category3:checkList2[2]
+      `${process.env.REACT_APP_SERVER}/myvideo`,{
+        title:title , video:videoLink, thumbnail:imgLink, category1:checkList[0], category2:checkList[1], category3:checkList[2]
       },{
         headers: {
           authorization: `Bearer ${accessToken}`,
@@ -149,17 +148,16 @@ function UploadVideo({accessToken}) {
       withCredentials: true
     }
       ).then((res)=>{
-           console.log(res)
        if(res.data.message==='Video registration is complete'){
         alert("성공")
-       // window.location.replace('/')
+       window.location.replace('/')
        }
        else{
         alert("실패")
        }
       
        }) 
-
+      }
   }
 
   const onDrop = useCallback(acceptedFiles => {
@@ -172,26 +170,20 @@ function UploadVideo({accessToken}) {
     //그후 썸네일 생성하게끔 그런식으로 바꿀껀데 .. 이건 시간남으면 하겠습니다.
     // 편법쓴거라서 
     //잘대처해야 되지않을까 .. 싶네요
-    console.log(acceptedFiles)
     setSelectedFile(acceptedFiles[0])
     var canvas = document.getElementById('canvas'); //이미지를 따오기
       var video = document.getElementById('video'); //video tag 넣기
-      const file = acceptedFiles[0]; 
-      const videourl = URL.createObjectURL(file); 
-      video.setAttribute("src", videourl); //비디오가만들어지는데 이거는 내장함수잖아요 ... 안되더라고요..
-
+      const file = acceptedFiles[0]; //파일정보를가져와서
+      const videourl = URL.createObjectURL(file); //비디오 url생성
+      video.setAttribute("src", videourl+'#t=20'); //비디오가만들어지는데 이거는 내장함수잖아요 ... 안되더라고요..
+///////////////////////////
       video.onloadeddata = function(){ //이미지 따오는 함수 비디오가 업로드되엇을때 
-        console.log(canvas)
         setTimeout(() => {
           let ctx = canvas.getContext('2d');  // 2d
-          canvas.getContext('2d').drawImage(video, 0, 0, 250, 140); //그리기
+          canvas.getContext('2d').drawImage(video, 0, 0, 300, 200); //그리기
          var img  = canvas.toDataURL("image/png") //url로변환하기
-        console.log('imgimgimgimgimgs',img) 
-        console.log('heeeeeeeeeee',video.videoHeight)
-        console.log('wiiiiiiiiiiid',video.videoWidth)     
         setImgData(img)
-        console.log('22223838585858',imgData)
-        }, 1000);
+        }, 3000);
         
       }
       
@@ -223,7 +215,6 @@ function UploadVideo({accessToken}) {
 //       title:selectedFile.name , video:link, thumbnail:`https://image.shutterstock.com/image-illustration/halloween-pumpkin-halo-angel-on-600w-1493264564.jpg`, category1:categoryList[0], category2:categoryList[1], category3:categoryList[2]
 //     },
 //     ).then((res)=>{
-//          console.log(res)
    
 //      if(res.data.message==='Video registration is complete'){
 //       alert("성공")
@@ -245,35 +236,54 @@ function UploadVideo({accessToken}) {
           
     <div className="add_file">      
       
-      
+      <div className="uploadTitle">
+        <img className="uploadTitle-text" src="https://i.ibb.co/ZmbDdtD/image.png" alt="" />
+      </div>
       <div>
         {/* <input type="file" onChange={uploadFile} className='addVideo'  /> */}
             <div className="filebox" > 
-          <canvas id='canvas' width="250" height="140" ></canvas>
-          <video  id='video' ></video>
-             <div {...getRootProps()}>
+            <div>
+          
+            <video id='video'></video>
+            </div>
+             <div className='labelcontainer' {...getRootProps()}>
               <input  className="filebox"  type='file' {...getInputProps()} /> 
                 {
                 isDragActive ?
-                <label >ssss</label> :
-                <label >클릭 or 드래그로 업로드하기!</label> 
+                <label className='label' >들어왔어요!</label> :
+                <label className='label'><canvas id='canvas'></canvas></label> 
                 }
               </div>
               
             </div>
             
             <div className='videoInfo'>
-          <div>
-            <input className="upload-name" value={selectedFile.name}/>
+          <div className="upload-holder">
+            <input className="upload-name" value={selectedFile.name} placeholder={'파일이름'}/>
           </div>
-          <div>
-              <input className="upload-title" type='text' onChange={handleTargetTitle} value={title}/>
+          <div className="upload-holder">
+              <input className="upload-title" type='text' onChange={handleTargetTitle} value={title} placeholder={'제목'}/>
           </div>
-              <Button className='addbox' onClick= {openCategory}>카테고리설정</Button>   
-              {showCategory === true ?
+              <Button className='addcategory_upload' onClick= {openCategory}>카테고리설정</Button>   
+              {/* {showCategory === true ?
           (<Addcategory2 confirmBtn={confirmBtn} handleCategoty={handleCategoty}/>)
           :
-          null}
+          null} */}
+          <div>
+        <input type='checkbox' className='checkbox' onChange={handleCategoty}  value='생활'/>생활
+        <input type='checkbox' className='checkbox' onChange={handleCategoty} value='교통'/>교통
+        <input type='checkbox' className='checkbox' onChange={handleCategoty} value='법'/>법
+        </div>
+        <div>
+        <input type='checkbox' className='checkbox' onChange={handleCategoty} value='의료'/>의료
+        <input type='checkbox' className='checkbox' onChange={handleCategoty} value='교육'/>교육
+        <input type='checkbox' className='checkbox' onChange={handleCategoty} value='무언가1'/>세금
+        </div>
+        <div>
+        <input type='checkbox' className='checkbox' onChange={handleCategoty} value='무언가2'/>음식
+        <input type='checkbox' className='checkbox' onChange={handleCategoty} value='무언가3'/>뷰티
+        <input type='checkbox' className='checkbox' onChange={handleCategoty} value='무언가4'/>육아
+        </div>
             </div>
       </div> 
      <div>

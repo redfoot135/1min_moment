@@ -16,16 +16,16 @@ const Introduce = () => {
           </div>
           <div class="carousel-inner">
             <div class="carousel-item active">
-              <img src="https://i.ibb.co/x3XftJr/001.png" class="d-block w-100 introduce" alt="..."/>
+              <img src="https://i.ibb.co/x3XftJr/001.png" class="d-block col-12 introduce" alt="..."/>
             </div>
             <div class="carousel-item">
               <img src="https://i.ibb.co/jr4MZp3/003.png" class="d-block w-100 introduce" alt="..."/>
             </div>
             <div class="carousel-item">
-              <img src="https://i.ibb.co/JnXLHqj/004.png" class="d-block w-100 introduce" alt="..."/>
+              <img src="https://i.ibb.co/2qWYXcb/001.jpg" class="d-block w-100 introduce" alt="..."/>
             </div>
             <div class="carousel-item">
-              <img src="https://i.ibb.co/BwYNhP2/005.png" class="d-block w-100 introduce" alt="..."/>
+              <img src="https://i.ibb.co/znNPcgK/5-001.jpg" class="d-block w-100 introduce" alt="..."/>
             </div>
             <div class="carousel-item">
               <img src="https://i.ibb.co/GJwwpWP/006.png" class="d-block w-100 introduce" alt="..."/>

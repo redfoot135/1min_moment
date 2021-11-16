@@ -29,21 +29,20 @@ function Slider({idx,idx2,getvideoInfo,getCategory}){
     var sliderElem = document.querySelector(`.${idx}`)
     sliderElem.style.transition = "none";
     sliderElem.append(sliderElem.firstElementChild)
-    sliderElem.style.transform = `translateX(-${2700}px)`;
+    sliderElem.style.transform = `translateX(-${299.7}vw)`;
     sliderElem.getBoundingClientRect();
      sliderElem.style.transition = "all 0.5s ease-in-out";
-    sliderElem.style.transform = `translateX(-${3000}px)`
+    sliderElem.style.transform = `translateX(-${333}vw)`
     };
     const prevSlide = () =>{
         
-        console.log(array)
     var sliderElem = document.querySelector(`.${idx}`)
         sliderElem.style.transition = "none";
         sliderElem.prepend(sliderElem.lastElementChild)
-        sliderElem.style.transform = `translateX(-${3300}px)`;
+        sliderElem.style.transform = `translateX(-${366.6}vw)`;
         sliderElem.getBoundingClientRect();
-         sliderElem.style.transition = "all 0.5s ease-in-out";
-        sliderElem.style.transform = `translateX(-${3000}px)`
+         sliderElem.style.transition = "all 1s ease-in-out";
+        sliderElem.style.transform = `translateX(-${333}vw)`
  
 
 
@@ -52,9 +51,8 @@ function Slider({idx,idx2,getvideoInfo,getCategory}){
    
      useEffect(() => {
         var sliderElem = document.querySelector( `.${idx}`)
-        console.log(sliderElem)
         //sliderElem.style.transition = "all 0.5s ease-in-out";
-         sliderElem.style.transform = `translateX(-${3000}px)`; // 사이드 * 3000
+         sliderElem.style.transform = `translateX(-${333}vw)`; // 사이드 * 3000
         // sliderElem.dataset.currentSlide = 3000
 
        }, []);
@@ -64,7 +62,7 @@ function Slider({idx,idx2,getvideoInfo,getCategory}){
          axios(
             {
             method: 'get',
-            url: `https://localhost:80/videos`,
+            url: `${process.env.REACT_APP_SERVER}/videos`,
             params: {
              //솔트 넘겨주기
              sort: 'views',
@@ -76,9 +74,7 @@ function Slider({idx,idx2,getvideoInfo,getCategory}){
   
           })
          .then((res)=>{
-             console.log('ressssssss',res.data.data)
              SetArray(array => [...array, ...res.data.data])
-             console.log(array)
         
          })
 
@@ -88,13 +84,10 @@ function Slider({idx,idx2,getvideoInfo,getCategory}){
        
      
        if(array){
-        //  console.log(res.data.data)
           itemsToRender = array.map((obj, index) =>{
-              return <Slide key={obj.id} title={obj.title}  timestamp={obj.createdAt} image={obj.thumbnail} video={obj.video} getvideoInfo={getvideoInfo} video_id={obj.id}/>
+              return <Slide key={obj.id} title={obj.title}  timestamp={obj.createdAt} image={obj.thumbnail} video={obj.video} getvideoInfo={getvideoInfo} video_id={obj.id} category1={obj.category1} category2={obj.category2} category3={obj.category3}/>
              })
-            // console.log(itemsToRender)
        }else{
-          console.log(array)
             itemsToRender = '...loading'
         }
         const getrealcategory = () =>{
@@ -103,13 +96,11 @@ function Slider({idx,idx2,getvideoInfo,getCategory}){
         }
    
     return(
-        <div className='container'>
-         
+        <div className='slider_container'>
             <div class = 'wrapper'>
             {/* {currentSlide} */}
-            <div>
+            <div className='slider_info'>
             <div>{category[idx2]}</div> 
-           
             <div  className={category[idx2]} onClick={getrealcategory}>+더보기</div>
             
             </div>

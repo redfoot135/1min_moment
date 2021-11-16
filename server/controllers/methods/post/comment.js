@@ -45,20 +45,30 @@ module.exports = async (req, res) => {
           res.status(422).json({message:"insufficient parameters supplied"})
         } else {
       // 모두 있으면
-            db.comment.create({
-            user_id: userData.dataValues.id, // 우리가 user테이블에서 찾은 id
-            video_id: video_id,
-            comment: comment
-          })
+      var comment_id = db.comment.create({
+              
+        user_id: userData.dataValues.id, // 우리가 user테이블에서 찾은 id
+        video_id: video_id,
+        comment: comment
+      }).then(newcomment=>{
+        res.status(201).json({
+          data: {
+          comment_id:newcomment.dataValues.id,
+          comment:comment,
+          video_id:video_id,
+          accessToken: check.token
+          },
+          message:"Comment has been completed"
+        })
+      })
+          //   db.comment.create({
+              
+          //   user_id: userData.dataValues.id, // 우리가 user테이블에서 찾은 id
+          //   video_id: video_id,
+          //   comment: comment
+          // })
   
-          res.status(201).json({
-            data: {
-            comment:comment,
-            video_id:video_id,
-            accessToken: check.token
-            },
-            message:"Comment has been completed"
-          })
+          
         }
       }
     }
