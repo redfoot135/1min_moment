@@ -63,11 +63,9 @@ module.exports = async (req, res) => {
         }
       }
       
-      console.log("query =============== ", `${select} from videos left join views on videos.id = views.video_id left join video_likes on videos.id = video_likes.video_id left join users on videos.user_id = users.id where video.user_id = ${userData.dataValues.id} group by videos.id ${having} ${order} limit ${num}`)
+      // console.log("query =============== ", `${select} from videos left join views on videos.id = views.video_id left join video_likes on videos.id = video_likes.video_id left join users on videos.user_id = users.id where video.user_id = ${userData.dataValues.id} group by videos.id ${having} ${order} limit ${num}`)
       connection.query(`${select} from videos left join views on videos.id = views.video_id left join video_likes on videos.id = video_likes.video_id left join users on videos.user_id = users.id where videos.user_id = ${userData.dataValues.id} group by videos.id ${having} ${order} limit ${num}`, async function (error, results, fields) {
         //응답(데이터가 아무것도 없어도 빈 배열 데이터로 보내줌)
-        console.log(error)
-        console.log(results)
         
         const mychoice = await Promise.all(
           results.map( async (el) => {
@@ -79,10 +77,8 @@ module.exports = async (req, res) => {
             })
     
             if(isHave) {
-              console.log("있음")
               return true;
             }else {
-              console.log("없음")
               return false;
             }
           })

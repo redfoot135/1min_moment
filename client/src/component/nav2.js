@@ -27,7 +27,6 @@ function Nav2({openModalFunc,openSideBarlFunc , handleSignOut,getSearch,searchIn
            
         
         setSearchResult(e.target.value)
-        console.log(searchResult) 
         
         
        }

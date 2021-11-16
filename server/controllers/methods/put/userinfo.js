@@ -40,7 +40,6 @@ module.exports = async (req, res) => {
             message: "It is changed"
           })
         }catch(err) {
-          console.log(err)
         }
       });
     }

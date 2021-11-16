@@ -75,10 +75,8 @@ module.exports = async (req, res) => {
               })
       
               if(isHave) {
-                console.log("있음")
                 return true;
               }else {
-                console.log("없음")
                 return false;
               }
             })

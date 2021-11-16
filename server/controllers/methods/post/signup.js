@@ -6,12 +6,8 @@ const { createAccessToken, createRefreshToken } = require('../../token')
 const nodemailer = require('nodemailer');
 
 module.exports = async (req, res) => {
-  console.log(req.body)
   //클라이언트 요청 정보 선언(이름 이메일 패스워드)
   const { username, email, password } = req.body;
-  console.log(username)
-  console.log(email)
-  console.log(password)
   const token = createRefreshToken({email: email});
   //각 유저마다 고유한 썰트 사용
   const saltRounds = 10;
@@ -90,12 +86,10 @@ module.exports = async (req, res) => {
                 transporter.sendMail(mailOptions, function(error, info){
                   if (error) {
                       //에러
-                      console.log(error);
                       errorCount++;
                       sendEmail(toEmail);
                   }
                   //전송 완료
-                  console.log("Finish sending email : " + info.response);        
                   transporter.close()
               })}
             }
@@ -131,7 +125,6 @@ module.exports = async (req, res) => {
           }
         })
       }catch(err) {//예외처리
-        console.log(err);
       }
     });
   }

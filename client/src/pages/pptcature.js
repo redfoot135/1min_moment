@@ -17,7 +17,6 @@
 
 
       video.onloadeddata = function(){ 
-        console.log(canvas)
           canvas.getContext('2d').drawImage(video, 0, 0, 250, 140); //이미지크기설정
          var img  = canvas.toDataURL("image/png")  //base 64 -> /png저장
         setImgData(img) //이미지 state에저장
