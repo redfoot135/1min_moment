@@ -32,7 +32,7 @@ export default function Kakaobutton ({ errorMessage, openModalFunc, handleAccess
       const id = res.profile.id
       const username = res.profile.properties.nickname
          
-      axios.post("https://localhost:80/socialSignin",
+      axios.post(`${process.env.REACT_APP_SERVER}/socialSignin`,
       {token, id, username},
       {"content-type":"application/json", withCredentials: true}
       ).then((res) => {

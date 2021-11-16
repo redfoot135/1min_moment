@@ -50,7 +50,7 @@ const MyInfo = ({openMyInfoModalFunc, userInfo, accessToken, handleSecession}) =
           setErrorMessage("비밀번호가 서로 다릅니다")
       } else
         // 비밀번호 확인 요청 보내고
-        axios.post("https://localhost:80/checkPW",{password: password},
+        axios.post(`${process.env.REACT_APP_SERVER}/checkPW`,{password: password},
         {
           headers: {
           authorization: `Bearer ${accessToken}`,
@@ -60,7 +60,7 @@ const MyInfo = ({openMyInfoModalFunc, userInfo, accessToken, handleSecession}) =
         })
         .then((res) => {
             if(res.data.message === "비밀번호가 일치합니다") {
-                axios.delete("https://localhost:80/userinfo",
+                axios.delete(`${process.env.REACT_APP_SERVER}/userinfo`,
                 {
                 headers: {
                 authorization: `Bearer ${accessToken}`,
@@ -91,7 +91,7 @@ const MyInfo = ({openMyInfoModalFunc, userInfo, accessToken, handleSecession}) =
             setErrorMessage("비밀번호가 서로 다릅니다")
         } else
           // 비밀번호 확인 요청 보내고
-          axios.post("https://localhost:80/checkPW",{password: password},
+          axios.post(`${process.env.REACT_APP_SERVER}/checkPW`,{password: password},
           {
             headers: {
             authorization: `Bearer ${accessToken}`,
@@ -122,7 +122,7 @@ const MyInfo = ({openMyInfoModalFunc, userInfo, accessToken, handleSecession}) =
             setErrorMessage("비밀번호가 서로 다릅니다")
         } else
           // 비밀번호 변경 요청 보내고
-          axios.put("https://localhost:80/userinfo",{password: password2},
+          axios.put(`${process.env.REACT_APP_SERVER}/userinfo`,{password: password2},
           {
             headers: {
             authorization: `Bearer ${accessToken}`,
@@ -151,8 +151,8 @@ const MyInfo = ({openMyInfoModalFunc, userInfo, accessToken, handleSecession}) =
               </span>
               <div className="myInfo-modal-content">
                   <div className="myInfo-modal-title">내 정보</div>
-                  <div className="myInfo-modal-username">유저네임: {userInfo.name}</div>
-                  {userInfo.email === null ? null : <div className="myInfo-modal-useremail">이메일: {userInfo.email}</div>}
+                  <div className="myInfo-modal-username">{userInfo.name}</div>
+                  {userInfo.email === null ? null : <div className="myInfo-modal-useremail">{userInfo.email}</div>}
                   {isModifiedOpen === false ? 
                   <div className="myInfo-modal-buttonbox">
                   <button className="myInfo-modal-editmyinfo btn" onClick={openModifiedModalFunc}>비밀번호 변경하기</button>
@@ -163,7 +163,7 @@ const MyInfo = ({openMyInfoModalFunc, userInfo, accessToken, handleSecession}) =
                   <input className="current-password confirm" name="password" type="password" placeholder="현재 비밀번호 확인" onChange={passwordConfirmInputValue}></input>
                   { errorMessage === "" ? null 
                     : 
-                    <div className="password-errormessege">{errorMessage}</div>
+                    <div className="password-errormessege errorMessege2">{errorMessage}</div>
                   }
                   <button className="myInfo-modal-secession-last btn" onClick={modifiedFunc}>비밀번호 변경하기</button>
                   </div>
@@ -173,7 +173,7 @@ const MyInfo = ({openMyInfoModalFunc, userInfo, accessToken, handleSecession}) =
                   <input className="modified-password confirm" name="password" value={passwordConfirm2} type="password" placeholder="변경 비밀번호 확인" onChange={passwordConfirmInputValue2}></input>
                   { errorMessage === "" ? null 
                     : 
-                    <div className="password-errormessege">{errorMessage}</div>
+                    <div className="password-errormessege errorMessege2">{errorMessage}</div>
                   }
                   <button className="myInfo-modal-secession-last btn" onClick={modifiedFunc2} >비밀번호 변경하기</button>
                   </div>
@@ -188,7 +188,7 @@ const MyInfo = ({openMyInfoModalFunc, userInfo, accessToken, handleSecession}) =
                   <input className="currentn-password confirm" name="password" type="password" placeholder="비밀번호 확인" onChange={passwordConfirmInputValue}></input>
                   { errorMessage === "" ? null 
                     : 
-                    <div className="password-errormessege">{errorMessage}</div>
+                    <div className="password-errormessege errorMessege2">{errorMessage}</div>
                   }
                   <button className="myInfo-modal-secession-last btn" onClick={secessionFunc}>탈퇴하기</button>
                   </div>

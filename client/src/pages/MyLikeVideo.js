@@ -21,11 +21,11 @@ const MyLikeVideo = ({handleLikeVideo, isLikeVideo, clickMyLikeVideoDataFunc}) =
                <div className="title"><img className="mylikevideo-title" src="https://i.ibb.co/HTVBwgY/image.png"/></div>
                <div className="mylikevideo-box container-fluid">
                <div className="likevideocard-box row sm-p-5">
-                 {/* {
+                 {
                    isLikeVideo && isLikeVideo.map((el) => {
                      return <LikeVideoCard likeVideoData={el} clickMyLikeVideoDataFunc={clickMyLikeVideoDataFunc}/>
                    })
-                 } */}
+                 }
                </div>
                </div>
              </div>

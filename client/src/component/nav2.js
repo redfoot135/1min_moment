@@ -46,7 +46,7 @@ function Nav2({openModalFunc,openSideBarlFunc , handleSignOut,getSearch,searchIn
           </Link>
                 <ul className = 'menu'>
 
-                <Link  to='/main'>
+                <Link  to='/main' style={{ textDecoration: 'none', color: "black" }}>
                 <li className='category'>모든 꿀팁</li>
                 </Link>
 
@@ -61,7 +61,7 @@ function Nav2({openModalFunc,openSideBarlFunc , handleSignOut,getSearch,searchIn
                   <div className= 'searchbox' onClick={openSeachBox}>검색</div><input type='text'  className="search-input" onChange={searchHandleChange}/><img className="search-icon" src="https://i.ibb.co/FgWPvVM/Kakao-Talk-Photo-2021-11-12-13-30-49-removebg-preview.png" onClick={SearchClick}/>
              </div>)
             }
-             <div className='signup' onClick={openModalFunc} >로그인</div>
+             <div className='signup' onClick={openModalFunc} ><img className="login-icon" src="https://i.ibb.co/TtLvxmP/Kakao-Talk-Photo-2021-11-13-02-51-07-001-removebg-preview.png"/></div>
          </div>
         </div>
     </nav>

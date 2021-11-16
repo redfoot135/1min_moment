@@ -5,14 +5,14 @@ import UploadVideoCard from './UploadVideoCard';
 
 const MyUploadVideo = ({ isUploadVideo, setClickMyVideoDataFunc }) => { 
 
-    console.log(isUploadVideo)
+    console.log('isUploadVideo', isUploadVideo)
 
     return (
 
       <>
       {isUploadVideo !== [] ?
       <div className="myvideos col-12 sm-px-0">
-        <div className="col-md-10">
+        <div className="col-md-9">
           <div className="title"><img className="myvideo-title" src="https://i.ibb.co/tq5VJyk/image.png"/></div>
           <div className="myuploadvideo-box container-fluid">
             <div className="uploadvideocard-box row sm-p-5">

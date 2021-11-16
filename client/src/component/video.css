@@ -6,6 +6,21 @@
 }
 
 
+.upload-video_text {
+  display: flex;
+  flex-direction: column;
+}
+
+.upload-video_text > p {
+  display: flex;
+  justify-content: flex-end;
+}
+
+
+.upload-video_text h4 {
+  left: 0;
+}
+
 @media screen and (min-width: 769px){
     .allvideocontainer{
         width: 100%;

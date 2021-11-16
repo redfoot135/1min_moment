@@ -23,9 +23,8 @@ function Comments({accessToken,videoInfo,userInfo}) {
   const onSubmit = (e)=>{
     e.preventDefault(); //for refresh block
     axios
-    
     .post(
-      'https://localhost:80/comment',{
+      `${process.env.REACT_APP_SERVER}/comment`,{
         video_id:videoInfo.video_id,
         comment:commentValue
       },{
@@ -66,7 +65,7 @@ function Comments({accessToken,videoInfo,userInfo}) {
   const uploadVideo = () => {
     axios
     .post(
-      'https://localhost:80/comment',{
+      `${process.env.REACT_APP_SERVER}/comment`,{
         video_id:videoInfo.video_id,
         comment:commentValue
       },{
@@ -103,7 +102,7 @@ function Comments({accessToken,videoInfo,userInfo}) {
       console.log('hi!')
       axios
       .get(
-        'https://localhost:80/comments',{
+        `${process.env.REACT_APP_SERVER}/comments`,{
           params:{
             id:videoInfo.video_id,
             cursor:x
@@ -159,7 +158,7 @@ function Comments({accessToken,videoInfo,userInfo}) {
       useEffect(()=>{   
         axios
         .get(
-          'https://localhost:80/comments',{
+          `${process.env.REACT_APP_SERVER}/comments`,{
             params:{id:videoInfo.video_id,},
             headers: {
               authorization: `Bearer ${accessToken}`,
