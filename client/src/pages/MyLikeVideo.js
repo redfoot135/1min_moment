@@ -5,7 +5,6 @@ import "./MyLikeVideo.css"
 
 const MyLikeVideo = ({handleLikeVideo, isLikeVideo, clickMyLikeVideoDataFunc}) => {
 
-  console.log(isLikeVideo)
 
     useEffect(() => {
         handleLikeVideo(); // 찜한 영상요청 함수 실행

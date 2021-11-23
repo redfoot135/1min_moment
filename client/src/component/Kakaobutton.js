@@ -26,7 +26,6 @@ export default function Kakaobutton ({ errorMessage, openModalFunc, handleAccess
     const kakaoOnSuccess = (res) => {
 
       // 우리 서비스 서버로 post 요청하여 엑세스토큰 받아오는 함수
-    	console.log(res); 
 
       const token = res.response.access_token
       const id = res.profile.id
@@ -45,7 +44,6 @@ export default function Kakaobutton ({ errorMessage, openModalFunc, handleAccess
     }
 
     const kakaoOnFailure = (error) => {
-        console.log(error);
         errorMessage("카카오로부터 인증에 실패하셨습니다")
     }
 

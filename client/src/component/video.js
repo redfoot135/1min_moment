@@ -4,8 +4,6 @@ import Avatar from "@material-ui/core/Avatar";
 import { useEffect,useCallback } from 'react';
 import { BrowserRouter, Route, Switch, useHistory, Link} from 'react-router-dom';
 export default function Video({setClickMyVideoDataFunc,movieData,image, channelImage, title, channel, views, timestamp,getvideoInfo,video,video_id}) {
-    // console.log(movieData)
-    console.log(movieData.likes)
     const isPc = useMediaQuery({
         query : "(min-width:768px)"
     })

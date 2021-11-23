@@ -39,8 +39,6 @@ module.exports = async (req, res) => {
       }else {
         // 받아오는 데이터 구조분해 할당
         const { comment,video_id } = req.body;
-        console.log('comments',comment) 
-        console.log('comments',video_id )
       //필수 요소가 없으면 
         if(!comment || !video_id) {
       // 필수 요소를 채우라는 에러메시지를 보내주고
@@ -53,7 +51,6 @@ module.exports = async (req, res) => {
         video_id: video_id,
         comment: comment
       }).then(newcomment=>{
-       // console.log('1212121',res)
         res.status(201).json({
           data: {
           comment_id:newcomment.dataValues.id,
@@ -64,7 +61,6 @@ module.exports = async (req, res) => {
           message:"Comment has been completed"
         })
       })
-      console.log('121212',comment_id)
           //   db.comment.create({
               
           //   user_id: userData.dataValues.id, // 우리가 user테이블에서 찾은 id

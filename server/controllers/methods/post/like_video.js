@@ -5,8 +5,6 @@ const { createAccessToken, createRefreshToken, tokenCheck } = require('../../tok
 
 module.exports = async (req, res) => {
   //인증 정보
-  console.log('headerssssssss',req.headers)
-  console.log('bodydudududuu',req.body)
   const { authorization, refreshToken } = req.headers;
   //없으면 에러처리
   if(!authorization) {

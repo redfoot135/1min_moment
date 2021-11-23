@@ -8,7 +8,6 @@ const {TextArea} = Input;
  
 
 function Comments({accessToken,videoInfo,userInfo}) {
-  console.log(userInfo)
   let renderComment = null;
   let x ;
   const [commentList, setCommentList] = useState([])
@@ -35,7 +34,6 @@ function Comments({accessToken,videoInfo,userInfo}) {
       withCredentials: true
     }
       ).then((res)=>{
-           console.log(res)
        if(res.data.message==='Comment has been completed'){
         setCommentList(commentList => [ {
           comment:commentValue,
@@ -44,7 +42,6 @@ function Comments({accessToken,videoInfo,userInfo}) {
           
         }, ...commentList])
         x=res.data.data.comment_id
-        console.log('xxxxxx',x)
         // setPosting({
         //   comment:commentValue,
         //   writer:userInfo.name,
@@ -76,7 +73,6 @@ function Comments({accessToken,videoInfo,userInfo}) {
       withCredentials: true
     }
       ).then((res)=>{
-           console.log(res)
        if(res.data.message==='Comment has been completed'){
         alert("성공")
        // window.location.replace('/')
@@ -99,7 +95,6 @@ function Comments({accessToken,videoInfo,userInfo}) {
     let clientHeight = document.documentElement.clientHeight;
    
     if(scrollTop + clientHeight +1>scrollHeight) {    
-      console.log('hi!')
       axios
       .get(
         `${process.env.REACT_APP_SERVER}/comments`,{
@@ -114,14 +109,10 @@ function Comments({accessToken,videoInfo,userInfo}) {
         withCredentials: true
       }
         ).then((res)=>{
-             console.log(res)
           
           setCommentList(commentList => [...commentList, ...res.data.data])
           if(res.data.data[res.data.data.length-1]){
-            console.log('res@@@@@@@',res.data)
-            console.log('res_____',res.data.data[res.data.data.length-1].id)
            x = res.data.data[res.data.data.length-1].id
-           console.log(x)
            }
            renderComment = commentList.map((obj, index) =>{
             return  <div>
@@ -150,7 +141,6 @@ function Comments({accessToken,videoInfo,userInfo}) {
 
 
   useEffect(() => {
-    console.log('123123123123',videoInfo.videoId)
     window.addEventListener('scroll', infiniteScroll, true);
     return () => window.removeEventListener('scroll', infiniteScroll, true);
     }, [infiniteScroll]);
@@ -167,16 +157,11 @@ function Comments({accessToken,videoInfo,userInfo}) {
           withCredentials: true
         }
           ).then((res)=>{
-               console.log(res)
            
             
             setCommentList(commentList => [...commentList, ...res.data.data])
             if(res.data.data[res.data.data.length-1]){
-              console.log('res@@@@@@@',res.data)
-              console.log('res_____',res.data.data[res.data.data.length-1].id)
-             x = res.data.data[res.data.data.length-1].id
-             console.log(x)
-             
+             x = res.data.data[res.data.data.length-1].id             
              }
             //  renderComment = commentList.map((obj, index) =>{
             //   return  <div>

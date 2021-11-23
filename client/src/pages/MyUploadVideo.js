@@ -5,7 +5,6 @@ import UploadVideoCard from './UploadVideoCard';
 
 const MyUploadVideo = ({ isUploadVideo, setClickMyVideoDataFunc }) => { 
 
-    console.log('isUploadVideo', isUploadVideo)
 
     return (
 

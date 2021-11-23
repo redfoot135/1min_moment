@@ -43,19 +43,14 @@ function App() {
 
 const getSearch= (search) =>{
   setSearchInfo(search)
-  console.log(searchInfo)
-  console.log('hi!!!!!')
   
  } 
  const getCategory= (category) =>{
   setcategory(category)
-  console.log(category)
-  console.log('hi!!!!!')
  } 
   
 const getvideoInfo = (image,title, views, timestamp,video,video_id,category1,category2,category3) => {
   
-  console.log('hi!!!!!')
   setVideoInfo({
       image:image,
       title:title,
@@ -67,7 +62,6 @@ const getvideoInfo = (image,title, views, timestamp,video,video_id,category1,cat
       category2:category2,
       category3:category3
   })
-  console.log(videoInfo)
 }
 
   const handleAccessToken = (tokenData) => { // 소셜로그인 후 함수
@@ -84,7 +78,6 @@ const getvideoInfo = (image,title, views, timestamp,video,video_id,category1,cat
       setUserInfo(res.data.data.userinfo) // id, email, name (+ social 정보 들어갈 예정)
       setIsLogin(true) // 로그인 상태 변경
     }).catch((err) => {
-      console.log(err)
     })
   }
 
@@ -101,7 +94,6 @@ const getvideoInfo = (image,title, views, timestamp,video,video_id,category1,cat
       setUserInfo(res.data.data.userinfo) // id, email, name (+ social 정보 들어갈 예정)
       setIsLogin(true) // 로그인 상태 변경
     }).catch((err) => {
-      console.log(err)
     })
 
   }
@@ -123,7 +115,6 @@ const getvideoInfo = (image,title, views, timestamp,video,video_id,category1,cat
   // 로그인 모달 오픈 상태 변경 함수
   const openModalFunc = () => {
     setIsModalOpen(!isModalOpen)
-    console.log(isModalOpen)
   }
 
   // refresh token 보내주면서 리다이렉션 함수
@@ -171,10 +162,8 @@ const getvideoInfo = (image,title, views, timestamp,video,video_id,category1,cat
     },
     withCredentials: true
     }).then((res) => {
-      console.log('uploadVideo', res)
       setIsUploadVideo(res.data.data.myvideos)
     }).catch((err) => {
-      console.log(err)
     })
   }
   
@@ -210,10 +199,8 @@ const getvideoInfo = (image,title, views, timestamp,video,video_id,category1,cat
     },
     withCredentials: true
     }).then((res) => {
-      console.log(res.data) // res 영상 데이터 형식이 아리까리(?)
       setIsLikeVideo(res.data.data.myvideos) 
     }).catch((err) => {
-      console.log(err)
     })
   }
 

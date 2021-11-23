@@ -23,7 +23,6 @@ function Nav({handleSignOut,getSearch,searchInfo}){
        
     
     setSearchResult(e.target.value)
-    console.log(searchResult) 
     
     
    }
