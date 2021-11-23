@@ -234,7 +234,7 @@ const handleCategoty2=(e)=>{
 
   return (
           
-    <div className="add_file">      
+    <div className="add_file col-11 col-md-6">      
       
       <div className="uploadTitle">
         <img className="uploadTitle-text" src="https://i.ibb.co/ZmbDdtD/image.png" alt="" />
@@ -246,12 +246,12 @@ const handleCategoty2=(e)=>{
           
             <video id='video'></video>
             </div>
-             <div className='labelcontainer' {...getRootProps()}>
-              <input  className="filebox"  type='file' {...getInputProps()} /> 
+             <div className='labelcontainer col-11' {...getRootProps()}>
+              <input  className="filebox"  type='file' {...getInputProps()}/> 
                 {
                 isDragActive ?
                 <label className='label' >들어왔어요!</label> :
-                <label className='label'><canvas id='canvas'></canvas></label> 
+                <label className='label'><canvas id='canvas' className="col-12"></canvas></label> 
                 }
               </div>
               
@@ -259,10 +259,10 @@ const handleCategoty2=(e)=>{
             
             <div className='videoInfo'>
           <div className="upload-holder">
-            <input className="upload-name" value={selectedFile.name} placeholder={'파일이름'}/>
+            {/* <input className="upload-name" value={selectedFile.name} placeholder={'파일이름'}/> */}
           </div>
           <div className="upload-holder">
-              <input className="upload-title" type='text' onChange={handleTargetTitle} value={title} placeholder={'제목'}/>
+              제목: <input className="upload-title" type='text' onChange={handleTargetTitle} value={title} placeholder={'제목'}/>
           </div>
               <Button className='addcategory_upload' onClick= {openCategory}>카테고리설정</Button>   
               {/* {showCategory === true ?
