@@ -22,6 +22,7 @@
   display: flex;
   justify-content: center;
   align-items: center;
+  position: relative;
 }
 
 
@@ -30,7 +31,8 @@
     padding: 20px;
     color: #999;
     vertical-align: middle;
-    line-height:600px;
+    /* line-height:600px; */
+    height: 25vw;
     background-color: #fdfdfd;
     cursor: pointer;
     border: 1px solid #f1c40e;
@@ -110,7 +112,7 @@
 #canvas{
 
   display: flex;
-  
+  position: absolute;
 }
 
 #video{
