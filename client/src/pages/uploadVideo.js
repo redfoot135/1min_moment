@@ -251,7 +251,7 @@ const handleCategoty2=(e)=>{
                 {
                 isDragActive ?
                 <label className='label' >들어왔어요!</label> :
-                <label className='label'><canvas id='canvas' className="col-12"></canvas></label> 
+                <label className='label'>sdfsdfsd<canvas id='canvas' className="col-10"></canvas></label> 
                 }
               </div>
               
