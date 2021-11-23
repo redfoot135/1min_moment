@@ -150,7 +150,6 @@ function Comments({accessToken,videoInfo,userInfo}) {
 
 
   useEffect(() => {
-    console.log('123123123123',videoInfo.videoId)
     window.addEventListener('scroll', infiniteScroll, true);
     return () => window.removeEventListener('scroll', infiniteScroll, true);
     }, [infiniteScroll]);

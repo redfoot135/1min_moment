@@ -19,6 +19,7 @@ import Introduce from './component/Introduce'
 import Footer from './component/Footer'
 
 axios.defaults.withCredentials = true;
+
 function App() {
   
   const history = useHistory();
@@ -43,19 +44,13 @@ function App() {
 
 const getSearch= (search) =>{
   setSearchInfo(search)
-  console.log(searchInfo)
-  console.log('hi!!!!!')
-  
  } 
  const getCategory= (category) =>{
   setcategory(category)
-  console.log(category)
-  console.log('hi!!!!!')
  } 
   
 const getvideoInfo = (image,title, views, timestamp,video,video_id,category1,category2,category3) => {
   
-  console.log('hi!!!!!')
   setVideoInfo({
       image:image,
       title:title,
@@ -67,7 +62,6 @@ const getvideoInfo = (image,title, views, timestamp,video,video_id,category1,cat
       category2:category2,
       category3:category3
   })
-  console.log(videoInfo)
 }
 
   const handleAccessToken = (tokenData) => { // 소셜로그인 후 함수
@@ -113,7 +107,6 @@ const getvideoInfo = (image,title, views, timestamp,video,video_id,category1,cat
       setIsLogin(false);
       setUserInfo(null);
       window.location.replace('/') 
-      // alert("로그아웃을 완료했습니다")
     })
   }
 
@@ -123,7 +116,6 @@ const getvideoInfo = (image,title, views, timestamp,video,video_id,category1,cat
   // 로그인 모달 오픈 상태 변경 함수
   const openModalFunc = () => {
     setIsModalOpen(!isModalOpen)
-    console.log(isModalOpen)
   }
 
   // refresh token 보내주면서 리다이렉션 함수
@@ -171,7 +163,6 @@ const getvideoInfo = (image,title, views, timestamp,video,video_id,category1,cat
     },
     withCredentials: true
     }).then((res) => {
-      console.log('uploadVideo', res)
       setIsUploadVideo(res.data.data.myvideos)
     }).catch((err) => {
       console.log(err)
@@ -210,7 +201,6 @@ const getvideoInfo = (image,title, views, timestamp,video,video_id,category1,cat
     },
     withCredentials: true
     }).then((res) => {
-      console.log(res.data) // res 영상 데이터 형식이 아리까리(?)
       setIsLikeVideo(res.data.data.myvideos) 
     }).catch((err) => {
       console.log(err)
@@ -226,28 +216,24 @@ const getvideoInfo = (image,title, views, timestamp,video,video_id,category1,cat
   }
 
   return (
-    <BrowserRouter>
+  <BrowserRouter>
     <div className="App container-fluid row-fluid p-0">
       <div className="nav-box row-fluid px-0">
         {isLogin ===false ? 
-
-          <Nav2 openModalFunc={openModalFunc}  getSearch={getSearch} searchInfo={searchInfo}/> :
-          <Nav  handleSignOut={handleSignOut}  getSearch={getSearch} searchInfo={searchInfo}/>}
-
+          <Nav2 openModalFunc={openModalFunc}  getSearch={getSearch} searchInfo={searchInfo}/> 
+          :
+          <Nav  handleSignOut={handleSignOut}  getSearch={getSearch} searchInfo={searchInfo}/>
+          }
       </div>
       {
-      isModalOpen ===false ? null 
+      isModalOpen === false ? null 
       : <SignIn handleAccessToken={handleAccessToken} handleUserInfo={handleUserInfo} openModalFunc={openModalFunc} /> 
       }
       <Switch>
         <Route exact path='/'>
           <div className="intro-box row-fluid px-0">
             <Introduce />
-            
           </div>
-          {/* <div className="row-fluid px-0">
-          <SlidesContainer getvideoInfo={getvideoInfo} getCategory={getCategory}/>
-          </div> */}
         </Route>
         <Route exact path='/main'>
           <Main category={category} searchInfo={searchInfo}  getvideoInfo={getvideoInfo} setSearchInfo={setSearchInfo} setIsUploadVideo={setIsUploadVideo} setClickMyVideoDataFunc={setClickMyVideoDataFunc} />
@@ -274,54 +260,8 @@ const getvideoInfo = (image,title, views, timestamp,video,video_id,category1,cat
         <div className="row-fluid col-12">
           {/* <Footer /> */}
         </div>
-
-   
-    {/* <Main/> */}
-    {/* <UploadVideo accessToken={accessToken}/> */}
-    {/* <VideoPage/> */}
-    
-    {/* <Switch>
-    
-        <Route path="/mylikevideo"><MyLikeVideo /></Route>
-        <Route path="/myuploadvideo"><MyUploadVideo /></Route>
-    </Switch> */}
-
-      </div> 
-      <div>
-
-         
-
-       
-       
-       {/* <Main/> */}
-       {/* <UploadVideo accessToken={accessToken}/> */}
-       {/* <VideoPage/> */}
-       
-       {/* <Switch>
-           <Route path="/videos"><VideoPage videoInfo={videoInfo} accessToken={accessToken}/></Route>
-           <Route path="/mylikevideo"><MyLikeVideo /></Route>
-           <Route path="/myuploadvideo"><MyUploadVideo accessToken={accessToken} isUploadVideo={isUploadVideo} setClickMyVideoDataFunc={setClickMyVideoDataFunc}/></Route>
-        </Switch> */}
-       </div>
-       {/* <BrowserRouter>
-         <header className="App-header" onClick={openModalFunc}>
-           로그인
-         </header>
-         {isModalOpen === false ? null 
-         : <SignIn handleAccessToken={handleAccessToken} handleUserInfo={handleUserInfo} openModalFunc={openModalFunc} /> 
-         }
-         <div className-="mypage-txt" onClick={openSideBarlFunc}>마이페이지</div>
-         {isSideBarOpen === false ? null
-         : <MyPage openSideBarlFunc={openSideBarlFunc} />
-         }
-         <Switch>
-           <Route path="/mylikevideo"><MyLikeVideo /></Route>
-           <Route path="/myuploadvideo"><MyUploadVideo /></Route>
-         </Switch>
-      </BrowserRouter>  */}
-    {/* </div> */}
-
-    </BrowserRouter>
+    </div>     
+  </BrowserRouter>
   );
 }
 
