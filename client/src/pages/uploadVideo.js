@@ -92,6 +92,7 @@ const handleCategoty2=(e)=>{
   }
 
   const uploadVideo =  () => {
+    console.log("selectedFile : ????????", selectedFile)
     if(checkList.length >3){
      alert('체크리스트 최대갯수는 3개입니다.')
     }
@@ -104,7 +105,7 @@ const handleCategoty2=(e)=>{
     });
 
     const videoName = v4();
-
+      // 이게 순서 2번째
       S3.upload({
       Bucket: `${process.env.REACT_APP_BUCKET}/videos`,
       Key: `${videoName}.mp4`,
@@ -113,7 +114,13 @@ const handleCategoty2=(e)=>{
       ContentType: 'video/mp4',
     }, (err, data) => {
       if (err) {
+        console.log("전송에러")
+        console.log(err)
       }else {
+        console.log("data : ", data)
+        alert("성공했다")
+        window.location.replace('/main')
+         
       }
     })
 
@@ -129,10 +136,13 @@ const handleCategoty2=(e)=>{
         ContentType: 'image/jpeg'
       };
      
-
+      // 순서가 이게 먼저임
       S3.upload(data, function(err, data){
-          if (err) { 
+          if (err) {
+            console.log("전송실패")
+            console.log("err : ", err)
           } else {
+            console.log("data : ", data)
           }
       });
       const imgLink =`https://${process.env.REACT_APP_BUCKET}.s3.ap-northeast-2.amazonaws.com/images/${imgName}.jpeg`
@@ -147,17 +157,7 @@ const handleCategoty2=(e)=>{
       },
       withCredentials: true
     }
-      ).then((res)=>{
-       if(res.data.message==='Video registration is complete'){
-        alert("성공")
-       window.location.replace('/main')
-       }
-       else{
-        alert("실패")
-       }
-      
-       }) 
-      }
+      )}
   }
 
   const onDrop = useCallback(acceptedFiles => {
@@ -178,12 +178,12 @@ const handleCategoty2=(e)=>{
       video.setAttribute("src", videourl+'#t=20'); //비디오가만들어지는데 이거는 내장함수잖아요 ... 안되더라고요..
 ///////////////////////////
       video.onloadeddata = function(){ //이미지 따오는 함수 비디오가 업로드되엇을때 
-        setTimeout(() => {
+        //setTimeout(() => {
           let ctx = canvas.getContext('2d');  // 2d
           canvas.getContext('2d').drawImage(video, 0, 0, 300, 200); //그리기
          var img  = canvas.toDataURL("image/png") //url로변환하기
         setImgData(img)
-        }, 3000);
+        //}, 10000);
         
       }
       
