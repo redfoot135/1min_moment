@@ -36,7 +36,6 @@ function Slider({idx,idx2,getvideoInfo,getCategory}){
     };
     const prevSlide = () =>{
         
-        console.log(array)
     var sliderElem = document.querySelector(`.${idx}`)
         sliderElem.style.transition = "none";
         sliderElem.prepend(sliderElem.lastElementChild)
@@ -52,7 +51,6 @@ function Slider({idx,idx2,getvideoInfo,getCategory}){
    
      useEffect(() => {
         var sliderElem = document.querySelector( `.${idx}`)
-        console.log(sliderElem)
         //sliderElem.style.transition = "all 0.5s ease-in-out";
          sliderElem.style.transform = `translateX(-${333}vw)`; // 사이드 * 3000
         // sliderElem.dataset.currentSlide = 3000
@@ -76,9 +74,7 @@ function Slider({idx,idx2,getvideoInfo,getCategory}){
   
           })
          .then((res)=>{
-             console.log('ressssssss',res.data.data)
              SetArray(array => [...array, ...res.data.data])
-             console.log(array)
         
          })
 
@@ -88,17 +84,10 @@ function Slider({idx,idx2,getvideoInfo,getCategory}){
        
      
        if(array){
-           console.log(array[0])
-        //  console.log(res.data.data)
           itemsToRender = array.map((obj, index) =>{
-              console.log(obj.category1)
-              console.log(obj.category2)
-              console.log(obj.category3)
               return <Slide key={obj.id} title={obj.title}  timestamp={obj.createdAt} image={obj.thumbnail} video={obj.video} getvideoInfo={getvideoInfo} video_id={obj.id} category1={obj.category1} category2={obj.category2} category3={obj.category3}/>
              })
-            // console.log(itemsToRender)
        }else{
-          console.log(array)
             itemsToRender = '...loading'
         }
         const getrealcategory = () =>{

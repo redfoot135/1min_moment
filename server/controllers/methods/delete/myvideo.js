@@ -2,7 +2,6 @@ const db = require('../../../models');
 const { tokenCheck } = require('../../token')
 
 module.exports = async (req, res) => {
-  console.log(req.headers)
   const { id } = req.query; //또는 video_id
   const { authorization, refreshToken } = req.headers;
   if(!authorization) {

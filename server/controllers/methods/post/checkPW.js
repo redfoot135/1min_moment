@@ -3,7 +3,6 @@ const db = require('../../../models');
 const { tokenCheck } = require('../../token')
 
 module.exports = async (req, res) => {
-  console.log(req.headers)
   const { password } = req.body;
 
   const { authorization, refreshToken } = req.headers;

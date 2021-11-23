@@ -17,25 +17,26 @@
 }
 
 .filebox{
-  padding-right:255px ;
-  margin-top: 300px;
+  /* padding-right:255px ; */
+  margin-top: 80px;
   display: flex;
   justify-content: center;
-    align-items: center;
+  align-items: center;
 }
+
 
 .filebox label {
     display: flex;
-    padding: 10px 20px;
+    padding: 20px;
     color: #999;
     vertical-align: middle;
     line-height:600px;
     background-color: #fdfdfd;
     cursor: pointer;
-    border: 1px solid #ebebeb;
-    border-radius: 5px;
-    width: 525px;
-    height: 300px;
+    border: 1px solid #f1c40e;
+    border-radius: 20px;
+    /* width: 525px;
+    height: 300px; */
     justify-content: center;
     align-items: center;
     /* align-items: center;
@@ -108,13 +109,13 @@
 
 #canvas{
 
- display: flex;
- width:525px; 
- height:300px;
+  display: flex;
+  
 }
 
 #video{
   opacity: 0;
+  display: none;
   width: 255px;
   height: 140px;
 }

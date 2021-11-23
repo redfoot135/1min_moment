@@ -29,7 +29,6 @@ export default function GoogleButton({ errorMessage, openModalFunc, handleAccess
       }
 
     const googleOnFailure = (error) => {
-        console.log(error);
         errorMessage("구글로부터 인증에 실패하셨습니다")
     }
 

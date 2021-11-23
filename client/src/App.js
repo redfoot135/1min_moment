@@ -44,6 +44,7 @@ function App() {
 
 const getSearch= (search) =>{
   setSearchInfo(search)
+
  } 
  const getCategory= (category) =>{
   setcategory(category)
@@ -78,7 +79,6 @@ const getvideoInfo = (image,title, views, timestamp,video,video_id,category1,cat
       setUserInfo(res.data.data.userinfo) // id, email, name (+ social 정보 들어갈 예정)
       setIsLogin(true) // 로그인 상태 변경
     }).catch((err) => {
-      console.log(err)
     })
   }
 
@@ -95,7 +95,6 @@ const getvideoInfo = (image,title, views, timestamp,video,video_id,category1,cat
       setUserInfo(res.data.data.userinfo) // id, email, name (+ social 정보 들어갈 예정)
       setIsLogin(true) // 로그인 상태 변경
     }).catch((err) => {
-      console.log(err)
     })
 
   }
@@ -165,7 +164,6 @@ const getvideoInfo = (image,title, views, timestamp,video,video_id,category1,cat
     }).then((res) => {
       setIsUploadVideo(res.data.data.myvideos)
     }).catch((err) => {
-      console.log(err)
     })
   }
   
@@ -203,7 +201,6 @@ const getvideoInfo = (image,title, views, timestamp,video,video_id,category1,cat
     }).then((res) => {
       setIsLikeVideo(res.data.data.myvideos) 
     }).catch((err) => {
-      console.log(err)
     })
   }
 

@@ -33,7 +33,6 @@ module.exports = {
           }else {
             data = await db.user.findOne({ where: { social: userdata.social } })
           }
-          console.log(data)
           //리프레시 토큰 복호화
           jwt.verify(refreshtoken, refresh_secret, (err, decoded) => {
             //리프레시토큰도 만료

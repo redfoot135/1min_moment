@@ -3,7 +3,6 @@ import { Link } from "react-router-dom";
 import "./LikeVideoCard.css"
 
 function LikeVideoCard({likeVideoData, clickMyLikeVideoDataFunc}) {
-    console.log(likeVideoData)
     return (
         
         <div className="like-videocard col-lg-4 col-md-6 col-sm-12 p-0 my-2">

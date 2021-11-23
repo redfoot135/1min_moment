@@ -35,6 +35,7 @@ export default function Main({category,searchResult,searchInfo,getvideoInfo,setS
     
     const confirmBtn = () =>{
         if(checkList.length>3){
+
          setshowCategory(!showCategory)
         }
         else{
@@ -42,6 +43,7 @@ export default function Main({category,searchResult,searchInfo,getvideoInfo,setS
         setCheckListDisplay(checkListDisplay=>[...checkListDisplay,...checkList])
         
          setCurrentCategory(checkList.join('/'))
+
          setCheckList('12121212',[])
         }
     }
@@ -50,6 +52,7 @@ export default function Main({category,searchResult,searchInfo,getvideoInfo,setS
     const handleCategoty = (e) =>{
           if(!checkList.includes(e.target.value)){
               if(e.target.checked === true){
+
               setCheckList([...checkList,e.target.value])
               }
           }
@@ -75,6 +78,7 @@ export default function Main({category,searchResult,searchInfo,getvideoInfo,setS
         };
         axios(config)
         .then((res)=>{
+
           setItemList(itemList => [...itemList, ...res.data.data])
 
          if(res.data.data[res.data.data.length-1]){
@@ -83,6 +87,7 @@ export default function Main({category,searchResult,searchInfo,getvideoInfo,setS
           
         })
        // 쿼리요청
+
         }
       }, []);
     
@@ -108,7 +113,7 @@ export default function Main({category,searchResult,searchInfo,getvideoInfo,setS
         setItemList([])
         setItemList(itemList => [...itemList, ...res.data.data])
         setIsUploadVideo(res.data.data)
-     
+
       if(res.data.data[res.data.data.length-1]){
        x = res.data.data[res.data.data.length-1].id
        }
@@ -117,7 +122,7 @@ export default function Main({category,searchResult,searchInfo,getvideoInfo,setS
      // 쿼리요청
      
      },[searchInfo,currentCategory])
-     
+
     return(
 
      <div className="main-container col-12 sm-px-0">

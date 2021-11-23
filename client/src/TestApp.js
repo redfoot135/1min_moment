@@ -45,7 +45,6 @@ function App() {
   const uploadFile = (e) => {
     const file = e.target.files[0];
     setSelectedFile(file)
-    console.log(process.env)
   }
 
   const uploadVideo = async () => {
@@ -68,7 +67,6 @@ function App() {
       }).promise();
 
       const link =`${process.env.REACT_APP_ENDPOINT}/${process.env.REACT_APP_BUCKET}/${videoName}.mp4`
-      console.log(link)
   }
 
   return (

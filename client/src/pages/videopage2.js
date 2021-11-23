@@ -7,7 +7,6 @@ import Comments from '../component/comments'
 axios.defaults.withCredentials = true;
 
 export default function VideoPage2({clickMyVideoData, userInfo, accessToken, viewStateFunc, isLogin, videoInfo}){
-  console.log(clickMyVideoData)
   
     useEffect(() => {
         viewStateFunc(clickMyVideoData.id);
@@ -20,8 +19,6 @@ export default function VideoPage2({clickMyVideoData, userInfo, accessToken, vie
 
     // 업로드 영상 삭제하기
     const deleteMyVideoFunc = () => {
-        console.log(accessToken)
-        console.log(clickMyVideoData)
         axios.delete(`${process.env.REACT_APP_SERVER}/myvideo?id=${clickMyVideoData.id}`,{
             headers: {
             authorization: `Bearer ${accessToken}`,
@@ -31,7 +28,6 @@ export default function VideoPage2({clickMyVideoData, userInfo, accessToken, vie
           }
           )
           .then((res) => {
-              console.log(res)
               if(res.data.message === "deletion is complete") {
                 window.location.replace('/main') 
               }
@@ -43,7 +39,6 @@ export default function VideoPage2({clickMyVideoData, userInfo, accessToken, vie
 
     const [likeVideo, setLikeVideo] = useState(false)
     const [likeVideoCount, setLikeVideoCount] = useState(clickMyVideoData.likes)
-    // console.log(likeVideo)
    // 좋아요 이모티콘  상태변경 함수
     const likeStateFunc = () => {
         setLikeVideo(!likeVideo);
@@ -59,8 +54,6 @@ export default function VideoPage2({clickMyVideoData, userInfo, accessToken, vie
 
     // likeVideo가 false일 때 동영상 좋아요 post 요청
     const likeVideoFunc = () => {
-        console.log(likeVideo)
-        console.log(clickMyVideoData.mychoice)
         if(likeVideo === false && clickMyVideoData.mychoice === false) {
             axios.post("https://localhost:80/like/video",{video_id: clickMyVideoData.id},
             {
@@ -84,7 +77,6 @@ export default function VideoPage2({clickMyVideoData, userInfo, accessToken, vie
               withCredentials: true
             })
             .then((res) => {
-                // console.log(res)
                 likeStateFunc(); // 불이 꺼지고
                 likeCountMinusFunc(); // 좋아요 카운트 -1
             })

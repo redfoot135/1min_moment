@@ -4,7 +4,6 @@ import "./MyInfo.css";
 
 const MyInfo = ({openMyInfoModalFunc, userInfo, accessToken, handleSecession}) => {
 
-    // console.log(accessToken)
 
     const [errorMessage, setErrorMessage] = useState('')
     const [password, setPassword] = useState('')
@@ -69,7 +68,6 @@ const MyInfo = ({openMyInfoModalFunc, userInfo, accessToken, handleSecession}) =
                 withCredentials: true
                 })
                 .then((res) => {
-                    // console.log("userinfo: ", res)
                     if(res.data.message === "deletion is complete") {
                         alert("회원탈퇴가 완료되었습니다")
                         handleSecession();
