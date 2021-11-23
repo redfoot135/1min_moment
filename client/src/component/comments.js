@@ -7,7 +7,7 @@ const {TextArea} = Input;
 
  
 
-function Comments({accessToken,videoInfo,userInfo}) {
+function Comments({accessToken,clickMyVideoData,userInfo}) {
   let renderComment = null;
   let x ;
   const [commentList, setCommentList] = useState([])
@@ -20,11 +20,12 @@ function Comments({accessToken,videoInfo,userInfo}) {
     setCommentValue(e.currentTarget.value)
   }
   const onSubmit = (e)=>{
+    console.log(clickMyVideoData)
     e.preventDefault(); //for refresh block
     axios
     .post(
       `${process.env.REACT_APP_SERVER}/comment`,{
-        video_id:videoInfo.video_id,
+        video_id:clickMyVideoData.id,
         comment:commentValue
       },{
         headers: {
@@ -63,7 +64,7 @@ function Comments({accessToken,videoInfo,userInfo}) {
     axios
     .post(
       `${process.env.REACT_APP_SERVER}/comment`,{
-        video_id:videoInfo.video_id,
+        video_id:clickMyVideoData.video_id,
         comment:commentValue
       },{
         headers: {
@@ -99,7 +100,7 @@ function Comments({accessToken,videoInfo,userInfo}) {
       .get(
         `${process.env.REACT_APP_SERVER}/comments`,{
           params:{
-            id:videoInfo.video_id,
+            id:clickMyVideoData.video_id,
             cursor:x
           },
           headers: {
@@ -109,7 +110,7 @@ function Comments({accessToken,videoInfo,userInfo}) {
         withCredentials: true
       }
         ).then((res)=>{
-          
+          console.log(res.body)
           setCommentList(commentList => [...commentList, ...res.data.data])
           if(res.data.data[res.data.data.length-1]){
            x = res.data.data[res.data.data.length-1].id
@@ -149,7 +150,7 @@ function Comments({accessToken,videoInfo,userInfo}) {
         axios
         .get(
           `${process.env.REACT_APP_SERVER}/comments`,{
-            params:{id:videoInfo.video_id,},
+            params:{id:clickMyVideoData.id},
             headers: {
               authorization: `Bearer ${accessToken}`,
             "Content-Type" : "application/json"   
@@ -157,7 +158,7 @@ function Comments({accessToken,videoInfo,userInfo}) {
           withCredentials: true
         }
           ).then((res)=>{
-           
+           console.log(res.body)
             
             setCommentList(commentList => [...commentList, ...res.data.data])
             if(res.data.data[res.data.data.length-1]){
@@ -181,7 +182,7 @@ function Comments({accessToken,videoInfo,userInfo}) {
           
            }) 
            
-      },[posting])
+      },[])
  return(
      <div className='commentscontainer row-fluid'>         
         <form style={{display:'flex'}} onSubmit={onSubmit} className="comment-form col-md-9 col-11">

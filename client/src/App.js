@@ -28,18 +28,18 @@ function App() {
   const [accessToken, setAccessToken] = useState(null);
   const [category, setcategory] = useState(null);
   const [searchInfo, setSearchInfo] = useState('');
-  const [videoInfo, setVideoInfo] = useState({
-    image:'',
-    title:'',
-    channel:'',
-    views:'',
-    timestamp:'',
-    video:'',
-    video_id:'',
-    category1:'',
-    category2:'',
-    category3:''
-});
+//   const [videoInfo, setVideoInfo] = useState({
+//     image:'',
+//     title:'',
+//     channel:'',
+//     views:'',
+//     timestamp:'',
+//     video:'',
+//     video_id:'',
+//     category1:'',
+//     category2:'',
+//     category3:''
+// });
 
 const getSearch= (search) =>{
   setSearchInfo(search)
@@ -49,20 +49,20 @@ const getSearch= (search) =>{
   setcategory(category)
  } 
   
-const getvideoInfo = (image,title, views, timestamp,video,video_id,category1,category2,category3) => {
+// const getvideoInfo = (image,title, views, timestamp,video,video_id,category1,category2,category3) => {
   
-  setVideoInfo({
-      image:image,
-      title:title,
-      views:views,
-      timestamp:timestamp,
-      video:video,
-      video_id:video_id,
-      category1:category1,
-      category2:category2,
-      category3:category3
-  })
-}
+//   setVideoInfo({
+//       image:image,
+//       title:title,
+//       views:views,
+//       timestamp:timestamp,
+//       video:video,
+//       video_id:video_id,
+//       category1:category1,
+//       category2:category2,
+//       category3:category3
+//   })
+// }
 
   const handleAccessToken = (tokenData) => { // 소셜로그인 후 함수
 
@@ -172,6 +172,7 @@ const getvideoInfo = (image,title, views, timestamp,video,video_id,category1,cat
 
   // 업로드 비디오 중 클릭한 영상 데이터 상태 변경 함수
   const setClickMyVideoDataFunc = (clickVideoData) => {
+    console.log("clickMyVideoData ------------ ", clickMyVideoData)
     setClickMyVideoData(isUploadVideo.filter((el) => el.id === clickVideoData)[0])
   }
 
@@ -237,13 +238,13 @@ const getvideoInfo = (image,title, views, timestamp,video,video_id,category1,cat
           </div> */}
         </Route>
         <Route exact path='/main'>
-          <Main category={category} searchInfo={searchInfo}  getvideoInfo={getvideoInfo} setSearchInfo={setSearchInfo} setIsUploadVideo={setIsUploadVideo} setClickMyVideoDataFunc={setClickMyVideoDataFunc} />
+          <Main category={category} searchInfo={searchInfo} setSearchInfo={setSearchInfo} setIsUploadVideo={setIsUploadVideo} setClickMyVideoDataFunc={setClickMyVideoDataFunc} />
         </Route>
         <Route exact path='/uploadvideo'>
           <UploadVideo accessToken={accessToken}/>
         </Route>
         <Route exact path='/videos'> 
-          <VideoPage videoInfo={videoInfo} accessToken={accessToken} userInfo={userInfo}/>
+          <VideoPage accessToken={accessToken} userInfo={userInfo}/>
         </Route>
         <Route exact path="/mylikevideo">
           <MyLikeVideo handleLikeVideo={handleLikeVideo} isLikeVideo={isLikeVideo} clickMyLikeVideoDataFunc={clickMyLikeVideoDataFunc}/>
@@ -252,7 +253,7 @@ const getvideoInfo = (image,title, views, timestamp,video,video_id,category1,cat
         <MyUploadVideo accessToken={accessToken} isUploadVideo={isUploadVideo} setClickMyVideoDataFunc={setClickMyVideoDataFunc}/>
         </Route>
         <Route path="/myvideopage">
-        <VideoPage2 clickMyVideoData={clickMyVideoData} userInfo={userInfo} accessToken={accessToken} viewStateFunc ={viewStateFunc} isLogin={isLogin} videoInfo={videoInfo}/>
+        <VideoPage2 clickMyVideoData={clickMyVideoData} userInfo={userInfo} accessToken={accessToken} viewStateFunc ={viewStateFunc} isLogin={isLogin}/>
         </Route>
         <Route path="/mypage">
           <MyPage userInfo={userInfo} accessToken={accessToken} handleSecession={handleSecession} handleUpload={handleUpload}/>
