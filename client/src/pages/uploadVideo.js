@@ -150,7 +150,7 @@ const handleCategoty2=(e)=>{
       ).then((res)=>{
        if(res.data.message==='Video registration is complete'){
         alert("성공")
-       window.location.replace('/')
+       window.location.replace('/main')
        }
        else{
         alert("실패")

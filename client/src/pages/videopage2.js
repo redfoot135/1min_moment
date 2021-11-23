@@ -114,7 +114,7 @@ export default function VideoPage2({clickMyVideoData, userInfo, accessToken, vie
                     <div className='video2-first-row-view-createdAt'>조회수 {clickMyVideoData.views} · {clickMyVideoData.createdAt.slice(0, 10)}</div>
                 </div> 
                 <div className='video2-second-row'>
-                    <div className='video2-second-row-creator'><img className="user-icon" src="https://i.ibb.co/ZV9MknX/profile-user.png"/> {userInfo.name}</div>
+                    <div className='video2-second-row-creator'><img className="user-icon" src="https://i.ibb.co/ZV9MknX/profile-user.png"/> {clickMyVideoData.writer}</div>
                     <div className="video2-second-row-like-delete">
                       <div className="like-myvideo btn2" onClick={likeVideoFunc}>
                       {clickMyVideoData.mychoice === true && likeVideo === false ? 
