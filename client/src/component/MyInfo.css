@@ -125,7 +125,7 @@
 }
 
 
-  @media only screen and (max-width: 767px) {
+  /* @media only screen and (max-width: 767px) {
   .myInfo-modal {
     width: 80%;
     height: 400px;
@@ -133,4 +133,4 @@
     border-radius: 0;
     border: 0;
   }
- } 
+ }  */
