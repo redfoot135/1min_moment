@@ -11,16 +11,16 @@
 }
 
 .title {
-    position: relative;
-    top: 80px;
+  position: relative;
+  top: 80px;
 }
   
-  .main-title {
-    width: 380px;
+.main-title {
+  width: 25vw;
 }
 
 .category-container-box {
-    display: flex;
+  display: flex;
 }
 
  .categorycontainer{
@@ -71,16 +71,11 @@
     flex-wrap: wrap;
 }
 
-/* @media screen and (min-width: 769px){
-    .videocontainer{
-        margin-left: 2rem;
-        margin-right: 2rem;
-        align-items: flex-start;
-        display: grid;
-        grid-template-columns: repeat(3,1fr);
-        grid-gap: 3rem;
-    }
-}  */
+@media screen and (max-width: 768px){
+  .main-title {
+    width: 40vw;
+  }
+} 
 
 
 

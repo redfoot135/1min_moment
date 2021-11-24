@@ -234,7 +234,7 @@ const handleCategoty2=(e)=>{
 
   return (
           
-    <div className="add_file col-11 col-md-6">      
+    <div className="add_file col-11 col-md-7">      
       
       <div className="uploadTitle">
         <img className="uploadTitle-text" src="https://i.ibb.co/ZmbDdtD/image.png" alt="" />
@@ -246,18 +246,18 @@ const handleCategoty2=(e)=>{
           
             <video id='video'></video>
             </div>
-             <div className='labelcontainer col-11' {...getRootProps()}>
+             <div className='labelcontainer col-12' {...getRootProps()}>
               <input  className="filebox"  type='file' {...getInputProps()}/> 
                 {
                 isDragActive ?
                 <label className='label' >들어왔어요!</label> :
-                <label className='label'>sdfsdfsd<canvas id='canvas' className="col-10"></canvas></label> 
+                <label className='label'>클릭하거나 파일을 드래그해주세요!<canvas id='canvas' className="col-11"></canvas></label> 
                 }
               </div>
               
             </div>
             
-            <div className='videoInfo'>
+            <div className='videoInfo col-12'>
           <div className="upload-holder">
             {/* <input className="upload-name" value={selectedFile.name} placeholder={'파일이름'}/> */}
           </div>
@@ -269,20 +269,40 @@ const handleCategoty2=(e)=>{
           (<Addcategory2 confirmBtn={confirmBtn} handleCategoty={handleCategoty}/>)
           :
           null} */}
-          <div>
-        <input type='checkbox' className='checkbox' onChange={handleCategoty}  value='생활'/>생활
-        <input type='checkbox' className='checkbox' onChange={handleCategoty} value='교통'/>교통
-        <input type='checkbox' className='checkbox' onChange={handleCategoty} value='법'/>법
-        </div>
-        <div>
-        <input type='checkbox' className='checkbox' onChange={handleCategoty} value='의료'/>의료
-        <input type='checkbox' className='checkbox' onChange={handleCategoty} value='교육'/>교육
-        <input type='checkbox' className='checkbox' onChange={handleCategoty} value='무언가1'/>세금
-        </div>
-        <div>
-        <input type='checkbox' className='checkbox' onChange={handleCategoty} value='무언가2'/>음식
-        <input type='checkbox' className='checkbox' onChange={handleCategoty} value='무언가3'/>뷰티
-        <input type='checkbox' className='checkbox' onChange={handleCategoty} value='무언가4'/>육아
+          <div className='categorycaontainer col-12'>
+            <div className='category-row col-12'>
+              <div className="categoryinbox col-12">
+                <div>
+                <input type='checkbox' className='checkbox' onChange={handleCategoty}  value='생활'/>생활
+                  </div>
+                  <div>
+                    <input type='checkbox' className='checkbox' onChange={handleCategoty} value='교통'/>교통
+                  </div>
+                  <div>
+                    <input type='checkbox' className='checkbox' onChange={handleCategoty} value='법'/>법
+                  </div>
+                  <div>
+                    <input type='checkbox' className='checkbox' onChange={handleCategoty} value='의료'/>의료
+                  </div>
+                </div>
+                <div className="categoryinbox col-12">
+                  <div>
+                    <input type='checkbox' className='checkbox' onChange={handleCategoty} value='교육'/>교육
+                  </div>
+                  <div>
+                    <input type='checkbox' className='checkbox' onChange={handleCategoty} value='무언가1'/>세금
+                  </div>
+                  <div>
+                    <input type='checkbox' className='checkbox' onChange={handleCategoty} value='무언가2'/>음식
+                  </div>
+                  <div>
+                    <input type='checkbox' className='checkbox' onChange={handleCategoty} value='무언가3'/>뷰티
+                  </div>
+                  <div>
+                    <input type='checkbox' className='checkbox' onChange={handleCategoty} value='무언가4'/>육아
+                  </div>
+                </div>
+            </div>
         </div>
             </div>
       </div> 

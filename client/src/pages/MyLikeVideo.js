@@ -16,7 +16,7 @@ const MyLikeVideo = ({handleLikeVideo, isLikeVideo, clickMyLikeVideoDataFunc}) =
         <>
            {isLikeVideo !== {} ?
            <div className="mylikevideo col-12 sm-px-0">
-             <div className="col-md-10">
+             <div className="col-md-9">
                <div className="title"><img className="mylikevideo-title" src="https://i.ibb.co/HTVBwgY/image.png"/></div>
                <div className="mylikevideo-box container-fluid">
                <div className="likevideocard-box row sm-p-5">
