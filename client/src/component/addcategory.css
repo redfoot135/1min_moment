@@ -1,13 +1,12 @@
 .categorycaontainer {
-    position: absolute;
+    position: relative;
     display: flex;
-    top: 204px;
     margin-left: 18px;
+    padding-right: 10px;
     z-index: 9;
     background-color: rgb(100, 100, 100, 0.1);
-    border-radius: 45px;
-    width: 680px;
-    height: 40px;
+    border-radius: 20px;
+    height: 60px;
 }
 
 .category-row {
@@ -15,12 +14,7 @@
    flex-direction: row;
    justify-content: center;
    align-items: center;
-   margin-left: 15px;
    color: rgb(39, 39, 39);
-}
-
-.category-row input {
-   margin: 0 10px;
 }
  
  .category-btn {
@@ -30,3 +24,20 @@
     width: 50px;
     margin-left: 15px;
 }
+
+.category-box {
+   display: flex;
+   flex-wrap: wrap;
+   justify-content: space-evenly;
+   width: 250px;
+}
+
+@media only screen and (max-width: 768px) {
+   .categorycaontainer {
+      height: 120px;
+  }
+
+  .category-box {
+   width: 150px;
+}
+} 

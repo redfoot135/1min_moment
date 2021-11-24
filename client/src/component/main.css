@@ -26,7 +26,7 @@
  .categorycontainer{
     display: flex;
     margin-top: 80px;
-
+    align-items: center;
 } 
 
  .categorycontainer2{
@@ -49,7 +49,7 @@
     margin-top: 16px;
     background-color: rgb(100, 100, 100, 0.1);
     border-radius: 45px;
-    width: 100px;
+    width: 70px;
     height: 40px;
     display: flex;
     flex-direction: column;
@@ -58,7 +58,7 @@
     color: rgb(39, 39, 39);
 }
 .addbox{
-    
+    vertical-align: middle;
     display: flex;
     color:rgb(110, 191, 223);
     font-size:40px;

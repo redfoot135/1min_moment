@@ -17,15 +17,28 @@ export default function Addcategory({confirmBtn,handleCategoty}){
     <div className='categorycaontainer'>
 
         <div className='category-row'>
-          <input type='checkbox' className='checkbox'  class="form-check-input position-static" onChange={handleCategoty2} value='생활'/>생활
-          <input type='checkbox' className='checkbox' class="form-check-input position-static" onChange={handleCategoty2} value='교통'/>교통
-          <input type='checkbox' className='checkbox'class="form-check-input position-static" onChange={handleCategoty2} value='법'/>법
-          <input type='checkbox' className='checkbox' class="form-check-input position-static" onChange={handleCategoty2} value='의료'/>의료
-          <input type='checkbox' className='checkbox' class="form-check-input position-static" onChange={handleCategoty2} value='교육'/>교육 
-          <input type='checkbox' className='checkbox' class="form-check-input position-static" onChange={handleCategoty2} value='무언가1'/>세금
-          <input type='checkbox' className='checkbox' class="form-check-input position-static" onChange={handleCategoty2} value='무언가2'/>음식
-          <input type='checkbox' className='checkbox' class="form-check-input position-static" onChange={handleCategoty2} value='무언가3'/>뷰티
-          <input type='checkbox' className='checkbox' class="form-check-input position-static" onChange={handleCategoty2} value='무언가4'/>육아
+          <div>
+            <div className='category-box row-fluid'>
+            <div className='category-box col-12 col-md-6'>
+                <input type='checkbox' className='checkbox'  class="form-check-input position-static" onChange={handleCategoty2} value='생활'/>생활
+                <input type='checkbox' className='checkbox' class="form-check-input position-static" onChange={handleCategoty2} value='교통'/>교통
+              </div>
+              <div className='category-box col-12 col-md-6'>
+                <input type='checkbox' className='checkbox'class="form-check-input position-static" onChange={handleCategoty2} value='법'/>법률
+                <input type='checkbox' className='checkbox' class="form-check-input position-static" onChange={handleCategoty2} value='의료'/>의료
+              </div>
+            </div>
+            <div className='category-box row-fluid'>
+              <div className='category-box col-12 col-md-6'>
+                <input type='checkbox' className='checkbox' class="form-check-input position-static" onChange={handleCategoty2} value='교육'/>교육 
+                <input type='checkbox' className='checkbox' class="form-check-input position-static" onChange={handleCategoty2} value='무언가1'/>세금
+              </div>
+              <div className='category-box col-12 col-md-6'>
+                <input type='checkbox' className='checkbox' class="form-check-input position-static" onChange={handleCategoty2} value='무언가2'/>음식
+                <input type='checkbox' className='checkbox' class="form-check-input position-static" onChange={handleCategoty2} value='무언가3'/>뷰티
+              </div>
+            </div> 
+          </div>
           <div>
           <button className ='category-btn' onClick={confirmBtn}>확인</button>
           </div>
