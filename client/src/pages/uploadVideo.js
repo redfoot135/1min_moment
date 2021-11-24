@@ -269,8 +269,8 @@ const handleCategoty2=(e)=>{
           (<Addcategory2 confirmBtn={confirmBtn} handleCategoty={handleCategoty}/>)
           :
           null} */}
-          <div className='categorycaontainer col-12'>
-            <div className='category-row col-12'>
+          <div className='categorycaontainer2 col-12'>
+            <div className='category-column col-12'>
               <div className="categoryinbox col-12">
                 <div>
                 <input type='checkbox' className='checkbox' onChange={handleCategoty}  value='생활'/>생활
@@ -279,7 +279,7 @@ const handleCategoty2=(e)=>{
                     <input type='checkbox' className='checkbox' onChange={handleCategoty} value='교통'/>교통
                   </div>
                   <div>
-                    <input type='checkbox' className='checkbox' onChange={handleCategoty} value='법'/>법
+                    <input type='checkbox' className='checkbox' onChange={handleCategoty} value='법'/>법률
                   </div>
                   <div>
                     <input type='checkbox' className='checkbox' onChange={handleCategoty} value='의료'/>의료
@@ -297,9 +297,6 @@ const handleCategoty2=(e)=>{
                   </div>
                   <div>
                     <input type='checkbox' className='checkbox' onChange={handleCategoty} value='무언가3'/>뷰티
-                  </div>
-                  <div>
-                    <input type='checkbox' className='checkbox' onChange={handleCategoty} value='무언가4'/>육아
                   </div>
                 </div>
             </div>

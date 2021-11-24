@@ -130,7 +130,13 @@ export default function Main({category,searchResult,searchInfo,getvideoInfo,setS
           <div className="title"><img className="main-title" src="https://i.ibb.co/7XrttV3/image.png"/></div>
           <div className='category-container-box'>
           <div className='categorycontainer'> 
-            <div className='addbox' onClick= {openCategory}>+</div>   
+            <div className='addbox' onClick= {openCategory}>+</div>
+            <div>
+              {showCategory === true ?
+              (<Addcategory confirmBtn={confirmBtn} handleCategoty={handleCategoty}/>)
+              :
+              null}
+            </div> 
             {checkListDisplay.length ===3 ? 
             ( <div className='categorycontainer2'>
                 <div className='currentmenu_category'>{checkListDisplay[0]}</div>
@@ -150,12 +156,7 @@ export default function Main({category,searchResult,searchInfo,getvideoInfo,setS
                 <div className='currentmenu_category'>{checkListDisplay[0]}</div>
               </div>) : null }   
           </div> 
-          <div>
-            {showCategory === true ?
-              (<Addcategory confirmBtn={confirmBtn} handleCategoty={handleCategoty}/>)
-              :
-              null}
-          </div>
+         
           </div>
           <div className='videocontainer container-fluid col-12'> {/*//곧 map으로 뿌릴 예정 ;; */}
             <div className="videocontainer-box col-12 row sm-p-5">
