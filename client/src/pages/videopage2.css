@@ -1,12 +1,11 @@
 .videopage2-container {
-    margin-top: 7%;
+    margin-top: 80px;
     display: flex;
     flex-direction: column;
     align-items: center;
   }
 
   .videopage2-videobox {
-    width: 70%;
     margin-top: 25px;
     align-items: center;
   }
@@ -19,6 +18,9 @@
     border-top: 2px solid #f1c40e;
     border-bottom: 2px solid #f1c40e;
     padding-bottom: 5px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
   }
 
   .video2-first-row { 
