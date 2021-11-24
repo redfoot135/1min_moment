@@ -184,8 +184,8 @@ function Comments({accessToken,clickMyVideoData,userInfo}) {
            
       },[])
  return(
-     <div className='commentscontainer row-fluid'>         
-        <form style={{display:'flex'}} onSubmit={onSubmit} className="comment-form col-md-9 col-11">
+     <div id="comments" className='commentscontainer row-fluid col-12'>         
+        <form style={{display:'flex'}} onSubmit={onSubmit} className="comment-form col-12">
             <TextArea
                  className='replyarea'
                  style={{width:'100%', borderRadius: '5px'}}
@@ -197,11 +197,12 @@ function Comments({accessToken,clickMyVideoData,userInfo}) {
                <button className="comment-form-btn" style={{width: '20%',height:'54px'}} >등록</button>
                
         </form>
-   <div className='commentsreverse'>
+   <div className='commentsreverse col-12'>
    <br />
     {commentList.map((obj, index) =>
     <div>
    <Comment
+         className={"aaa"}
          style={{display:'flex'}}
          author={obj.writer}
           content={

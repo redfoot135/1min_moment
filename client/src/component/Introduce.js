@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useRef } from 'react'
 import "./Introduce.css"
 // import { Carousel } from "react-bootstrap"
 

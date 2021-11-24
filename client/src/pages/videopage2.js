@@ -99,12 +99,12 @@ export default function VideoPage2({clickMyVideoData, userInfo, accessToken, vie
 
     
     return(
-        <div className='videopage2-container'>
-            <div className="videopage2-videobox row-fluid">
-            <video className="videopage2-video col-md-9 col-11" src={clickMyVideoData.video} width='80%' controls />
+        <div className='videopage2-container col-md-7 col-11'>
+            <div className="videopage2-videobox row-fluid ">
+            <video className="videopage2-video col-12" src={clickMyVideoData.video} controls />
             </div>
-            <div className='video2-info-container'>
-                <div className='video2-first-row'> 
+            <div className='video2-info-container col-12'>
+                <div className='video2-first-row col-12'> 
                   <div>
                     <span className="video2-first-row-category">#{clickMyVideoData.category1}</span> 
                     {clickMyVideoData.category2 ? <span className="video2-first-row-category">#{clickMyVideoData.category2}</span> : null}
@@ -113,7 +113,7 @@ export default function VideoPage2({clickMyVideoData, userInfo, accessToken, vie
                     <div className='video2-first-row-title'>{clickMyVideoData.title}</div>
                     <div className='video2-first-row-view-createdAt'>조회수 {clickMyVideoData.views} · {clickMyVideoData.createdAt.slice(0, 10)}</div>
                 </div> 
-                <div className='video2-second-row'>
+                <div className='video2-second-row col-12'>
                     <div className='video2-second-row-creator'><img className="user-icon" src="https://i.ibb.co/ZV9MknX/profile-user.png"/> {clickMyVideoData.writer}</div>
                     <div className="video2-second-row-like-delete">
                       <div className="like-myvideo btn2" onClick={likeVideoFunc}>
