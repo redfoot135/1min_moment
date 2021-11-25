@@ -2,7 +2,6 @@ import React, { useState } from 'react';
 import './menu.css'
 function Menu(){
     const[showTabModal, setshowTabModal ] = useState(false) 
-    console.log('showTabmodal은123',showTabModal)
       
       const openModal = (e) => {
          e.stopPropagation()

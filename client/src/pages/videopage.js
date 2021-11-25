@@ -7,12 +7,11 @@ import './videopage.css'
 
 
 export default function VideoPage({videoInfo,accessToken,userInfo}){
-   console.log(videoInfo)
-   console.log(accessToken)
+
    const clickLikeBtn = () =>{
     axios
     .post(
-      'https://localhost:80/like/video',{
+      `${process.env.REACT_APP_SERVER}/like/video`,{
         video_id:videoInfo.video_id
       },{
         headers: {
@@ -22,7 +21,6 @@ export default function VideoPage({videoInfo,accessToken,userInfo}){
       withCredentials: true
     }
       ).then((res)=>{
-           console.log(res)
        if(res.data.message==='Likes are reflected'){
         alert("성공")
        // window.location.replace('/')

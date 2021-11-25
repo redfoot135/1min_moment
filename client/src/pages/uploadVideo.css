@@ -1,11 +1,35 @@
-/* .filebox input[type="file"] {
-    position: absolute;
-    width: 0;
-    height: 0;
-    padding: 0;
-    overflow: hidden;
-    border: 0;
-}  */
+@import url('https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@500&display=swap');
+
+.categorycaontainer2 {
+  position: relative;
+  display: flex;
+  justify-content: center;
+  top: 0px;
+  margin-left: 0px;
+  z-index: 9;
+  background-color: rgb(100, 100, 100, 0.1);
+  border-radius: 10px;
+  width: 680px;
+  height: 60px;
+}
+
+.category-column {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-evenly;
+  align-items: center;
+  margin-left: 0px;
+  color: rgb(39, 39, 39);
+}
+
+.categoryinbox {
+  display: flex;
+  justify-content: space-evenly;
+}
+
+.categoryinbox > div {
+  flex:1;
+}
 
 .uploadTitle {
   position: relative;
@@ -13,29 +37,32 @@
 }
 
 .uploadTitle-text {
-  width: 380px;
+  width: 25vw;
 }
 
 .filebox{
-  padding-right:255px ;
-  margin-top: 300px;
+  /* padding-right:255px ; */
+  margin-top: 80px;
   display: flex;
   justify-content: center;
-    align-items: center;
+  align-items: center;
+  position: relative;
 }
+
 
 .filebox label {
     display: flex;
-    padding: 10px 20px;
+    /* padding: 20px; */
     color: #999;
     vertical-align: middle;
-    line-height:600px;
+    /* line-height:600px; */
+    height: 32vw;
     background-color: #fdfdfd;
     cursor: pointer;
-    border: 1px solid #ebebeb;
-    border-radius: 5px;
-    width: 525px;
-    height: 300px;
+    border: 1px solid #f1c40e;
+    border-radius: 20px;
+    /* width: 525px;
+    height: 300px; */
     justify-content: center;
     align-items: center;
     /* align-items: center;
@@ -101,20 +128,26 @@
 }
 
 .uploadBtn{
-    display: inline-block;
-    vertical-align: middle;
+  display: inline-block;
+  font-family:  'Noto Sans KR', sans-serif;
+  vertical-align: middle;
+  border-radius: 10px;
+  width: 120px;
+  height: 50px;
+  font-size: 18px;
+  margin-bottom: 30px;
 }
 
 
 #canvas{
 
- display: flex;
- width:525px; 
- height:300px;
+  display: flex;
+  position: absolute;
 }
 
 #video{
   opacity: 0;
+  display: none;
   width: 255px;
   height: 140px;
 }
@@ -122,3 +155,24 @@
 .upload-holder{
   padding-top: 3px;
 }
+
+.title-margin {
+  margin: 10px 0px;
+  font-family:  'Noto Sans KR', sans-serif;
+  font-size: 18px;
+}
+
+.checkbox-title {
+  font-family:  'Noto Sans KR', sans-serif;
+  font-size: 16px;
+}
+
+
+@media only screen and (max-width: 768px) {
+  .filebox label {
+    height: 50vw;
+}
+  .uploadTitle-text {
+    width: 40vw;
+  }
+} 

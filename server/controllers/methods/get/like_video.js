@@ -42,7 +42,7 @@ module.exports = async (req, res) => {
         // 유요한 유저 정보가 안나온다는것은 엑세스토큰,리프레쉬 토큰 인증이 안된것!
         res.status(400).json({ message: "Token has expired Please log in again"} ); 
       }else {
-        const select = "select videos.id, title, videos.user_id, users.name as writer, video, thumbnail, category1, category2, category3, videos.createdAt, videos.updatedAt, count(views.video_id) as views, count(video_likes.video_id) as likes";
+        const select = "select videos.id, title, videos.user_id, users.name as writer, video, thumbnail, category1, category2, category3, videos.createdAt, videos.updatedAt, count(DISTINCT views.id) as views, count(DISTINCT video_likes.video_id) as likes";
         let order = '';
         let having = '';
         let num = limit || 30;
@@ -75,10 +75,8 @@ module.exports = async (req, res) => {
               })
       
               if(isHave) {
-                console.log("있음")
                 return true;
               }else {
-                console.log("없음")
                 return false;
               }
             })

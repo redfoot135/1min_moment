@@ -1,9 +1,9 @@
 .myInfo-modalbox {
     position: fixed;
     top: 0;
-    right: 0;
-    bottom: 0;
     left: 0;
+    width: 100%;
+    height: 100%;
     background: rgba(0, 0, 0, 0.6);  
     z-index: 1050;
   }
@@ -13,12 +13,12 @@
     flex-direction: column;
     align-items: center;
     justify-content: center;
-    width: 480px;
-    height: 500px;
+    width: 650px;
+    height: 400px;
     background-color: white;
-    position: relative;
     box-sizing: border-box;
-    margin: 100px auto;
+    position: relative;
+    margin: 150px auto;
     padding: 20px;
     background: #fff;   
     border-radius: 30px 30px 30px 30px / 30px 30px 30px 30px;
@@ -26,10 +26,6 @@
   }
 
   .myInfo-modal-content {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: space-around;
     width: 380px;
     height: 380px;
     margin: 30px 30px;
@@ -37,33 +33,89 @@
     /* font-size: 35px; */
   }
 
+  .myInfo-modal-title {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+  }
+
+  .myInfo-title {
+    width: 180px;
+  }
+
+  .myInfo-body {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    justify-content: center;
+    margin-top: 15px;
+  }
+
   .myInfo-modal-username {
+    margin-top: 20px;
+    margin-bottom: 15px;
     font-size: 20px;
+    float: left;
     /* margin: 10px; */
+  }
+
+  .myInfo-user-logo {
+    width: 30px;
+    height: 30px;
+    margin-right: 18px;
   }
 
   .myInfo-modal-useremail {
     font-size: 20px;
+    margin-bottom: 15px;
     /* margin: 10px; */
+  }
+
+  .myInfo-email-logo {
+    width: 30px;
+    height: 30px;
+    margin-right: 18px;
+  }
+
+  .myInfo-modal-modifiedbox {
+    display: flex;
+    justify-content: center;
+    margin-top: 15px;
+    width: 100%;
+  }
+
+  .myInfo-modal-buttonbox {
+    margin: 0 20px;
   }
 
   .myInfo-modal-inputbox {
     display: flex;
     flex-direction: column;
     align-items: center;
+    margin-right: 10px;
   }
 
-  /* .current-password {
-    ;
-  } */
 
-  
-  /* .close {
-    float: right;
-    font-size: 25px;
-    color: #F05C69;
-    cursor: pointer
-  } */
+
+  .errorMessege2 {
+    color: red;
+    background-color: #f8d7da;
+    border-color: #f5c6cb;
+    position: relative;
+    padding: 6px 0px;
+    border: 1px solid transparent;
+    border-radius: 0.25rem;
+    margin: 0;
+    margin-bottom: 5px;
+    width: 100%;
+  }
+
+  .confirm {
+    margin: 5px 0;
+  }
+
+
 
   @font-face {
     font-family: 'SBAggroB';
@@ -72,7 +124,7 @@
     font-style: normal;
 }
 
-@font-face {
+  @font-face {
   font-family: 'SBAggroM';
   src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2108@1.1/SBAggroM.woff') format('woff');
   font-weight: normal;
@@ -80,12 +132,61 @@
 }
 
 
-@media only screen and (max-width: 480px) {
-  .myInfo-modal {
-    width: 100vw;
-    height: 100vh;
-    margin: 0;
-    border-radius: 0;
-    border: 0;
-  }
+  @media only screen and (max-width: 767px) {
+    .myInfo-modalbox {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: rgba(0, 0, 0, 0.6);  
+      z-index: 1050;
+    }
+
+    .myInfo-modal {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      width: 100%;
+      height: 100%;
+      background-color: white;
+      box-sizing: border-box;
+      position: relative;
+      margin: 0 auto;
+      padding: 20px;
+      background: #fff;   
+      border-radius: 0;
+      border: 0;
+    }
+
+    .myInfo-modal-content {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      width: 380px;
+      height: 380px;
+      margin: 30px 30px;
+      font-family: 'SBAggroM';
+      /* font-size: 35px; */
+    }
+
+    .myInfo-body {
+      display: flex;
+      flex-direction: column;
+      align-items: flex-start;
+      justify-content: center;
+      margin-top: 15px;
+    }
+
+    .myInfo-modal-modifiedbox {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      margin-top: 15px;
+      width: 100%;
+    }
+
  } 

@@ -12,9 +12,15 @@ function LikeVideoCard({likeVideoData, clickMyLikeVideoDataFunc}) {
            <div className="like-videocard_info">
                <div className="like-video_text">
                    <h4>{likeVideoData.title}</h4>
+                   {likeVideoData.mychoice === false ? 
                    <p>
-                       {likeVideoData.views} · <img className="like-icon" src="https://i.ibb.co/hgRgsrY/image.png" alt="" /> {likeVideoData.likes}
+                       {likeVideoData.views} · <img className="like-icon" src="https://i.ibb.co/C0ntKBK/2021-11-11-5-56-57-removebg-preview.png" alt="" /> {likeVideoData.likes}
                    </p>
+                   : 
+                   <p>
+                       {likeVideoData.views} · <img className="like-icon" src="https://i.ibb.co/Y0jmDXG/2021-11-11-5-58-41-removebg-preview.png" alt="" /> {likeVideoData.likes}
+                   </p>
+                   }
                </div>
            </div>
         </div>
@@ -23,3 +29,5 @@ function LikeVideoCard({likeVideoData, clickMyLikeVideoDataFunc}) {
 }
 
 export default LikeVideoCard
+
+

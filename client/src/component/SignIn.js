@@ -34,23 +34,19 @@ export default function SignIn ({ handleAccessToken, handleUserInfo, openModalFu
         if(email === "" || password === "") {
             setErrorMessage("이메일과 비밀번호를 입력하세요")
         } else {
-            axios.post("https://localhost:80/signin",
+            axios.post(`${process.env.REACT_APP_SERVER}/signin`,
             {email, password},
             {"content-type":"application/json", withCredentials: true}
             )
             .then((res) => {
-                console.log(res)
                 if(res.data.message === "Information passed") { // 이메일 인증된 사람
-                    console.log(res.cookies)
                     handleUserInfo(res.data.data)
                     openModalFunc();
-                    history.push("/")
+                    history.push("/main")
                 } else if(res.data.message === "이메일 인증 해주세요"){ // 이메일 인증 안된 사람
                     setErrorMessage("이메일 인증 후 이용해주시기 바랍니다")
                 }
             }).catch((err) => {
-                console.log(err)
-                console.log(err.response)
                 if(!err.response) {
                   setErrorMessage("서버 연결이 불안정합니다")
                 }else if(err.response.data.message === "Please proceed with the verification process") {

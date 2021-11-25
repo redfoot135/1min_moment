@@ -39,17 +39,13 @@ function UploadVideo({accessToken}) {
   const confirmBtn = () =>{
     if(checkList.length>3){
      alert('dkdkdk')
-     console.log(checkList)
      setshowCategory(!showCategory)
     }
     else{
     setshowCategory(!showCategory)
-    console.log(showCategory)
      setCurrentCategory(checkList.join())
      setCheckList2(checkList)
-     console.log('체크리스트!!!!!',checkList)
     // setCheckList([])
-     console.log(checkList2)
     }
 }
 
@@ -58,16 +54,11 @@ const handleCategoty2=(e)=>{
  }
 
   const handleCategoty = (e) =>{
-    console.log(e.target.value)
          if(!checkList.includes(e.target.value)){
-             console.log(e.target.value)
              if(e.target.checked === true){
-             console.log('들어왔어요')
              //setcategoryInfo(categoryInfo+`${e.target.value}`)
             // setCheckList([...checkList,e.target.value])
-             //console.log(categoryInfo)
              checkList.push(e.target.value)
-             console.log('checklist',checkList)
              }
          }
          else {
@@ -77,17 +68,13 @@ const handleCategoty2=(e)=>{
               i--;
             }
           }
-          console.log('checklist',checkList)
          }
-         console.log('checklist',checkList)
      
    }
    const openCategory = (e) =>{
    
     setshowCategory(!showCategory)
    // setCheckList([])
-    console.log(showCategory)
-    console.log(currentCategory)
      
     }
 
@@ -101,18 +88,16 @@ const handleCategoty2=(e)=>{
 
   const uploadFile = (e) => {
     const file = e.target.files[0];
-    console.log(file)
     setSelectedFile(file)
   }
 
   const uploadVideo =  () => {
-    console.log(checkList)
+    console.log("selectedFile : ????????", selectedFile)
     if(checkList.length >3){
      alert('체크리스트 최대갯수는 3개입니다.')
     }
     else{
     let buf =Buffer.from(imgData.replace(/^data:image\/\w+;base64,/, ""),'base64')
-    console.log(buf)
     const S3 = new AWS.S3({
       region: 'ap-northeast-2',
       accessKeyId: process.env.REACT_APP_ACCESSKEY,
@@ -120,7 +105,7 @@ const handleCategoty2=(e)=>{
     });
 
     const videoName = v4();
-
+      // 이게 순서 2번째
       S3.upload({
       Bucket: `${process.env.REACT_APP_BUCKET}/videos`,
       Key: `${videoName}.mp4`,
@@ -129,17 +114,17 @@ const handleCategoty2=(e)=>{
       ContentType: 'video/mp4',
     }, (err, data) => {
       if (err) {
-        console.log("전송 에러");
+        console.log("전송에러")
+        console.log(err)
       }else {
-        console.log('sucess')
-        console.log(data)
-        console.log(checkList2)
+        console.log("data : ", data)
+        alert("성공했다")
+        window.location.replace('/main')
+         
       }
     })
 
-      //  console.log('img22222222222',imgData)
       const videoLink =`https://${process.env.REACT_APP_BUCKET}.s3.ap-northeast-2.amazonaws.com/videos/${videoName}.mp4`
-      console.log("링크는 ", videoLink) 
         
      // var buf = Buffer.from(imgData.replace(/^data:image\/\w+;base64,/, ""),'base64')
      const imgName = v4();
@@ -151,21 +136,19 @@ const handleCategoty2=(e)=>{
         ContentType: 'image/jpeg'
       };
      
-
+      // 순서가 이게 먼저임
       S3.upload(data, function(err, data){
-          if (err) { 
-            console.log(err);
-            console.log('Error uploading data: ', data); 
+          if (err) {
+            console.log("전송실패")
+            console.log("err : ", err)
           } else {
-            console.log('successfully uploaded the image!');
+            console.log("data : ", data)
           }
       });
       const imgLink =`https://${process.env.REACT_APP_BUCKET}.s3.ap-northeast-2.amazonaws.com/images/${imgName}.jpeg`
-      console.log('링크2',imgLink)
-      console.log(accessToken)
     axios
     .post(
-      'https://localhost:80/myvideo',{
+      `${process.env.REACT_APP_SERVER}/myvideo`,{
         title:title , video:videoLink, thumbnail:imgLink, category1:checkList[0], category2:checkList[1], category3:checkList[2]
       },{
         headers: {
@@ -174,18 +157,7 @@ const handleCategoty2=(e)=>{
       },
       withCredentials: true
     }
-      ).then((res)=>{
-           console.log(res)
-       if(res.data.message==='Video registration is complete'){
-        alert("성공")
-       // window.location.replace('/')
-       }
-       else{
-        alert("실패")
-       }
-      
-       }) 
-      }
+      )}
   }
 
   const onDrop = useCallback(acceptedFiles => {
@@ -198,7 +170,6 @@ const handleCategoty2=(e)=>{
     //그후 썸네일 생성하게끔 그런식으로 바꿀껀데 .. 이건 시간남으면 하겠습니다.
     // 편법쓴거라서 
     //잘대처해야 되지않을까 .. 싶네요
-    console.log(acceptedFiles)
     setSelectedFile(acceptedFiles[0])
     var canvas = document.getElementById('canvas'); //이미지를 따오기
       var video = document.getElementById('video'); //video tag 넣기
@@ -207,17 +178,12 @@ const handleCategoty2=(e)=>{
       video.setAttribute("src", videourl+'#t=20'); //비디오가만들어지는데 이거는 내장함수잖아요 ... 안되더라고요..
 ///////////////////////////
       video.onloadeddata = function(){ //이미지 따오는 함수 비디오가 업로드되엇을때 
-        console.log(canvas)
-        setTimeout(() => {
+        //setTimeout(() => {
           let ctx = canvas.getContext('2d');  // 2d
           canvas.getContext('2d').drawImage(video, 0, 0, 300, 200); //그리기
          var img  = canvas.toDataURL("image/png") //url로변환하기
-        console.log('imgimgimgimgimgs',img) 
-        console.log('heeeeeeeeeee',video.videoHeight)
-        console.log('wiiiiiiiiiiid',video.videoWidth)     
         setImgData(img)
-        console.log('22223838585858',imgData)
-        }, 3000);
+        //}, 10000);
         
       }
       
@@ -249,7 +215,6 @@ const handleCategoty2=(e)=>{
 //       title:selectedFile.name , video:link, thumbnail:`https://image.shutterstock.com/image-illustration/halloween-pumpkin-halo-angel-on-600w-1493264564.jpg`, category1:categoryList[0], category2:categoryList[1], category3:categoryList[2]
 //     },
 //     ).then((res)=>{
-//          console.log(res)
    
 //      if(res.data.message==='Video registration is complete'){
 //       alert("성공")
@@ -269,7 +234,7 @@ const handleCategoty2=(e)=>{
 
   return (
           
-    <div className="add_file">      
+    <div className="add_file col-11 col-md-7">      
       
       <div className="uploadTitle">
         <img className="uploadTitle-text" src="https://i.ibb.co/ZmbDdtD/image.png" alt="" />
@@ -281,49 +246,73 @@ const handleCategoty2=(e)=>{
           
             <video id='video'></video>
             </div>
-             <div className='labelcontainer' {...getRootProps()}>
-              <input  className="filebox"  type='file' {...getInputProps()} /> 
+             <div className='labelcontainer col-12' {...getRootProps()}>
+              <input  className="filebox"  type='file' {...getInputProps()}/> 
                 {
                 isDragActive ?
                 <label className='label' >들어왔어요!</label> :
-                <label className='label'><canvas id='canvas'></canvas></label> 
+                <label className='label'>클릭하거나 파일을 드래그해주세요!<canvas id='canvas' className="col-11"></canvas></label> 
                 }
               </div>
               
             </div>
             
-            <div className='videoInfo'>
-          <div className="upload-holder">
+            <div className='videoInfo col-12'>
+          {/* <div className="upload-holder">
             <input className="upload-name" value={selectedFile.name} placeholder={'파일이름'}/>
-          </div>
-          <div className="upload-holder">
-              <input className="upload-title" type='text' onChange={handleTargetTitle} value={title} placeholder={'제목'}/>
-          </div>
-              <Button className='addcategory_upload' onClick= {openCategory}>카테고리설정</Button>   
+          </div> */}
+            <div className="upload-holder">
+              <div className="title-margin"> 
+                제목
+              </div>
+               <input className="upload-title col-12" type='text' onChange={handleTargetTitle} value={title} placeholder={'제목을 입력해주세요'}/>
+            </div>
+            <div className="title-margin"> 
+                카테고리설정
+              </div>
               {/* {showCategory === true ?
           (<Addcategory2 confirmBtn={confirmBtn} handleCategoty={handleCategoty}/>)
           :
           null} */}
-          <div>
-        <input type='checkbox' className='checkbox' onChange={handleCategoty}  value='생활'/>생활
-        <input type='checkbox' className='checkbox' onChange={handleCategoty} value='교통'/>교통
-        <input type='checkbox' className='checkbox' onChange={handleCategoty} value='법'/>법
-        </div>
-        <div>
-        <input type='checkbox' className='checkbox' onChange={handleCategoty} value='의료'/>의료
-        <input type='checkbox' className='checkbox' onChange={handleCategoty} value='교육'/>교육
-        <input type='checkbox' className='checkbox' onChange={handleCategoty} value='무언가1'/>세금
-        </div>
-        <div>
-        <input type='checkbox' className='checkbox' onChange={handleCategoty} value='무언가2'/>음식
-        <input type='checkbox' className='checkbox' onChange={handleCategoty} value='무언가3'/>뷰티
-        <input type='checkbox' className='checkbox' onChange={handleCategoty} value='무언가4'/>육아
+          <div className='categorycaontainer2 col-12'>
+            <div className='category-column col-12'>
+              <div className="categoryinbox col-12">
+                <div className="checkbox-title">
+                <input type='checkbox' className='checkbox' onChange={handleCategoty}  value='생활'/>생활
+                  </div>
+                  <div className="checkbox-title">
+                    <input type='checkbox' className='checkbox' onChange={handleCategoty} value='교통'/>교통
+                  </div>
+                  <div className="checkbox-title">
+                    <input type='checkbox' className='checkbox' onChange={handleCategoty} value='법'/>법률
+                  </div>
+                  <div className="checkbox-title">
+                    <input type='checkbox' className='checkbox' onChange={handleCategoty} value='의료'/>의료
+                  </div>
+                </div>
+                <div className="categoryinbox col-12">
+                  <div className="checkbox-title">
+                    <input type='checkbox' className='checkbox' onChange={handleCategoty} value='교육'/>교육
+                  </div>
+                  <div className="checkbox-title">
+                    <input type='checkbox' className='checkbox' onChange={handleCategoty} value='무언가1'/>세금
+                  </div>
+                  <div className="checkbox-title">
+                    <input type='checkbox' className='checkbox' onChange={handleCategoty} value='무언가2'/>음식
+                  </div>
+                  <div className="checkbox-title">
+                    <input type='checkbox' className='checkbox' onChange={handleCategoty} value='무언가3'/>뷰티
+                  </div>
+                </div>
+            </div>
         </div>
             </div>
       </div> 
      <div>
           
-          <div className='currentmenu'>{currentCategory}</div>
+          <div className='currentmenu'>
+            {currentCategory}
+          </div>
          <div> 
           <button className='uploadBtn' onClick={uploadVideo}>영상 업로드</button>
          </div> 

@@ -7,8 +7,7 @@ const {TextArea} = Input;
 
  
 
-function Comments({accessToken,videoInfo,userInfo}) {
-  console.log(userInfo)
+function Comments({accessToken,clickMyVideoData,userInfo}) {
   let renderComment = null;
   let x ;
   const [commentList, setCommentList] = useState([])
@@ -21,12 +20,12 @@ function Comments({accessToken,videoInfo,userInfo}) {
     setCommentValue(e.currentTarget.value)
   }
   const onSubmit = (e)=>{
+    console.log(clickMyVideoData)
     e.preventDefault(); //for refresh block
     axios
-    
     .post(
-      'https://localhost:80/comment',{
-        video_id:videoInfo.video_id,
+      `${process.env.REACT_APP_SERVER}/comment`,{
+        video_id:clickMyVideoData.id,
         comment:commentValue
       },{
         headers: {
@@ -36,7 +35,6 @@ function Comments({accessToken,videoInfo,userInfo}) {
       withCredentials: true
     }
       ).then((res)=>{
-           console.log(res)
        if(res.data.message==='Comment has been completed'){
         setCommentList(commentList => [ {
           comment:commentValue,
@@ -45,7 +43,6 @@ function Comments({accessToken,videoInfo,userInfo}) {
           
         }, ...commentList])
         x=res.data.data.comment_id
-        console.log('xxxxxx',x)
         // setPosting({
         //   comment:commentValue,
         //   writer:userInfo.name,
@@ -66,8 +63,8 @@ function Comments({accessToken,videoInfo,userInfo}) {
   const uploadVideo = () => {
     axios
     .post(
-      'https://localhost:80/comment',{
-        video_id:videoInfo.video_id,
+      `${process.env.REACT_APP_SERVER}/comment`,{
+        video_id:clickMyVideoData.video_id,
         comment:commentValue
       },{
         headers: {
@@ -77,7 +74,6 @@ function Comments({accessToken,videoInfo,userInfo}) {
       withCredentials: true
     }
       ).then((res)=>{
-           console.log(res)
        if(res.data.message==='Comment has been completed'){
         alert("성공")
        // window.location.replace('/')
@@ -100,12 +96,11 @@ function Comments({accessToken,videoInfo,userInfo}) {
     let clientHeight = document.documentElement.clientHeight;
    
     if(scrollTop + clientHeight +1>scrollHeight) {    
-      console.log('hi!')
       axios
       .get(
-        'https://localhost:80/comments',{
+        `${process.env.REACT_APP_SERVER}/comments`,{
           params:{
-            id:videoInfo.video_id,
+            id:clickMyVideoData.video_id,
             cursor:x
           },
           headers: {
@@ -115,14 +110,10 @@ function Comments({accessToken,videoInfo,userInfo}) {
         withCredentials: true
       }
         ).then((res)=>{
-             console.log(res)
-          
+          console.log(res.body)
           setCommentList(commentList => [...commentList, ...res.data.data])
           if(res.data.data[res.data.data.length-1]){
-            console.log('res@@@@@@@',res.data)
-            console.log('res_____',res.data.data[res.data.data.length-1].id)
            x = res.data.data[res.data.data.length-1].id
-           console.log(x)
            }
            renderComment = commentList.map((obj, index) =>{
             return  <div>
@@ -151,7 +142,6 @@ function Comments({accessToken,videoInfo,userInfo}) {
 
 
   useEffect(() => {
-    console.log('123123123123',videoInfo.videoId)
     window.addEventListener('scroll', infiniteScroll, true);
     return () => window.removeEventListener('scroll', infiniteScroll, true);
     }, [infiniteScroll]);
@@ -159,8 +149,8 @@ function Comments({accessToken,videoInfo,userInfo}) {
       useEffect(()=>{   
         axios
         .get(
-          'https://localhost:80/comments',{
-            params:{id:videoInfo.video_id,},
+          `${process.env.REACT_APP_SERVER}/comments`,{
+            params:{id:clickMyVideoData.id},
             headers: {
               authorization: `Bearer ${accessToken}`,
             "Content-Type" : "application/json"   
@@ -168,16 +158,11 @@ function Comments({accessToken,videoInfo,userInfo}) {
           withCredentials: true
         }
           ).then((res)=>{
-               console.log(res)
-           
+           console.log(res.body)
             
             setCommentList(commentList => [...commentList, ...res.data.data])
             if(res.data.data[res.data.data.length-1]){
-              console.log('res@@@@@@@',res.data)
-              console.log('res_____',res.data.data[res.data.data.length-1].id)
-             x = res.data.data[res.data.data.length-1].id
-             console.log(x)
-             
+             x = res.data.data[res.data.data.length-1].id             
              }
             //  renderComment = commentList.map((obj, index) =>{
             //   return  <div>
@@ -197,10 +182,10 @@ function Comments({accessToken,videoInfo,userInfo}) {
           
            }) 
            
-      },[posting])
+      },[])
  return(
-     <div className='commentscontainer row-fluid'>         
-        <form style={{display:'flex'}} onSubmit={onSubmit} className="comment-form col-md-9 col-11">
+     <div id="comments" className='commentscontainer row-fluid col-12'>         
+        <form style={{display:'flex'}} onSubmit={onSubmit} className="comment-form col-12">
             <TextArea
                  className='replyarea'
                  style={{width:'100%', borderRadius: '5px'}}
@@ -212,11 +197,12 @@ function Comments({accessToken,videoInfo,userInfo}) {
                <button className="comment-form-btn" style={{width: '20%',height:'54px'}} >등록</button>
                
         </form>
-   <div className='commentsreverse'>
+   <div className='commentsreverse col-12'>
    <br />
     {commentList.map((obj, index) =>
     <div>
    <Comment
+         className={"aaa"}
          style={{display:'flex'}}
          author={obj.writer}
           content={

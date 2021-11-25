@@ -3,12 +3,9 @@ import './slide.css'
 import Avatar from "@material-ui/core/Avatar";
 import { BrowserRouter, Route, Switch, useHistory, Link} from 'react-router-dom';
 export default function Slide({image, title, channel, views, timestamp,video, getvideoInfo,video_id,category1,category2,category3}){
-   // console.log(getvideoInfo)
     //getvideoInfo(image, channelImage, title, channel, views, timestamp,video)
     const onClickVideo = ()=>{
-        console.log('22232l3kl2k3l2k3l2',category1)
-        console.log('22232l3kl2k3l2k3l2',category2)
-        console.log('22232l3kl2k3l2k3l2',category3)
+
         getvideoInfo(image,title, views, timestamp,video,video_id,category1,category2,category3)
         
     }
