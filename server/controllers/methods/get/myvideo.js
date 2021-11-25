@@ -40,7 +40,7 @@ module.exports = async (req, res) => {
       })
       //보내온 아이디와 비디오 테이블의 user_id와 같은 데이터만 조회
       const myvideos = await db.video.findAll({where: {user_id: userData.dataValues.id }});
-      const select = "select videos.id, title, videos.user_id, video, thumbnail, category1, category2, category3, videos.createdAt, videos.updatedAt, count(views.video_id) as views, count(video_likes.video_id) as likes";
+      const select = "select videos.id, title, videos.user_id, video, thumbnail, category1, category2, category3, videos.createdAt, videos.updatedAt, count(DISTINCT views.id) as views, count(DISTINCT video_likes.video_id) as likes";
       let order = '';
       let having = '';
       let num = limit || 30;
