@@ -39,6 +39,7 @@ module.exports = async (req, res) => {
       }else {
         // 받아오는 데이터 구조분해 할당
         const { comment,video_id } = req.body;
+        console.log(req.body)
       //필수 요소가 없으면 
         if(!comment || !video_id) {
       // 필수 요소를 채우라는 에러메시지를 보내주고
