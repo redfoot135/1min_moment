@@ -258,13 +258,18 @@ const handleCategoty2=(e)=>{
             </div>
             
             <div className='videoInfo col-12'>
-          <div className="upload-holder">
-            {/* <input className="upload-name" value={selectedFile.name} placeholder={'파일이름'}/> */}
-          </div>
-          <div className="upload-holder">
-              제목: <input className="upload-title" type='text' onChange={handleTargetTitle} value={title} placeholder={'제목'}/>
-          </div>
-              <Button className='addcategory_upload' onClick= {openCategory}>카테고리설정</Button>   
+          {/* <div className="upload-holder">
+            <input className="upload-name" value={selectedFile.name} placeholder={'파일이름'}/>
+          </div> */}
+            <div className="upload-holder">
+              <div className="title-margin"> 
+                제목
+              </div>
+               <input className="upload-title col-12" type='text' onChange={handleTargetTitle} value={title} placeholder={'제목을 입력해주세요'}/>
+            </div>
+            <div className="title-margin"> 
+                카테고리설정
+              </div>
               {/* {showCategory === true ?
           (<Addcategory2 confirmBtn={confirmBtn} handleCategoty={handleCategoty}/>)
           :
@@ -272,30 +277,30 @@ const handleCategoty2=(e)=>{
           <div className='categorycaontainer2 col-12'>
             <div className='category-column col-12'>
               <div className="categoryinbox col-12">
-                <div>
+                <div className="checkbox-title">
                 <input type='checkbox' className='checkbox' onChange={handleCategoty}  value='생활'/>생활
                   </div>
-                  <div>
+                  <div className="checkbox-title">
                     <input type='checkbox' className='checkbox' onChange={handleCategoty} value='교통'/>교통
                   </div>
-                  <div>
+                  <div className="checkbox-title">
                     <input type='checkbox' className='checkbox' onChange={handleCategoty} value='법'/>법률
                   </div>
-                  <div>
+                  <div className="checkbox-title">
                     <input type='checkbox' className='checkbox' onChange={handleCategoty} value='의료'/>의료
                   </div>
                 </div>
                 <div className="categoryinbox col-12">
-                  <div>
+                  <div className="checkbox-title">
                     <input type='checkbox' className='checkbox' onChange={handleCategoty} value='교육'/>교육
                   </div>
-                  <div>
+                  <div className="checkbox-title">
                     <input type='checkbox' className='checkbox' onChange={handleCategoty} value='무언가1'/>세금
                   </div>
-                  <div>
+                  <div className="checkbox-title">
                     <input type='checkbox' className='checkbox' onChange={handleCategoty} value='무언가2'/>음식
                   </div>
-                  <div>
+                  <div className="checkbox-title">
                     <input type='checkbox' className='checkbox' onChange={handleCategoty} value='무언가3'/>뷰티
                   </div>
                 </div>
@@ -305,7 +310,9 @@ const handleCategoty2=(e)=>{
       </div> 
      <div>
           
-          <div className='currentmenu'>{currentCategory}</div>
+          <div className='currentmenu'>
+            {currentCategory}
+          </div>
          <div> 
           <button className='uploadBtn' onClick={uploadVideo}>영상 업로드</button>
          </div> 

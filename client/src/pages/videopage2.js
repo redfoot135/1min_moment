@@ -10,6 +10,7 @@ export default function VideoPage2({clickMyVideoData, userInfo, accessToken, vie
   
     useEffect(() => {
         viewStateFunc(clickMyVideoData.id);
+        console.log(clickMyVideoData)
       }, []) 
 
       
@@ -55,7 +56,7 @@ export default function VideoPage2({clickMyVideoData, userInfo, accessToken, vie
     // likeVideo가 false일 때 동영상 좋아요 post 요청
     const likeVideoFunc = () => {
         if(likeVideo === false && clickMyVideoData.mychoice === false) {
-            axios.post("https://localhost:80/like/video",{video_id: clickMyVideoData.id},
+            axios.post(`${process.env.REACT_APP_SERVER}/like/video`,{video_id: clickMyVideoData.id},
             {
               headers: {
               authorization: `Bearer ${accessToken}`,
@@ -68,7 +69,7 @@ export default function VideoPage2({clickMyVideoData, userInfo, accessToken, vie
                 likeCountPlusFunc(); // 좋아요 카운트 +1
             })
         } else if(likeVideo === false && clickMyVideoData.mychoice === true) {
-            axios.delete(`https://localhost:80/like/video?video_id=${clickMyVideoData.id}`,
+            axios.delete(`${process.env.REACT_APP_SERVER}/like/video?video_id=${clickMyVideoData.id}`,
             {
               headers: {
               authorization: `Bearer ${accessToken}`,
@@ -82,7 +83,7 @@ export default function VideoPage2({clickMyVideoData, userInfo, accessToken, vie
             })
         }
         else if(likeVideo === true && clickMyVideoData.mychoice === true) {
-            axios.post("https://localhost:80/like/video",{video_id: clickMyVideoData.id},
+            axios.post(`${process.env.REACT_APP_SERVER}/like/video`,{video_id: clickMyVideoData.id},
             {
               headers: {
               authorization: `Bearer ${accessToken}`,
