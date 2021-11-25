@@ -16,7 +16,7 @@ const MyUploadVideo = ({ isUploadVideo, setClickMyVideoDataFunc }) => {
           <div className="myuploadvideo-box container-fluid">
             <div className="uploadvideocard-box row sm-p-5">
               {
-                isUploadVideo && isUploadVideo.map((el) => {
+                isUploadVideo.map((el) => {
                   return <UploadVideoCard key={el.id} movieData={el} setClickMyVideoDataFunc={setClickMyVideoDataFunc}/> 
                 })
               }

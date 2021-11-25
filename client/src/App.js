@@ -169,11 +169,12 @@ const getSearch= (search) =>{
   
   // 업로드 비디오 중 클릭한 영상 데이터 상태
   const [clickMyVideoData, setClickMyVideoData] = useState(null)
-
+  //clickVideoData = id 정보임
   // 업로드 비디오 중 클릭한 영상 데이터 상태 변경 함수
   const setClickMyVideoDataFunc = (clickVideoData) => {
-    console.log("clickMyVideoData ------------ ", clickMyVideoData)
-    setClickMyVideoData(isUploadVideo.filter((el) => el.id === clickVideoData)[0])
+    console.log("clickVideoData ------------ ", clickVideoData)
+    // setClickMyVideoData(isUploadVideo.filter((el) => el.id === clickVideoData)[0])
+    setClickMyVideoData(clickVideoData)
   }
 
   const viewStateFunc = (id) => { // 조회수 요청 함수
@@ -243,7 +244,7 @@ const getSearch= (search) =>{
           <VideoPage accessToken={accessToken} userInfo={userInfo}/>
         </Route>
         <Route exact path="/mylikevideo">
-          <MyLikeVideo handleLikeVideo={handleLikeVideo} isLikeVideo={isLikeVideo} clickMyLikeVideoDataFunc={clickMyLikeVideoDataFunc}/>
+          <MyLikeVideo handleLikeVideo={handleLikeVideo} isLikeVideo={isLikeVideo} setClickMyVideoDataFunc={setClickMyVideoDataFunc}/>
         </Route>
         <Route exact path="/myuploadvideo">
         <MyUploadVideo accessToken={accessToken} isUploadVideo={isUploadVideo} setClickMyVideoDataFunc={setClickMyVideoDataFunc}/>
