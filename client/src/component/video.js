@@ -3,19 +3,8 @@ import {useMediaQuery} from 'react-responsive'
 import Avatar from "@material-ui/core/Avatar";
 import { useEffect,useCallback } from 'react';
 import { BrowserRouter, Route, Switch, useHistory, Link} from 'react-router-dom';
-export default function Video({setClickMyVideoDataFunc,movieData,image, channelImage, title, channel, views, timestamp,getvideoInfo,video,video_id}) {
-
-    const isPc = useMediaQuery({
-        query : "(min-width:768px)"
-    })
-    const isMobile = useMediaQuery({
-        query : "(max-width:767px)"
-    })
+export default function Video({setClickMyVideoDataFunc,movieData}) {
     
-    const onClickVideo = ()=>{
-        getvideoInfo(image,title, views, timestamp,video,video_id)
-        
-    }
     return(
        
         <div className="videocard col-lg-4 col-md-6 col-sm-12 p-0 my-2">

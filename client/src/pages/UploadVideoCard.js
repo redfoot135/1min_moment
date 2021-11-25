@@ -4,11 +4,10 @@ import "./UploadVideoCard.css"
 
 const UploadVideoCard = ({movieData, setClickMyVideoDataFunc}) => {
 
-
     return (
         <div className="upload-videocard col-lg-4 col-md-6 col-sm-12 p-0 my-2">
            <Link to={"/myvideopage"}>
-            <img className="upload-videocard_thumbnail col-11" src={movieData.thumbnail} alt="" onClick = {() => setClickMyVideoDataFunc(movieData.id)} />
+            <img className="upload-videocard_thumbnail col-11" src={movieData.thumbnail} alt="" onClick = {() => setClickMyVideoDataFunc(movieData)} />
            </Link>
            <div className="upload-videocard_info">
                <div className="upload-video_text col-11">

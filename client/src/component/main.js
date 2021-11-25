@@ -9,6 +9,7 @@ import { useHistory } from 'react-router-dom';
 import UploadVideoCard from '../pages/UploadVideoCard';
 
 
+
 export default function Main({category,searchResult,searchInfo,getvideoInfo,setSearchInfo, setClickMyVideoDataFunc, setIsUploadVideo}){
     const [currentCategory, setCurrentCategory]=useState('');
     const [showCategory, setshowCategory]=useState(false)
@@ -78,7 +79,7 @@ export default function Main({category,searchResult,searchInfo,getvideoInfo,setS
         };
         axios(config)
         .then((res)=>{
-
+          console.log(res.data)
           setItemList(itemList => [...itemList, ...res.data.data])
 
          if(res.data.data[res.data.data.length-1]){
@@ -92,6 +93,7 @@ export default function Main({category,searchResult,searchInfo,getvideoInfo,setS
       }, []);
     
       useEffect(() => {
+      console.log()
       window.addEventListener('scroll', infiniteScroll, true);
       return () => window.removeEventListener('scroll', infiniteScroll, true);
       }, [infiniteScroll]);
@@ -110,7 +112,8 @@ export default function Main({category,searchResult,searchInfo,getvideoInfo,setS
       };
       axios(config)
       .then((res)=>{
-        setItemList([])
+        // setItemList([])
+        console.log(res.data)
         setItemList(itemList => [...itemList, ...res.data.data])
         setIsUploadVideo(res.data.data)
 
@@ -160,7 +163,7 @@ export default function Main({category,searchResult,searchInfo,getvideoInfo,setS
           </div>
           <div className='videocontainer container-fluid col-12'> {/*//곧 map으로 뿌릴 예정 ;; */}
             <div className="videocontainer-box col-12 row sm-p-5">
-              {itemList.map((obj, index) => <Video key={obj.id} movieData={obj} setClickMyVideoDataFunc={setClickMyVideoDataFunc}/>) }
+              {itemList.map((obj, index) => <UploadVideoCard key={obj.id} movieData={obj} setClickMyVideoDataFunc={setClickMyVideoDataFunc}/>) }
             </div>   
           </div>
        </div>

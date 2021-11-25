@@ -38,7 +38,7 @@ export default function VideoPage2({clickMyVideoData, userInfo, accessToken, vie
           })
     }
 
-    const [likeVideo, setLikeVideo] = useState(false)
+    const [likeVideo, setLikeVideo] = useState(clickMyVideoData.mychoice)
     const [likeVideoCount, setLikeVideoCount] = useState(clickMyVideoData.likes)
    // 좋아요 이모티콘  상태변경 함수
     const likeStateFunc = () => {
