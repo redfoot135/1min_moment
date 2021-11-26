@@ -78,7 +78,7 @@ module.exports = async (req, res) => {
                   subject: '1분 미만 회원가입 인증이메일입니다.',
                   html: `<div>
                     <h1>1분 미만 회원가입 인증이메일입니다. 아래 버튼을 눌러 회원가입을 완료해주세요.</h1>
-                    <a href='https://localhost:80/emailauth?token=${token}'>회원가입 완료하기</a>
+                    <a href='https://www.1min-moment.link/emailauth?token=${token}'>회원가입 완료하기</a>
                   </div>`
                 };
             
