@@ -1,11 +1,13 @@
-import React from 'react'
+import React, {useState, useEffect} from 'react';
 import { Link } from "react-router-dom";
 import "./MyUploadVideo.css"
 import UploadVideoCard from './UploadVideoCard';
 
-const MyUploadVideo = ({ isUploadVideo, setClickMyVideoDataFunc }) => { 
+const MyUploadVideo = ({ isUploadVideo, setClickMyVideoDataFunc, handleUpload}) => { 
 
-
+  useEffect(() => {
+      handleUpload(); // 영상요청 함수 실행
+  },[])
     return (
 
       <>
@@ -16,7 +18,7 @@ const MyUploadVideo = ({ isUploadVideo, setClickMyVideoDataFunc }) => {
           <div className="myuploadvideo-box container-fluid">
             <div className="uploadvideocard-box row sm-p-5">
               {
-                isUploadVideo.map((el) => {
+                isUploadVideo && isUploadVideo.map((el) => {
                   return <UploadVideoCard key={el.id} movieData={el} setClickMyVideoDataFunc={setClickMyVideoDataFunc}/> 
                 })
               }

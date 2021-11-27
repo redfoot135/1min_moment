@@ -172,8 +172,6 @@ const getSearch= (search) =>{
   //clickVideoData = id 정보임
   // 업로드 비디오 중 클릭한 영상 데이터 상태 변경 함수
   const setClickMyVideoDataFunc = (clickVideoData) => {
-    console.log("clickVideoData ------------ ", clickVideoData)
-    // setClickMyVideoData(isUploadVideo.filter((el) => el.id === clickVideoData)[0])
     setClickMyVideoData(clickVideoData)
   }
 
@@ -235,7 +233,7 @@ const getSearch= (search) =>{
           </div>
         </Route>
         <Route exact path='/main'>
-          <Main category={category} searchInfo={searchInfo} setSearchInfo={setSearchInfo} setIsUploadVideo={setIsUploadVideo} setClickMyVideoDataFunc={setClickMyVideoDataFunc} />
+          <Main category={category} accessToken={accessToken} searchInfo={searchInfo} setSearchInfo={setSearchInfo} setIsUploadVideo={setIsUploadVideo} setClickMyVideoDataFunc={setClickMyVideoDataFunc} />
         </Route>
         <Route exact path='/uploadvideo'>
           <UploadVideo accessToken={accessToken}/>
@@ -247,7 +245,7 @@ const getSearch= (search) =>{
           <MyLikeVideo handleLikeVideo={handleLikeVideo} isLikeVideo={isLikeVideo} setClickMyVideoDataFunc={setClickMyVideoDataFunc}/>
         </Route>
         <Route exact path="/myuploadvideo">
-        <MyUploadVideo accessToken={accessToken} isUploadVideo={isUploadVideo} setClickMyVideoDataFunc={setClickMyVideoDataFunc}/>
+        <MyUploadVideo accessToken={accessToken} isUploadVideo={isUploadVideo} setClickMyVideoDataFunc={setClickMyVideoDataFunc} handleUpload={handleUpload}/>
         </Route>
         <Route path="/myvideopage">
         <VideoPage2 clickMyVideoData={clickMyVideoData} userInfo={userInfo} accessToken={accessToken} viewStateFunc ={viewStateFunc} isLogin={isLogin}/>

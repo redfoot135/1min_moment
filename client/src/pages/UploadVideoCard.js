@@ -3,6 +3,8 @@ import { Link } from "react-router-dom";
 import "./UploadVideoCard.css"
 
 const UploadVideoCard = ({movieData, setClickMyVideoDataFunc}) => {
+    
+
 
     return (
         <div className="upload-videocard col-lg-4 col-md-6 col-sm-12 p-0 my-2">
