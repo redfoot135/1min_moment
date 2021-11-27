@@ -92,7 +92,6 @@ const handleCategoty2=(e)=>{
   }
 
   const uploadVideo =  () => {
-    console.log("selectedFile : ????????", selectedFile)
     if(checkList.length >3){
      alert('체크리스트 최대갯수는 3개입니다.')
     }
@@ -114,11 +113,8 @@ const handleCategoty2=(e)=>{
       ContentType: 'video/mp4',
     }, (err, data) => {
       if (err) {
-        console.log("전송에러")
-        console.log(err)
       }else {
-        console.log("data : ", data)
-        alert("성공했다")
+        alert("업로드가 완료 되었습니다")
         window.location.replace('/main')
          
       }
@@ -138,12 +134,6 @@ const handleCategoty2=(e)=>{
      
       // 순서가 이게 먼저임
       S3.upload(data, function(err, data){
-          if (err) {
-            console.log("전송실패")
-            console.log("err : ", err)
-          } else {
-            console.log("data : ", data)
-          }
       });
       const imgLink =`https://${process.env.REACT_APP_BUCKET}.s3.ap-northeast-2.amazonaws.com/images/${imgName}.jpeg`
     axios

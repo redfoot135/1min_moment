@@ -11,7 +11,6 @@ const connection = mysql.createConnection({
 connection.connect();
 
 module.exports = async (req, res) => {
-  console.log(req)
   const { id, cursor } = req.query;
   const select = "select comments.id, video_id, comment, comments.createdAt, comments.updatedAt, users.name as writer"
 

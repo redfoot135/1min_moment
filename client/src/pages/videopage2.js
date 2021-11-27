@@ -55,7 +55,7 @@ export default function VideoPage2({clickMyVideoData, userInfo, accessToken, vie
 
     // likeVideo가 false일 때 동영상 좋아요 post 요청
     const likeVideoFunc = () => {
-        if(likeVideo === false && clickMyVideoData.mychoice === false) {
+        if(!likeVideo) {
             axios.post(`${process.env.REACT_APP_SERVER}/like/video`,{video_id: clickMyVideoData.id},
             {
               headers: {
@@ -68,7 +68,7 @@ export default function VideoPage2({clickMyVideoData, userInfo, accessToken, vie
                 likeStateFunc(); // 불이 켜지고
                 likeCountPlusFunc(); // 좋아요 카운트 +1
             })
-        } else if(likeVideo === false && clickMyVideoData.mychoice === true) {
+        } else if(likeVideo) {
             axios.delete(`${process.env.REACT_APP_SERVER}/like/video?video_id=${clickMyVideoData.id}`,
             {
               headers: {
@@ -80,20 +80,6 @@ export default function VideoPage2({clickMyVideoData, userInfo, accessToken, vie
             .then((res) => {
                 likeStateFunc(); // 불이 꺼지고
                 likeCountMinusFunc(); // 좋아요 카운트 -1
-            })
-        }
-        else if(likeVideo === true && clickMyVideoData.mychoice === true) {
-            axios.post(`${process.env.REACT_APP_SERVER}/like/video`,{video_id: clickMyVideoData.id},
-            {
-              headers: {
-              authorization: `Bearer ${accessToken}`,
-              "Content-Type" : "application/json"   
-              },
-              withCredentials: true
-            })
-            .then((res) => {
-                likeStateFunc(); // 불이 켜지고
-                likeCountPlusFunc(); // 좋아요 카운트 +1
             })
         }
     }
@@ -118,7 +104,7 @@ export default function VideoPage2({clickMyVideoData, userInfo, accessToken, vie
                     <div className='video2-second-row-creator'><img className="user-icon" src="https://i.ibb.co/ZV9MknX/profile-user.png"/> {clickMyVideoData.writer}</div>
                     <div className="video2-second-row-like-delete">
                       <div className="like-myvideo btn2" onClick={likeVideoFunc}>
-                      {clickMyVideoData.mychoice === true && likeVideo === false ? 
+                      {likeVideo === true ? 
                       <img className="like-icon" src="https://i.ibb.co/Y0jmDXG/2021-11-11-5-58-41-removebg-preview.png" alt="" /> :
                       <img className="like-icon" src="https://i.ibb.co/C0ntKBK/2021-11-11-5-56-57-removebg-preview.png" alt="" />
                       }
