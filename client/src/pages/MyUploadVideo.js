@@ -2,6 +2,7 @@ import React, {useState, useEffect} from 'react';
 import { Link } from "react-router-dom";
 import "./MyUploadVideo.css"
 import UploadVideoCard from './UploadVideoCard';
+import Video from '../component/video';
 
 const MyUploadVideo = ({ isUploadVideo, setClickMyVideoDataFunc, handleUpload}) => { 
 

@@ -18,7 +18,8 @@
 
 .upload-video_text {
     display: flex;
-    align-items: center;
+    flex-direction: column;
+    align-items: flex-start;
     justify-content: space-between;
     padding: 0 10px;
     padding-bottom: 7px;
