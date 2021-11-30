@@ -44,8 +44,12 @@ function App() {
 
 const getSearch= (search) =>{
   setSearchInfo(search)
+  console.log("App.js getSearch : ", search)
+ }
 
- } 
+ const onReset = () => {
+  setSearchInfo('');
+}
  const getCategory= (category) =>{
   setcategory(category)
  } 
@@ -217,9 +221,9 @@ const getSearch= (search) =>{
     <div className="App container-fluid row-fluid p-0">
       <div className="nav-box row-fluid px-0">
         {isLogin ===false ? 
-          <Nav2 openModalFunc={openModalFunc}  getSearch={getSearch} searchInfo={searchInfo}/> 
+          <Nav2 openModalFunc={openModalFunc}  getSearch={getSearch} searchInfo={searchInfo} setSearchInfo={setSearchInfo} onReset={onReset}/> 
           :
-          <Nav  handleSignOut={handleSignOut}  getSearch={getSearch} searchInfo={searchInfo}/>
+          <Nav  handleSignOut={handleSignOut}  getSearch={getSearch} searchInfo={searchInfo} setSearchInfo={setSearchInfo} onReset={onReset}/>
           }
       </div>
       {
@@ -229,7 +233,7 @@ const getSearch= (search) =>{
       <Switch>
         <Route exact path='/'>
           <div className="intro-box row-fluid px-0">
-            <Introduce />
+            <Introduce getSearch={getSearch} searchInfo={searchInfo} setSearchInfo={setSearchInfo}/>
           </div>
         </Route>
         <Route exact path='/main'>
