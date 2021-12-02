@@ -18,7 +18,7 @@
 }
 
 .myvideo-title {
-  width: 380px;
+  width: 25vw;
 }
 
 .myuploadvideo-box {
@@ -31,3 +31,8 @@
     /* padding-left: 23px; */
 }
 
+@media only screen and (max-width: 768px) {
+  .myvideo-title {
+    width: 40vw;
+  }
+} 

@@ -34,7 +34,7 @@ module.exports = async (req, res) => {
     }
   }
   const { search, cursor, sort, limit } = req.query;
-  const select = "select videos.id, title, users.name as writer, video, thumbnail, category1, category2, category3, videos.createdAt, videos.updatedAt, count(views.video_id) as views, count(video_likes.video_id) as likes"
+  const select = "select videos.id, title, users.name as writer, video, thumbnail, category1, category2, category3, videos.createdAt, videos.updatedAt, count(DISTINCT views.id) as views, count(DISTINCT video_likes.video_id) as likes"
   let order = '';
   let query = {};
   let query2 = '';

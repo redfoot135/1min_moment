@@ -1,11 +1,14 @@
-import React from 'react'
+import React, {useState, useEffect} from 'react';
 import { Link } from "react-router-dom";
 import "./MyUploadVideo.css"
 import UploadVideoCard from './UploadVideoCard';
+import Video from '../component/video';
 
-const MyUploadVideo = ({ isUploadVideo, setClickMyVideoDataFunc }) => { 
+const MyUploadVideo = ({ isUploadVideo, setClickMyVideoDataFunc, handleUpload}) => { 
 
-
+  useEffect(() => {
+      handleUpload(); // 영상요청 함수 실행
+  },[])
     return (
 
       <>

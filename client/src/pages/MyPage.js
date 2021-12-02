@@ -5,10 +5,6 @@ import MyInfo from "../component/MyInfo"
 
 const MyPage = ({ userInfo, accessToken, handleSecession, handleUpload }) => {
 
-   useEffect(() => {
-      handleUpload(); // 영상요청 함수 실행
-   },[])
-
     const [isMyInfoOpen, setIsMyInfoOpen] = useState(false)
 
     const openMyInfoModalFunc = () => {

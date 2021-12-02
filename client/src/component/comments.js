@@ -7,7 +7,7 @@ const {TextArea} = Input;
 
  
 
-function Comments({accessToken,videoInfo,userInfo}) {
+function Comments({accessToken,clickMyVideoData,userInfo}) {
   let renderComment = null;
   let x ;
   const [commentList, setCommentList] = useState([])
@@ -24,7 +24,7 @@ function Comments({accessToken,videoInfo,userInfo}) {
     axios
     .post(
       `${process.env.REACT_APP_SERVER}/comment`,{
-        video_id:videoInfo.video_id,
+        video_id:clickMyVideoData.id,
         comment:commentValue
       },{
         headers: {
@@ -63,7 +63,7 @@ function Comments({accessToken,videoInfo,userInfo}) {
     axios
     .post(
       `${process.env.REACT_APP_SERVER}/comment`,{
-        video_id:videoInfo.video_id,
+        video_id:clickMyVideoData.video_id,
         comment:commentValue
       },{
         headers: {
@@ -99,7 +99,7 @@ function Comments({accessToken,videoInfo,userInfo}) {
       .get(
         `${process.env.REACT_APP_SERVER}/comments`,{
           params:{
-            id:videoInfo.video_id,
+            id:clickMyVideoData.video_id,
             cursor:x
           },
           headers: {
@@ -109,7 +109,6 @@ function Comments({accessToken,videoInfo,userInfo}) {
         withCredentials: true
       }
         ).then((res)=>{
-          
           setCommentList(commentList => [...commentList, ...res.data.data])
           if(res.data.data[res.data.data.length-1]){
            x = res.data.data[res.data.data.length-1].id
@@ -149,7 +148,7 @@ function Comments({accessToken,videoInfo,userInfo}) {
         axios
         .get(
           `${process.env.REACT_APP_SERVER}/comments`,{
-            params:{id:videoInfo.video_id,},
+            params:{id:clickMyVideoData.id},
             headers: {
               authorization: `Bearer ${accessToken}`,
             "Content-Type" : "application/json"   
@@ -157,7 +156,6 @@ function Comments({accessToken,videoInfo,userInfo}) {
           withCredentials: true
         }
           ).then((res)=>{
-           
             
             setCommentList(commentList => [...commentList, ...res.data.data])
             if(res.data.data[res.data.data.length-1]){
@@ -181,10 +179,10 @@ function Comments({accessToken,videoInfo,userInfo}) {
           
            }) 
            
-      },[posting])
+      },[])
  return(
-     <div className='commentscontainer row-fluid'>         
-        <form style={{display:'flex'}} onSubmit={onSubmit} className="comment-form col-md-9 col-11">
+     <div id="comments" className='commentscontainer row-fluid col-12'>         
+        <form style={{display:'flex'}} onSubmit={onSubmit} className="comment-form col-12">
             <TextArea
                  className='replyarea'
                  style={{width:'100%', borderRadius: '5px'}}
@@ -196,11 +194,12 @@ function Comments({accessToken,videoInfo,userInfo}) {
                <button className="comment-form-btn" style={{width: '20%',height:'54px'}} >등록</button>
                
         </form>
-   <div className='commentsreverse'>
+   <div className='commentsreverse col-12'>
    <br />
     {commentList.map((obj, index) =>
     <div>
    <Comment
+         className={"aaa"}
          style={{display:'flex'}}
          author={obj.writer}
           content={

@@ -15,6 +15,7 @@ export default function GoogleButton({ errorMessage, openModalFunc, handleAccess
         const token = res.accessToken
         const id = res.googleId
         const username = res.profileObj.name
+  
          
         axios.post(`${process.env.REACT_APP_SERVER}/socialSignin`,
         {token, id, username},

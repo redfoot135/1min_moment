@@ -1,9 +1,10 @@
 import React, {useState, useEffect} from 'react';
 import LikeVideoCard from './LikeVideoCard';
 import "./MyLikeVideo.css"
+import UploadVideoCard from './UploadVideoCard';
 
 
-const MyLikeVideo = ({handleLikeVideo, isLikeVideo, clickMyLikeVideoDataFunc}) => {
+const MyLikeVideo = ({handleLikeVideo, isLikeVideo, setClickMyVideoDataFunc}) => {
 
 
     useEffect(() => {
@@ -16,13 +17,13 @@ const MyLikeVideo = ({handleLikeVideo, isLikeVideo, clickMyLikeVideoDataFunc}) =
         <>
            {isLikeVideo !== {} ?
            <div className="mylikevideo col-12 sm-px-0">
-             <div className="col-md-10">
+             <div className="col-md-9">
                <div className="title"><img className="mylikevideo-title" src="https://i.ibb.co/HTVBwgY/image.png"/></div>
                <div className="mylikevideo-box container-fluid">
                <div className="likevideocard-box row sm-p-5">
                  {
                    isLikeVideo && isLikeVideo.map((el) => {
-                     return <LikeVideoCard likeVideoData={el} clickMyLikeVideoDataFunc={clickMyLikeVideoDataFunc}/>
+                     return <UploadVideoCard key={el.id} movieData={el} setClickMyVideoDataFunc={setClickMyVideoDataFunc}/> 
                    })
                  }
                </div>
