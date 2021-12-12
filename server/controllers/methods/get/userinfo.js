@@ -24,12 +24,11 @@ module.exports = async (req, res) => {
       //이메일 정보로 유저 조회
       const userinfo = await db.user.findOne({where: search });
       //보내줄 정보
-      console.log("userinfo : ", userinfo)
       const payload = {
-        id: userinfo.dataValues.id,
-        email: userinfo.dataValues.email,
-        name: userinfo.dataValues.name,
-        social: userinfo.dataValues.social
+        id: userinfo.id,
+        email: userinfo.email,
+        name: userinfo.name,
+        social: userinfo.social
       }
       res.status(200).json({
         data: {

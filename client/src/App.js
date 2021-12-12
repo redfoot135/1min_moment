@@ -44,8 +44,12 @@ function App() {
 
 const getSearch= (search) =>{
   setSearchInfo(search)
+  console.log("App.js getSearch : ", search)
+ }
 
- } 
+ const onReset = () => {
+  setSearchInfo('');
+}
  const getCategory= (category) =>{
   setcategory(category)
  } 
@@ -169,11 +173,10 @@ const getSearch= (search) =>{
   
   // 업로드 비디오 중 클릭한 영상 데이터 상태
   const [clickMyVideoData, setClickMyVideoData] = useState(null)
-
+  //clickVideoData = id 정보임
   // 업로드 비디오 중 클릭한 영상 데이터 상태 변경 함수
   const setClickMyVideoDataFunc = (clickVideoData) => {
-    console.log("clickMyVideoData ------------ ", clickMyVideoData)
-    setClickMyVideoData(isUploadVideo.filter((el) => el.id === clickVideoData)[0])
+    setClickMyVideoData(clickVideoData)
   }
 
   const viewStateFunc = (id) => { // 조회수 요청 함수
@@ -218,9 +221,9 @@ const getSearch= (search) =>{
     <div className="App container-fluid row-fluid p-0">
       <div className="nav-box row-fluid px-0">
         {isLogin ===false ? 
-          <Nav2 openModalFunc={openModalFunc}  getSearch={getSearch} searchInfo={searchInfo}/> 
+          <Nav2 openModalFunc={openModalFunc}  getSearch={getSearch} searchInfo={searchInfo} setSearchInfo={setSearchInfo} onReset={onReset}/> 
           :
-          <Nav  handleSignOut={handleSignOut}  getSearch={getSearch} searchInfo={searchInfo}/>
+          <Nav  handleSignOut={handleSignOut}  getSearch={getSearch} searchInfo={searchInfo} setSearchInfo={setSearchInfo} onReset={onReset}/>
           }
       </div>
       {
@@ -230,11 +233,11 @@ const getSearch= (search) =>{
       <Switch>
         <Route exact path='/'>
           <div className="intro-box row-fluid px-0">
-            <Introduce />
+            <Introduce getSearch={getSearch} searchInfo={searchInfo} setSearchInfo={setSearchInfo}/>
           </div>
         </Route>
         <Route exact path='/main'>
-          <Main category={category} searchInfo={searchInfo} setSearchInfo={setSearchInfo} setIsUploadVideo={setIsUploadVideo} setClickMyVideoDataFunc={setClickMyVideoDataFunc} />
+          <Main category={category} accessToken={accessToken} searchInfo={searchInfo} setSearchInfo={setSearchInfo} setIsUploadVideo={setIsUploadVideo} setClickMyVideoDataFunc={setClickMyVideoDataFunc} />
         </Route>
         <Route exact path='/uploadvideo'>
           <UploadVideo accessToken={accessToken}/>
@@ -243,10 +246,10 @@ const getSearch= (search) =>{
           <VideoPage accessToken={accessToken} userInfo={userInfo}/>
         </Route>
         <Route exact path="/mylikevideo">
-          <MyLikeVideo handleLikeVideo={handleLikeVideo} isLikeVideo={isLikeVideo} clickMyLikeVideoDataFunc={clickMyLikeVideoDataFunc}/>
+          <MyLikeVideo handleLikeVideo={handleLikeVideo} isLikeVideo={isLikeVideo} setClickMyVideoDataFunc={setClickMyVideoDataFunc}/>
         </Route>
         <Route exact path="/myuploadvideo">
-        <MyUploadVideo accessToken={accessToken} isUploadVideo={isUploadVideo} setClickMyVideoDataFunc={setClickMyVideoDataFunc}/>
+        <MyUploadVideo accessToken={accessToken} isUploadVideo={isUploadVideo} setClickMyVideoDataFunc={setClickMyVideoDataFunc} handleUpload={handleUpload}/>
         </Route>
         <Route path="/myvideopage">
         <VideoPage2 clickMyVideoData={clickMyVideoData} userInfo={userInfo} accessToken={accessToken} viewStateFunc ={viewStateFunc} isLogin={isLogin}/>

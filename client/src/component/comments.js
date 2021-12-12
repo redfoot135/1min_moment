@@ -20,7 +20,6 @@ function Comments({accessToken,clickMyVideoData,userInfo}) {
     setCommentValue(e.currentTarget.value)
   }
   const onSubmit = (e)=>{
-    console.log(clickMyVideoData)
     e.preventDefault(); //for refresh block
     axios
     .post(
@@ -110,7 +109,6 @@ function Comments({accessToken,clickMyVideoData,userInfo}) {
         withCredentials: true
       }
         ).then((res)=>{
-          console.log(res.body)
           setCommentList(commentList => [...commentList, ...res.data.data])
           if(res.data.data[res.data.data.length-1]){
            x = res.data.data[res.data.data.length-1].id
@@ -158,7 +156,6 @@ function Comments({accessToken,clickMyVideoData,userInfo}) {
           withCredentials: true
         }
           ).then((res)=>{
-           console.log(res.body)
             
             setCommentList(commentList => [...commentList, ...res.data.data])
             if(res.data.data[res.data.data.length-1]){

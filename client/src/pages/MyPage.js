@@ -5,10 +5,6 @@ import MyInfo from "../component/MyInfo"
 
 const MyPage = ({ userInfo, accessToken, handleSecession, handleUpload }) => {
 
-   useEffect(() => {
-      handleUpload(); // 영상요청 함수 실행
-   },[])
-
     const [isMyInfoOpen, setIsMyInfoOpen] = useState(false)
 
     const openMyInfoModalFunc = () => {
@@ -45,6 +41,7 @@ const MyPage = ({ userInfo, accessToken, handleSecession, handleUpload }) => {
           <Link to={"/mylikevideo"} style={{ textDecoration: 'none', color: "black" }} >
             <div className="mypage-mylike-txt btnbox">
               <img className="mypage-icon col-7" src="https://i.ibb.co/BsGjp7X/idea.png" />
+
               <div className="mypage-button-text">얻은 꿀</div>
             </div>
           </Link>
