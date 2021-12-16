@@ -1,21 +1,18 @@
 import React, {useState, useEffect} from 'react';
-import { useHistory } from "react-router-dom";
 import axios from "axios"
 import './videopage2.css'
 import Comments from '../component/comments'
 
 axios.defaults.withCredentials = true;
 
-export default function VideoPage2({clickMyVideoData, userInfo, accessToken, viewStateFunc, isLogin, videoInfo}){
+export default function VideoPage2({clickMyVideoData, userInfo, accessToken, viewStateFunc, isLogin }){
   
     useEffect(() => {
         viewStateFunc(clickMyVideoData.id);
-        console.log(clickMyVideoData)
       }, []) 
 
       
       
-    const history = useHistory();
 
 
     // 업로드 영상 삭제하기
@@ -101,7 +98,7 @@ export default function VideoPage2({clickMyVideoData, userInfo, accessToken, vie
                     <div className='video2-first-row-view-createdAt'>조회수 {clickMyVideoData.views} · {clickMyVideoData.createdAt.slice(0, 10)}</div>
                 </div> 
                 <div className='video2-second-row col-12'>
-                    <div className='video2-second-row-creator'><img className="user-icon" src="https://i.ibb.co/ZV9MknX/profile-user.png"/> {clickMyVideoData.writer}</div>
+                    <div className='video2-second-row-creator'><img className="user-icon" src="https://i.ibb.co/ZV9MknX/profile-user.png" alt='user-icon'/> {clickMyVideoData.writer}</div>
                     <div className="video2-second-row-like-delete">
                       <div className="like-myvideo btn2" onClick={likeVideoFunc}>
                       {likeVideo === true ? 
@@ -112,7 +109,7 @@ export default function VideoPage2({clickMyVideoData, userInfo, accessToken, vie
                       </div>
                       {isLogin === false ? null : 
                       <div className="delete-myvideo btn2" onClick={deleteMyVideoFunc}>
-                      <img className="delete-icon" src="https://i.ibb.co/YkB7fMG/delete.png" /></div>
+                      <img className="delete-icon" src="https://i.ibb.co/YkB7fMG/delete.png" alt=''/></div>
                       }
                     </div>
                 </div>

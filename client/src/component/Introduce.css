@@ -42,8 +42,11 @@ h1 {
   border: 1px solid black;
 }
 
+
+
 #bottom-button .bottom-button{
   background-color: #56c1fe;
+  z-index: 3;
 }
 
 
@@ -107,7 +110,7 @@ h1 {
 }
 
 #carouselExampleIndicators .introduce-search {
-  z-index: 2;
+  z-index: 1;
   top: 65%;
   position: absolute;
   left: 25%;

@@ -1,8 +1,6 @@
-import React, {useState, useEffect} from 'react';
-import { Link } from "react-router-dom";
+import React, { useEffect } from 'react';
 import "./MyUploadVideo.css"
 import UploadVideoCard from './UploadVideoCard';
-import Video from '../component/video';
 
 const MyUploadVideo = ({ isUploadVideo, setClickMyVideoDataFunc, handleUpload}) => { 
 
@@ -15,7 +13,7 @@ const MyUploadVideo = ({ isUploadVideo, setClickMyVideoDataFunc, handleUpload}) 
       {isUploadVideo !== [] ?
       <div className="myvideos col-12 sm-px-0">
         <div className="col-md-9">
-          <div className="title"><img className="myvideo-title" src="https://i.ibb.co/tq5VJyk/image.png"/></div>
+          <div className="title"><img className="myvideo-title" src="https://i.ibb.co/tq5VJyk/image.png" alt='title'/></div>
           <div className="myuploadvideo-box container-fluid">
             <div className="uploadvideocard-box row sm-p-5">
               {

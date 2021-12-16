@@ -1,7 +1,6 @@
-import React, { useState } from 'react';
-import {Link,useHistory} from 'react-router-dom';
+import React from 'react';
+import { useHistory } from 'react-router-dom';
 import "./Introduce.css"
-// import { Carousel } from "react-bootstrap"
 
 const Introduce = ({getSearch, searchInfo, setSearchInfo}) => {
   const history = useHistory();
