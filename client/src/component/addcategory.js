@@ -18,7 +18,7 @@ export default function Addcategory({confirmBtn,handleCategoty}){
 
         <div className='category-row'>
           <div>
-            <div className='category-box row-fluid'>
+            <div className='category-con row-fluid'>
             <div className='category-box col-12 col-md-6'>
                 <input type='checkbox' className='checkbox'  class="form-check-input position-static" onChange={handleCategoty2} value='생활'/>생활
                 <input type='checkbox' className='checkbox' class="form-check-input position-static" onChange={handleCategoty2} value='교통'/>교통
@@ -28,7 +28,7 @@ export default function Addcategory({confirmBtn,handleCategoty}){
                 <input type='checkbox' className='checkbox' class="form-check-input position-static" onChange={handleCategoty2} value='의료'/>의료
               </div>
             </div>
-            <div className='category-box row-fluid'>
+            <div className='category-con row-fluid'>
               <div className='category-box col-12 col-md-6'>
                 <input type='checkbox' className='checkbox' class="form-check-input position-static" onChange={handleCategoty2} value='교육'/>교육 
                 <input type='checkbox' className='checkbox' class="form-check-input position-static" onChange={handleCategoty2} value='무언가1'/>세금
