@@ -47,7 +47,7 @@ const Introduce = ({getSearch, searchInfo, setSearchInfo}) => {
             <div class="carousel-item">
               <img src="https://i.ibb.co/GJwwpWP/006.png" class="d-block w-100 introduce" alt="..."/>
               <div className='carousel-caption introduce-search seach_input_box col-6'>
-                <input type='text' className="introduce-input search-input col-12" placeholder="검색 시작"
+                <input type='text' className="introduce-input col-12" placeholder="검색 시작"
                 onChange={searchHandleChange} onKeyUp={handleKeyUp} value={searchInfo}/>
                 <img className="search-icon" src="https://i.ibb.co/FgWPvVM/Kakao-Talk-Photo-2021-11-12-13-30-49-removebg-preview.png" alt="소개글 검색 아이콘"
                 onClick={SearchClick}/>
