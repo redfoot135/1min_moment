@@ -29,7 +29,13 @@
    display: flex;
    flex-wrap: wrap;
    justify-content: space-evenly;
-   width: 250px;
+}
+
+.category-con {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-evenly;
+  width: 250px;
 }
 
 @media only screen and (max-width: 768px) {

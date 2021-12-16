@@ -1,32 +1,20 @@
-import Video from './video'
 import './main.css'
-import {useMediaQuery} from 'react-responsive'
 import { useCallback,useState, useEffect } from 'react'
 import Addcategory from './addcategory'
-import { Button } from '@material-ui/core'
 import axios from 'axios';
-import { useHistory } from 'react-router-dom';
 import UploadVideoCard from '../pages/UploadVideoCard';
 
 
 
-export default function Main({category,searchResult,searchInfo,getvideoInfo,setSearchInfo, setClickMyVideoDataFunc, setIsUploadVideo, accessToken}){
+export default function Main({searchInfo, setClickMyVideoDataFunc, accessToken}){
     const [currentCategory, setCurrentCategory]=useState('');
     const [showCategory, setshowCategory]=useState(false)
-    const [categoryInfo, setcategoryInfo]= useState('')
     const [checkList, setCheckList] = useState([])
     const [checkListDisplay, setCheckListDisplay] = useState([])
-    const [itemIndex, setItemIndex] = useState(0);
     const [itemList, setItemList] = useState(null)
-    const [cursor, setCursor] = useState(50)
     let used = false; 
 
-     //저위에있는것들지우고 정해진 갯수만큼 받아올꺼에요 20~30
-     // useEffect 를 사용할꺼에요 
-     // 하면서.. 저기에는 정해진 갯수만큼의 정보 -> x
      let x;
-     let y;
-     const history = useHistory()
     const openCategory = (e) =>{
    
     setshowCategory(!showCategory)
@@ -128,7 +116,7 @@ export default function Main({category,searchResult,searchInfo,getvideoInfo,setS
 
      <div className="main-container col-12 sm-px-0">
        <div className="main-box col-md-9">
-          <div className="title"><img className="main-title" src="https://i.ibb.co/7XrttV3/image.png"/></div>
+          <div className="title"><img className="main-title" src="https://i.ibb.co/7XrttV3/image.png" alt=''/></div>
           <div className='category-container-box'>
           <div className='categorycontainer'> 
             <div className='addbox' onClick= {openCategory}>+</div>

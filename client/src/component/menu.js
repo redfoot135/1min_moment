@@ -17,9 +17,9 @@ function Menu(){
     
     return (
         showTabModal === false ?
-       <div className='tab' onClick={openModal}><img className="menu-icon" src="https://i.ibb.co/ThFZQf9/Kakao-Talk-Photo-2021-11-13-01-59-17.png"/></div>
+       <div className='tab' onClick={openModal}><img className="menu-icon" src="https://i.ibb.co/ThFZQf9/Kakao-Talk-Photo-2021-11-13-01-59-17.png" alt='menu-icon'/></div>
      : 
-       <div className='tab2' onClick={openModal}><img className="menu-icon" src="https://i.ibb.co/ThFZQf9/Kakao-Talk-Photo-2021-11-13-01-59-17.png"/><div className='modalcontainer'>
+       <div className='tab2' onClick={openModal}><img className="menu-icon" src="https://i.ibb.co/ThFZQf9/Kakao-Talk-Photo-2021-11-13-01-59-17.png" alt='menu-icon'/><div className='modalcontainer'>
                 <div className='tablist' >마이페이지</div>
                 {/* <Link to="/signup"> */}
                 <div className='tablist' >카테고리</div>

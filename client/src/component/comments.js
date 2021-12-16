@@ -1,8 +1,7 @@
 import './comments.css'
 import axios from 'axios';
 import { useCallback,useState, useEffect } from 'react'
-import { Comment, Avatar, Button, Input } from 'antd';
-//import { ConfigurationServicePlaceholders } from 'aws-sdk/lib/config_service_placeholders';
+import { Comment, Input } from 'antd';
 const {TextArea} = Input;
 
  
@@ -12,15 +11,12 @@ function Comments({accessToken,clickMyVideoData,userInfo}) {
   let x ;
   const [commentList, setCommentList] = useState([])
   const [commentValue, setCommentValue] = useState('')
-  const [posting, setPosting] = useState('') // useEffect를위한 state입니다
-  const [videoId, setVideoId] = useState(null)
-  //timestamp
   
   const handleclick = (e) =>{
     setCommentValue(e.currentTarget.value)
   }
   const onSubmit = (e)=>{
-    e.preventDefault(); //for refresh block
+    e.preventDefault(); 
     axios
     .post(
       `${process.env.REACT_APP_SERVER}/comment`,{
@@ -42,12 +38,7 @@ function Comments({accessToken,clickMyVideoData,userInfo}) {
           
         }, ...commentList])
         x=res.data.data.comment_id
-        // setPosting({
-        //   comment:commentValue,
-        //   writer:userInfo.name,
-        //   id:parseInt(Math.random()*10000) //comments의  id
-        // })
-       // window.location.replace('/')
+
        setCommentValue('')
        
        }
@@ -59,35 +50,7 @@ function Comments({accessToken,clickMyVideoData,userInfo}) {
       
   }
 
-  const uploadVideo = () => {
-    axios
-    .post(
-      `${process.env.REACT_APP_SERVER}/comment`,{
-        video_id:clickMyVideoData.video_id,
-        comment:commentValue
-      },{
-        headers: {
-          authorization: `Bearer ${accessToken}`,
-        "Content-Type" : "application/json"   
-      },
-      withCredentials: true
-    }
-      ).then((res)=>{
-       if(res.data.message==='Comment has been completed'){
-        alert("성공")
-       // window.location.replace('/')
-       }
-       else{
-        alert("실패")
-       }         
-      
-       }) 
 
-
-       
-       
-   
-  }
   const infiniteScroll = useCallback(() => {
     
     let scrollHeight = Math.max(document.documentElement.scrollHeight, document.body.scrollHeight);
@@ -113,18 +76,9 @@ function Comments({accessToken,clickMyVideoData,userInfo}) {
           if(res.data.data[res.data.data.length-1]){
            x = res.data.data[res.data.data.length-1].id
            }
-           renderComment = commentList.map((obj, index) =>{
+           renderComment = commentList.map((obj) =>{
             return  <div>
-            <Comment
-                  key = {obj.id}
-                  style={{display:'flex'}}
-                  author={obj.writer}
-                   content={
-                         <p>
-                         {obj.comment}
-                         </p>
-                         }
-                     ></Comment>
+            <Comment key = {obj.id} style={{display:'flex'}} author={obj.writer} content={<p> {obj.comment} </p>}></Comment>
                      <hr/>
              </div> 
            })
@@ -136,14 +90,13 @@ function Comments({accessToken,clickMyVideoData,userInfo}) {
     }
 
 
-  }, [posting]);
+  }, []);
 
 
   useEffect(() => {
     window.addEventListener('scroll', infiniteScroll, true);
     return () => window.removeEventListener('scroll', infiniteScroll, true);
     }, [infiniteScroll]);
-   // const itemlist = itemList.map((obj, index) => <Video title={obj.title}  timestamp={obj.createdAt}/>)
       useEffect(()=>{   
         axios
         .get(
@@ -161,22 +114,6 @@ function Comments({accessToken,clickMyVideoData,userInfo}) {
             if(res.data.data[res.data.data.length-1]){
              x = res.data.data[res.data.data.length-1].id             
              }
-            //  renderComment = commentList.map((obj, index) =>{
-            //   return  <div>
-            //   <Comment
-            //         style={{display:'flex'}}
-            //         author={obj.writer}
-            //          content={
-            //                <p>
-            //                {obj.comment}
-            //                </p>
-            //                }
-            //            ></Comment>
-            //            <hr/>
-            //    </div> 
-            //  })
-             
-          
            }) 
            
       },[])
@@ -198,16 +135,7 @@ function Comments({accessToken,clickMyVideoData,userInfo}) {
    <br />
     {commentList.map((obj, index) =>
     <div>
-   <Comment
-         className={"aaa"}
-         style={{display:'flex'}}
-         author={obj.writer}
-          content={
-                <p>
-                {obj.comment}
-                </p>
-                }
-            ></Comment>
+   <Comment key = {obj.id} className={"aaa"} style={{display:'flex'}} author={obj.writer} content={<p> {obj.comment} </p>}></Comment>
             <hr/>
     </div> 
     )}

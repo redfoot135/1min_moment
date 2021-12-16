@@ -1,4 +1,4 @@
-import { BrowserRouter, Route, Switch, useHistory } from 'react-router-dom';
+import { BrowserRouter, Route, Switch } from 'react-router-dom';
 import React, {useState, useEffect} from 'react';
 import axios from "axios"
 import './App.css';
@@ -8,39 +8,22 @@ import MyLikeVideo from "./pages/MyLikeVideo"
 import MyUploadVideo from "./pages/MyUploadVideo"
 import Nav from './component/nav'
 import Nav2 from './component/nav2'
-// import Slider from './component/slider'
 import Main from './component/main'
 import VideoPage from './pages/videopage'
 import VideoPage2 from './pages/videopage2'
 import UploadVideo from './pages/uploadVideo'
-import Loading from './pages/Loading'
 import Introduce from './component/Introduce'
- import SlidesContainer from './pages/slidesContainer'
-import Footer from './component/Footer'
 
 axios.defaults.withCredentials = true;
 
 function App() {
   
-  const history = useHistory();
-  const [isLoading, setIsLoading] = useState(true);
   const [isLogin, setIsLogin] = useState(false);
   const [userInfo, setUserInfo] = useState(null);
   const [accessToken, setAccessToken] = useState(null);
   const [category, setcategory] = useState(null);
   const [searchInfo, setSearchInfo] = useState('');
-//   const [videoInfo, setVideoInfo] = useState({
-//     image:'',
-//     title:'',
-//     channel:'',
-//     views:'',
-//     timestamp:'',
-//     video:'',
-//     video_id:'',
-//     category1:'',
-//     category2:'',
-//     category3:''
-// });
+
 
 const getSearch= (search) =>{
   setSearchInfo(search)
@@ -50,24 +33,7 @@ const getSearch= (search) =>{
  const onReset = () => {
   setSearchInfo('');
 }
- const getCategory= (category) =>{
-  setcategory(category)
- } 
   
-// const getvideoInfo = (image,title, views, timestamp,video,video_id,category1,category2,category3) => {
-  
-//   setVideoInfo({
-//       image:image,
-//       title:title,
-//       views:views,
-//       timestamp:timestamp,
-//       video:video,
-//       video_id:video_id,
-//       category1:category1,
-//       category2:category2,
-//       category3:category3
-//   })
-// }
 
   const handleAccessToken = (tokenData) => { // 소셜로그인 후 함수
 
@@ -208,13 +174,6 @@ const getSearch= (search) =>{
     })
   }
 
-  // 찜한 비디오 중 클릭한 영상 데이터 상태
-  const [clickMyLikeVideoData, setClickMyLikeVideoData] = useState(null)
-
-  // 찜한 비디오 중 클릭한 영상 데이터 상태 변경 함수
-  const clickMyLikeVideoDataFunc = (clickLikeVideoData) => {
-    setClickMyLikeVideoData(isLikeVideo.filter((el) => el.id === clickLikeVideoData)[0])
-  }
 
   return (
   <BrowserRouter>
@@ -237,7 +196,7 @@ const getSearch= (search) =>{
           </div>
         </Route>
         <Route exact path='/main'>
-          <Main category={category} accessToken={accessToken} searchInfo={searchInfo} setSearchInfo={setSearchInfo} setIsUploadVideo={setIsUploadVideo} setClickMyVideoDataFunc={setClickMyVideoDataFunc} />
+          <Main category={category} setcategory={setcategory} accessToken={accessToken} searchInfo={searchInfo} setSearchInfo={setSearchInfo} setIsUploadVideo={setIsUploadVideo} setClickMyVideoDataFunc={setClickMyVideoDataFunc} />
         </Route>
         <Route exact path='/uploadvideo'>
           <UploadVideo accessToken={accessToken}/>
@@ -259,7 +218,6 @@ const getSearch= (search) =>{
         </Route>
       </Switch>
         <div className="row-fluid col-12">
-          {/* <Footer /> */}
         </div>
     </div>     
   </BrowserRouter>
