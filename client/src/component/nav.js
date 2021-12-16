@@ -1,12 +1,10 @@
 import './nav.css'
 import {Link,useHistory} from 'react-router-dom';
 import {useMediaQuery} from 'react-responsive'
-import Menu from './menu'
-import React, { useState,useEffect } from 'react';
+import React, { useState } from 'react';
 
 function Nav({handleSignOut,getSearch,searchInfo,setSearchInfo,onReset}){
     const history = useHistory();
-    const [searchBox, setSearchBox]=useState(false)
     const [tabStatus, setTabStatus]=useState({display:'none'})
     const [isTabOpen, setIstabOpen]=useState(false) 
     const isPc = useMediaQuery({
@@ -15,9 +13,6 @@ function Nav({handleSignOut,getSearch,searchInfo,setSearchInfo,onReset}){
     const isMobile = useMediaQuery({
         query : "(max-width:609px)"
     })
-   const openSeachBox = () =>{
-    setSearchBox(!searchBox)
-   }
 
     const searchHandleChange=(e)=>{
       setSearchInfo(e.target.value)
@@ -51,7 +46,7 @@ function Nav({handleSignOut,getSearch,searchInfo,setSearchInfo,onReset}){
       <div className="navbox col-md-9 col-11 ">
         <div className='navbar_left'> 
           <Link to={"/"}> 
-              <img className='logo' src='https://i.ibb.co/7RvGNZV/Kakao-Talk-Photo-2021-11-12-13-30-44-removebg-preview.png' onClick={onReset}/>
+              <img className='logo' src='https://i.ibb.co/7RvGNZV/Kakao-Talk-Photo-2021-11-12-13-30-44-removebg-preview.png' alt='logo' onClick={onReset}/>
           </Link>
             
             {isPc && <ul className = 'menu'>
@@ -66,20 +61,15 @@ function Nav({handleSignOut,getSearch,searchInfo,setSearchInfo,onReset}){
                 </Link>
             </ul>}   
             {isMobile && <ul className = 'menu' onClick={showTabList}>
-                <img className='menu-icon' src='https://i.ibb.co/ThFZQf9/Kakao-Talk-Photo-2021-11-13-01-59-17.png"'/>
-                {/* <li>menu</li> */}
+                <img className='menu-icon' src='https://i.ibb.co/ThFZQf9/Kakao-Talk-Photo-2021-11-13-01-59-17.png'alt='icon'/>
                 </ul>}
         </div>
         <div className='navbar_right'>
-            {/* { searchBox=== false ?
-             (<div className= 'searchbox' onClick={openSeachBox}>검색</div>)
-             : */}
              <div className='seach_input_box'>
-                <input type='text'  className="search-input" onChange={searchHandleChange} onKeyUp={handleKeyUp} value={searchInfo}/><img className="search-icon" src="https://i.ibb.co/FgWPvVM/Kakao-Talk-Photo-2021-11-12-13-30-49-removebg-preview.png" onClick={SearchClick}/>
+                <input type='text'  className="search-input" onChange={searchHandleChange} onKeyUp={handleKeyUp} value={searchInfo}/><img className="search-icon" src="https://i.ibb.co/FgWPvVM/Kakao-Talk-Photo-2021-11-12-13-30-49-removebg-preview.png" alt='icon' onClick={SearchClick}/>
 
              </div>
-            {/* } */}
-             <div className='signout' onClick={handleSignOut}><img className="logout-icon" src="https://i.ibb.co/SdZL2Zm/Kakao-Talk-Photo-2021-11-13-02-51-07-002-removebg-preview.png"/></div>
+             <div className='signout' onClick={handleSignOut}><img className="logout-icon" src="https://i.ibb.co/SdZL2Zm/Kakao-Talk-Photo-2021-11-13-02-51-07-002-removebg-preview.png" alt='icon'/></div>
         </div>
         
         </div>

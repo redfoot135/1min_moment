@@ -1,7 +1,5 @@
 import { Button } from '@material-ui/core';
-import { BrowserRouter, Route, Switch, useHistory, Link} from 'react-router-dom';
 import axios from 'axios';
-import React, {useState, useEffect} from 'react';
 import Comments from '../component/comments'
 import './videopage.css'
 

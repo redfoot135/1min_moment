@@ -1,23 +1,12 @@
 import './nav.css'
-import {useMediaQuery} from 'react-responsive'
 import {Link,useHistory} from 'react-router-dom';
-import Menu from './menu'
-import React, { useState,useEffect,useContext } from 'react';
+import React, { useState } from 'react';
 
 
-function Nav2({openModalFunc,openSideBarlFunc , handleSignOut,getSearch,searchInfo, setSearchInfo, onReset}){
+function Nav2({openModalFunc,getSearch,searchInfo, setSearchInfo, onReset}){
     const history = useHistory();
    
-
     const [searchBox, setSearchBox]=useState(false)
-    const [search, setSearch]=useState(false)
-    const isPc = useMediaQuery({
-        query : "(min-width:768px)"
-    })
-    const isMobile = useMediaQuery({
-        query : "(max-width:767px)"
-    })
-
 
     const openSeachBox = () =>{
         setSearchBox(!searchBox)
@@ -42,7 +31,7 @@ function Nav2({openModalFunc,openSideBarlFunc , handleSignOut,getSearch,searchIn
         <div className='navbar_left'>
 
         <Link to={"/"} onClick={onReset}> 
-              <img className='logo' src='https://i.ibb.co/7RvGNZV/Kakao-Talk-Photo-2021-11-12-13-30-44-removebg-preview.png'/>
+              <img className='logo' src='https://i.ibb.co/7RvGNZV/Kakao-Talk-Photo-2021-11-12-13-30-44-removebg-preview.png' alt='logo'/>
           </Link>
                 <ul className = 'menu'>
 
@@ -58,10 +47,10 @@ function Nav2({openModalFunc,openSideBarlFunc , handleSignOut,getSearch,searchIn
              (<div className= 'searchbox' onClick={openSeachBox}>검색</div>)
              :
              (<div className='seach_input_box'>
-                  <div className= 'searchbox' onClick={openSeachBox}>검색</div><input type='text'  className="search-input" onChange={searchHandleChange} onKeyUp={handleKeyUp} value={searchInfo}/><img className="search-icon" src="https://i.ibb.co/FgWPvVM/Kakao-Talk-Photo-2021-11-12-13-30-49-removebg-preview.png" onClick={SearchClick}/>
+                  <div className= 'searchbox' onClick={openSeachBox}>검색</div><input type='text'  className="search-input" onChange={searchHandleChange} onKeyUp={handleKeyUp} value={searchInfo}/><img className="search-icon" src="https://i.ibb.co/FgWPvVM/Kakao-Talk-Photo-2021-11-12-13-30-49-removebg-preview.png" alt='search-icon' onClick={SearchClick}/>
              </div>)
             }
-             <div className='signup' onClick={openModalFunc} ><img className="login-icon" src="https://i.ibb.co/TtLvxmP/Kakao-Talk-Photo-2021-11-13-02-51-07-001-removebg-preview.png"/></div>
+             <div className='signup' onClick={openModalFunc} ><img className="login-icon" src="https://i.ibb.co/TtLvxmP/Kakao-Talk-Photo-2021-11-13-02-51-07-001-removebg-preview.png" alt='login-icon'/></div>
          </div>
         </div>
     </nav>
